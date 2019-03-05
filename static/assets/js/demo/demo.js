@@ -17,8 +17,8 @@ var Demo = function() {
         return;
       }
       e.preventDefault;
-      alert('Your form has submitted!');
-      return false;
+//          alert('Your hola has submitted!');
+//          return false;
     });
 
     // give file-upload preview onclick functionality
