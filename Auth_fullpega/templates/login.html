@@ -1,0 +1,137 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+
+
+    <title>Bienvenido</title>
+  </head>
+  <style>
+    .top {
+      background-color: #2799FA;
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+    .container{
+      padding-top: 5px;
+
+    }
+    .separation {
+
+      background-color: #2799FA;
+      text-align: center;
+    }
+    body
+    {
+     background-image: url("/media/logos/fondo.png");
+     background-repeat: no-repeat;
+     -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    }
+
+  </style>
+<!--                                  -->
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark top  static-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+              <img height="20%" width="20%" src="/media/logos/logobici.png" alt="">
+            </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                    <span class="sr-only">(current)</span>
+                  </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Arrendar</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Catalogo</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'auth_logout' %}">Iniciar sesion</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div  class="container">
+    <div class="row">
+      <div class="col-md-12">
+<br>
+
+    <div class="col-md-6" style="background-color: rgba(173, 168, 163, 0.5);border-radius: 15%; display: block;margin-right: auto;  margin-left: auto;">
+      <form class="form-signin" method="POST">{% csrf_token %}
+      <div class="text-center mb-4">
+        <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h1 style="color:white;" class="h3 mb-3 font-weight-normal">Iniciar sesión</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+
+            <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+
+            {% endfor %}
+        {% endif %}
+
+      </div>
+
+
+      <div class="col-md-8 mb-3" style="display: block;margin-right: auto;  margin-left: auto;">
+        <label style="color:white;" for="validationDefault02">Usuario</label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="Usuario" required autofocus>
+      </div>
+
+      <div class="col-md-8 mb-3" style="display: block;margin-right: auto;  margin-left: auto;">
+        <label style="color:white;" for="validationDefault02">Contraseña</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+      </div>
+
+      <div class="col-md-8 mb-3" style="display: block;margin-right: auto;  margin-left: auto;">
+        <label>
+          <input  type="checkbox" value="remember-me"> <label for="" style="color:white;">Recuerdame</label>
+        </label>
+        <button style="color:white;" class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+        <p style="color:white;" class="mt-5 mb-3 text-muted text-center">&copy; 2018</p>
+
+      </div>
+
+    </form>
+    </div>
+    </div>
+    </div>
+
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"> </script>
+
+    <script>
+      $('.carousel').cycle({
+      interval: 500
+    })
+    </script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+{% extends 'Partials/_Base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% block Titulo %}
+¡Haz tu pedido, crea tu pizza!
+{% endblock %}
+
+{% block nav %}
+<div class="navd">
+
+    <a  href="{% url 'index' %}">
+      <button style="background-color: #A52A2A; color: black;border-radius:10px;outline:none;" class="btn btn-secondary" type="button">
+        Crea Tu pizza
+      </button>
+    </a>
+    <a href="{% url 'list_Order' %}">
+      <button style="background-color: #A52A2A; color: black;border-radius:10px;outline:none;" class="btn btn-secondary" type="button">
+        Ver Pedidos
+      </button>
+    </a>
+</div>
+{% endblock %}
+{% block content %}
+
+  <div style="background-color: #F8F8FF;" class="container">
+
+    <div class="row intruction">
+        <div class="col-sm-10 col-xl-10 col-lg-10 col-md-10"><h2>Hola, {{request.user}}</h2>    <p class="cost"> Arma tu pizza a tu elección, selecciona tu masa ideal y tus ingredientes favoritos! <br> Debes seleccionar ambos para luego poder agregar la dirección de despacho.</p>
+  </div>
+        <div class="col-lg-2 col-sm-2 col-xl-2 col-md-2"><h2><a  href="{% url 'auth_logout' %}">Salir</a> </h2></div>
+      </div>
+
+    <div class="separation textoblanco">
+      <h3>Selecciona la masa</h3>
+    </div>
+    <div class="row">
+      {% for i in mass %}
+        <div class="col-md-4">
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="{{i.code}}" value="{{i.code}}">
+            <img height="200px" width="200px" id="img{{i.code}}" src="{% get_media_prefix %}{{i.image}}" alt="">
+
+        </div>
+        <p class="cost">{{i.name}} - Valor : ${{i.price}} </p>
+        </div>
+      {% endfor %}
+    </div>
+  <form id="formpizza">
+      <div class="separation textoblanco">
+        <h3>Selecciona tus ingredientes</h3>
+      </div>
+      <div class="row">
+        {% for i in ing %}
+        <div class="col-lg-4 col-sm-12 col-md-4 col-xl-4">
+            <span>
+              <button type="button" class="btn btn-outline-primary" id={{i.name}}>+</button>
+              <img height="200px" width="200px" src="{% get_static_prefix %}{{i.image}}" alt="">
+              <i id={{i.code}} class="far fa-grin-beam" style="display: none; "></i>
+            </span>
+            <p class="cost">{{i.name}} - Valor : ${{i.price}} </p>
+
+        </div>
+        {% endfor %}
+        <div id=costo class="container separation textoblanco">
+          <h2>Costo Total: 0</h2>
+        </div>
+        </div>
+      <div class="container row justify-content-md-center">
+        <button style="text-align: center;" type="submit" class=" col-md-12 btn btn-primary">Quiero esta pizza!</button>
+      </div>
+  </form>
+  {% for i in bicicletas %}
+  <div class="col-lg-4 col-sm-12 col-md-4 col-xl-4">
+      <span>
+        <button type="button" class="btn btn-outline-primary" id={{i.name}}>+</button>
+        <img height="200px" width="200px" src="{% get_static_prefix %}{{i.image}}" alt="">
+        <i id={{i.code}} class="far fa-grin-beam" style="display: none; "></i>
+      </span>
+      {{i.nombre}}
+  </div>
+  {% endfor %}
+  <script src="{% static 'js/jquery-3.2.1.min.js' %}"> </script>
+
+  <script>
+
+    $(document).ready(function () {
+      list_ing = [];
+      price = 0;
+      {# Append fields for dynamic formset to work #}
+      {% for i in ing %}
+      $("#" + "{{i.name}}").click(function(){
+        if(document.getElementById("{{i.code}}").style.display == 'none'){
+          price = price + {{i.price}}
+          // alert(price)
+          // alert("++{{i.price}}");
+          // document.getElementById("{{i.code}}").style.display = 'block';
+          $("#" + "{{i.code}}").show();
+          $("#" + "{{i.name}}").text("-");
+          list_ing.push("{{i.code}}");
+          $('#costo').html('<h3>Costo Total: '+ price +'</h3>');
+
+
+        }else{
+          // alert("--{{i.price}}");
+          price = price - {{i.price}}
+          // alert(price)
+          document.getElementById("{{i.code}}").style.display = 'none';
+          $("#" + "{{i.name}}").text("+");
+          delete list_ing[list_ing.indexOf("{{i.code}}")];
+          $('#costo').html('<h3>Costo Total: '+ price +'</h3>');
+
+        }
+      })
+      {% endfor %}
+      var aux = 0;
+      {% for i in mass %}
+    // CUANDO DA CLICK A LA IMAGEN
+        $("#img{{i.code}}").click(function(){
+          // alert("ASDDD")
+          if (aux != 0){
+            price = price - aux
+          }
+          aux = {{i.price}}
+          price = price + {{i.price}}
+          $("#{{i.code}}")[0].checked = 'true';
+          $('#costo').html('<h3>Costo Total: '+ price +'</h3>');
+
+        })
+    // CUANDO DA CLICK AL CHECJBUTTON
+        $("#{{i.code}}").click(function(){
+          // alert("ASDDD")
+          if (aux != 0){
+            price = price - aux
+          }
+          aux = {{i.price}}
+          price = price + {{i.price}}
+          $("#{{i.code}}")[0].checked = 'true';
+          $('#costo').html('<p>Costo Total: '+ price +'</p>');
+        })
+      {% endfor %}
+    });
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    $('#formpizza').submit(function(){
+
+    var a = 0;
+    var i = true;
+    while(i){
+      if($(".form-check-input")[a] != undefined ){
+        if($(".form-check-input")[a].checked){
+          var mass = $(".form-check-input")[a].id;
+        }
+      }else{
+        i = false;
+      }
+      a = a + 1
+      }
+      // alert(mass);
+    $.ajax({
+        url: "{% url 'index' %}",
+        type: "POST",
+        data: {
+            'list_ing': String(list_ing),
+            'mass': String(mass),
+            'price': String(price),
+            'csrfmiddlewaretoken': getCookie('csrftoken'),
+        },
+        success: function (data) {
+            window.location.href = "{% url 'add_dir' %}";
+
+        },
+    });
+    return false;
+  });
+  </script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+{% endblock %}
