@@ -1,66 +1,19 @@
 {% extends 'Partials/_Base.html' %}
 {% load bootstrap4 %}
 {% load static %}
-{% block Titulo %}
-Super usuario
-{% endblock %}
-{% block content %}
-
-<style type="text/css">
-body{
-   background-image: url("/media/logos/fondo.png");
-   background-repeat: no-repeat;
-   -webkit-background-size: cover;
- -moz-background-size: cover;
- -o-background-size: cover;
- background-size: cover;
-}
-.outer {
-  align-items: center;
-  display: flex;
-  height: 500px;
-  justify-content: center;
-  max-width: 100%;
-  overflow: auto;
-  padding: 50px;
-  resize:both;
-}
-
-svg {
-  height: 100%;
-}
-
-circle {
-  fill: rgba(173, 168, 163, 0.5);
-}
-
-text {
-  fill: #fff;
-  font-size: 40%;
-  font-family: sans-serif;
-}
-
-</style>
-<body>
-<div class="outer">
-  <svg viewBox="0 0 140 140" preserveAspectRatio="xMinYMin meet">
-    <g>
-      <circle r="50%" cx="50%" cy="50%" class="circle-back" />
-
-      <text x="50%" y="45%" text-anchor="middle" dy="0.3em">¿Que esperas?</text>
-      <text x="50%" y="55%" text-anchor="middle" dy="0.3em">¡A pedarlear!</text>
-      <text x="50%" y="65%" text-anchor="middle" dy="0.3em">          <a class="nav-link" href="#">Arrendar</a></text>
 
 
-    </g>
-  </svg>
+
+{% block section_contenido %}
+<div class="admin-panels ui-sortable animated fadeIn">
+
+          <div class="row">
+
+            <div class="pl15 pr50">
+            <h4> ¡Bienvenido a FullPega! </h4>
+            <hr class="alt short">
+            <p class="text-muted"> Lorem ipsum dolor sit amet,  is nisi ut aliquip ex ea commodo consectetur adipi sicing elit, sed do eiusmod tempor incididu ut labore et is nisi ut aliquip ex ea commodo dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exetation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+            </div>
 </div>
-
-</body>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
 {% endblock %}

@@ -17,7 +17,7 @@ var Demo = function() {
         return;
       }
       e.preventDefault;
-//          alert('Your hola has submitted!');
+//          alert('Your form has submitted!');
 //          return false;
     });
 
