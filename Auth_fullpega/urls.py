@@ -1,4 +1,5 @@
 from django.urls import path
+from Registro_fullpega import views
 from Auth_fullpega import views
 
 urlpatterns = [

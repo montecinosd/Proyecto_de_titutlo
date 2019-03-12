@@ -12,8 +12,8 @@ def auth_login(request):
 
     logout(request)
     username = password = ''
-    print("ASDS")
-    print(request.POST)
+    # print("ASDS")
+    # print(request.POST)
     if request.POST:
         print("POSTXD")
         username = request.POST['username']

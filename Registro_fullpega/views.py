@@ -10,8 +10,12 @@ from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
 
 # Create your views here.
-@login_required(login_url='/auth/login')
+@login_required(login_url='/auth/auth_login')
 def index(request):
 		data={}
 		template_name = "index_super_user.html"
+		return render(request, template_name,data)
+def Registro_form(request):
+		data={}
+		template_name = "pages_register.html"
 		return render(request, template_name,data)
