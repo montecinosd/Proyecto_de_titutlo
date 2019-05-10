@@ -12,8 +12,13 @@ from django.contrib.auth.models import User
 #     Codigo =  models.CharField(max_length=120)
 #     Monto_garantia = models.PositiveIntegerField()
 #     Imagen = models.ImageField(upload_to='image')
-#
+
+
+class Areas(models.Model):
+    Nombre = models.CharField(max_length=120)
+
 class Cliente(models.Model):
+
     Nombre = models.CharField(max_length=120)
     Fecha_nacimiento = models.DateField()
     Email = models.EmailField()
@@ -22,6 +27,20 @@ class Cliente(models.Model):
 
     rut = models.CharField(max_length=8)
     dv = models.PositiveIntegerField()
-#
+    #privilegios 0 usuario normal, 1 oferente, 2 postulante, 3 mutual
+   # privilegio = models.PositiveIntegerField(default=0)
+    privilegio = models.CharField(
+        max_length=4,
+        choices=(
+            ('Sp', 'Sin_privilegios'),
+            ('Po', 'Privilegio_ofrecer'),
+            ('Pp', 'Privilegio_publicar'),
+            ('Pm', 'Privilegio_mutuo'),),
+        default='Sp')
+    #Areas de interes
+    Areas_interes = models.ForeignKey(Areas, on_delete=models.CASCADE)
+
+
+
 # class Reserva(models.Model):
 #     pass
