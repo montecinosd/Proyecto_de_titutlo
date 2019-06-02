@@ -8,6 +8,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', include('Registro_fullpega.urls'), name='Registro_fullpega'),
     path('auth/', include('Auth_fullpega.urls'), name='auth'),
+    path('publicar/', include('Publicar_trabajo.urls'), name='auth'),
+
     # path("index_Fullpega/", include('Fullpega.urls'), name='Fullpega'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
