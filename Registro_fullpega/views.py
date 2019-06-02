@@ -8,10 +8,11 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
+from django.contrib.auth.models import User
 
 
 # Create your views here.
-@login_required(login_url='/auth/auth_login')
+@login_required(login_url='/auth/login')
 def index(request):
     a = 'jj'
     data = {a: 'holiwis'}
@@ -60,19 +61,15 @@ def Registro_form(request):
                     user = User.objects.create_user(username=request.POST["username"],
                                                     password=request.POST["password1"])
                     user.save()
-                    data['form2'] = ClienteForm(request.POST, request.FILES)
-                    print(data['form2'])
-                    if (data['form2'].is_valid()):
-                        print("DATA 2VALID")
-                        data['form2'].save(commit=False)
+                    datos = ClienteForm(request.POST, request.FILES)
+                    if (datos.is_valid()):
+                        print(user)
+                        datos = datos.save(commit=False)
                         #rescatando datos de cliente
-                        cliente = Cliente()
-                        cliente.usuario = user
-                        cliente.privilegio = 'Sp'
-                       # fields = ['Nombre', 'Fecha_nacimiento', 'Email', 'Direccion', 'rut', 'dv']
-
-                       # cliente.Email = request.POST["Email"]
-                        cliente.save()
+                        usuario = User.objects.get(pk=user.pk)
+                        datos.usuario = usuario
+                        datos.privilegio = 'Sp'
+                        datos.save()
                     else:
                         print("else de data 2")
 

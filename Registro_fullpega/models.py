@@ -38,7 +38,7 @@ class Cliente(models.Model):
             ('Pm', 'Privilegio_mutuo'),),
         default='Sp')
     #Areas de interes
-    Areas_interes = models.ForeignKey(Areas, on_delete=models.CASCADE)
+    Areas_interes = models.ForeignKey(Areas, on_delete=models.CASCADE, default=None, blank=True, null=True)
 
 
 

@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 
 class UserForm(forms.ModelForm):
     username = forms.CharField(label='Ingrese su nombre',widget=forms.TextInput(attrs={'class':'form-control'}))
+    # email = forms.EmailField(required=True,
+    #                          label='Email',
+    #                          error_messages={'exists': 'Oops'}, widget=forms.TextInput(attrs={'class':'form-control'}))
 
     password1 = forms.CharField(label='Enter password', widget=forms.PasswordInput(attrs={'class':'form-control'}))
     password2 = forms.CharField(label='Confirm password',widget=forms.PasswordInput(attrs={'class':'form-control'}))
