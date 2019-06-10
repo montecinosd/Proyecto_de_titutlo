@@ -12,9 +12,29 @@
             <div class="pl15 pr50">
             <h4> ¡Bienvenido a FullPega! - Publicar trabajo </h4>
             <hr class="alt short">
-            <p class="text-muted"> Publica tu trabajo a continnuacion</p>
+            <p class="text-muted"> Publica tu trabajo a continuación!</p>
+            <div class="row">
+                  <form method="post" action="" id="account2">
+                  <div class="panel-body p25 bg-light">
+                    <div class="section-divider mt10 mb40">
+                      <b><span>Publica tu trabajo a continuación!</span><hr>
+                    </div>
+                    <!-- #<input type="submit" value="Submit"> -->
+                    {% csrf_token %}
+                    {{ form }}
+                      <!-- #<input type="submit" value="Submit"> -->
 
+                    <div class="row">
+                        <hr>
+                    </div>
+                  <div class="row" style="text-align: center;">
+                    <button type="submit" class="button btn-primary">Publicar trabajo</button>
+                 </div>
+              <!-- end .form-footer section -->
+                </form>
+              </div>
           </div>
+
             </div>
 </div>
 {% endblock %}
