@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import date
 # Create your models here.
 
 class Trabajo(models.Model):
@@ -8,6 +8,8 @@ class Trabajo(models.Model):
     Detalle = models.CharField(max_length=120)
 
     Monto_pago = models.PositiveIntegerField()
+    Fecha = models.DateField(("Date"), default=date.today)
+
 
    #  Email = models.EmailField()
    #  Direccion = models.CharField(max_length=60)
