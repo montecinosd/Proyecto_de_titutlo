@@ -9,7 +9,7 @@ class Trabajo(models.Model):
 
     Monto_pago = models.PositiveIntegerField()
     Fecha = models.DateField(("Date"), default=date.today)
-
+    Hora = models.TimeField()
 
    #  Email = models.EmailField()
    #  Direccion = models.CharField(max_length=60)
