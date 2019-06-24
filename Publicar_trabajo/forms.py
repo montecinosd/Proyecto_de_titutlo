@@ -11,14 +11,20 @@ from django.contrib.auth.models import User
 class TrabajoForm(forms.ModelForm):
     class Meta:
         model = Trabajo
-        fields = (['Nombre','Detalle','Monto_pago','Fecha','Hora'])
+        fields = (['Nombre','Detalle','Monto_pago','Fecha','Hora','rango_etario','Area','Direccion'])
         # Fecha = forms.DateField(
         #     widget=forms.DateInput(format='%m/%d/%Y', attrs={'class': 'datepicker'}),
         #     input_formats=('%m/%d/%Y',)
         # )
-        widgets = {'Nombre': forms.TextInput(attrs={'id':'Rut','type':'text', 'class':'form-control','placeholder':'Ingrese nombre del trabajo'}),
-                   'Detalle': forms.TextInput(attrs={'id':'Rut','type':'text', 'class':'form-control','placeholder':'Ingrese detalle del trabajo'}),
-                    Ingrese la fecha del trabajo'Fecha': forms.TextInput(attrs={'id':'Rut','type':'date', 'class':'form-control','placeholder':'Ingrese la fecha del trabajo'}),
-                   'Hora': forms.TextInput(attrs={'id': 'Rut', 'type': 'time', 'class': 'form-control','placeholder': 'Ingrese la hora del trabajo'}),
 
-                   'Monto_pago': forms.TextInput(attrs={'id':'Direccion','type':'text', 'class':'form-control','placeholder':'Ingrese monto que esta dispuesto a pagar'}),}
+        widgets = {'Nombre': forms.TextInput(attrs={'id':'Nombre','type':'text', 'class':'form-control','placeholder':'Ingrese nombre del trabajo'}),
+                   'Detalle': forms.TextInput(attrs={'id':'Detalle','type':'text', 'class':'form-control','placeholder':'Ingrese detalle del trabajo'}),
+                    'Fecha': forms.TextInput(attrs={'id':'Fecha','type':'date', 'class':'form-control','placeholder':'Ingrese la fecha del trabajo'}),
+                   'Hora': forms.TextInput(attrs={'id': 'Hora', 'type': 'time', 'class': 'form-control','placeholder': 'Ingrese la hora del trabajo'}),
+                   'Area': forms.TextInput(attrs={'id': 'Area', 'type': 'text', 'class': 'form-control',
+                                                  'placeholder': 'Ingrese la area del trabajo'}),
+                   'Direccion': forms.TextInput(attrs={'id': 'direccion', 'type': 'text', 'class': 'form-control',
+                                                  'placeholder': 'Ingrese la dirección'}),
+
+                   'rango_etario' : forms.Select(attrs={'class': 'form-control'}),
+                   'Monto_pago': forms.TextInput(attrs={'id':'Monto_pago','type':'text', 'class':'form-control','placeholder':'Ingrese monto que esta dispuesto a pagar'}),}

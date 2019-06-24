@@ -40,6 +40,12 @@ class Cliente(models.Model):
     #Areas de interes
     Areas_interes = models.ForeignKey(Areas, on_delete=models.CASCADE, default=None, blank=True, null=True)
 
+class Direccion(models.Model):
+    calle = models.CharField(max_length=120)
+    comuna = models.CharField(max_length=120)
+    numero = models.PositiveIntegerField()
+    Pais = models.CharField(max_length=120)
+    Block_depto = models.CharField(max_length=120)
 
 
 # class Reserva(models.Model):

@@ -10,6 +10,19 @@ class Trabajo(models.Model):
     Monto_pago = models.PositiveIntegerField()
     Fecha = models.DateField(("Date"), default=date.today)
     Hora = models.TimeField()
+    rango_etario = models.CharField(
+        max_length=4,
+        choices=(
+            ('Sin rango etario especifico', 'Sin rango etario especifico'),
+            ('15-25', '15-25'),
+            ('25-35', '25-35'),
+            ('35-45', '35-45'),
+            ('45-55', '45-55'),
+            ('55-65', '55-65'),
+            ),
+        default='Sin rango etario especifico')
+    Area = models.CharField(max_length=120)
+    Direccion = models.CharField(max_length=120)
 
    #  Email = models.EmailField()
    #  Direccion = models.CharField(max_length=60)
