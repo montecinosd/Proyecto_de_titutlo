@@ -1,0 +1,172 @@
+{% extends 'Partials/_Base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'assets/' %}">
+
+{% block section_contenido %}
+
+        <div class="row img-centered">
+          <div class="col-md-1">
+          </div>
+                      <div class="col-md-2">
+            <span class="footer-legal"><img class='img-responsive' src="/media/{{ usuario.Imagen }}" /></span>
+          </div>
+
+                  <div class="col-md-6">
+            <h1><span style ="font-weight: bold; "class="">{{ usuario.Nombre }}</span></h1><hr>
+            <span class="footer-lega">{{ usuario.Correo }}</span><br>
+            <span class="footer-lega">{{ usuario.Direccion.Ciudad }}, {{ usuario.Direccion.Pais }}.</span><br>
+            <span class="footer-lega">{{ usuario.Direccion.Comuna }}, {{ usuario.Direccion.Calle }} {{ usuario.Direccion.Numero_de_calle }}.</span><br>
+            <span class="footer-lega">{{ usuario.Telefono_C }}</span>
+          </div>
+        </div>
+    <hr>
+
+    <div class="row text-center">
+
+    </div>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+              <h3>Redes sociales</h3>
+
+  Estas son las redes vinculadas de {{ usuario.Nombre }}<hr>
+
+            <div class="card col-md-6" style="padding:1%;width: 33%;height: 100%;"  >
+                <div class="text-center">
+                    <a href="https://www.facebook.com/holasoyeldani" class="href" target="_blank">
+                     <img class="class='img-responsive" src="/media/facebook.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
+                    </a>
+                </div>
+
+
+              </div>
+              <div class="card col-md-6" style="padding:1%;width: 33%;height: 100%;"  >
+                <div class="text-center">
+                    <a href="https://twitter.com/Montecinosd97" class="href" target="_blank">
+                     <img class="class='img-responsive" src="/media/twitter.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
+                    </a>
+                </div>
+
+              </div>
+            <div class="card col-md-6" style="padding:1%;width: 33%;height: 100%;"  >
+                <div class="text-center">
+                    <a href="https://www.linkedin.com/in/daniel-ignacio-montecinos-zambra-833b35182/" class="href" target="_blank">
+                     <img class="class='img-responsive" src="/media/linkedin.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
+                    </a>
+                </div>
+
+              </div>
+        </div>
+        <div class="col-md-6">a</div>
+    </div>
+
+
+    </div>
+{#    {% for i in portafolio %}#}
+{#                {% for z in i %}#}
+{#                    {{ z.Nombre }}#}
+{##}
+{#                {% endfor %}#}
+{#{% endfor %}#}
+    <style>
+    .zoom {
+  padding: 50px;
+  background-color: green;
+  transition: transform .2s; /* Animation */
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+</style>
+        <div class="container">
+<div class="row">
+
+        {% for i in aptidudes_validadas %}
+{#            {{ i }}#}
+          <div class="card col-md-6" style="padding:1%;width: 33%;height: 100%;"  >
+<div class="text-center">Portafolio</div>
+            <img class="class='img-responsive" src="/media/{{ i.Aptitud_validada.Imagen }}" alt="Card image" style="margin:2px;width:350px; height: 130px;">
+            <div class="card-body ">
+              <h4 class="card-title text-center">{{ i.Aptitud_validada.Nombre }}
+
+
+                  <a style="float: right;" href="{% url 'vincular_portafolio' i.pk %}" >
+  <span class="glyphicon glyphicon-plus-sign"  aria-hidden="true"></span>
+                  </a></h4>
+
+              <p class="card-text"> {{ i.Descripccion }}</p>
+
+                <hr>
+{#                <div class="text-center"style="height: 100px;overflow: auto;"><a href="#" class="btn btn-primary  stretched-link">Ver portafolio</a></div>#}
+            </div>
+            <div class="card-body" style="height: 100px;overflow: auto;">
+                <ul class="list-group list-group-flush">
+                        {% for portafolio_aptitud in portafolio %}
+                {% for z in portafolio_aptitud %}
+
+
+                 {% if i.Aptitud_validada == z.aptitude_validadas.Aptitud_validada %}{{ z.Nombre }}
+
+<embed src="/media/{{ z.pdf }}#view=FitH" width="100%" height="100%" /></li>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+                  </ul>
+            </div>
+
+          </div>
+    {% endfor %}
+            </div>
+
+        </div>
+
+{% endblock %}
+
+{% block scripts %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+
+$( document ).ready(function() {
+
+        {#window.location.reload(false);#}
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem('firstLoad') )
+    {
+      localStorage['firstLoad'] = true;
+      window.location.reload();
+    }
+    else
+      localStorage.removeItem('firstLoad');
+  }
+})();
+
+      {#  $.ajax({#}
+      {#  url: "{% url 'validar_aptitud' %}",#}
+      {#  type: "POST",#}
+      {#  data: {#}
+      {#      "pk_aptitud" : getCookie("pk_aptitud"),#}
+      {#      csrfmiddlewaretoken: "{{ csrf_token }}",#}
+      {#  },#}
+      {#  success: function(data) {#}
+      {#      //alert(data);#}
+      {##}
+      {##}
+      {#  },#}
+      {#});#}
+});
+</script>
+
+{% endblock %}

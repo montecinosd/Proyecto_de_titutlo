@@ -1,6 +1,9 @@
+from datetime import date,datetime
+from Registro_fullpega.models import *
+
 from django.db import models
-from datetime import date
-# Create your models here.
+
+
 
 class Trabajo(models.Model):
 
@@ -9,7 +12,7 @@ class Trabajo(models.Model):
 
     Monto_pago = models.PositiveIntegerField()
     Fecha = models.DateField(("Date"), default=date.today)
-    Hora = models.TimeField()
+    Hora = models.TimeField(default=datetime.now())
     rango_etario = models.CharField(
         max_length=4,
         choices=(
@@ -21,7 +24,7 @@ class Trabajo(models.Model):
             ('55-65', '55-65'),
             ),
         default='Sin rango etario especifico')
-    Area = models.CharField(max_length=120)
+    Area = models.OneToOneField(Areas, on_delete=models.CASCADE)
     Direccion = models.CharField(max_length=120)
 
    #  Email = models.EmailField()

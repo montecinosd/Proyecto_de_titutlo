@@ -44,6 +44,41 @@ def index(request):
 #         form = ClienteForm()
 #
 #     return render(request, 'pages_register.html', {'form': form})
+@login_required(login_url='/auth/login')
+def visualizar_perfil(request,pk_user):
+    data = {}
+    usuario = Persona.objects.get(Usuario=pk_user)
+    data['usuario'] = usuario
+
+    # print(usuario.pk)
+    # print(request.user.pk)
+
+    # print(data)
+    return render(request, 'visualizar_perfil.html', data)
+
+@login_required(login_url='/auth/login')
+def visualizar_privilegios(request,pk_user):
+    data = {}
+    usuario = Persona.objects.get(Usuario=pk_user)
+    data['usuario'] = usuario
+
+    # print(usuario.pk)
+    # print(request.user.pk)
+
+    # print(data)
+    return render(request, 'visualizar_privilegios.html', data)
+
+@login_required(login_url='/auth/login')
+def buscar_trabajo(request,pk_user):
+    data = {}
+    usuario = Persona.objects.get(Usuario=pk_user)
+    data['usuario'] = usuario
+
+    # print(usuario.pk)
+    # print(request.user.pk)
+
+    # print(data)
+    return render(request, 'buscar_trabajo.html', data)
 
 def Registro_form(request):
 

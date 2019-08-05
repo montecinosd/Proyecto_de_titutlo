@@ -14,8 +14,6 @@ from django.http import JsonResponse
 from django.contrib.auth.models import User
 
 # Create your views here.
-
-# Create your views here.
 @login_required(login_url='/auth/login')
 def publicar_trabajo(request):
     data = {}

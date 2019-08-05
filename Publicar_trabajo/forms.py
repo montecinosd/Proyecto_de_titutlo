@@ -21,8 +21,7 @@ class TrabajoForm(forms.ModelForm):
                    'Detalle': forms.TextInput(attrs={'id':'Detalle','type':'text', 'class':'form-control','placeholder':'Ingrese detalle del trabajo'}),
                     'Fecha': forms.TextInput(attrs={'id':'Fecha','type':'date', 'class':'form-control','placeholder':'Ingrese la fecha del trabajo'}),
                    'Hora': forms.TextInput(attrs={'id': 'Hora', 'type': 'time', 'class': 'form-control','placeholder': 'Ingrese la hora del trabajo'}),
-                   'Area': forms.TextInput(attrs={'id': 'Area', 'type': 'text', 'class': 'form-control',
-                                                  'placeholder': 'Ingrese la area del trabajo'}),
+                   'Area': forms.Select(attrs={'class': 'form-control'}),
                    'Direccion': forms.TextInput(attrs={'id': 'direccion', 'type': 'text', 'class': 'form-control',
                                                   'placeholder': 'Ingrese la dirección'}),
 

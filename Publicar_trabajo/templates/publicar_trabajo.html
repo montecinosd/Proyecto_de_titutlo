@@ -5,36 +5,78 @@
 
  <link rel="stylesheet" type="text/css" href="{% static 'assets/' %}">
 {% block section_contenido %}
-<div class="admin-panels ui-sortable animated fadeIn">
+    <div class="row text-center">
 
-          <div class="row">
+  <h4>¡Publica la pega que necesitas que te hagan!</h4>
 
-            <div class="pl15 pr50">
-            <h4> ¡Bienvenido a FullPega! - Publicar trabajo </h4>
-            <hr class="alt short">
-            <p class="text-muted"> Publica tu trabajo a continuación!</p>
-            <div class="row">
-                  <form method="post" action="" id="account2">
-                  <div class="panel-body p25 bg-light">
-                    <div class="section-divider mt10 mb40">
-                      <b><span>Publica tu trabajo a continuación!</span><hr>
+  Publica la pega para que los usuarios puedan postular a ella! <hr>
+    </div>
+
+<div class="container">
+    <div class="row">
+    <div class="panel-body bg-light">
+        <form method="post" action="/" id="example-widgets-form">
+            Publicar trabajo
+            <hr>
+            <div class="section-divider mb40">
+                <div class="row">
+                    <div class="col-md-4">
+                      <label for="email">Email address:</label>
+                      <input type="" class="form-control" id="email">
                     </div>
-                    <!-- #<input type="submit" value="Submit"> -->
-                    {% csrf_token %}
-                    {{ form }}
-                      <!-- #<input type="submit" value="Submit"> -->
-
-                    <div class="row">
-                        <hr>
+                    <div class="col-md-4">
+                      <label for="email">Email address:</label>
+                      <input type="" class="form-control" id="email">
                     </div>
-                  <div class="row" style="text-align: center;">
-                    <button type="submit" class="button btn-primary">Publicar trabajo</button>
-                 </div>
-              <!-- end .form-footer section -->
-                </form>
-              </div>
-          </div>
+                    <div class="col-md-4">
+                      <label for="email">Email address:</label>
+                      <input type="" class="form-control" id="email">
+                    </div>
 
+
+                </div>
             </div>
+        </form>
+    </div>
+    </div>
 </div>
+{#          <div class="row">#}
+{##}
+{#            <div class="pl15 pr50">#}
+{#            <h4> ¡Bienvenido a FullPega! - Publicar trabajo </h4>#}
+{#            <hr>#}
+{#            <p class="text-muted"> Publica tu trabajo a continuación!</p>#}
+{#            <div class="row">#}
+{#                  <form method="post" action="" id="account2">#}
+{#                  <div class="panel-body p25 bg-light">#}
+{#                    <div class="section-divider mt10 mb40">#}
+{#                      <b><span>Publica tu trabajo a continuación!</span><hr>#}
+{#                    </div>#}
+{#                    <!-- #<input type="submit" value="Submit"> -->#}
+{#                  <div class="container">#}
+{##}
+{#                  </div>#}
+{#                    {% csrf_token %}#}
+{#                    {{ form }}#}
+{#                      <!-- #<input type="submit" value="Submit"> -->#}
+{#                  <select>#}
+{#                            {% for i in form %}#}
+{#                                <option>#}
+{#                                <h2>{{ i.form.Area.pk  }}</h2>#}
+{#                                </option>#}
+{#                            {% endfor %}#}
+{#                  </select>#}
+{#                    <div class="row">#}
+{#                        <hr>#}
+{#                    </div>#}
+{#                  <div class="row" style="text-align: center;">#}
+{#                    <button type="submit" class="button btn-primary">Publicar trabajo</button>#}
+{#                 </div>#}
+{#              <!-- end .form-footer section -->#}
+{#                </form>#}
+{#              </div>#}
+{#          </div>#}
+{##}
+{#            </div>#}
+{#</div>#}
 {% endblock %}

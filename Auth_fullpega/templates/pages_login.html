@@ -50,15 +50,13 @@
 
           <div class="row mb15 table-layout">
 
-            <div class="col-xs-6 va-m pln">
-              <a href="dashboard.html" title="Return to Dashboard">
-                <img src=" {% static 'assets/img/logos/logo_white.png' %}" title="AdminDesigns Logo" class="img-responsive w250">
-              </a>
+            <div class="col-xs-6 va-m pln" style="color:white;">
+                Inicio sesion
             </div>
 
             <div class="col-xs-6 text-right va-b pr5">
               <div class="login-links">
-                <a href="pages_login.html" class="active" title="Sign In">Sign In</a>
+                <a href="pages_login.html" class="active" title="Sign In">Ingresar</a>
                 <span class="text-white"> | </span>
                 <a  href="{% url 'Registro_form' %}" class="" title="Register">Register</a>
               </div>
@@ -79,9 +77,9 @@
             <form method="POST" action="{% url 'auth_login' %}" > {% csrf_token %}
               <div class="panel-body bg-light p30">
                 <div class="row">
-                  <div class="col-sm-7 pr30">
+                  <div class="col-sm-12 pr30">
                     <div class="section">
-                      <label for="username" class="field-label text-muted fs18 mb10">Username</label>
+                      <label for="username" class="field-label text-muted fs18 mb10">Usuario</label>
                       <label for="username" class="field prepend-icon">
                         <input type="text" id="username" name="username" class="form-control" placeholder="Usuario" required autofocus>
                         <label for="username" class="field-icon">
@@ -92,7 +90,7 @@
                     <!-- end section -->
 
                     <div class="section">
-                      <label for="username"  class="field-label text-muted fs18 mb10">Password</label>
+                      <label for="username"  class="field-label text-muted fs18 mb10">Contraseña</label>
                       <label for="password" class="field prepend-icon">
                         <input type="password" id="password" name="password" class="gui-input" placeholder="Enter password">
                         <label for="password" class="field-icon">
@@ -104,27 +102,12 @@
                     <!-- end section -->
 
                   </div>
-                  <div class="col-sm-5 br-l br-grey pl30">
-                    <h3 class="mb25"> You'll Have Access To Your:</h3>
-                    <p class="mb15">
-                      <span class="fa fa-check text-success pr5"></span> Unlimited Email Storage</p>
-                    <p class="mb15">
-                      <span class="fa fa-check text-success pr5"></span> Unlimited Photo Sharing/Storage</p>
-                    <p class="mb15">
-                      <span class="fa fa-check text-success pr5"></span> Unlimited Downloads</p>
-                    <p class="mb15">
-                      <span class="fa fa-check text-success pr5"></span> Unlimited Service Tickets</p>
-                  </div>
+
                 </div>
               </div>
               <!-- end .form-body section -->
-              <div class="panel-footer clearfix p10 ph15">
-                <button type="submit" class="button btn-primary mr10 pull-right">Ingresar</button>
-                <label class="switch ib switch-primary pull-left input-align mt10">
-                  <input type="checkbox" name="remember" id="remember" checked>
-                  <label for="remember" data-on="YES" data-off="NO"></label>
-                  <span>Remember me</span>
-                </label>
+              <div class="panel-footer clearfix p10 ph15 text-center">
+                <button type="submit" class="button btn-primary mr10 ">Ingresar</button>
               </div>
               <!-- end .form-footer section -->
             </form>
