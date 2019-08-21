@@ -13,28 +13,103 @@
     </div>
 
 <div class="container">
-    <div class="row">
+    <div class="row col-md-12">
+    <div class="panel-heading">
+                  <div class="panel-title hidden-xs">
+                    <span class="glyphicon glyphicon-tasks"></span>¡Busca una pega adecuada para ti!</div>
+                </div>
     <div class="panel-body bg-light">
+
         <form method="post" action="/" id="example-widgets-form">
-            Publicar trabajo
+            <h5 class="text-center">Publicar pega</h5>
             <hr>
             <div class="section-divider mb40">
                 <div class="row">
                     <div class="col-md-4">
-                      <label for="email">Email address:</label>
-                      <input type="" class="form-control" id="email">
+                      <label for="email">Nombre:</label>
+                      <input type="" class="form-control" id="nombre">
                     </div>
                     <div class="col-md-4">
-                      <label for="email">Email address:</label>
-                      <input type="" class="form-control" id="email">
+                      <label for="email">Detalle:</label>
+                      <input type="" class="form-control" id="detalle">
                     </div>
                     <div class="col-md-4">
-                      <label for="email">Email address:</label>
-                      <input type="" class="form-control" id="email">
+                      <label for="email">Monto:</label>
+                      <input type="" class="form-control" id="monto">
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="Hora">Areas:</label>
 
+                        <select name="Area" class="form-control" required="" id="id_Area">
+                            <option value="" selected="">Seleccione el área que corresponde</option>
+
+                            {% for i in areas %}
+                                 <option value="{{ i.pk }}">{{ i.Nombre }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="Hora">Rango etario:</label>
+
+                        <select name="Area" class="form-control" required="" id="id_Area">
+                            <option value="" selected="">Seleccione rango etario</option>
+                            <option value="Sin_rango" class="value">Sin rango etario preferencial</option>
+
+                            <option value="15-25" class="value">15-25</option>
+                            <option value="25-35" class="value">25-35</option>
+                            <option value="35-35" class="value">35-35</option>
+                            <option value="45-55" class="value">45-55</option>
+                            <option value="55-65" class="value">55-65</option>
+                        </select>
+
+                    </div>
+                    <div class="col-md-4">
+                        <label for="Hora">Dirección:</label>
+                        <select name="Area" class="form-control" required="" id="id_Area">
+                            {% for i in usuario %}
+                                <option value="{{ i.Direccion.pk }}" class="value">{{ i.Direccion.Calle}}, {{ i.Direccion.Numero_de_calle }}. {{ i.Direccion.Comuna }}</option>
+                            {% endfor %}
+                        </select>
+
+                    </div>
 
                 </div>
+                <div class="row">
+                    <div class="col-md-4   ">
+                        <label for="Fecha">Fecha:</label>
+                        <input type="date" name="Fecha" value="2019-08-05" id="Fecha" class="form-control" placeholder="Ingrese la fecha del trabajo" required="">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="Hora">Hora:</label>
+
+                        <input type="time" name="Hora" value="2019-08-05 06:16:25.484031" id="Hora" class="form-control" placeholder="Ingrese la hora del trabajo" required="">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="Hora">Imagen:</label>
+                        <input type="file" id="Imagen" name="filename2">
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                        a
+                    </div>
+                    <div class="col-md-4">
+                        a
+                    </div>
+                    <div class="col-md-4">
+                        a
+                    </div>
+                </div>
+{#            #}
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary" id="submit">Publicar pega!</button>
             </div>
         </form>
     </div>
@@ -79,4 +154,6 @@
 {##}
 {#            </div>#}
 {#</div>#}
+
+
 {% endblock %}

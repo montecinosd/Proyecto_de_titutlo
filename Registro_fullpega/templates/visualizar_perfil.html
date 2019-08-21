@@ -6,15 +6,15 @@
 <link rel="stylesheet" type="text/css" href="{% static 'assets/' %}">
 
 {% block section_contenido %}
-
+    <div class="container">
         <div class="row img-centered">
           <div class="col-md-1">
           </div>
-                      <div class="col-md-2">
+          <div class="col-md-2">
             <span class="footer-legal"><img class='img-responsive' src="/media/{{ usuario.Imagen }}" /></span>
           </div>
 
-                  <div class="col-md-6">
+          <div class="col-md-8">
             <h1><span style ="font-weight: bold; "class="">{{ usuario.Nombre }}</span></h1><hr>
             <span class="footer-lega">{{ usuario.Correo }}</span><br>
             <span class="footer-lega">{{ usuario.Direccion.Ciudad }}, {{ usuario.Direccion.Pais }}.</span><br>
@@ -64,6 +64,7 @@
     </div>
 
 
+    </div>
     </div>
 {#    {% for i in portafolio %}#}
 {#                {% for z in i %}#}
@@ -129,44 +130,3 @@
 
 {% endblock %}
 
-{% block scripts %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script>
-
-$( document ).ready(function() {
-
-        {#window.location.reload(false);#}
-(function()
-{
-  if( window.localStorage )
-  {
-    if( !localStorage.getItem('firstLoad') )
-    {
-      localStorage['firstLoad'] = true;
-      window.location.reload();
-    }
-    else
-      localStorage.removeItem('firstLoad');
-  }
-})();
-
-      {#  $.ajax({#}
-      {#  url: "{% url 'validar_aptitud' %}",#}
-      {#  type: "POST",#}
-      {#  data: {#}
-      {#      "pk_aptitud" : getCookie("pk_aptitud"),#}
-      {#      csrfmiddlewaretoken: "{{ csrf_token }}",#}
-      {#  },#}
-      {#  success: function(data) {#}
-      {#      //alert(data);#}
-      {##}
-      {##}
-      {#  },#}
-      {#});#}
-});
-</script>
-
-{% endblock %}

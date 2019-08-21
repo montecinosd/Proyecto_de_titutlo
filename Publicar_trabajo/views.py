@@ -15,9 +15,14 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 @login_required(login_url='/auth/login')
-def publicar_trabajo(request):
+def publicar_trabajo(request,pk_user):
     data = {}
-
+    areas = Areas.objects.all()
+    usuario = Persona.objects.filter(Usuario=pk_user)
+    print(usuario)
+    data['usuario'] = usuario
+    data['areas'] = areas
     data['form'] = TrabajoForm()
+
 
     return render(request, 'publicar_trabajo.html', data)

@@ -45,23 +45,21 @@
       </div>
 
       <!-- Begin: Content -->
-      <section id="content" class="">
+              <section id="content">
 
-        <div class="admin-form theme-info mw700" style="margin-top: 3%;" id="login1">
+        <div class="admin-form theme-info" id="login1">
 
           <div class="row mb15 table-layout">
 
-            <div class="col-xs-6 va-m pln">
-              <a href="dashboard.html" title="Return to Dashboard">
-                <img src="{% static 'assets/img/logos/logo_white.png' %}" title="AdminDesigns Logo" class="img-responsive w250">
-              </a>
+            <div class="col-xs-6 va-m pln" style="color:white;">
+                Inicio sesion
             </div>
 
             <div class="col-xs-6 text-right va-b pr5">
               <div class="login-links">
-                <a href="pages_login.html" class="" title="Sign In">Sign In</a>
+                <a href="{% url 'auth_login' %}" class="" title="Sign In">Ingresar</a>
                 <span class="text-white"> | </span>
-                <a href="pages_register.html" class="active" title="Register">Register</a>
+                <a  href="{% url 'Registro_form' %}" class="active" title="Register">Registro</a>
               </div>
 
             </div>
@@ -70,20 +68,188 @@
 
           <div class="panel panel-info mt10 br-n">
 
+            <div class="panel-heading heading-border bg-white">
+              <span class="panel-title hidden">
+                <i class="fa fa-sign-in"></i>Register</span>
 
+            </div>
 
-            <form method="post" action="" id="account2">
+            <!-- end .form-header section -->
+            <form method="post" action="/" id="account2">
               <div class="panel-body p25 bg-light">
                 <div class="section-divider mt10 mb40">
-                  <span>Registra tu cuenta Fullpega</span>
+                  <span>Crea tu cuenta en FullPega</span>
                 </div>
-                <!-- #<input type="submit" value="Submit"> -->
-                {% csrf_token %}
-                {{ form }}
-                  {{ form2 }}
-                  <!-- #<input type="submit" value="Submit"> -->
+                <!-- .section-divider -->
+
+                <div class="section row">
+                  <div class="col-md-6">
+                    <label for="firstname" class="field prepend-icon">
+                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Ingresa tus nombres">
+                      <label for="firstname" class="field-icon">
+                        <i class="fa fa-user"></i>
+                      </label>
+                    </label>
+                  </div>
+                  <!-- end section -->
+
+                  <div class="col-md-6">
+                    <label for="lastname" class="field prepend-icon">
+                      <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Ingresa tus apellidos...">
+                      <label for="lastname" class="field-icon">
+                        <i class="fa fa-user"></i>
+                      </label>
+                    </label>
+                  </div>
+                  <!-- end section -->
+                </div>
+                  <div class="section">
+                          <label class="field prepend-icon file">
+                            <span class="button btn-primary">Elegir archivo</span>
+                            <input type="file" class="gui-file" name="file2" id="file2" onchange="document.getElementById('uploader2').value = this.value;">
+                            <input type="text" class="gui-input" id="uploader2" placeholder="Sube una imagen tuya :)">
+                            <label class="field-icon">
+                              <i class="fa fa-upload"></i>
+                            </label>
+                          </label>
+                        </div>
+                <!-- end .section row section -->
+
+                <div class="section">
+                  <label for="email" class="field prepend-icon">
+                    <input type="email" name="email" id="email" class="gui-input" placeholder="Ingresa tu email">
+                    <label for="email" class="field-icon">
+                      <i class="fa fa-envelope"></i>
+                    </label>
+                  </label>
+                </div>
+                 <div class="section row" style="padding-left:0%; padding-right: 0%;">
 
 
+                  <div class="col-md-4" style=" padding-right: 0%;">
+                    <label for="lastname" class="field prepend-icon">
+                      <input type="date" name="lastname" id="lastname" class="gui-input" placeholder="fecha nacimiento">
+                      <label for="lastname" class="field-icon">
+                        <i class="fa fa-calendar"></i>
+                      </label>
+                    </label>
+                  </div>
+                  <div class="col-md-8"style="padding-left: 0%; ">
+                    <label for="firstname" class="field prepend-icon">
+                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Ingresa tu fecha de nacimiento" disabled>
+                    </label>
+                  </div>
+                </div>
+                   <div class="section">
+                  <label for="password" class="field prepend-icon">
+                    <input type="password" name="password" id="password" class="gui-input" placeholder="Ingresa tu contraseña">
+                    <label for="password" class="field-icon">
+                      <i class="fa fa-unlock-alt"></i>
+                    </label>
+                  </label>
+                </div>
+                <!-- end section -->
+
+                <div class="section">
+                  <label for="confirmPassword" class="field prepend-icon">
+                    <input type="password" name="confirmPassword" id="confirmPassword" class="gui-input" placeholder="repite tu contraseña">
+                    <label for="confirmPassword" class="field-icon">
+                      <i class="fa fa-lock"></i>
+                    </label>
+                  </label>
+                </div>
+                <!-- end section -->
+{#                  UN HR MAS BCN #}
+              <div class="panel-body p25 bg-light">
+                <div class="section-divider mt10 mb40">
+                  <span>Ingresa tu dirección</span>
+                </div>
+              </div>
+
+                                  <div class="section row">
+                  <div class="col-md-6">
+                    <label for="firstname" class="field prepend-icon">
+                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Ingresa tu pais">
+                      <label for="firstname" class="field-icon">
+                        <i class="fa fa-globe"></i>
+                      </label>
+                    </label>
+                  </div>
+                  <!-- end section -->
+
+                  <div class="col-md-6">
+                    <label for="lastname" class="field prepend-icon">
+                      <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Ingresa tu región">
+                      <label for="lastname" class="field-icon">
+                        <i class="fa fa-globe"></i>
+                      </label>
+                    </label>
+                  </div>
+                  <!-- end section -->
+                </div>
+                <!-- end section -->
+                                  <div class="section row">
+                  <div class="col-md-6">
+                    <label for="firstname" class="field prepend-icon">
+                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Ingresa tu comuna">
+                      <label for="firstname" class="field-icon">
+                        <i class="fa fa-globe"></i>
+                      </label>
+                    </label>
+                  </div>
+                  <!-- end section -->
+
+                  <div class="col-md-6">
+                    <label for="lastname" class="field prepend-icon">
+                      <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Ingresa tu calle">
+                      <label for="lastname" class="field-icon">
+                        <i class="fa fa-globe"></i>
+                      </label>
+                    </label>
+                  </div>
+                  <!-- end section -->
+                </div>
+                                                    <div class="section row">
+                  <div class="col-md-6">
+                    <label for="firstname" class="field prepend-icon">
+                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Ingresa tu numero de calle">
+                      <label for="firstname" class="field-icon">
+                        <i class="fa fa-globe"></i>
+                      </label>
+                    </label>
+                  </div>
+                  <!-- end section -->
+
+                  <div class="col-md-6">
+                    <label for="lastname" class="field prepend-icon">
+                      <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Ingresa información adicional de dirección">
+                      <label for="lastname" class="field-icon">
+                        <i class="fa fa-globe"></i>
+                      </label>
+                    </label>
+                  </div>
+                  <!-- end section -->
+                </div>
+                <!-- end section -->
+
+
+
+                <div class="section-divider mv40">
+                  <span>Terminos y condiciones</span>
+                </div>
+                <!-- .section-divider -->
+
+                <div class="section mb15">
+                  <label class="option block mt15">
+                    <input type="checkbox" name="terms">
+                    <span class="checkbox"></span>I agree to the
+                    <a href="#" class="theme-link"> terms of use. </a>
+                  </label>
+                </div>
+                <!-- end section -->
+
+              </div>
+              <!-- end .form-body section -->
               <div class="panel-footer clearfix">
                 <button type="submit" class="button btn-primary pull-right">Create Account</button>
               </div>
@@ -93,6 +259,216 @@
         </div>
 
       </section>
+
+{#      <section id="content" class="">#}
+{##}
+{#        <div class="admin-form theme-info mw700" style="margin-top: 3%;" id="login1">#}
+{##}
+{#          <div class="row mb15 table-layout">#}
+{##}
+{#            <div class="col-xs-6 va-m pln">#}
+{#              <a href="{% url 'auth_login' %}" title="Return to Dashboard">#}
+{#                              <div class="col-xs-6 va-m pln" style="color:white;">#}
+{#                FullPega#}
+{#            </div>#}
+{##}
+{#                <img src="{% static 'assets/img/logos/logo_white.png' %}" title="AdminDesigns Logo" class="img-responsive w250">#}
+{#              </a>#}
+{#            </div>#}
+{##}
+{#            <div class="col-xs-6 text-right va-b pr5 ">#}
+{#              <div class="login-links">#}
+{#                <a href="{% url 'auth_login' %}" class="" title="Sign In">Iniciar sesión</a>#}
+{#                <span class="text-white"> | </span>#}
+{#                <a href="pages_register.html" class="active" title="Register">Registro</a>#}
+{#              </div>#}
+{##}
+{#            </div>#}
+{##}
+{#          </div>#}
+{#    <form method="post" action="/" id="account2">#}
+{#              <div class="panel-body p25 bg-light">#}
+{#                <div class="section-divider mt10 mb40">#}
+{#                  <span>Crea tu cuenta en FullPega</span>#}
+{#                </div>#}
+{#                <!-- .section-divider -->#}
+{##}
+{#                <div class="section row">#}
+{#                  <div class="col-md-6">#}
+{#                    <label for="firstname" class="field prepend-icon">#}
+{#                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Ingresa tus nombres">#}
+{#                      <label for="firstname" class="field-icon">#}
+{#                        <i class="fa fa-user"></i>#}
+{#                      </label>#}
+{#                    </label>#}
+{#                  </div>#}
+{#                  <!-- end section -->#}
+{##}
+{#                  <div class="col-md-6">#}
+{#                    <label for="lastname" class="field prepend-icon">#}
+{#                      <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Ingresa tus apellidos...">#}
+{#                      <label for="lastname" class="field-icon">#}
+{#                        <i class="fa fa-user"></i>#}
+{#                      </label>#}
+{#                    </label>#}
+{#                  </div>#}
+{#                  <!-- end section -->#}
+{#                </div>#}
+{#                  <div class="section">#}
+{#                          <label class="field prepend-icon file">#}
+{#                            <span class="button btn-primary">Elegir archivo</span>#}
+{#                            <input type="file" class="gui-file" name="file2" id="file2" onchange="document.getElementById('uploader2').value = this.value;">#}
+{#                            <input type="text" class="gui-input" id="uploader2" placeholder="Sube una imagen tuya :)">#}
+{#                            <label class="field-icon">#}
+{#                              <i class="fa fa-upload"></i>#}
+{#                            </label>#}
+{#                          </label>#}
+{#                        </div>#}
+{#                <!-- end .section row section -->#}
+{##}
+{#                <div class="section">#}
+{#                  <label for="email" class="field prepend-icon">#}
+{#                    <input type="email" name="email" id="email" class="gui-input" placeholder="Ingresa tu email">#}
+{#                    <label for="email" class="field-icon">#}
+{#                      <i class="fa fa-envelope"></i>#}
+{#                    </label>#}
+{#                  </label>#}
+{#                </div>#}
+{#                 <div class="section row" style="padding-left:0%; padding-right: 0%;">#}
+{##}
+{##}
+{#                  <div class="col-md-4" style=" padding-right: 0%;">#}
+{#                    <label for="lastname" class="field prepend-icon">#}
+{#                      <input type="date" name="lastname" id="lastname" class="gui-input" placeholder="fecha nacimiento">#}
+{#                      <label for="lastname" class="field-icon">#}
+{#                        <i class="fa fa-calendar"></i>#}
+{#                      </label>#}
+{#                    </label>#}
+{#                  </div>#}
+{#                  <div class="col-md-8"style="padding-left: 0%; ">#}
+{#                    <label for="firstname" class="field prepend-icon">#}
+{#                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Ingresa tu fecha de nacimiento" disabled>#}
+{#                    </label>#}
+{#                  </div>#}
+{#                </div>#}
+{#                   <div class="section">#}
+{#                  <label for="password" class="field prepend-icon">#}
+{#                    <input type="password" name="password" id="password" class="gui-input" placeholder="Ingresa tu contraseña">#}
+{#                    <label for="password" class="field-icon">#}
+{#                      <i class="fa fa-unlock-alt"></i>#}
+{#                    </label>#}
+{#                  </label>#}
+{#                </div>#}
+{#                <!-- end section -->#}
+{##}
+{#                <div class="section">#}
+{#                  <label for="confirmPassword" class="field prepend-icon">#}
+{#                    <input type="password" name="confirmPassword" id="confirmPassword" class="gui-input" placeholder="repite tu contraseña">#}
+{#                    <label for="confirmPassword" class="field-icon">#}
+{#                      <i class="fa fa-lock"></i>#}
+{#                    </label>#}
+{#                  </label>#}
+{#                </div>#}
+{#                <!-- end section -->#}
+{#                  UN HR MAS BCN #}
+{#              <div class="panel-body p25 bg-light">#}
+{#                <div class="section-divider mt10 mb40">#}
+{#                  <span>Ingresa tu dirección</span>#}
+{#                </div>#}
+{#              </div>#}
+{##}
+{#                                  <div class="section row">#}
+{#                  <div class="col-md-6">#}
+{#                    <label for="firstname" class="field prepend-icon">#}
+{#                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Ingresa tu pais">#}
+{#                      <label for="firstname" class="field-icon">#}
+{#                        <i class="fa fa-globe"></i>#}
+{#                      </label>#}
+{#                    </label>#}
+{#                  </div>#}
+{#                  <!-- end section -->#}
+{##}
+{#                  <div class="col-md-6">#}
+{#                    <label for="lastname" class="field prepend-icon">#}
+{#                      <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Ingresa tu región">#}
+{#                      <label for="lastname" class="field-icon">#}
+{#                        <i class="fa fa-globe"></i>#}
+{#                      </label>#}
+{#                    </label>#}
+{#                  </div>#}
+{#                  <!-- end section -->#}
+{#                </div>#}
+{#                <!-- end section -->#}
+{#                                  <div class="section row">#}
+{#                  <div class="col-md-6">#}
+{#                    <label for="firstname" class="field prepend-icon">#}
+{#                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Ingresa tu comuna">#}
+{#                      <label for="firstname" class="field-icon">#}
+{#                        <i class="fa fa-globe"></i>#}
+{#                      </label>#}
+{#                    </label>#}
+{#                  </div>#}
+{#                  <!-- end section -->#}
+{##}
+{#                  <div class="col-md-6">#}
+{#                    <label for="lastname" class="field prepend-icon">#}
+{#                      <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Ingresa tu calle">#}
+{#                      <label for="lastname" class="field-icon">#}
+{#                        <i class="fa fa-globe"></i>#}
+{#                      </label>#}
+{#                    </label>#}
+{#                  </div>#}
+{#                  <!-- end section -->#}
+{#                </div>#}
+{#                                                    <div class="section row">#}
+{#                  <div class="col-md-6">#}
+{#                    <label for="firstname" class="field prepend-icon">#}
+{#                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Ingresa tu numero de calle">#}
+{#                      <label for="firstname" class="field-icon">#}
+{#                        <i class="fa fa-globe"></i>#}
+{#                      </label>#}
+{#                    </label>#}
+{#                  </div>#}
+{#                  <!-- end section -->#}
+{##}
+{#                  <div class="col-md-6">#}
+{#                    <label for="lastname" class="field prepend-icon">#}
+{#                      <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Ingresa información adicional de dirección">#}
+{#                      <label for="lastname" class="field-icon">#}
+{#                        <i class="fa fa-globe"></i>#}
+{#                      </label>#}
+{#                    </label>#}
+{#                  </div>#}
+{#                  <!-- end section -->#}
+{#                </div>#}
+{#                <!-- end section -->#}
+{##}
+{##}
+{##}
+{#                <div class="section-divider mv40">#}
+{#                  <span>Terminos y condiciones</span>#}
+{#                </div>#}
+{#                <!-- .section-divider -->#}
+{##}
+{#                <div class="section mb15">#}
+{#                  <label class="option block mt15">#}
+{#                    <input type="checkbox" name="terms">#}
+{#                    <span class="checkbox"></span>I agree to the#}
+{#                    <a href="#" class="theme-link"> terms of use. </a>#}
+{#                  </label>#}
+{#                </div>#}
+{#                <!-- end section -->#}
+{##}
+{#              </div>#}
+{#              <!-- end .form-body section -->#}
+{#              <div class="panel-footer clearfix">#}
+{#                <button type="submit" class="button btn-primary pull-right">Create Account</button>#}
+{#              </div>#}
+{#              <!-- end .form-footer section -->#}
+{#            </form>#}
+{#        </div>#}
+{##}
+{#      </section>#}
       <!-- End: Content -->
 
     </section>

@@ -19,6 +19,13 @@ def index(request):
 
     return render(request, 'index_super_user.html', data)
 
+# @login_required(login_url='/auth/login')
+def pagina_principal(request):
+    # a = 'jj'
+    data = {}
+
+    return render(request, 'pagina_principal.html', data)
+
 
 #def Registro_form(request):
 #    data = {}
@@ -79,6 +86,31 @@ def buscar_trabajo(request,pk_user):
 
     # print(data)
     return render(request, 'buscar_trabajo.html', data)
+
+@login_required(login_url='/auth/login')
+def h_trabajos_realizados(request,pk_user):
+    data = {}
+    usuario = Persona.objects.get(Usuario=pk_user)
+    data['usuario'] = usuario
+
+    # print(usuario.pk)
+    # print(request.user.pk)
+
+    # print(data)
+    return render(request, 'h_trabajos_realizados.html', data)
+
+@login_required(login_url='/auth/login')
+def h_trabajos_publicados(request,pk_user):
+    data = {}
+    usuario = Persona.objects.get(Usuario=pk_user)
+    data['usuario'] = usuario
+
+    # print(usuario.pk)
+    # print(request.user.pk)
+
+    # print(data)
+    return render(request, 'h_trabajos_publicados.html', data)
+
 
 def Registro_form(request):
 

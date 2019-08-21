@@ -35,6 +35,7 @@ class Persona(models.Model):
     Telefono_C = models.CharField(max_length = 50,null=True,blank=True)
     Correo = models.CharField(max_length = 100,null=True,blank=True)
     Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE)
+    Fecha_nacimiento = models.CharField(max_length = 50,null=True,blank=True)
 
 
 

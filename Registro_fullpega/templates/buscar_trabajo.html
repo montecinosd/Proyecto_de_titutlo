@@ -4,10 +4,11 @@
 
 
 <link rel="stylesheet" type="text/css" href="{% static 'assets/' %}">
+<link type="text/css" href="{% static 'js/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+<link type="text/css" href="{% static 'js/bootstrap.css' %}" rel="stylesheet">
 
 {% block section_contenido %}
 
-    <hr>
 
     <div class="row text-center">
 
@@ -15,110 +16,182 @@
 
   Busca y postula a una pega para ideal para ti <hr>
     </div>
-        <div class="container">
-            <div class="row">
-                jijiijjijiji en proceso
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+              <div class="panel panel-visible" id="spy2">
+                <div class="panel-heading">
+                  <div class="panel-title hidden-xs">
+                    <span class="glyphicon glyphicon-tasks"></span>¡Busca una pega adecuada para ti!</div>
+                </div>
+                <div class="panel-body pn">
+                  <div id="datatable2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                      <table id="example" class="table table-striped table-hover dataTable no-footer" id="datatable2" cellspacing="0" width="100%" role="grid" aria-describedby="datatable2_info" style="width: 100%;">
+                    <thead>
+                      <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 157px;">Name</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 236px;">Position</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 83px;">Office</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 51px;">Age</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 108px;">Start date</th><th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Salary" style="width: 75px;">Salary</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr role="row" class="odd">
+                        <td class="sorting_1">Bradley Greer</td>
+                        <td>Software Engineer</td>
+                        <td>London</td>
+                        <td>41</td>
+                        <td>2012/10/13</td>
+                        <td>$132,000</td>
+                      </tr><tr role="row" class="even">
+                        <td class="sorting_1">Brielle Williamson</td>
+                        <td>Integration Specialist</td>
+                        <td>New York</td>
+                        <td>61</td>
+                        <td>2012/12/02</td>
+                        <td>$372,000</td>
+                      </tr><tr role="row" class="odd">
+                        <td class="sorting_1">Cedric Kelly</td>
+                        <td>Senior Javascript Developer</td>
+                        <td>Edinburgh</td>
+                        <td>22</td>
+                        <td>2012/03/29</td>
+                        <td>$433,060</td>
+                      </tr><tr role="row" class="even">
+                        <td class="sorting_1">Dai Rios</td>
+                        <td>Personnel Lead</td>
+                        <td>Edinburgh</td>
+                        <td>35</td>
+                        <td>2012/09/26</td>
+                        <td>$217,500</td>
+                      </tr><tr role="row" class="odd">
+                        <td class="sorting_1">Gloria Little</td>
+                        <td>Systems Administrator</td>
+                        <td>New York</td>
+                        <td>59</td>
+                        <td>2009/04/10</td>
+                        <td>$237,500</td>
+                      </tr>
+                     <tr role="row" class="odd">
+                        <td class="sorting_1">Bradley Greer</td>
+                        <td>Software Engineer</td>
+                        <td>London</td>
+                        <td>41</td>
+                        <td>2012/10/13</td>
+                        <td>$132,000</td>
+                      </tr><tr role="row" class="even">
+                        <td class="sorting_1">Brielle Williamson</td>
+                        <td>Integration Specialist</td>
+                        <td>New York</td>
+                        <td>61</td>
+                        <td>2012/12/02</td>
+                        <td>$372,000</td>
+                      </tr><tr role="row" class="odd">
+                        <td class="sorting_1">Cedric Kelly</td>
+                        <td>Senior Javascript Developer</td>
+                        <td>Edinburgh</td>
+                        <td>22</td>
+                        <td>2012/03/29</td>
+                        <td>$433,060</td>
+                      </tr><tr role="row" class="even">
+                        <td class="sorting_1">Dai Rios</td>
+                        <td>Personnel Lead</td>
+                        <td>Edinburgh</td>
+                        <td>35</td>
+                        <td>2012/09/26</td>
+                        <td>$217,500</td>
+                      </tr><tr role="row" class="odd">
+                        <td class="sorting_1">Gloria Little</td>
+                        <td>Systems Administrator</td>
+                        <td>New York</td>
+                        <td>59</td>
+                        <td>2009/04/10</td>
+                        <td>$237,500</td>
+                      </tr> <tr role="row" class="odd">
+                        <td class="sorting_1">Bradley Greer</td>
+                        <td>Software Engineer</td>
+                        <td>London</td>
+                        <td>41</td>
+                        <td>2012/10/13</td>
+                        <td>$132,000</td>
+                      </tr><tr role="row" class="even">
+                        <td class="sorting_1">Brielle Williamson</td>
+                        <td>Integration Specialist</td>
+                        <td>New York</td>
+                        <td>61</td>
+                        <td>2012/12/02</td>
+                        <td>$372,000</td>
+                      </tr><tr role="row" class="odd">
+                        <td class="sorting_1">Cedric Kelly</td>
+                        <td>Senior Javascript Developer</td>
+                        <td>Edinburgh</td>
+                        <td>22</td>
+                        <td>2012/03/29</td>
+                        <td>$433,060</td>
+                      </tr><tr role="row" class="even">
+                        <td class="sorting_1">Dai Rios</td>
+                        <td>Personnel Lead</td>
+                        <td>Edinburgh</td>
+                        <td>35</td>
+                        <td>2012/09/26</td>
+                        <td>$217,500</td>
+                      </tr><tr role="row" class="odd">
+                        <td class="sorting_1">Gloria Little</td>
+                        <td>Systems Administrator</td>
+                        <td>New York</td>
+                        <td>59</td>
+                        <td>2009/04/10</td>
+                        <td>$237,500</td>
+                      </tr> <tr role="row" class="odd">
+                        <td class="sorting_1">Bradley Greer</td>
+                        <td>Software Engineer</td>
+                        <td>London</td>
+                        <td>41</td>
+                        <td>2012/10/13</td>
+                        <td>$132,000</td>
+                      </tr><tr role="row" class="even">
+                        <td class="sorting_1">Brielle Williamson</td>
+                        <td>Integration Specialist</td>
+                        <td>New York</td>
+                        <td>61</td>
+                        <td>2012/12/02</td>
+                        <td>$372,000</td>
+                      </tr><tr role="row" class="odd">
+                        <td class="sorting_1">Cedric Kelly</td>
+                        <td>Senior Javascript Developer</td>
+                        <td>Edinburgh</td>
+                        <td>22</td>
+                        <td>2012/03/29</td>
+                        <td>$433,060</td>
+                      </tr><tr role="row" class="even">
+                        <td class="sorting_1">Dai Rios</td>
+                        <td>Personnel Lead</td>
+                        <td>Edinburgh</td>
+                        <td>35</td>
+                        <td>2012/09/26</td>
+                        <td>$217,500</td>
+                      </tr><tr role="row" class="odd">
+                        <td class="sorting_1">Gloria Little</td>
+                        <td>Systems Administrator</td>
+                        <td>New York</td>
+                        <td>59</td>
+                        <td>2009/04/10</td>
+                        <td>$237,500</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </div>
+                </div>
+              </div>
             </div>
-{#        #}
-
-
         </div>
-    <style>
-    .zoom {
-  padding: 50px;
-  background-color: green;
-  transition: transform .2s; /* Animation */
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-}
-
-.zoom:hover {
-  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-}
-</style>
-        <div class="container">
-<div class="row">
-
-        {% for i in aptidudes_validadas %}
-{#            {{ i }}#}
-          <div class="card col-md-6" style="padding:1%;width: 33%;height: 100%;"  >
-<div class="text-center">Portafolio</div>
-            <img class="class='img-responsive" src="/media/{{ i.Aptitud_validada.Imagen }}" alt="Card image" style="margin:2px;width:350px; height: 130px;">
-            <div class="card-body ">
-              <h4 class="card-title text-center">{{ i.Aptitud_validada.Nombre }}
-
-
-                  <a style="float: right;" href="{% url 'vincular_portafolio' i.pk %}" >
-  <span class="glyphicon glyphicon-plus-sign"  aria-hidden="true"></span>
-                  </a></h4>
-
-              <p class="card-text"> {{ i.Descripccion }}</p>
-
-                <hr>
-{#                <div class="text-center"style="height: 100px;overflow: auto;"><a href="#" class="btn btn-primary  stretched-link">Ver portafolio</a></div>#}
-            </div>
-            <div class="card-body" style="height: 100px;overflow: auto;">
-                <ul class="list-group list-group-flush">
-                        {% for portafolio_aptitud in portafolio %}
-                {% for z in portafolio_aptitud %}
-
-
-                 {% if i.Aptitud_validada == z.aptitude_validadas.Aptitud_validada %}{{ z.Nombre }}
-
-<embed src="/media/{{ z.pdf }}#view=FitH" width="100%" height="100%" /></li>
-                {% endif %}
-                {% endfor %}
-                {% endfor %}
-                  </ul>
-            </div>
-
-          </div>
-    {% endfor %}
-            </div>
-
-        </div>
-
+    </div>
+    </div>
 {% endblock %}
-
 {% block scripts %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+{#<script src="{% static 'js/jquery-3.3.1.js' %}"></script>#}
+<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'js/dataTables.bootstrap4.min.js' %}"></script>
+
 <script>
-
-$( document ).ready(function() {
-
-        {#window.location.reload(false);#}
-(function()
-{
-  if( window.localStorage )
-  {
-    if( !localStorage.getItem('firstLoad') )
-    {
-      localStorage['firstLoad'] = true;
-      window.location.reload();
-    }
-    else
-      localStorage.removeItem('firstLoad');
-  }
-})();
-
-      {#  $.ajax({#}
-      {#  url: "{% url 'validar_aptitud' %}",#}
-      {#  type: "POST",#}
-      {#  data: {#}
-      {#      "pk_aptitud" : getCookie("pk_aptitud"),#}
-      {#      csrfmiddlewaretoken: "{{ csrf_token }}",#}
-      {#  },#}
-      {#  success: function(data) {#}
-      {#      //alert(data);#}
-      {##}
-      {##}
-      {#  },#}
-      {#});#}
-});
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
 </script>
-
 {% endblock %}

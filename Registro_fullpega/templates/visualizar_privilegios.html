@@ -116,42 +116,9 @@ Puede ver los perfiles de usuario que ofrece trabajo
 
 {% block scripts %}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script>
+{#<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>#}
+{#<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>#}
 
-$( document ).ready(function() {
-
-        {#window.location.reload(false);#}
-(function()
-{
-  if( window.localStorage )
-  {
-    if( !localStorage.getItem('firstLoad') )
-    {
-      localStorage['firstLoad'] = true;
-      window.location.reload();
-    }
-    else
-      localStorage.removeItem('firstLoad');
-  }
-})();
-
-      {#  $.ajax({#}
-      {#  url: "{% url 'validar_aptitud' %}",#}
-      {#  type: "POST",#}
-      {#  data: {#}
-      {#      "pk_aptitud" : getCookie("pk_aptitud"),#}
-      {#      csrfmiddlewaretoken: "{{ csrf_token }}",#}
-      {#  },#}
-      {#  success: function(data) {#}
-      {#      //alert(data);#}
-      {##}
-      {##}
-      {#  },#}
-      {#});#}
-});
-</script>
 
 {% endblock %}

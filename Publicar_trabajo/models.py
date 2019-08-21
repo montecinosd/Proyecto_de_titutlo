@@ -6,6 +6,7 @@ from django.db import models
 
 
 class Trabajo(models.Model):
+    Usuario = models.OneToOneField(User, on_delete=models.CASCADE)
 
     Nombre = models.CharField(max_length=120)
     Detalle = models.CharField(max_length=120)
@@ -14,7 +15,7 @@ class Trabajo(models.Model):
     Fecha = models.DateField(("Date"), default=date.today)
     Hora = models.TimeField(default=datetime.now())
     rango_etario = models.CharField(
-        max_length=4,
+        max_length=20,
         choices=(
             ('Sin rango etario especifico', 'Sin rango etario especifico'),
             ('15-25', '15-25'),
@@ -25,7 +26,8 @@ class Trabajo(models.Model):
             ),
         default='Sin rango etario especifico')
     Area = models.OneToOneField(Areas, on_delete=models.CASCADE)
-    Direccion = models.CharField(max_length=120)
+    Direccion = models.OneToOneField(Direccion, on_delete=models.CASCADE)
+
 
    #  Email = models.EmailField()
    #  Direccion = models.CharField(max_length=60)
