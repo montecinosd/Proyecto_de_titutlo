@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 
 @admin.register(Persona)
 class PersonaAdmin(admin.ModelAdmin):
-    list_display = ('pk','Usuario','Nombre','Rut','Imagen','Telefono_C','Correo','Direccion')
+    list_display = ('pk','Usuario','Nombre','Rut','Imagen','Telefono_C','Correo','Direccion','Facebook','Twitter','Linkedin','Instagram')
 
 
     def thumb(self, obj):

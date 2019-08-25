@@ -4,6 +4,9 @@
 
 
 <link rel="stylesheet" type="text/css" href="{% static 'assets/' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/admin-tools/admin-forms/css/admin-forms.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/img/favicon.ico'%} ">
+  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
 
 {% block section_contenido %}
     <div class="container">
@@ -34,34 +37,146 @@
 
   Estas son las redes vinculadas de {{ usuario.Nombre }}<hr>
 
-            <div class="card col-md-6" style="padding:1%;width: 33%;height: 100%;"  >
+            {% if usuario.Twitter %}
+                <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
                 <div class="text-center">
-                    <a href="https://www.facebook.com/holasoyeldani" class="href" target="_blank">
-                     <img class="class='img-responsive" src="/media/facebook.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
-                    </a>
-                </div>
-
-
-              </div>
-              <div class="card col-md-6" style="padding:1%;width: 33%;height: 100%;"  >
-                <div class="text-center">
-                    <a href="https://twitter.com/Montecinosd97" class="href" target="_blank">
+                    <a href="{{ usuario.Twitter }}" class="href" target="_blank">
                      <img class="class='img-responsive" src="/media/twitter.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
                     </a>
                 </div>
+                </div>
+            {% endif %}
 
-              </div>
-            <div class="card col-md-6" style="padding:1%;width: 33%;height: 100%;"  >
+            {% if usuario.Facebook %}
+                <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
                 <div class="text-center">
-                    <a href="https://www.linkedin.com/in/daniel-ignacio-montecinos-zambra-833b35182/" class="href" target="_blank">
+                    <a href="{{ usuario.Facebook }}" class="href" target="_blank">
+                     <img class="class='img-responsive" src="/media/facebook.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
+                    </a>
+                </div></div>
+            {% endif %}
+
+            {% if usuario.Linkedin %}
+                <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
+                <div class="text-center">
+                    <a href="{{ usuario.Linkedin }}" class="href" target="_blank">
                      <img class="class='img-responsive" src="/media/linkedin.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
                     </a>
-                </div>
+                </div></div>
+            {% endif %}
+
+
+            {% if usuario.Instagram %}
+                <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
+                <div class="text-center">
+                    <a href="{{ usuario.Instagram }}" class="href" target="_blank">
+                     <img class="class='img-responsive" src="/media/instagram.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
+                    </a>
+                </div></div>
+            {% endif %}
+
+
+
+{#            <div class="card col-md-6" style="padding:1%;width: 33%;height: 100%;"  >#}
+{#                <div class="text-center">#}
+{#                    <a href="https://www.facebook.com/holasoyeldani" class="href" target="_blank">#}
+{#                     <img class="class='img-responsive" src="/media/facebook.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">#}
+{#                    </a>#}
+{#                </div>#}
+{##}
+{##}
+{#              </div>#}
+{#              <div class="card col-md-6" style="padding:1%;width: 33%;height: 100%;"  >#}
+{#                <div class="text-center">#}
+{#                    <a href="https://twitter.com/Montecinosd97" class="href" target="_blank">#}
+{#                     <img class="class='img-responsive" src="/media/twitter.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">#}
+{#                    </a>#}
+{#                </div>#}
+{##}
+{#              </div>#}
+{#            <div class="card col-md-6" style="padding:1%;width: 33%;height: 100%;"  >#}
+{#                <div class="text-center">#}
+{#                    <a href="https://www.linkedin.com/in/daniel-ignacio-montecinos-zambra-833b35182/" class="href" target="_blank">#}
+{#                     <img class="class='img-responsive" src="/media/linkedin.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">#}
+{#                    </a>#}
+{#                </div>#}
 
               </div>
+        <div class="col-md-6">
+            <div class="col-md-6 pr40 border-right">
+                        <span class="rating block">
+                          <span class="lbl-text">Customization</span>
+                          <input class="rating-input" id="r5" type="radio" name="custom" checked="">
+                          <label class="rating-star" for="r5">
+                            <i class="fa fa-star"></i>
+                          </label>
+                          <input class="rating-input" id="r4" type="radio" name="custom">
+                          <label class="rating-star" for="r4">
+                            <i class="fa fa-star"></i>
+                          </label>
+                          <input class="rating-input" id="r3" type="radio" name="custom">
+                          <label class="rating-star" for="r3">
+                            <i class="fa fa-star"></i>
+                          </label>
+                          <input class="rating-input" id="r2" type="radio" name="custom">
+                          <label class="rating-star" for="r2">
+                            <i class="fa fa-star"></i>
+                          </label>
+                          <input class="rating-input" id="r1" type="radio" name="custom">
+                          <label class="rating-star" for="r1">
+                            <i class="fa fa-star"></i>
+                          </label>
+                        </span>
+                        <span class="rating block">
+                          <span class="lbl-text">Reliability</span>
+                          <input class="rating-input" id="rr5" type="radio" name="reliable">
+                          <label class="rating-star" for="rr5">
+                            <i class="fa fa-star"></i>
+                          </label>
+                          <input class="rating-input" id="rr4" type="radio" name="reliable" checked="">
+                          <label class="rating-star" for="rr4">
+                            <i class="fa fa-star"></i>
+                          </label>
+                          <input class="rating-input" id="rr3" type="radio" name="reliable">
+                          <label class="rating-star" for="rr3">
+                            <i class="fa fa-star"></i>
+                          </label>
+                          <input class="rating-input" id="rr2" type="radio" name="reliable">
+                          <label class="rating-star" for="rr2">
+                            <i class="fa fa-star"></i>
+                          </label>
+                          <input class="rating-input" id="rr1" type="radio" name="reliable">
+                          <label class="rating-star" for="rr1">
+                            <i class="fa fa-star"></i>
+                          </label>
+                        </span>
+                        <span class="rating block">
+                          <span class="lbl-text">Relevance</span>
+                          <input class="rating-input" id="rx5" type="radio" name="relevance">
+                          <label class="rating-star" for="rx5">
+                            <i class="fa fa-star"></i>
+                          </label>
+                          <input class="rating-input" id="rx4" type="radio" name="relevance">
+                          <label class="rating-star" for="rx4">
+                            <i class="fa fa-star"></i>
+                          </label>
+                          <input class="rating-input" id="rx3" type="radio" name="relevance" checked="">
+                          <label class="rating-star" for="rx3">
+                            <i class="fa fa-star"></i>
+                          </label>
+                          <input class="rating-input" id="rx2" type="radio" name="relevance">
+                          <label class="rating-star" for="rx2">
+                            <i class="fa fa-star"></i>
+                          </label>
+                          <input class="rating-input" id="rx1" type="radio" name="relevance">
+                          <label class="rating-star" for="rx1">
+                            <i class="fa fa-star"></i>
+                          </label>
+                        </span>
+                      </div>
         </div>
-        <div class="col-md-6">a</div>
     </div>
+        </div>
 
 
     </div>

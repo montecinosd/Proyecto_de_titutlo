@@ -1,0 +1,49 @@
+{% extends 'Partials/_Base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'assets/' %}">
+
+{% block section_contenido %}
+<div class="container">
+    <div class="row col-md-12">
+    <div class="panel-heading">
+                  <div class="panel-title hidden-xs">
+                    <span class="glyphicon glyphicon-tasks"></span>¡Actualiza tus redes sociales !</div>
+                </div>
+    <div class="panel-body bg-light">
+{#FORM DE REDES SOCIALES #}
+        <form method="post" action="{% url 'guardar_config_perfil_redes' request.user.pk %}" id="formulario_trabajo">{% csrf_token %}
+            <div class="section-divider mb40">
+                <div class="row">
+                    <div class="col-md-6">
+                      <label for="email">Facebook:</label>
+                      <input type="" class="form-control" name="facebook" id="facebook"value = {{usuario.Facebook }}>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="email">Twitter:</label>
+                      <input type="" class="form-control" name="twitter" id="twitter"value = {{usuario.Twitter }}>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="email">Linkedin:</label>
+                      <input type="" class="form-control" name="linkedin" id="linkedin"value = {{usuario.Linkedin }}>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="email">Instagram:</label>
+                      <input type="" class="form-control" name="instagram" id="instagram"value = {{usuario.Instagram }}>
+                    </div>
+                </div>
+            <div class="text-center" style="margin-top:1%;">
+                <button class="btn btn-primary" id="submit">Actualizar redes</button>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+

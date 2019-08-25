@@ -75,7 +75,7 @@
             </div>
 
             <!-- end .form-header section -->
-            <form method="post" action="/" id="account2">
+            <form method="POST" action="{% url 'Guardar_Registro_form' %}" id="account2">{% csrf_token %}
               <div class="panel-body p25 bg-light">
                 <div class="section-divider mt10 mb40">
                   <span>Crea tu cuenta en FullPega</span>
@@ -85,7 +85,7 @@
                 <div class="section row">
                   <div class="col-md-6">
                     <label for="firstname" class="field prepend-icon">
-                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Ingresa tus nombres">
+                      <input type="text" name="nombres" id="nombres" class="gui-input" placeholder="Ingresa tus nombres">
                       <label for="firstname" class="field-icon">
                         <i class="fa fa-user"></i>
                       </label>
@@ -95,27 +95,38 @@
 
                   <div class="col-md-6">
                     <label for="lastname" class="field prepend-icon">
-                      <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Ingresa tus apellidos...">
+                      <input type="text" name="apellidos" id="apellidos" class="gui-input" placeholder="Ingresa tus apellidos">
                       <label for="lastname" class="field-icon">
                         <i class="fa fa-user"></i>
                       </label>
                     </label>
                   </div>
+
                   <!-- end section -->
                 </div>
-                  <div class="section">
-                          <label class="field prepend-icon file">
-                            <span class="button btn-primary">Elegir archivo</span>
-                            <input type="file" class="gui-file" name="file2" id="file2" onchange="document.getElementById('uploader2').value = this.value;">
-                            <input type="text" class="gui-input" id="uploader2" placeholder="Sube una imagen tuya :)">
-                            <label class="field-icon">
-                              <i class="fa fa-upload"></i>
-                            </label>
-                          </label>
-                        </div>
-                <!-- end .section row section -->
+                  <div class="section row">
+                  <div class="col-md-6">
+                    <label for="firstname" class="field prepend-icon">
+                      <input type="text" name="rut" id="rut" class="gui-input" placeholder="Ingresa tu rut">
+                      <label for="firstname" class="field-icon">
+                        <i class="fa fa-user"></i>
+                      </label>
+                    </label>
+                  </div>
+                  <!-- end section -->
 
-                <div class="section">
+                  <div class="col-md-6">
+                    <label for="lastname" class="field prepend-icon">
+                      <input type="text" name="telefono" id="telefono" class="gui-input" placeholder="Ingresa tu telefono" >
+                      <label for="lastname" class="field-icon">
+                        <i class="fa fa-user"></i>
+                      </label>
+                    </label>
+                  </div>
+
+                  <!-- end section -->
+                </div>
+                                <div class="section">
                   <label for="email" class="field prepend-icon">
                     <input type="email" name="email" id="email" class="gui-input" placeholder="Ingresa tu email">
                     <label for="email" class="field-icon">
@@ -123,12 +134,11 @@
                     </label>
                   </label>
                 </div>
-                 <div class="section row" style="padding-left:0%; padding-right: 0%;">
 
-
+                <div class="section row" style="padding-left:0%; padding-right: 0%;">
                   <div class="col-md-4" style=" padding-right: 0%;">
                     <label for="lastname" class="field prepend-icon">
-                      <input type="date" name="lastname" id="lastname" class="gui-input" placeholder="fecha nacimiento">
+                      <input type="date" name="f_nacimiento" id="f_nacimiento" class="gui-input" placeholder="fecha nacimiento">
                       <label for="lastname" class="field-icon">
                         <i class="fa fa-calendar"></i>
                       </label>
@@ -136,10 +146,24 @@
                   </div>
                   <div class="col-md-8"style="padding-left: 0%; ">
                     <label for="firstname" class="field prepend-icon">
-                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Ingresa tu fecha de nacimiento" disabled>
+                      <input type="text" name="f_nacimiento2" id="f_nacimiento2" class="gui-input" placeholder="Ingresa tu fecha de nacimiento" disabled>
                     </label>
                   </div>
                 </div>
+
+                  <div class="section">
+                          <label class="field prepend-icon file">
+                            <span class="button btn-primary">Elegir archivo</span>
+                            <input type="file" class="gui-file" name="imagen" id="file2" onchange="document.getElementById('uploader2').value = this.value;">
+                            <input type="text" class="gui-input" id="uploader2" name="imagen2" placeholder="Sube una imagen tuya :)">
+                            <label class="field-icon">
+                              <i class="fa fa-upload"></i>
+                            </label>
+                          </label>
+                        </div>
+                <!-- end .section row section -->
+
+
                    <div class="section">
                   <label for="password" class="field prepend-icon">
                     <input type="password" name="password" id="password" class="gui-input" placeholder="Ingresa tu contraseña">
@@ -169,7 +193,7 @@
                                   <div class="section row">
                   <div class="col-md-6">
                     <label for="firstname" class="field prepend-icon">
-                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Ingresa tu pais">
+                      <input type="text" name="pais" id="pais" class="gui-input" placeholder="Ingresa tu pais">
                       <label for="firstname" class="field-icon">
                         <i class="fa fa-globe"></i>
                       </label>
@@ -179,7 +203,7 @@
 
                   <div class="col-md-6">
                     <label for="lastname" class="field prepend-icon">
-                      <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Ingresa tu región">
+                      <input type="text" name="region" id="region" class="gui-input" placeholder="Ingresa tu región">
                       <label for="lastname" class="field-icon">
                         <i class="fa fa-globe"></i>
                       </label>
@@ -191,7 +215,7 @@
                                   <div class="section row">
                   <div class="col-md-6">
                     <label for="firstname" class="field prepend-icon">
-                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Ingresa tu comuna">
+                      <input type="text" name="comuna" id="comuna" class="gui-input" placeholder="Ingresa tu comuna">
                       <label for="firstname" class="field-icon">
                         <i class="fa fa-globe"></i>
                       </label>
@@ -201,7 +225,7 @@
 
                   <div class="col-md-6">
                     <label for="lastname" class="field prepend-icon">
-                      <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Ingresa tu calle">
+                      <input type="text" name="calle" id="calle" class="gui-input" placeholder="Ingresa tu calle">
                       <label for="lastname" class="field-icon">
                         <i class="fa fa-globe"></i>
                       </label>
@@ -209,10 +233,10 @@
                   </div>
                   <!-- end section -->
                 </div>
-                                                    <div class="section row">
+                  <div class="section row">
                   <div class="col-md-6">
                     <label for="firstname" class="field prepend-icon">
-                      <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Ingresa tu numero de calle">
+                      <input type="text" name="numero_calle" id="numero_calle" class="gui-input" placeholder="Ingresa tu numero de calle">
                       <label for="firstname" class="field-icon">
                         <i class="fa fa-globe"></i>
                       </label>
@@ -222,7 +246,7 @@
 
                   <div class="col-md-6">
                     <label for="lastname" class="field prepend-icon">
-                      <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Ingresa información adicional de dirección">
+                      <input type="text" name="info_adicional_direccion" id="info_adicional_direccion" class="gui-input" placeholder="Ingresa información adicional de dirección">
                       <label for="lastname" class="field-icon">
                         <i class="fa fa-globe"></i>
                       </label>
@@ -242,16 +266,16 @@
                 <div class="section mb15">
                   <label class="option block mt15">
                     <input type="checkbox" name="terms">
-                    <span class="checkbox"></span>I agree to the
-                    <a href="#" class="theme-link"> terms of use. </a>
+                    <span class="checkbox"></span>Acepto los terminos
+                    <a href="#" class="theme-link"> y condiciones de uso. </a>
                   </label>
                 </div>
                 <!-- end section -->
 
               </div>
               <!-- end .form-body section -->
-              <div class="panel-footer clearfix">
-                <button type="submit" class="button btn-primary pull-right">Create Account</button>
+              <div class="panel-footer text-center clearfix">
+                <button type="submit" class="button btn-primary ">Crear cuenta</button>
               </div>
               <!-- end .form-footer section -->
             </form>

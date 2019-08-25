@@ -16,33 +16,31 @@
     <div class="row col-md-12">
     <div class="panel-heading">
                   <div class="panel-title hidden-xs">
-                    <span class="glyphicon glyphicon-tasks"></span>¡Busca una pega adecuada para ti!</div>
+                    <span class="glyphicon glyphicon-tasks"></span>¡Publica la pega que necesitas que alguien haga!</div>
                 </div>
     <div class="panel-body bg-light">
 
-        <form method="post" action="/" id="example-widgets-form">
-            <h5 class="text-center">Publicar pega</h5>
-            <hr>
+        <form method="post" action="{% url 'guardar_trabajo' request.user.pk %}" id="formulario_trabajo">{% csrf_token %}
             <div class="section-divider mb40">
                 <div class="row">
                     <div class="col-md-4">
                       <label for="email">Nombre:</label>
-                      <input type="" class="form-control" id="nombre">
+                      <input type="" class="form-control" name="nombre" id="nombre">
                     </div>
                     <div class="col-md-4">
                       <label for="email">Detalle:</label>
-                      <input type="" class="form-control" id="detalle">
+                      <input type="" class="form-control" name="detalle" id="detalle">
                     </div>
                     <div class="col-md-4">
                       <label for="email">Monto:</label>
-                      <input type="" class="form-control" id="monto">
+                      <input type="number" class="form-control" step ="1" name="monto" id="monto">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <label for="Hora">Areas:</label>
 
-                        <select name="Area" class="form-control" required="" id="id_Area">
+                        <select name="id_Area" class="form-control" required="" id="id_Area">
                             <option value="" selected="">Seleccione el área que corresponde</option>
 
                             {% for i in areas %}
@@ -53,7 +51,7 @@
                     <div class="col-md-4">
                         <label for="Hora">Rango etario:</label>
 
-                        <select name="Area" class="form-control" required="" id="id_Area">
+                        <select name="r_etario" class="form-control" required="" id="r_etario">
                             <option value="" selected="">Seleccione rango etario</option>
                             <option value="Sin_rango" class="value">Sin rango etario preferencial</option>
 
@@ -67,7 +65,7 @@
                     </div>
                     <div class="col-md-4">
                         <label for="Hora">Dirección:</label>
-                        <select name="Area" class="form-control" required="" id="id_Area">
+                        <select name="direccion" class="form-control" required="" id="direccion">
                             {% for i in usuario %}
                                 <option value="{{ i.Direccion.pk }}" class="value">{{ i.Direccion.Calle}}, {{ i.Direccion.Numero_de_calle }}. {{ i.Direccion.Comuna }}</option>
                             {% endfor %}
@@ -79,16 +77,16 @@
                 <div class="row">
                     <div class="col-md-4   ">
                         <label for="Fecha">Fecha:</label>
-                        <input type="date" name="Fecha" value="2019-08-05" id="Fecha" class="form-control" placeholder="Ingrese la fecha del trabajo" required="">
+                        <input type="date" name="fecha" value="2019-08-05" id="fecha" class="form-control" placeholder="Ingrese la fecha del trabajo" required="">
                     </div>
                     <div class="col-md-4">
                         <label for="Hora">Hora:</label>
 
-                        <input type="time" name="Hora" value="2019-08-05 06:16:25.484031" id="Hora" class="form-control" placeholder="Ingrese la hora del trabajo" required="">
+                        <input type="time" name="hora" value="2019-08-05 06:16:25.484031" id="hora" class="form-control" placeholder="Ingrese la hora del trabajo" required="">
                     </div>
                     <div class="col-md-4">
                         <label for="Hora">Imagen:</label>
-                        <input type="file" id="Imagen" name="filename2">
+                        <input type="file" id="imagen" name="imagen">
 
                     </div>
                 </div>

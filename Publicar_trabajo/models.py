@@ -3,10 +3,14 @@ from Registro_fullpega.models import *
 
 from django.db import models
 
+def content_file_name(instance, filename):
+    return '/'.join(['media/trabajo/', instance.Usuario.username, filename])
+def content_file_document(instance, filename):
+    return '/'.join(['document', instance.Usuario.username, filename])
 
 
 class Trabajo(models.Model):
-    Usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+    Usuario = models.OneToOneField(Persona, on_delete=models.CASCADE)
 
     Nombre = models.CharField(max_length=120)
     Detalle = models.CharField(max_length=120)
@@ -25,11 +29,12 @@ class Trabajo(models.Model):
             ('55-65', '55-65'),
             ),
         default='Sin rango etario especifico')
-    Area = models.OneToOneField(Areas, on_delete=models.CASCADE)
-    Direccion = models.OneToOneField(Direccion, on_delete=models.CASCADE)
+    Area = models.ForeignKey(Areas, on_delete=models.CASCADE)
+    Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE)
+    Imagen = models.ImageField(upload_to=content_file_name, null=True, blank=True)
+    Activo = models.PositiveIntegerField(default=1)
 
-
-   #  Email = models.EmailField()
+#  Email = models.EmailField()
    #  Direccion = models.CharField(max_length=60)
    #  usuario = models.OneToOneField(User, on_delete=models.CASCADE)
    #
