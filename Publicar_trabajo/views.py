@@ -48,6 +48,7 @@ def guardar_trabajo(request,pk_user):
         #Obtengo los atributos
         print("POSSST BEIBE")
         print(request.POST)
+        print("")
         print(request.FILES)
         nombre = request.POST["nombre"]
         detalle = request.POST["detalle"]
@@ -57,9 +58,8 @@ def guardar_trabajo(request,pk_user):
         direccion = request.POST["direccion"]
         fecha = request.POST["fecha"]
         hora = request.POST["hora"]
-        imagen = request.FILES["imagen"]
-        print(type(imagen))
-        # handle_uploaded_file(imagen)
+        imagen = request.FILES["ImagenTrabajo"]
+        #handle_uploaded_file(imagen)
 #
         area_object = Areas.objects.get(pk=area)
         direccion_object = Direccion.objects.get(pk=direccion)

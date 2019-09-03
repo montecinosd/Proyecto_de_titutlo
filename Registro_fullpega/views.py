@@ -235,7 +235,9 @@ def guardar_config_perfil_redes(request,pk_user):
         #Obtengo los atributos
         print("POSSST BEIBE")
         print(request.POST)
-        print(request.FILES)
+        print("request files")
+        # print(request.FILES)
+        print("request files fin ")
 
         facebook = request.POST['facebook']
         twitter = request.POST['twitter']
