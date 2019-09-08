@@ -14,7 +14,7 @@
           <div class="col-md-1">
           </div>
           <div class="col-md-2">
-            <span class="footer-legal"><img class='img-responsive' src="/media/{{ usuario.Imagen }}" /></span>
+            <span class="footer-legal" ><img style="height: 16em;width: 16em; border-radius: 10em;" class='img-responsive' src="/media/{{ usuario.Imagen }}" /></span>
           </div>
 
           <div class="col-md-8">
@@ -103,145 +103,123 @@
 
               </div>
         <div class="col-md-6">
-            <div class="col-md-6 pr40 border-right">
-                        <span class="rating block">
-                          <span class="lbl-text">Customization</span>
-                          <input class="rating-input" id="r5" type="radio" name="custom" checked="">
-                          <label class="rating-star" for="r5">
-                            <i class="fa fa-star"></i>
-                          </label>
-                          <input class="rating-input" id="r4" type="radio" name="custom">
-                          <label class="rating-star" for="r4">
-                            <i class="fa fa-star"></i>
-                          </label>
-                          <input class="rating-input" id="r3" type="radio" name="custom">
-                          <label class="rating-star" for="r3">
-                            <i class="fa fa-star"></i>
-                          </label>
-                          <input class="rating-input" id="r2" type="radio" name="custom">
-                          <label class="rating-star" for="r2">
-                            <i class="fa fa-star"></i>
-                          </label>
-                          <input class="rating-input" id="r1" type="radio" name="custom">
-                          <label class="rating-star" for="r1">
-                            <i class="fa fa-star"></i>
-                          </label>
-                        </span>
-                        <span class="rating block">
-                          <span class="lbl-text">Reliability</span>
-                          <input class="rating-input" id="rr5" type="radio" name="reliable">
-                          <label class="rating-star" for="rr5">
-                            <i class="fa fa-star"></i>
-                          </label>
-                          <input class="rating-input" id="rr4" type="radio" name="reliable" checked="">
-                          <label class="rating-star" for="rr4">
-                            <i class="fa fa-star"></i>
-                          </label>
-                          <input class="rating-input" id="rr3" type="radio" name="reliable">
-                          <label class="rating-star" for="rr3">
-                            <i class="fa fa-star"></i>
-                          </label>
-                          <input class="rating-input" id="rr2" type="radio" name="reliable">
-                          <label class="rating-star" for="rr2">
-                            <i class="fa fa-star"></i>
-                          </label>
-                          <input class="rating-input" id="rr1" type="radio" name="reliable">
-                          <label class="rating-star" for="rr1">
-                            <i class="fa fa-star"></i>
-                          </label>
-                        </span>
-                        <span class="rating block">
-                          <span class="lbl-text">Relevance</span>
-                          <input class="rating-input" id="rx5" type="radio" name="relevance">
-                          <label class="rating-star" for="rx5">
-                            <i class="fa fa-star"></i>
-                          </label>
-                          <input class="rating-input" id="rx4" type="radio" name="relevance">
-                          <label class="rating-star" for="rx4">
-                            <i class="fa fa-star"></i>
-                          </label>
-                          <input class="rating-input" id="rx3" type="radio" name="relevance" checked="">
-                          <label class="rating-star" for="rx3">
-                            <i class="fa fa-star"></i>
-                          </label>
-                          <input class="rating-input" id="rx2" type="radio" name="relevance">
-                          <label class="rating-star" for="rx2">
-                            <i class="fa fa-star"></i>
-                          </label>
-                          <input class="rating-input" id="rx1" type="radio" name="relevance">
-                          <label class="rating-star" for="rx1">
-                            <i class="fa fa-star"></i>
-                          </label>
-                        </span>
+            <div class="col-md-12 pr40 border-right">
+                <h3>Información de usuario</h3>
+
+  Este es el resumen de {{ usuario.Nombre }} <hr>
+                       <style>
+                                .rating {
+                              display: inline-block;
+                              position: relative;
+                              height: 50px;
+                              line-height: 50px;
+                              font-size: 50px;
+                            }
+
+                            .rating label {
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              height: 100%;
+                              cursor: pointer;
+                            }
+
+                            .rating label:last-child {
+                              position: static;
+                            }
+
+                            .rating label:nth-child(1) {
+                              z-index: 5;
+                            }
+
+                            .rating label:nth-child(2) {
+                              z-index: 4;
+                            }
+
+                            .rating label:nth-child(3) {
+                              z-index: 3;
+                            }
+
+                            .rating label:nth-child(4) {
+                              z-index: 2;
+                            }
+
+                            .rating label:nth-child(5) {
+                              z-index: 1;
+                            }
+
+                            .rating label input {
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              opacity: 0;
+                            }
+
+                            .rating label .icon {
+                              float: left;
+                              color: transparent;
+                            }
+
+                            .rating label:last-child .icon {
+                              color: #000;
+                            }
+
+                            .rating:not(:hover) label input:checked ~ .icon,
+                            .rating:hover label:hover input ~ .icon {
+                              color: #09f;
+                            }
+
+                            .rating label input:focus:not(:checked) ~ .icon:last-child {
+                              color: #000;
+                              text-shadow: 0 0 5px #09f;
+                            }
+                            </style>
+                <div class="col-md-12"><h5>Valoración: 4 Estrellas <span class="icon">★</span></h5></div>
+                            <form class="rating">
+
+                              <label>
+                                <input type="radio" name="stars" value="1"  disabled/>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="2" disabled/>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="3" disabled/>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="4" checked disabled/>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="5" disabled/>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                            </form>
+
+                            <script>
+                                $(':radio').change(function() {
+                              console.log('New star rating: ' + this.value);
+                            });
+                            </script>
                       </div>
-        </div>
-    </div>
-        </div>
 
 
     </div>
     </div>
-{#    {% for i in portafolio %}#}
-{#                {% for z in i %}#}
-{#                    {{ z.Nombre }}#}
-{##}
-{#                {% endfor %}#}
-{#{% endfor %}#}
-    <style>
-    .zoom {
-  padding: 50px;
-  background-color: green;
-  transition: transform .2s; /* Animation */
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-}
 
-.zoom:hover {
-  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-}
-</style>
-        <div class="container">
-<div class="row">
-
-        {% for i in aptidudes_validadas %}
-{#            {{ i }}#}
-          <div class="card col-md-6" style="padding:1%;width: 33%;height: 100%;"  >
-<div class="text-center">Portafolio</div>
-            <img class="class='img-responsive" src="/media/{{ i.Aptitud_validada.Imagen }}" alt="Card image" style="margin:2px;width:350px; height: 130px;">
-            <div class="card-body ">
-              <h4 class="card-title text-center">{{ i.Aptitud_validada.Nombre }}
-
-
-                  <a style="float: right;" href="{% url 'vincular_portafolio' i.pk %}" >
-  <span class="glyphicon glyphicon-plus-sign"  aria-hidden="true"></span>
-                  </a></h4>
-
-              <p class="card-text"> {{ i.Descripccion }}</p>
-
-                <hr>
-{#                <div class="text-center"style="height: 100px;overflow: auto;"><a href="#" class="btn btn-primary  stretched-link">Ver portafolio</a></div>#}
-            </div>
-            <div class="card-body" style="height: 100px;overflow: auto;">
-                <ul class="list-group list-group-flush">
-                        {% for portafolio_aptitud in portafolio %}
-                {% for z in portafolio_aptitud %}
-
-
-                 {% if i.Aptitud_validada == z.aptitude_validadas.Aptitud_validada %}{{ z.Nombre }}
-
-<embed src="/media/{{ z.pdf }}#view=FitH" width="100%" height="100%" /></li>
-                {% endif %}
-                {% endfor %}
-                {% endfor %}
-                  </ul>
-            </div>
-
-          </div>
-    {% endfor %}
-            </div>
-
-        </div>
 
 {% endblock %}
 

@@ -10,14 +10,14 @@ def content_file_document(instance, filename):
 
 
 class Trabajo(models.Model):
-    Usuario = models.ForeignKey(Persona, on_delete=models.CASCADE)
+    Usuario = models.ForeignKey(Persona, on_delete=models.CASCADE,blank=True, null=True)
 
     Nombre = models.CharField(max_length=120)
     Detalle = models.CharField(max_length=120)
 
     Monto_pago = models.PositiveIntegerField()
-    Fecha = models.DateField(("Date"), default=date.today)
-    Hora = models.TimeField(default=datetime.now())
+    Fecha = models.DateField()
+    Hora = models.TimeField()
     rango_etario = models.CharField(
         max_length=20,
         choices=(
@@ -33,6 +33,17 @@ class Trabajo(models.Model):
     Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE)
     Imagen = models.ImageField(upload_to="media", null=True, blank=True)
     Activo = models.PositiveIntegerField(default=1)
+
+class Historial_trabajo(models.Model):
+    Trabajo = models.OneToOneField(Trabajo,on_delete=models.CASCADE)
+    Persona = models.ForeignKey(Persona, on_delete=models.CASCADE)
+    Fecha = models.DateField(("Date"), default=date.today)
+    Hora = models.TimeField(default=datetime.now())
+
+# class Valoracion_trabajo(models.Model):
+#     Trabajo = models.OneToOneField(Trabajo, on_delete=models.CASCADE)
+#     Persona_trabajadora = models.ForeignKey(Persona, on_delete=models.CASCADE)
+#     Persona_publicadora = models.ForeignKey(Persona, on_delete=models.CASCADE)
 
 #  Email = models.EmailField()
    #  Direccion = models.CharField(max_length=60)

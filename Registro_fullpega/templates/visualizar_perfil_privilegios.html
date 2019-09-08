@@ -1,0 +1,214 @@
+{% extends 'Partials/_Base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'assets/' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/admin-tools/admin-forms/css/admin-forms.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/img/favicon.ico'%} ">
+  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+
+{% block section_contenido %}
+        <div class="row text-center">
+
+  <h4>¡Revisa la pega!</h4>
+
+  Revisa en detalle los campos de la pega, si te gusta, ¡postula! ;) <hr>
+    </div>
+
+    <div class="container">
+{#    perfil#}
+          <div class="col-md-2">
+            <span class="footer-legal" ><img style="height: 16em;width: 16em; border-radius: 10em;" class='img-responsive' src="/media/{{ usuario.Imagen }}" /></span>
+          </div>
+          <div class="col-md-4">
+            <h1><span style ="font-weight: bold; "class="">{{ usuario.Nombre }}</span></h1><hr>
+
+            {% if usuario.Twitter %}
+                <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
+                <div class="text-center">
+                    <a href="{{ usuario.Twitter }}" class="href" target="_blank">
+                     <img class="class='img-responsive" src="/media/twitter.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
+                    </a>
+                </div>
+                </div>
+            {% endif %}
+
+            {% if usuario.Facebook %}
+                <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
+                <div class="text-center">
+                    <a href="{{ usuario.Facebook }}" class="href" target="_blank">
+                     <img class="class='img-responsive" src="/media/facebook.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
+                    </a>
+                </div></div>
+            {% endif %}
+
+            {% if usuario.Linkedin %}
+                <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
+                <div class="text-center">
+                    <a href="{{ usuario.Linkedin }}" class="href" target="_blank">
+                     <img class="class='img-responsive" src="/media/linkedin.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
+                    </a>
+                </div></div>
+            {% endif %}
+
+
+            {% if usuario.Instagram %}
+                <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
+                <div class="text-center">
+                    <a href="{{ usuario.Instagram }}" class="href" target="_blank">
+                     <img class="class='img-responsive" src="/media/instagram.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
+                    </a>
+                </div></div>
+            {% endif %}
+
+
+                       <style>
+                                .rating {
+                              display: inline-block;
+                              position: relative;
+                              height: 50px;
+                              line-height: 50px;
+                              font-size: 50px;
+                            }
+
+                            .rating label {
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              height: 100%;
+                              cursor: pointer;
+                            }
+
+                            .rating label:last-child {
+                              position: static;
+                            }
+
+                            .rating label:nth-child(1) {
+                              z-index: 5;
+                            }
+
+                            .rating label:nth-child(2) {
+                              z-index: 4;
+                            }
+
+                            .rating label:nth-child(3) {
+                              z-index: 3;
+                            }
+
+                            .rating label:nth-child(4) {
+                              z-index: 2;
+                            }
+
+                            .rating label:nth-child(5) {
+                              z-index: 1;
+                            }
+
+                            .rating label input {
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              opacity: 0;
+                            }
+
+                            .rating label .icon {
+                              float: left;
+                              color: transparent;
+                            }
+
+                            .rating label:last-child .icon {
+                              color: #000;
+                            }
+
+                            .rating:not(:hover) label input:checked ~ .icon,
+                            .rating:hover label:hover input ~ .icon {
+                              color: #09f;
+                            }
+
+                            .rating label input:focus:not(:checked) ~ .icon:last-child {
+                              color: #000;
+                              text-shadow: 0 0 5px #09f;
+                            }
+                            </style>
+{#                <h5>Valoración: 4 Estrellas <span class="icon">★</span></h5>#}
+                            <form class="rating">
+
+                              <label>
+                                <input type="radio" name="stars" value="1"  disabled/>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="2" disabled/>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="3" disabled/>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="4" checked disabled/>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="5" disabled/>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                            </form>
+
+                            <script>
+                                $(':radio').change(function() {
+                              console.log('New star rating: ' + this.value);
+                            });
+                            </script>
+          </div>
+{#     pega #}
+        <div class="col-md-2">
+            <span class="footer-legal" ><img style="height: 16em;width: 16em; border-radius: 10em;" class='img-responsive' src="/media/{{ pega.Imagen }}" /></span>
+          </div>
+                  <div class="col-md-4">
+            <h1><span style ="font-weight: bold; "class="">{{ pega.Area.Nombre }} - {{ pega.Nombre }}</span></h1><hr>
+            <span class="footer-lega">Descripción: {{ pega.Detalle }}</span><br>
+            <span class="footer-lega">Pago: ${{ pega.Monto_pago }}</span><br>
+            <span class="footer-lega">Dirección: {{ pega.Direccion.Comuna}}, {{ pega.Direccion.Calle }} {{ pega.Direccion.Numero_de_calle }}</span><br>
+            <span class="footer-lega">Fecha: {{ pega.Fecha }} {{ pega.Hora }}</span><br>
+            <span class="footer-lega">Fecha: {{ pega.rango_etario }}</span>
+          </div>
+
+
+
+{#            Nombre: {{ pega.Nombre }}#}
+{#            Dirección: {{ pega.Direccion.Comuna}}, {{ pega.Direccion.Calle }} {{ pega.Direccion.Numero_de_calle }}#}
+{#            Fecha: {{ pega.Fecha }} {{ pega.Hora }}#}
+        </div>
+    <hr>
+
+    <div class="row text-center">
+
+    </div>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+
+        <h1>¿Te gusta? ¡Postula!</h1>
+
+
+            <a href="" class="btn btn-primary">¡Postular a esta pega!</a>
+
+
+              </div>
+
+    </div>
+
+
+{% endblock %}
+

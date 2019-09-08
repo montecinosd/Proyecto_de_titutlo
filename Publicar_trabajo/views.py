@@ -37,7 +37,9 @@ def publicar_trabajo(request,pk_user):
 def guardar_trabajo(request,pk_user):
     data = {}
     usuario = Persona.objects.get(Usuario=pk_user)
-    print(usuario)
+    print("Guardar trabajo")
+    print(pk_user)
+    print(usuario.pk)
     # data['usuario'] = usuario
     # data['areas'] = areas
     # data['form'] = TrabajoForm()
@@ -45,6 +47,10 @@ def guardar_trabajo(request,pk_user):
     if request.method == 'GET':
         print("get")
     if request.method == 'POST':
+        print("Guardar trabajo")
+        print(pk_user)
+        print(usuario.pk)
+
         #Obtengo los atributos
         print("POSSST BEIBE")
         print(request.POST)
@@ -63,9 +69,13 @@ def guardar_trabajo(request,pk_user):
 #
         area_object = Areas.objects.get(pk=area)
         direccion_object = Direccion.objects.get(pk=direccion)
-
+        print("creando trabajo...")
         trabajo = Trabajo()
+        print("pk usuario: "+str(usuario.pk))
+
         trabajo.Usuario = usuario
+        print("trabajo usuario: "+str(trabajo.Usuario.pk))
+
         trabajo.Nombre = nombre
         trabajo.Detalle = detalle
         trabajo.Monto_pago = monto
@@ -76,7 +86,13 @@ def guardar_trabajo(request,pk_user):
         trabajo.Hora = hora
         trabajo.Imagen = imagen
         trabajo.save()
+        print(trabajo)
 
-
+        #crear historial
+        historial = Historial_trabajo()
+        historial.Persona = usuario
+        historial.Trabajo = trabajo
+        historial.save()
+        print(historial)
     return redirect('visualizar_perfil', request.user.pk)
     # return render(request, 'publicar_trabajo.html', data)

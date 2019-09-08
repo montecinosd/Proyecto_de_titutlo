@@ -54,14 +54,38 @@ def pagina_principal(request):
 @login_required(login_url='/auth/login')
 def visualizar_perfil(request,pk_user):
     data = {}
+
     usuario = Persona.objects.get(Usuario=pk_user)
     data['usuario'] = usuario
-
+    print(usuario.pk)
+    print(request.user.pk)
+    print(pk_user)
+    if (request.user.pk == pk_user):
+        return render(request, 'visualizar_perfil.html', data)
+    else:
+        return render(request, 'visualizar_perfil_noprivilegios.html', data)
     # print(usuario.pk)
     # print(request.user.pk)
 
     # print(data)
-    return render(request, 'visualizar_perfil.html', data)
+def visualizar_perfil_detalle_pega(request,pk_pega):
+    data = {}
+    pega = Trabajo.objects.get(pk = pk_pega)
+
+    usuario = Persona.objects.get(Usuario=pega.Usuario.Usuario.pk)
+    data['usuario'] = usuario
+    data['pega'] = pega
+    # print(usuario.pk)
+    # print(request.user.pk)
+    # print(pk_user)
+    if (usuario.privilegios == 2):
+        return render(request, 'visualizar_perfil_privilegios.html', data)
+    else:
+        return render(request, 'visualizar_perfil_noprivilegios.html', data)
+    # print(usuario.pk)
+    # print(request.user.pk)
+
+    # print(data)
 
 @login_required(login_url='/auth/login')
 def visualizar_privilegios(request,pk_user):
@@ -77,16 +101,22 @@ def visualizar_privilegios(request,pk_user):
 
 @login_required(login_url='/auth/login')
 def buscar_trabajo(request,pk_user):
+
     data = {}
     usuario = Persona.objects.get(Usuario=pk_user)
+
     trabajos = Trabajo.objects.filter(Activo = 1)
     data['trabajos'] = trabajos
     data['usuario'] = usuario
+    print(data)
+    # for i in data['trabajos']:
+    #     SomeModel.objects.filter(id=id).delete()
 
+    # print("xd"+str(i.Usuario.pk))
     # print(usuario.pk)
     # print(request.user.pk)
 
-    # print(data)
+    print(data)
     return render(request, 'buscar_trabajo.html', data)
 
 @login_required(login_url='/auth/login')
@@ -106,7 +136,8 @@ def h_trabajos_publicados(request,pk_user):
     data = {}
     usuario = Persona.objects.get(Usuario=pk_user)
     data['usuario'] = usuario
-
+    historico = Historial_trabajo.objects.filter(Persona = usuario)
+    data["historial_trabajos_publicados"] = historico
     # print(usuario.pk)
     # print(request.user.pk)
 
@@ -119,6 +150,67 @@ def Guardar_Registro_form(request):
         print("GET:................")
     if request.method == "POST":
         print("POSTTTTTTTTTTTTTTTTT")
+        print(request.POST)
+        print(request.FILES)
+        comuna = request.POST['comuna']
+        apellidos = request.POST['apellidos']
+        imagen = request.FILES['imagenRegistro']
+        f_nacimiento = request.POST['f_nacimiento']
+        pais= request.POST['pais']
+        mail = request.POST['email']
+        numero_calle = request.POST['numero_calle']
+        contrasena2= request.POST['confirmPassword']
+        contrasena1 = request.POST['password']
+        rut = request.POST['rut']
+        region = request.POST['region']
+        telefono= request.POST['telefono']
+        nombres = request.POST['nombres']
+        ciudad = request.POST['ciudad']
+        calle = request.POST['calle']
+
+        if (contrasena1 == contrasena2):
+            if (len(contrasena1) >= 4):
+                user = User.objects.create_user(username=mail,
+                                                password=contrasena1)
+                user.save()
+
+                persona = Persona()
+
+                persona.Usuario = user
+                persona.Imagen = imagen
+                persona.Telefono_C = telefono
+                persona.Rut = rut
+                persona.Correo = mail
+                persona.Nombre = nombres
+                persona.Fecha_nacimiento = f_nacimiento
+
+                #direccion
+                direccion = Direccion()
+                direccion.Calle = calle
+                direccion.Ciudad = ciudad
+                direccion.Comuna = comuna
+                direccion.Numero_de_calle = numero_calle
+                direccion.Pais = pais
+                direccion.save()
+
+                persona.Direccion = direccion
+                persona.save()
+
+
+
+
+            else:
+                print("else 1")
+                messages.warning(
+                    request,
+                    'El largo de la contraseña debe ser mayor a 8'
+                )
+        else:
+            print("else 2")
+            messages.error(
+                request,
+                'Las contraseñas no coinciden'
+            )
 
     return redirect('auth_login')
 
@@ -135,14 +227,15 @@ def Registro_form(request):
     if request.method == "POST":
         print("POSTTTTTTTTTTTTTTTTT")
         print(request.POST)
+        print("hola")
 
         # data['form'] = UserForm(request.POST, request.FILES)
-        if (request.POST["password1"] == request.POST["password2"]):
-            if (len(request.POST["password1"]) >= 4):
-                user = User.objects.create_user(username=request.POST["email"],
-                                                password=request.POST["password1"])
+        # if (request.POST["password1"] == request.POST["password2"]):
+        #     if (len(request.POST["password1"]) >= 4):
+        #         user = User.objects.create_user(username=request.POST["email"],
+        #                                         password=request.POST["password1"])
                 # email = request.POST['email']
-                user.save()
+                # user.save()
                 # datos = ClienteForm(request.POST, request.FILES)
 
                 # persona = Persona()
@@ -153,19 +246,19 @@ def Registro_form(request):
                 # persona = request.POST['']
                 # persona = request.POST['']
 
-            else:
-                print("else 1")
-                messages.warning(
-                    request,
-                    'El largo de la contraseña debe ser mayor a 8'
-                )
+            # else:
+            #     print("else 1")
+            #     messages.warning(
+            #         request,
+            #         'El largo de la contraseña debe ser mayor a 8'
+            #     )
 
-        else:
-            print("else 2")
-            messages.error(
-                request,
-                'Las contraseñas no coinsiden'
-            )
+        # else:
+        #     print("else 2")
+        #     messages.error(
+        #         request,
+        #         'Las contraseñas no coinsiden'
+        #     )
 
     return render(request, template_name, data)
 

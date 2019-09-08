@@ -75,7 +75,7 @@
             </div>
 
             <!-- end .form-header section -->
-            <form method="POST" action="{% url 'Guardar_Registro_form' %}" id="account2">{% csrf_token %}
+            <form method="POST" action="{% url 'Guardar_Registro_form' %}" id="account2" enctype="multipart/form-data" >{% csrf_token %}
               <div class="panel-body p25 bg-light">
                 <div class="section-divider mt10 mb40">
                   <span>Crea tu cuenta en FullPega</span>
@@ -154,8 +154,8 @@
                   <div class="section">
                           <label class="field prepend-icon file">
                             <span class="button btn-primary">Elegir archivo</span>
-                            <input type="file" class="gui-file" name="imagen" id="file2" onchange="document.getElementById('uploader2').value = this.value;">
-                            <input type="text" class="gui-input" id="uploader2" name="imagen2" placeholder="Sube una imagen tuya :)">
+                            <input type="file" class="gui-file" name="imagenRegistro" id="imagenRegistro" onchange="document.getElementById('imagenRegistro2').value = this.value;">
+                            <input type="text" class="gui-input" id="imagenRegistro2" name="imagenRegistro2" placeholder="Sube una imagen tuya :)">
                             <label class="field-icon">
                               <i class="fa fa-upload"></i>
                             </label>
@@ -246,7 +246,7 @@
 
                   <div class="col-md-6">
                     <label for="lastname" class="field prepend-icon">
-                      <input type="text" name="info_adicional_direccion" id="info_adicional_direccion" class="gui-input" placeholder="Ingresa información adicional de dirección">
+                      <input type="text" name="ciudad" id="ciudad" class="gui-input" placeholder="Ingresa tu ciudad">
                       <label for="lastname" class="field-icon">
                         <i class="fa fa-globe"></i>
                       </label>
