@@ -14,8 +14,11 @@ from Publicar_trabajo.models import *
 # Create your views here.
 @login_required(login_url='/auth/login')
 def index(request):
-    a = 'jj'
-    data = {a: 'holiwis'}
+    data = {}
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
+
+
 
     return render(request, 'index_super_user.html', data)
 
@@ -55,9 +58,12 @@ def pagina_principal(request):
 def visualizar_perfil(request,pk_user):
     data = {}
 
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
+
     usuario = Persona.objects.get(Usuario=pk_user)
     data['usuario'] = usuario
-    print(usuario.pk)
+    # print(usuario.pk)
     print(request.user.pk)
     print(pk_user)
     if (request.user.pk == pk_user):
@@ -71,7 +77,8 @@ def visualizar_perfil(request,pk_user):
 def visualizar_perfil_detalle_pega(request,pk_pega):
     data = {}
     pega = Trabajo.objects.get(pk = pk_pega)
-
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
     usuario = Persona.objects.get(Usuario=pega.Usuario.Usuario.pk)
     data['usuario'] = usuario
     data['pega'] = pega
@@ -90,6 +97,9 @@ def visualizar_perfil_detalle_pega(request,pk_pega):
 @login_required(login_url='/auth/login')
 def visualizar_privilegios(request,pk_user):
     data = {}
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
+
     usuario = Persona.objects.get(Usuario=pk_user)
     data['usuario'] = usuario
 
@@ -103,9 +113,13 @@ def visualizar_privilegios(request,pk_user):
 def buscar_trabajo(request,pk_user):
 
     data = {}
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
+
     usuario = Persona.objects.get(Usuario=pk_user)
 
-    trabajos = Trabajo.objects.filter(Activo = 1)
+    #excluir mismo usuario
+    trabajos = Trabajo.objects.filter(Activo = 1).exclude(Usuario__Usuario= usuario)
     data['trabajos'] = trabajos
     data['usuario'] = usuario
     print(data)
@@ -124,6 +138,8 @@ def h_trabajos_realizados(request,pk_user):
     data = {}
     usuario = Persona.objects.get(Usuario=pk_user)
     data['usuario'] = usuario
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
 
     # print(usuario.pk)
     # print(request.user.pk)
@@ -136,6 +152,9 @@ def h_trabajos_publicados(request,pk_user):
     data = {}
     usuario = Persona.objects.get(Usuario=pk_user)
     data['usuario'] = usuario
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
+
     historico = Historial_trabajo.objects.filter(Persona = usuario)
     data["historial_trabajos_publicados"] = historico
     # print(usuario.pk)

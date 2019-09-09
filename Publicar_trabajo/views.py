@@ -23,6 +23,10 @@ def handle_uploaded_file(f):
 @login_required(login_url='/auth/login')
 def publicar_trabajo(request,pk_user):
     data = {}
+
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
+
     areas = Areas.objects.all()
     usuario = Persona.objects.filter(Usuario=pk_user)
     print(usuario)
