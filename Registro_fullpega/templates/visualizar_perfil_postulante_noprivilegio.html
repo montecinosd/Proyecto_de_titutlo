@@ -9,43 +9,41 @@
   <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
 
 {% block section_contenido %}
-        <div class="row text-center">
+            <div class="row text-center">
 
-  <h4>¡Revisa la pega!</h4>
+  <h4>¡Revisa el perfil del postulante!</h4>
 
-  Revisa en detalle los campos de la pega, si te gusta, ¡postula! ;) <hr>
+  Revisa en detalle el perfil del postulante, si te parece bien, ¡aceptalo y contacta con él! ;) <hr>
     </div>
 
-    <div class="container">
+        <div class="container">
 {#    perfil#}
-          <div class="col-md-2">
+         <div class="col-md-2">
             <span class="footer-legal" ><img style="height: 16em;width: 16em; border-radius: 10em;" class='img-responsive' src="/media/{{ usuario.Imagen }}" /></span>
           </div>
-                  <div class="col-md-4">
+          <div class="col-md-4">
             <h1><span style ="font-weight: bold; "class="">{{ usuario.Nombre }}</span></h1><hr>
             ¡Obten los <span style ="font-weight: bold; "class=""><a href="{% url 'visualizar_privilegios' request.user.pk %}">Privilegios</a></span> para ver las redes sociales del usuario!<br>
                       ¡Obten los <span style ="font-weight: bold; "class=""><a href="{% url 'visualizar_privilegios' request.user.pk %}">Privilegios</a></span> para ver las calificaciones del usuario!
 
           </div>
 {#     pega #}
-        <div class="col-md-2">
-            <span class="footer-legal" ><img style="height: 16em;width: 16em; border-radius: 10em;" class='img-responsive' src="/media/{{ pega.Imagen }}" /></span>
+             <div class="col-md-2">
+              <span class="footer-legal" ><img style="height: 16em;width: 16em; border-radius: 10em;" class='img-responsive' src="/media/{{ pega.Imagen }}" /></span>
+             </div>
+              <div class="col-md-4">
+                <h1><span style ="font-weight: bold; "class="">{{ pega.Area.Nombre }} - {{ pega.Nombre }}</span></h1><hr>
+                <span class="footer-lega">Descripción: {{ pega.Detalle }}</span><br>
+                <span class="footer-lega">Pago: ${{ pega.Monto_pago }}</span><br>
+                <span class="footer-lega">Dirección: {{ pega.Direccion.Comuna}}, {{ pega.Direccion.Calle }} {{ pega.Direccion.Numero_de_calle }}</span><br>
+                <span class="footer-lega">Fecha: {{ pega.Fecha }} {{ pega.Hora }}</span><br>
+                <span class="footer-lega">Fecha: {{ pega.rango_etario }}</span>
+             </div>
+
+
+
           </div>
-                  <div class="col-md-4">
-            <h1><span style ="font-weight: bold; "class="">{{ pega.Area.Nombre }} - {{ pega.Nombre }}</span></h1><hr>
-            <span class="footer-lega">Descripción: {{ pega.Detalle }}</span><br>
-            <span class="footer-lega">Pago: ${{ pega.Monto_pago }}</span><br>
-            <span class="footer-lega">Dirección: {{ pega.Direccion.Comuna}}, {{ pega.Direccion.Calle }} {{ pega.Direccion.Numero_de_calle }}</span><br>
-            <span class="footer-lega">Fecha: {{ pega.Fecha }} {{ pega.Hora }}</span><br>
-            <span class="footer-lega">Fecha: {{ pega.rango_etario }}</span>
-          </div>
-
-
-
-{#            Nombre: {{ pega.Nombre }}#}
-{#            Dirección: {{ pega.Direccion.Comuna}}, {{ pega.Direccion.Calle }} {{ pega.Direccion.Numero_de_calle }}#}
-{#            Fecha: {{ pega.Fecha }} {{ pega.Hora }}#}
-        </div>
+{#     pega #}
     <hr>
 
     <div class="row text-center">
@@ -55,10 +53,10 @@
     <div class="row">
         <div class="col-md-12 text-center">
 
-        <h1>¿Te gusta? ¡Postula!</h1>
+        <h2>¿Quieres a este postulante? ¡Aceptalo para ponerte en contacto!</h2>
 
-
-            <a href="{% url 'postular_inicial' pega.pk %}" class="btn btn-primary" data-toggle="modal" data-target="#myModal">¡Postular a esta pega!</a>
+  <!-- Modal -->
+            <a href="{% url 'postulante_acordado' postulante.pk %}" class="btn btn-primary" data-toggle="modal" data-target="#myModal">¡Aceptar postulante y contactar!</a>
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
 
@@ -66,10 +64,12 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">¡Postulación lista!</h4>
+          <h4 class="modal-title">Modal Header</h4>
         </div>
         <div class="modal-body">
-          <p>Haz postulado a la pega {{ pega.Nombre }}.<br> ¡Mantente atento a tus notificaciones!</p>
+          <p>¡Listo! quedaste con {{ usuario.Nombre }}, A continuación, ponte en contacto con él.</p>
+            <p>Telefono: {{ usuario.Telefono_C }}</p>
+            <p>Correo: {{ usuario.Correo }}</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

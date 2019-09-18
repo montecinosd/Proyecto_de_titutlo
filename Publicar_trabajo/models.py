@@ -34,6 +34,22 @@ class Trabajo(models.Model):
     Imagen = models.ImageField(upload_to="media", null=True, blank=True)
     Activo = models.PositiveIntegerField(default=1)
 
+
+    #postulantes a una trabajo debe hacerse un filter
+class Postulantes(models.Model):
+    Trabajo = models.ForeignKey(Trabajo, on_delete=models.CASCADE)
+    Postulante = models.ForeignKey(Persona,on_delete=models.CASCADE)
+    Fecha = models.DateField(("Date"), default=date.today)
+    Hora = models.TimeField(default=datetime.now())
+
+#model de historial de traajos acordados activos o pasados, estos se realizaron y se aceptaron con distinta fecha y hora que cuando se postula
+class Trabajo_acordado(models.Model):
+    #aqui se tiene el trabajo que se postula, el usuario ( atraves del trabajo) y el postulante - se desvia la redundancia
+    postulante_acordado = models.ForeignKey(Postulantes, on_delete=models.CASCADE)
+    Fecha = models.DateField(("Date"), default=date.today)
+    Hora = models.TimeField(default=datetime.now())
+
+
 class Historial_trabajo(models.Model):
     Trabajo = models.OneToOneField(Trabajo,on_delete=models.CASCADE)
     Persona = models.ForeignKey(Persona, on_delete=models.CASCADE)

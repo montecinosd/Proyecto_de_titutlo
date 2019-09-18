@@ -85,14 +85,111 @@ def visualizar_perfil_detalle_pega(request,pk_pega):
     # print(usuario.pk)
     # print(request.user.pk)
     # print(pk_user)
-    if (usuario.privilegios == 2):
+    print(usuario.Nombre)
+    print(usuario.privilegios)
+    if (usuario_solicitud.privilegios == 2):
+        print("privilegios")
         return render(request, 'visualizar_perfil_privilegios.html', data)
     else:
+        print("no privilegios")
         return render(request, 'visualizar_perfil_noprivilegios.html', data)
     # print(usuario.pk)
     # print(request.user.pk)
 
     # print(data)
+def visualizar_perfil_postulante(request,pk_postulante):
+    data = {}
+
+
+    postulante = Postulantes.objects.get( pk = pk_postulante)
+    # pega = Trabajo.objects.get(pk = pk_user)
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
+    #se rescata pk de usuario
+    usuario = Persona.objects.get(Usuario=postulante.Postulante.pk)
+    pega = Trabajo.objects.get(pk=postulante.Trabajo.pk)
+    data['usuario'] = usuario
+    data['pega'] = pega
+    data['postulante'] = postulante
+    # print(usuario.pk)
+    # print(request.user.pk)
+    # print(pk_user)
+    print(usuario.Nombre)
+    print(usuario.privilegios)
+    if (usuario_solicitud.privilegios == 3):
+        print("visualizar postulante privilegios")
+        return render(request, 'visualizar_perfil_postulante_privilegio.html', data)
+    else:
+        print("visualizar postulante no privilegios")
+        return render(request, 'visualizar_perfil_postulante_noprivilegio.html', data)
+
+    # return render(request, 'visualizar_pefrfil_postulante_privilegio.html', data)
+
+@login_required(login_url='/auth/login')
+def postulante_acordado(request,pk_postulante):
+    data = {}
+    print("guardando trabajo acordado...")
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
+
+#se crea el objeto del acuerdo de trabajo, con lo cual se realizará
+    postulante_acordado = Postulantes.objects.get(pk = pk_postulante)
+    trabajo_acordado = Trabajo_acordado()
+    trabajo_acordado.postulante_acordado = postulante_acordado
+
+    trabajo_acordado.save()
+
+    # usuario = Persona.objects.get(Usuario=pk_user)
+    # trabajo = Trabajo.objects.get(pk=pk_pega)
+    #
+    # # guardando el postulante
+    # postulantes = Postulantes()
+    # postulantes.Trabajo= trabajo
+    # postulantes.Postulante = usuario_solicitud
+    # postulantes.save()
+
+
+@login_required(login_url='/auth/login')
+def postular_inicial(request,pk_pega):
+    data = {}
+    print("postulando...")
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
+
+    # usuario = Persona.objects.get(Usuario=pk_user)
+    trabajo = Trabajo.objects.get(pk=pk_pega)
+
+    # guardando el postulante
+    postulantes = Postulantes()
+    postulantes.Trabajo= trabajo
+    postulantes.Postulante = usuario_solicitud
+    postulantes.save()
+
+@login_required(login_url='/auth/login')
+def visualizar_postulantes_a_trabajos(request, pk_user):
+    data = {}
+    print("postulando...")
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
+
+    # usuario = Persona.objects.get(Usuario=pk_user)
+    trabajos = Trabajo.objects.filter(Usuario = usuario_solicitud.pk).exclude(Activo=0)
+    data['trabajos'] = trabajos
+    data['postulantes'] = Postulantes.objects.all()
+    # for i in trabajos:
+    #     postulantes = Postulantes.objects.filter(Trabajo = i.pk)
+    #     for z in postulantes:
+    #         print(type(z))
+    #     data["postulantes"]=postulantes
+    print(type(data["trabajos"]))
+
+
+    print(data)
+    # data['trabajos'] = trabajos
+    print("trabajos: "+str(data['trabajos']))
+
+
+    return render(request, 'visualizar_postulantes.html', data)
 
 @login_required(login_url='/auth/login')
 def visualizar_privilegios(request,pk_user):

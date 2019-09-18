@@ -13,10 +13,29 @@ class TrabajoAdmin(admin.ModelAdmin):
                          % (obj.picture.url))
 
 @admin.register(Historial_trabajo)
-class TrabajoAdmin(admin.ModelAdmin):
+class Historial_trabajoAdmin(admin.ModelAdmin):
     list_display = ('Persona','Trabajo','Fecha','Hora',)
 
 
     def thumb(self, obj):
         return mark_safe(u'<img src="%s" style="width:10px;height:10px;"/>' \
                          % (obj.picture.url))
+
+@admin.register(Trabajo_acordado)
+class Trabajo_acordadoAdmin(admin.ModelAdmin):
+    list_display = ('postulante_acordado','Fecha','Hora',)
+
+
+    def thumb(self, obj):
+        return mark_safe(u'<img src="%s" style="width:10px;height:10px;"/>' \
+                         % (obj.picture.url))
+
+@admin.register(Postulantes)
+class PostulantesAdmin(admin.ModelAdmin):
+    list_display = ('Trabajo','Postulante','Fecha','Hora',)
+
+
+    def thumb(self, obj):
+        return mark_safe(u'<img src="%s" style="width:10px;height:10px;"/>' \
+                         % (obj.picture.url))
+

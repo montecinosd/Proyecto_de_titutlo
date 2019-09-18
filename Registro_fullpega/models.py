@@ -27,6 +27,7 @@ class Direccion(models.Model):
     Ciudad = models.CharField(max_length = 50,null=True,blank=True)
     Calle = models.CharField(max_length=100,null=True,blank=True)
     Numero_de_calle = models.CharField(max_length=100,null=True,blank=True)
+
 class Persona(models.Model):
     Usuario = models.ForeignKey(User,primary_key=True, on_delete=models.CASCADE)
 
@@ -36,13 +37,17 @@ class Persona(models.Model):
     Telefono_C = models.CharField(max_length = 50,null=True,blank=True)
     Correo = models.CharField(max_length = 100,null=True,blank=True)
     Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE)
-    Fecha_nacimiento = models.CharField(max_length = 50,null=True,blank=True)
+    Fecha_nacimiento = models.DateField()
+    # edad = models.DateField()
     Facebook = models.CharField(max_length = 120,null=True,blank=True)
     Twitter = models.CharField(max_length = 120,null=True,blank=True)
     Linkedin = models.CharField(max_length = 120,null=True,blank=True)
     Instagram = models.CharField(max_length = 120,null=True,blank=True)
     #1 sin privilegios, 2 dual, 3 publicar, 4 buscar
     privilegios = models.IntegerField(default=1)
+
+
+
 
 
 

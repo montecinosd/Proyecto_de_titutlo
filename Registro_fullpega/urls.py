@@ -20,6 +20,13 @@ urlpatterns = [
      path(r'^h_trabajos_publicados/<int:pk_user>', views.h_trabajos_publicados, name='h_trabajos_publicados'),
      #buscar trabajo
      path(r'^buscar_trabajo/<int:pk_user>', views.buscar_trabajo, name='buscar_trabajo'),
+     #Postular
+     path(r'^postular_inicial/<int:pk_pega>', views.postular_inicial, name='postular_inicial'),
+     path(r'^visualizar_postulantes_a_trabajos/<int:pk_user>', views.visualizar_postulantes_a_trabajos, name='visualizar_postulantes_a_trabajos'),
+     path(r'^visualizar_perfil_postulante/<int:pk_postulante>', views.visualizar_perfil_postulante, name='visualizar_perfil_postulante'),
+   #
+     path(r'^postulante_acordado/<int:pk_postulante>', views.postulante_acordado, name='postulante_acordado'),
+
      #valoraciones
 
 ]
