@@ -1,6 +1,7 @@
 from django.urls import path
 from Registro_fullpega import views
 
+
 urlpatterns = [
      path('', views.index, name='index'),
      #pagina principal
@@ -26,6 +27,10 @@ urlpatterns = [
      path(r'^visualizar_perfil_postulante/<int:pk_postulante>', views.visualizar_perfil_postulante, name='visualizar_perfil_postulante'),
    #
      path(r'^postulante_acordado/<int:pk_postulante>', views.postulante_acordado, name='postulante_acordado'),
+     path(r'^visualizar_trabajo_activo/<int:pk_user>', views.visualizar_trabajo_activo, name='visualizar_trabajo_activo'),
+
+     #cierre
+     path(r'^cerrar_trabajo_publicado/<int:pk_postulante>', views.cerrar_trabajo_publicado,name='cerrar_trabajo_publicado'),
 
      #valoraciones
 

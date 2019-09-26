@@ -80,9 +80,10 @@
 <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <span class="ad ad-radio-tower fs18"></span>
+            Notificaciones (0) <span class="ad ad-radio-tower fs18"></span>
           </a>
           <ul class="dropdown-menu media-list w350 animated animated-shorter fadeIn" role="menu">
+
             <li class="dropdown-header">
               <span class="dropdown-title"> Notifications</span>
               <span class="label label-warning">12</span>
@@ -109,7 +110,7 @@
         </li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <span class="flag-xs flag-us"></span> US
+            <span class="flag-xs flag-es"></span> Español
           </a>
           <ul class="dropdown-menu pv5 animated animated-short flipInX" role="menu">
             <li>
@@ -271,55 +272,67 @@
         <!-- End: Sidebar Header -->
 
         <!-- Start: Sidebar Left Menu -->
-        <ul class="nav sidebar-menu">
-            <li class="active">
+
+          <ul class="nav sidebar-menu">
+              <li class="sidebar-label pt20">Perfil</li>
+              <li class="active">
                 <a href="{% url 'visualizar_perfil' request.user.pk %}" >
                     <span class="fa fa-user"></span>
                     <span class="sidebar-title">Perfil</span>
                 </a>
             </li>
 
-                      <li class="sidebar-label pt20">Trabajo</li>
+                      <li class="sidebar-label pt20">Acciones</li>
             <li class="active">
             <a href="{% url 'publicar_trabajo' request.user.pk %}" >
-              <span class="fa fa-calendar"></span>
+              <span class="fa fa-pencil-square-o"></span>
               <span class="sidebar-title">Publicar pega</span>
             </a>
           </li>
 
         <li class="active">
             <a href="{% url 'buscar_trabajo' request.user.pk %}" >
-              <span class="fa fa-calendar"></span>
+              <span class="fa fa-search"></span>
               <span class="sidebar-title">Buscar pega</span>
             </a>
           </li>
-                        <li class="active">
-                <a href="{% url 'visualizar_privilegios' request.user.pk %}" >
-                    <span class="fa fa-user"></span>
-                    <span class="sidebar-title">Adquirir privilegio</span>
-                </a>
-            </li>
-                                    <li class="active">
-                <a href="{% url 'h_trabajos_realizados' request.user.pk %}" >
-                    <span class="fa fa-user"></span>
-                    <span class="sidebar-title">H. trabajos realizados</span>
-                </a>
-            </li>
-                        <li class="active">
-                <a href="{% url 'h_trabajos_publicados' request.user.pk %}" >
-                    <span class="fa fa-user"></span>
-                    <span class="sidebar-title">H. trabajos publicados</span>
-                </a>
-            </li>
+                      <li class="sidebar-label pt20">Acuerdo</li>
+
                                     <li class="active">
                 <a href="{% url 'visualizar_postulantes_a_trabajos' request.user.pk %}" >
-                    <span class="fa fa-user"></span>
+                    <span class="fa fa-list-ol"></span>
                     <span class="sidebar-title">Visualizar postulantes</span>
                 </a>
             </li>
 
+                                    <li class="active">
+                <a href="{% url 'visualizar_trabajo_activo' request.user.pk %}" >
+                    <span class="fa fa-check-square-o"></span>
+                    <span class="sidebar-title">Trabajos acordados</span>
+                </a>
+            </li>
+                                  <li class="sidebar-label pt20">Privilegios</li>
+                        <li class="active">
+                <a href="{% url 'visualizar_privilegios' request.user.pk %}" >
+                    <span class="fa fa-plus-square-o"></span>
+                    <span class="sidebar-title">Adquirir privilegio</span>
+                </a>
+            </li>
 
+                      <li class="sidebar-label pt20">Historicos</li>
+                        <li class="active">
+                <a href="{% url 'h_trabajos_publicados' request.user.pk %}" >
+                    <span class="fa fa-history"></span>
+                    <span class="sidebar-title">H. trabajos publicados</span>
+                </a>
+            </li>
 
+                   <li class="active">
+                <a href="{% url 'h_trabajos_realizados' request.user.pk %}" >
+                    <span class="fa fa-history"></span>
+                    <span class="sidebar-title">H. trabajos realizados</span>
+                </a>
+            </li>
 
 
 

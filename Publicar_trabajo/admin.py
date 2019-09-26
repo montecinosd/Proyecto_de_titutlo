@@ -32,7 +32,7 @@ class Trabajo_acordadoAdmin(admin.ModelAdmin):
 
 @admin.register(Postulantes)
 class PostulantesAdmin(admin.ModelAdmin):
-    list_display = ('Trabajo','Postulante','Fecha','Hora',)
+    list_display = ('pk','Trabajo','Postulante','Fecha','Hora',)
 
 
     def thumb(self, obj):

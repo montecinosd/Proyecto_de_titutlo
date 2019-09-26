@@ -139,6 +139,20 @@ def postulante_acordado(request,pk_postulante):
 
     trabajo_acordado.save()
 
+@login_required(login_url='/auth/login')
+def cerrar_trabajo_publicado(request,pk_postulante):
+    data = {}
+    print(request.POST)
+#     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+#     data['usuario_solicitud'] = usuario_solicitud
+#
+# #se crea el objeto del acuerdo de trabajo, con lo cual se realizará
+#     postulante_acordado = Postulantes.objects.get(pk = pk_postulante)
+#     trabajo_acordado = Trabajo_acordado()
+#     trabajo_acordado.postulante_acordado = postulante_acordado
+#
+#     trabajo_acordado.save()
+
     # usuario = Persona.objects.get(Usuario=pk_user)
     # trabajo = Trabajo.objects.get(pk=pk_pega)
     #
@@ -192,6 +206,26 @@ def visualizar_postulantes_a_trabajos(request, pk_user):
     return render(request, 'visualizar_postulantes.html', data)
 
 @login_required(login_url='/auth/login')
+def visualizar_trabajo_activo(request, pk_user):
+    data = {}
+    print("...")
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
+    # a = Trabajo_acordado()
+    # a.postulante_acordado.Trabajo.Usuario.Usuario.
+
+    trabajos_acordados = Trabajo_acordado.objects.all().filter(postulante_acordado__Trabajo__Usuario__Usuario = usuario_solicitud)
+    # trabajos_acordados = Trabajo_acordado.objects.all().exclude(postulante_acordado__Trabajo__Usuario__Usuario = usuario_solicitud)
+    print(trabajos_acordados)
+    data['trabajos_acordados'] = trabajos_acordados
+    # trabajos_acordados = Trabajo_acordado()
+    # trabajos_acordados.
+    print(trabajos_acordados)
+
+
+    return render(request, 'visualizar_trabajo_activo.html', data)
+
+@login_required(login_url='/auth/login')
 def visualizar_privilegios(request,pk_user):
     data = {}
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
@@ -220,12 +254,6 @@ def buscar_trabajo(request,pk_user):
     data['trabajos'] = trabajos
     data['usuario'] = usuario
     print(data)
-    # for i in data['trabajos']:
-    #     SomeModel.objects.filter(id=id).delete()
-
-    # print("xd"+str(i.Usuario.pk))
-    # print(usuario.pk)
-    # print(request.user.pk)
 
     print(data)
     return render(request, 'buscar_trabajo.html', data)
