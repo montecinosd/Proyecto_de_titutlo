@@ -48,7 +48,7 @@
 {#                      <div class="col-md-12" style="padding: 0%;margin:0%;"><hr></div>#}
 
                         <hr style="padding: 0%;margin: 0.5em;">
-                      <div class="col-md-12 text-center"><a href="{% url 'cerrar_trabajo_publicado' i.postulante_acordado.Postulante.pk %}" data-toggle="modal" data-target="#myModal" class="btn btn-primary" >Este trabajo ha concluido</a></div>
+                      <div class="col-md-12 text-center"><a href="" data-toggle="modal" data-target="#myModal{{ i.pk }}" class="btn btn-primary" >Este trabajo ha concluido</a></div>
 {#                      <div class="col-md-12 text-center"><a href="/index/%5Evisualizar_perfil_postulante/1" class="btn btn-primary" >Este trabajo ha concluido</a></div>#}
                         </div>
 
@@ -56,7 +56,7 @@
                   </div>
                 </div>
 
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="myModal{{ i.pk }}" role="dialog">
     <div class="modal-dialog">
 
       <!-- Modal content-->
@@ -69,8 +69,9 @@
           <p>¡Listo! Trabajo realizado por {{ i.postulante_acordado.Postulante.Nombre}}. A continuación, puedes calificarlo para que los demás usuarios puedan saber como es trabajar con él. ;)</p>
           <hr>
             <p>Púntua la pega realizado</p>
-            <form class="rating" method="post" action="{% url 'cerrar_trabajo_publicado' i.postulante_acordado.Postulante.pk %}" id="calificacion" enctype="multipart/form-data">
-
+            <form  method="post" action="{% url 'cerrar_trabajo_publicado' i.pk %}" id="calificacion" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="rating">
                               <label>
                                 <input type="radio" name="stars" value="1" >
                                 <span class="icon">★</span>
@@ -101,12 +102,19 @@
                                 <span class="icon">★</span>
                                 <span class="icon">★</span>
                               </label>
-                            
-                            </form>
+</div>
+                    <div class="col-md-12">
+                        <p>Escribe algo sobre la pega realizada</p>
+                        <textarea name="comentario" id="comentario" rows="4" cols="50"></textarea>
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" id="submit">Calificar y terminar pega!</button>
+                    </div>
+                    </form>
 
-            <p>Escribe algo sobre la pega realizada</p>
-                            <textarea rows="4" cols="50">
-                            </textarea>
+{#            <p>Escribe algo sobre la pega realizada</p>#}
+{#                            <textarea rows="4" cols="50">#}
+{#                            </textarea>#}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

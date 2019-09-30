@@ -29,6 +29,14 @@ class Trabajo_acordadoAdmin(admin.ModelAdmin):
     def thumb(self, obj):
         return mark_safe(u'<img src="%s" style="width:10px;height:10px;"/>' \
                          % (obj.picture.url))
+@admin.register(Calificaciones)
+class CalificacionesAdmin(admin.ModelAdmin):
+    list_display = ('pk','usuario','usuario_calificador','Pega_calificada','Estrellas','Comentarios','Fecha','Hora',)
+
+
+    def thumb(self, obj):
+        return mark_safe(u'<img src="%s" style="width:10px;height:10px;"/>' \
+                         % (obj.picture.url))
 
 @admin.register(Postulantes)
 class PostulantesAdmin(admin.ModelAdmin):

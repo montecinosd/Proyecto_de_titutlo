@@ -1,15 +1,9 @@
-from django.shortcuts import render
-from Registro_fullpega.models import *
-from Registro_fullpega.forms import *
-from django.shortcuts import redirect
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse
-from django.http import HttpResponseRedirect
-from django.contrib.auth import authenticate, login
-from django.http import JsonResponse
-from django.contrib.auth.models import User
+from django.shortcuts import redirect
+from django.shortcuts import render
+
 from Publicar_trabajo.models import *
+
 
 # Create your views here.
 @login_required(login_url='/auth/login')
@@ -140,9 +134,57 @@ def postulante_acordado(request,pk_postulante):
     trabajo_acordado.save()
 
 @login_required(login_url='/auth/login')
-def cerrar_trabajo_publicado(request,pk_postulante):
+def cerrar_trabajo_publicado(request,pk_trabajo_acordado):
     data = {}
     print(request.POST)
+    print(pk_trabajo_acordado)
+
+
+    ## INFORMACION DE LA PAGINA
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
+    trabajos_acordados = Trabajo_acordado.objects.all().filter(postulante_acordado__Trabajo__Usuario__Usuario = usuario_solicitud).exclude(postulante_acordado__Trabajo__Activo = 0)
+    print(trabajos_acordados)
+
+    data['trabajos_acordados'] = trabajos_acordados
+    ##FIN INFO PAGINA
+
+    # CERRAR TRABAJO
+    trabajo_acordado = Trabajo_acordado.objects.get(pk = pk_trabajo_acordado)
+    print(trabajo_acordado.postulante_acordado.Trabajo.Nombre)
+
+    trabajo_acordado.postulante_acordado.Trabajo.Activo = 0
+    trabajo_acordado.postulante_acordado.Trabajo.save()
+    #FIN CERRAR TRABAJO
+
+    #CALIFICACION
+    calificacion = Calificaciones()
+
+    #usuario_solicitud -> usuario_calificador
+    usuario_calificado = Persona.objects.get(pk=trabajo_acordado.postulante_acordado.Postulante.pk)
+    #trabajo_acordado -> pega acordado
+    estrellas = request.POST['stars']
+    comentarios = request.POST['comentario']
+    print(estrellas)
+    print(comentarios)
+    #
+    calificacion.usuario_calificador = usuario_solicitud
+    calificacion.usuario = usuario_calificado
+    calificacion.Estrellas = estrellas
+    calificacion.Comentarios = comentarios
+    calificacion.Pega_calificada = trabajo_acordado.postulante_acordado.Trabajo
+    calificacion.save()
+    #FIN CALIFICACION
+
+    #HISTORICO TRABAJO REALIZADO
+    historico_realizado = Historial_trabajo()
+    historico_realizado.Trabajo = trabajo_acordado.postulante_acordado.Trabajo
+    historico_realizado.Persona = usuario_calificado
+    historico_realizado.tipo = 2
+    historico_realizado.save()
+    #FIN TRABAJO REALIZADO
+
+    return render(request, 'visualizar_trabajo_activo.html', data)
 #     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
 #     data['usuario_solicitud'] = usuario_solicitud
 #
@@ -214,7 +256,7 @@ def visualizar_trabajo_activo(request, pk_user):
     # a = Trabajo_acordado()
     # a.postulante_acordado.Trabajo.Usuario.Usuario.
 
-    trabajos_acordados = Trabajo_acordado.objects.all().filter(postulante_acordado__Trabajo__Usuario__Usuario = usuario_solicitud)
+    trabajos_acordados = Trabajo_acordado.objects.all().filter(postulante_acordado__Trabajo__Usuario__Usuario = usuario_solicitud).exclude(postulante_acordado__Trabajo__Activo = 0)
     # trabajos_acordados = Trabajo_acordado.objects.all().exclude(postulante_acordado__Trabajo__Usuario__Usuario = usuario_solicitud)
     print(trabajos_acordados)
     data['trabajos_acordados'] = trabajos_acordados
@@ -266,8 +308,8 @@ def h_trabajos_realizados(request,pk_user):
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
     data['usuario_solicitud'] = usuario_solicitud
 
-    # print(usuario.pk)
-    # print(request.user.pk)
+    historico = Historial_trabajo.objects.filter(Persona = usuario).exclude( tipo = 1)
+    data["historial_trabajos_realizados"] = historico
 
     # print(data)
     return render(request, 'h_trabajos_realizados.html', data)
@@ -280,7 +322,7 @@ def h_trabajos_publicados(request,pk_user):
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
     data['usuario_solicitud'] = usuario_solicitud
 
-    historico = Historial_trabajo.objects.filter(Persona = usuario)
+    historico = Historial_trabajo.objects.filter(Persona = usuario).exclude( tipo = 2)
     data["historial_trabajos_publicados"] = historico
     # print(usuario.pk)
     # print(request.user.pk)

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from datetime import *
+from django.utils import timezone
 # Create your models here.
 # class Bicicleta(models.Model):
 #     Nombre = models.CharField(max_length=120)
@@ -37,7 +38,7 @@ class Persona(models.Model):
     Telefono_C = models.CharField(max_length = 50,null=True,blank=True)
     Correo = models.CharField(max_length = 100,null=True,blank=True)
     Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE)
-    Fecha_nacimiento = models.DateField()
+    Fecha_nacimiento = models.DateField(default=datetime.now())
     # edad = models.DateField()
     Facebook = models.CharField(max_length = 120,null=True,blank=True)
     Twitter = models.CharField(max_length = 120,null=True,blank=True)

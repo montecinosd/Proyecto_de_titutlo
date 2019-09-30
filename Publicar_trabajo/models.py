@@ -1,4 +1,4 @@
-from datetime import date,datetime
+from datetime import *
 from Registro_fullpega.models import *
 
 from django.db import models
@@ -16,8 +16,8 @@ class Trabajo(models.Model):
     Detalle = models.CharField(max_length=120)
 
     Monto_pago = models.PositiveIntegerField()
-    Fecha = models.DateField()
-    Hora = models.TimeField()
+    Fecha = models.DateTimeField(null=True, blank=True)
+    Hora = models.TimeField(null=True, blank=True)
     rango_etario = models.CharField(
         max_length=20,
         choices=(
@@ -39,22 +39,33 @@ class Trabajo(models.Model):
 class Postulantes(models.Model):
     Trabajo = models.ForeignKey(Trabajo, on_delete=models.CASCADE)
     Postulante = models.ForeignKey(Persona,on_delete=models.CASCADE)
-    Fecha = models.DateField(("Date"), default=date.today)
-    Hora = models.TimeField(default=datetime.now())
+    Fecha = models.DateTimeField(default=datetime.now)
+    Hora = models.TimeField(default=datetime.now)
 
 #model de historial de traajos acordados activos o pasados, estos se realizaron y se aceptaron con distinta fecha y hora que cuando se postula
 class Trabajo_acordado(models.Model):
     #aqui se tiene el trabajo que se postula, el usuario ( atraves del trabajo) y el postulante - se desvia la redundancia
     postulante_acordado = models.ForeignKey(Postulantes, on_delete=models.CASCADE)
-    Fecha = models.DateField(("Date"), default=date.today)
-    Hora = models.TimeField(default=datetime.now())
+    Fecha = models.DateTimeField(default=datetime.now, null=True, blank=True)
+    Hora = models.TimeField(default=datetime.now, null=True, blank=True)
 
+class Calificaciones(models.Model):
+    #aqui se tiene el trabajo que se postula, el usuario ( atraves del trabajo) y el postulante - se desvia la redundancia
+    usuario = models.ForeignKey(Persona, on_delete=models.CASCADE,related_name='usuario')
+    usuario_calificador = models.ForeignKey(Persona, on_delete=models.CASCADE,related_name='usuario_calificador')
+    Pega_calificada = models.ForeignKey(Trabajo,on_delete=models.CASCADE)
+    Estrellas = models.PositiveIntegerField()
+    Comentarios = models.CharField(max_length=120)
+    Fecha = models.DateTimeField(default=datetime.now, null=True, blank=True)
+    Hora = models.TimeField(default=datetime.now, null=True, blank=True)
 
 class Historial_trabajo(models.Model):
     Trabajo = models.OneToOneField(Trabajo,on_delete=models.CASCADE)
     Persona = models.ForeignKey(Persona, on_delete=models.CASCADE)
-    Fecha = models.DateField(("Date"), default=date.today)
-    Hora = models.TimeField(default=datetime.now())
+    Fecha = models.DateTimeField(default=datetime.now)
+    Hora = models.TimeField(default=datetime.now)
+    #1 publicar 2 realizar
+    tipo = models.PositiveIntegerField(default=1)
 
 # class Valoracion_trabajo(models.Model):
 #     Trabajo = models.OneToOneField(Trabajo, on_delete=models.CASCADE)

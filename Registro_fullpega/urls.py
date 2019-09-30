@@ -30,7 +30,7 @@ urlpatterns = [
      path(r'^visualizar_trabajo_activo/<int:pk_user>', views.visualizar_trabajo_activo, name='visualizar_trabajo_activo'),
 
      #cierre
-     path(r'^cerrar_trabajo_publicado/<int:pk_postulante>', views.cerrar_trabajo_publicado,name='cerrar_trabajo_publicado'),
+     path(r'^cerrar_trabajo_publicado/<int:pk_trabajo_acordado>', views.cerrar_trabajo_publicado,name='cerrar_trabajo_publicado'),
 
      #valoraciones
 
