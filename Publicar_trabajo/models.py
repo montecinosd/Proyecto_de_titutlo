@@ -60,12 +60,20 @@ class Calificaciones(models.Model):
     Hora = models.TimeField(default=datetime.now, null=True, blank=True)
 
 class Historial_trabajo(models.Model):
-    Trabajo = models.OneToOneField(Trabajo,on_delete=models.CASCADE)
+    Trabajo = models.ForeignKey(Trabajo,on_delete=models.CASCADE)
     Persona = models.ForeignKey(Persona, on_delete=models.CASCADE)
     Fecha = models.DateTimeField(default=datetime.now)
     Hora = models.TimeField(default=datetime.now)
     #1 publicar 2 realizar
     tipo = models.PositiveIntegerField(default=1)
+
+class Notificaciones(models.Model):
+    usuario = models.ForeignKey(Persona, on_delete=models.CASCADE)
+    Fecha = models.DateTimeField(default=datetime.now, null=True, blank=True)
+    Hora = models.TimeField(default=datetime.now, null=True, blank=True)
+    Activo = models.PositiveIntegerField(default=1)
+
+    Trabajo_acordado = models.ForeignKey(Trabajo_acordado, on_delete=models.CASCADE,null=True, blank=True)
 
 # class Valoracion_trabajo(models.Model):
 #     Trabajo = models.OneToOneField(Trabajo, on_delete=models.CASCADE)

@@ -48,9 +48,9 @@ def guardar_trabajo(request,pk_user):
     # data['areas'] = areas
     # data['form'] = TrabajoForm()
 
-    if request.method == 'GET':
+    if (request.method == 'GET'):
         print("get")
-    if request.method == 'POST':
+    if (request.method == 'POST'):
         print("Guardar trabajo")
         print(pk_user)
         print(usuario.pk)

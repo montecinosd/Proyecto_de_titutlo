@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.shortcuts import render
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 
 from Publicar_trabajo.models import *
 
@@ -11,6 +13,9 @@ def index(request):
     data = {}
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
     data['usuario_solicitud'] = usuario_solicitud
+    # notificaciones = Notificaciones.objects.filter(usuario = usuario_solicitud)
+    # print(notificaciones)
+    # data['notificaciones'] = notificaciones
 
 
 
@@ -184,6 +189,12 @@ def cerrar_trabajo_publicado(request,pk_trabajo_acordado):
     historico_realizado.save()
     #FIN TRABAJO REALIZADO
 
+    #NOTIFICACION
+    notificacion = Notificaciones()
+    notificacion.Trabajo_acordado = trabajo_acordado
+    notificacion.usuario = usuario_calificado
+    notificacion.save()
+
     return render(request, 'visualizar_trabajo_activo.html', data)
 #     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
 #     data['usuario_solicitud'] = usuario_solicitud
@@ -203,6 +214,39 @@ def cerrar_trabajo_publicado(request,pk_trabajo_acordado):
     # postulantes.Trabajo= trabajo
     # postulantes.Postulante = usuario_solicitud
     # postulantes.save()
+@login_required(login_url='/auth/login')
+def calificar_oferente(request,pk_notificacion):
+    #ES EL QUE HIZO EL TRABAJO
+    print("ENTRANDO...")
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+
+    notificacion = Notificaciones.objects.get(pk = pk_notificacion)
+
+    # CALIFICACION
+    notificacion.Activo = 0
+    notificacion.save()
+    calificacion = Calificaciones()
+
+    # usuario_solicitud -> usuario_calificador
+    usuario_calificado = notificacion.Trabajo_acordado.postulante_acordado.Trabajo.Usuario
+    # trabajo_acordado -> pega acordado
+    print(request.POST)
+    estrellas = request.POST.get('stars')
+    comentarios = request.POST.get('comentario')
+    print(estrellas)
+    print(comentarios)
+    #
+    calificacion.usuario_calificador = usuario_solicitud
+    calificacion.usuario = usuario_calificado
+    calificacion.Estrellas = estrellas
+    calificacion.Comentarios = comentarios
+    calificacion.Pega_calificada = notificacion.Trabajo_acordado.postulante_acordado.Trabajo
+    calificacion.save()
+    # FIN CALIFICACION
+
+    # return HttpResponseRedirect(request.path_info)
+    return render(request, 'index_super_user.html')
+
 
 
 @login_required(login_url='/auth/login')

@@ -5,7 +5,7 @@
 <head>
   <!-- Meta, title, CSS, favicons, etc. -->
   <meta charset="utf-8">
-  <title>AdminDesigns - A Responsive HTML5 Admin UI Framework</title>
+  <title> Full Pega  </title>
   <meta name="keywords" content="HTML5 Bootstrap 3 Admin Template UI Theme" />
   <meta name="description" content="AdminDesigns - A Responsive HTML5 Admin UI Framework">
   <meta name="author" content="AdminDesigns">
@@ -21,13 +21,13 @@
   <link rel="stylesheet" type="text/css" href="{% static 'assets/admin-tools/admin-forms/css/admin-forms.css' %}">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}">
+  <link rel="shortcut icon" href="{% static 'assets/img/descarga.ico' %}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
+<![endif]-->
 
 </head>
 
@@ -72,40 +72,36 @@
     <header class="navbar navbar-fixed-top">
       <div class="navbar-branding">
         <a class="navbar-brand" href="{% url 'index' %}">
-          <b>Full  </b>pega
+          <b>Full  </b>Pega
         </a>
         <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
       </div>
 
 <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            Notificaciones (0) <span class="ad ad-radio-tower fs18"></span>
+          <a class="dropdown-toggle" data-toggle="dropdown"  href="#">
+          <span class="ad ad-radio-tower fs18"></span>  Notificaciones <span class="badge btn-primary">{{ notificaciones|length  }}</span>
           </a>
           <ul class="dropdown-menu media-list w350 animated animated-shorter fadeIn" role="menu">
-
             <li class="dropdown-header">
-              <span class="dropdown-title"> Notifications</span>
-              <span class="label label-warning">12</span>
+              <span class="dropdown-title"> Notificaciones</span>
+
             </li>
+
+          {% for i in notificaciones %}
+
             <li class="media">
-              <a class="media-left" href="#"> <img src="/media/person.png" class="mw40" alt="avatar"> </a>
+              <a class="media-left" href="#"> <img src="/media/{{ i.Trabajo_acordado.postulante_acordado.Trabajo.Imagen }}" class="mw30 br64 mr15"alt="avatar"> </a>
               <div class="media-body">
-                <h5 class="media-heading">Article
-                  <small class="text-muted">- 08/16/22</small>
-                </h5> Last Updated 36 days ago by
-                <a class="text-system" href="#"> Max </a>
+                <h5 class="media-heading">Evaluar Empleo
+                  <small class="text-muted"> {{ i.Fecha }}</small>
+                </h5> Evalua tu experiencia en pega
+                <a class="text-system notificacion" data-toggle="modal" data-target="#modal_notificacion_EvaluarPega{{ i.pk }}"> {{ i.Trabajo_acordado.postulante_acordado.Trabajo.Nombre }}</a>
               </div>
             </li>
-            <li class="media">
-              <a class="media-left" href="#"> <img  src="/media/person.png" class="mw40" alt="avatar"> </a>
-              <div class="media-body">
-                <h5 class="media-heading mv5">Article
-                  <small class="text-muted">- 08/16/22</small>
-                </h5> Last Updated 36 days ago by
-                <a class="text-system" href="#"> Max </a>
-              </div>
-            </li>
+            {% endfor %}
+
+
           </ul>
         </li>
         <li class="dropdown">
@@ -128,7 +124,7 @@
           </ul>
         </li>
         <li class="menu-divider hidden-xs">
-          <i class="fa fa-circle"></i>
+          <i class="fa fa-circle" style="color:#4a89dc;"></i>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown"> <img src="/media/{{ usuario_solicitud.Imagen }}" alt="avatar" class="mw30 br64 mr15"> {{ usuario_solicitud.Nombre }}
@@ -363,6 +359,81 @@
 
       <!-- SECCION PRINCIPAL -->
       <section id="content" class="animated fadeIn">
+      <!-- Trigger the modal with a button -->
+
+ {% for i in notificaciones %}
+
+{#                <a class="text-system" data-toggle="modal" data-target="#modal_notificacion_EvaluarPega{{ i.pk }}"> {{ i.Trabajo_acordado.postulante_acordado.Trabajo.Nombre }}</a>#}
+{#              MODAL#}
+                <div class="modal fade" id="modal_notificacion_EvaluarPega{{ i.pk }}" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Finalizar trabajo</h4>
+        </div>
+        <div class="modal-body text-center">
+          <p>¡Listo! Trabajo realizado por {{ i.postulante_acordado.Trabajo.Usuario.Nombre}}. A continuación, puedes calificarlo para que los demás usuarios puedan saber como es trabajar con él. ;)</p>
+          <hr>
+            <p>Púntua la pega realizado</p>
+            <form  method="post" action="{% url 'calificar_oferente' i.pk %}" id="calificacion" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="rating">
+                              <label>
+                                <input type="radio" name="stars" value="1" >
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="2" >
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="3" >
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="4"  >
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="5" checked="">
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+</div>
+                    <div class="col-md-12">
+                        <p>Escribe algo sobre la pega realizada</p>
+                        <textarea name="comentario" id="comentario" rows="4" cols="50"></textarea>
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" id="submit">Calificar Empleador!</button>
+                    </div>
+                    </form>
+
+{#            <p>Escribe algo sobre la pega realizada</p>#}
+{#                            <textarea rows="4" cols="50">#}
+{#                            </textarea>#}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+{#              FIN MODAL#}
+            {% endfor %}
         {% block section_contenido %}
         {% endblock%}
 {#            <footer id="content-footer">#}
@@ -721,6 +792,14 @@
     }
 
    </script>
+{##Script para mostrar el modal de la notificacion #}
+<script>
+    $('.notificacion').on("click",function(){
+        alert($(this).data("target"));
+        $($(this).data("target")).modal('show');
+         //post code
+    })
+</script>
 {% block scripts %}
 {% endblock%}
  <!-- END: PAGE SCRIPTS -->

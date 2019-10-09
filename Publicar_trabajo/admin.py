@@ -47,3 +47,11 @@ class PostulantesAdmin(admin.ModelAdmin):
         return mark_safe(u'<img src="%s" style="width:10px;height:10px;"/>' \
                          % (obj.picture.url))
 
+@admin.register(Notificaciones)
+class Notificaciones(admin.ModelAdmin):
+    list_display = ('pk','usuario','Activo','Trabajo_acordado','Fecha','Hora',)
+
+
+    def thumb(self, obj):
+        return mark_safe(u'<img src="%s" style="width:10px;height:10px;"/>' \
+                         % (obj.picture.url))

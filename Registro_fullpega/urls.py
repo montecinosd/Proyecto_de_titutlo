@@ -31,6 +31,7 @@ urlpatterns = [
 
      #cierre
      path(r'^cerrar_trabajo_publicado/<int:pk_trabajo_acordado>', views.cerrar_trabajo_publicado,name='cerrar_trabajo_publicado'),
+     path(r'^calificar_oferente/<int:pk_notificacion>', views.calificar_oferente,name='calificar_oferente'),
 
      #valoraciones
 
