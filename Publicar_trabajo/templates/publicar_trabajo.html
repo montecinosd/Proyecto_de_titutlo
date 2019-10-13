@@ -12,16 +12,22 @@
   Publica la pega para que los usuarios puedan postular a ella! <hr>
     </div>
 
-<div class="container">
-    <div class="row col-md-12">
-    <div class="panel-heading">
-                  <div class="panel-title hidden-xs">
-                    <span class="glyphicon glyphicon-tasks"></span>¡Publica la pega que necesitas que alguien haga!</div>
-                </div>
-    <div class="panel-body bg-light">
+{#<div class="container admin-form theme-primary">#}
+<div class="admin-form theme-primary">
+
+              <div class="panel heading-border panel-primary">
+                <div class="panel-body bg-light">
+                    <div class="section-divider mb40" id="spy1">
+                      <span>¡Publica la pega que necesitas que alguien haga!</span>
+                    </div>
+{#    <div class="row col-md-12">#}
+{#    <div class="panel heading-border panel-primary">#}
+{#                  <div class="panel-title hidden-xs">#}
+{#                    <span class="glyphicon glyphicon-tasks"></span>¡Publica la pega que necesitas que alguien haga!</div>#}
+{#                </div>#}
 
         <form method="post" action="{% url 'guardar_trabajo' request.user.pk %}" id="formulario_trabajo" enctype="multipart/form-data">{% csrf_token %}
-            <div class="section-divider mb40">
+{#            <div class="section-divider mb40">#}
                 <div class="row">
                     <div class="col-md-4">
                       <label for="email">Nombre:</label>
@@ -104,7 +110,7 @@
                     </div>
                 </div>
 {#            #}
-            </div>
+{#            </div>#}
             <div class="text-center">
                 <button class="btn btn-primary" id="submit">Publicar pega!</button>
             </div>

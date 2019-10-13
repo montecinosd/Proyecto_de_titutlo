@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f21c1e25-e9fb-44f4-98ac-0254b1bc9d88" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Fullpega/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fullpega/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Publicar_trabajo/templates/publicar_trabajo.html" beforeDir="false" afterPath="$PROJECT_DIR$/Publicar_trabajo/templates/publicar_trabajo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Registro_fullpega/templates/buscar_trabajo.html" beforeDir="false" afterPath="$PROJECT_DIR$/Registro_fullpega/templates/buscar_trabajo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Registro_fullpega/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Registro_fullpega/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Templates/Partials/_Base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/Partials/_Base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sensibilidad_watson/watson.py" beforeDir="false" afterPath="$PROJECT_DIR$/sensibilidad_watson/watson.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +26,29 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Registro_fullpega/templates/buscar_trabajo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="51" selection-start-line="51" selection-end-line="51" />
+            <state relative-caret-position="248">
+              <caret line="31" column="26" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+              <folding>
+                <element signature="e#1620#1640#0#HTML" expanded="true" />
+                <element signature="e#1871#1892#0#HTML" expanded="true" />
+                <element signature="e#2045#2066#0#HTML" expanded="true" />
+                <element signature="e#2218#2238#0#HTML" expanded="true" />
+                <element signature="e#2385#2405#0#HTML" expanded="true" />
+                <element signature="e#2560#2581#0#HTML" expanded="true" />
+                <element signature="e#2665#2685#0#HTML" expanded="true" />
+                <element signature="e#2770#2790#0#HTML" expanded="true" />
+                <element signature="e#3491#3533#0#HTML" expanded="true" />
+                <element signature="e#3562#3593#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Publicar_trabajo/templates/publicar_trabajo.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-17">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -123,7 +141,6 @@
         <option value="$PROJECT_DIR$/Auth_fullpega/templates/pages_login.html" />
         <option value="$PROJECT_DIR$/Publicar_trabajo/urls.py" />
         <option value="$PROJECT_DIR$/Registro_fullpega/templates/visualizar_privilegios.html" />
-        <option value="$PROJECT_DIR$/Publicar_trabajo/templates/publicar_trabajo.html" />
         <option value="$PROJECT_DIR$/Registro_fullpega/templates/h_trabajos_publicados.html" />
         <option value="$PROJECT_DIR$/Registro_fullpega/templates/config_perfil.html" />
         <option value="$PROJECT_DIR$/Registro_fullpega/templates/pagina_principal.html" />
@@ -152,6 +169,7 @@
         <option value="$PROJECT_DIR$/Fullpega/settings.py" />
         <option value="$PROJECT_DIR$/Registro_fullpega/templatetags/poll_extras.py" />
         <option value="$PROJECT_DIR$/Registro_fullpega/views.py" />
+        <option value="$PROJECT_DIR$/Publicar_trabajo/templates/publicar_trabajo.html" />
         <option value="$PROJECT_DIR$/Registro_fullpega/templates/buscar_trabajo.html" />
       </list>
     </option>
@@ -189,6 +207,12 @@
               <item name="Proyecto_de_titulo" type="b2602c69:ProjectViewProjectNode" />
               <item name="Proyecto_de_titulo" type="462c0819:PsiDirectoryNode" />
               <item name="Publicar_trabajo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Proyecto_de_titulo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Proyecto_de_titulo" type="462c0819:PsiDirectoryNode" />
+              <item name="Publicar_trabajo" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Proyecto_de_titulo" type="b2602c69:ProjectViewProjectNode" />
@@ -376,12 +400,12 @@
       <workItem from="1569731894864" duration="1000000" />
       <workItem from="1569822961026" duration="13132000" />
       <workItem from="1570211962187" duration="634000" />
-      <workItem from="1570212633484" duration="51448000" />
+      <workItem from="1570212633484" duration="55486000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="263546000" />
+    <option name="totallyTimeSpent" value="267584000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -396,7 +420,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989775" visible="true" weight="0.1590604" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989775" visible="true" weight="0.1590604" />
       <window_info id="Structure" order="1" sideWeight="0.5010225" side_tool="true" weight="0.15771812" />
       <window_info id="Favorites" order="2" sideWeight="0.5010225" side_tool="true" weight="0.15771812" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
@@ -408,7 +432,7 @@
       <window_info anchor="bottom" id="manage.py@Proyecto_de_titulo" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Message" order="7" />
       <window_info anchor="bottom" id="Find" order="8" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="9" visible="true" weight="0.36402267" />
+      <window_info anchor="bottom" id="Run" order="9" visible="true" weight="0.36402267" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="12" weight="0.3286119" />
@@ -551,13 +575,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1368">
           <caret line="72" selection-start-line="72" selection-end-line="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Publicar_trabajo/templates/publicar_trabajo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="135" selection-start-line="22" selection-start-column="135" selection-end-line="22" selection-end-column="151" />
         </state>
       </provider>
     </entry>
@@ -782,10 +799,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Publicar_trabajo/templates/publicar_trabajo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Registro_fullpega/templates/buscar_trabajo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        <state relative-caret-position="248">
+          <caret line="31" column="26" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+          <folding>
+            <element signature="e#1620#1640#0#HTML" expanded="true" />
+            <element signature="e#1871#1892#0#HTML" expanded="true" />
+            <element signature="e#2045#2066#0#HTML" expanded="true" />
+            <element signature="e#2218#2238#0#HTML" expanded="true" />
+            <element signature="e#2385#2405#0#HTML" expanded="true" />
+            <element signature="e#2560#2581#0#HTML" expanded="true" />
+            <element signature="e#2665#2685#0#HTML" expanded="true" />
+            <element signature="e#2770#2790#0#HTML" expanded="true" />
+            <element signature="e#3491#3533#0#HTML" expanded="true" />
+            <element signature="e#3562#3593#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

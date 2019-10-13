@@ -17,18 +17,27 @@
 
   Busca y postula a una pega para ideal para ti <hr>
     </div>
-    <div class="container">
-    <div class="row">
+
+{#    <div class="container">#}
+    <div class="admin-form theme-primary">
+
+              <div class="panel heading-border panel-primary">
+                <div class="panel-body bg-light">
+                    <div class="section-divider mb40" id="spy1">
+                      <span>¡Busca la pega que necesitas!</span>
+
+                    </div>
+                        <div class="row">
     <div class="col-md-12">
-              <div class="panel panel-visible" id="spy2">
-                <div class="panel-heading">
-                  <div class="panel-title hidden-xs">
-                    <span class="glyphicon glyphicon-tasks"></span>¡Busca una pega adecuada para ti!</div>
-                </div>
-                <div class="panel-body pn">
-                  <div id="datatable2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+              <div class="" id="spy2">
+{#                <div class="panel-heading">#}
+{#                  <div class="panel-title hidden-xs">#}
+{#                    <span class="glyphicon glyphicon-tasks"></span>¡Busca una pega adecuada para ti!</div>#}
+{#                </div>#}
+                <div class="panel-body pn bg-light"">
+                  <div id="datatable2_wrapper" class=" dataTables_wrapper form-inline dt-bootstrap no-footer">
                       <table id="example" class="table table-striped table-hover dataTable no-footer" id="datatable2" cellspacing="0" width="100%" role="grid" aria-describedby="datatable2_info" style="width: 100%;">
-                    <thead>
+                    <thead >
                       <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 157px;">Nombre</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 236px;">Detalle</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 83px;">Fecha</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 51px;">Comuna</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 108px;">Pago</th> <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Salary" style="width: 75px;">Imagen</th><th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Salary" style="width: 75px;">Accion</th></tr>
                     </thead>
                     <tbody>
@@ -106,8 +115,111 @@
               </div>
             </div>
         </div>
+
+                </div>
+              </div>
+{#    FIN#}
     </div>
-    </div>
+{#        <div class="admin-form theme-primary">#}
+{##}
+{#          <div class="panel heading-border panel-primary">#}
+{#            <div class="section-divider mb40" id="spy1">#}
+{#                      <span>¡Publica la pega que necesitas que alguien haga!</span>#}
+{#                    </div>#}
+{#          </div>#}
+{##}
+{##}
+{#    <div class="row">#}
+{#    <div class="col-md-12">#}
+{#              <div class="panel panel-visible" id="spy2">#}
+{#                <div class="panel-heading">#}
+{#                  <div class="panel-title hidden-xs">#}
+{#                    <span class="glyphicon glyphicon-tasks"></span>¡Busca una pega adecuada para ti!</div>#}
+{#                </div>#}
+{#                <div class="panel-body pn">#}
+{#                  <div id="datatable2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">#}
+{#                      <table id="example" class="table table-striped table-hover dataTable no-footer" id="datatable2" cellspacing="0" width="100%" role="grid" aria-describedby="datatable2_info" style="width: 100%;">#}
+{#                    <thead>#}
+{#                      <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 157px;">Nombre</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 236px;">Detalle</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 83px;">Fecha</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 51px;">Comuna</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 108px;">Pago</th> <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Salary" style="width: 75px;">Imagen</th><th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Salary" style="width: 75px;">Accion</th></tr>#}
+{#                    </thead>#}
+{#                    <tbody>#}
+{#                    {% for i in prueba %}#}
+{#            #                          0    1       2               3      4       5               6             7      8        9#}
+{#            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna,i.Monto_pago,i.Imagen,1))#}
+{#<tr role="row" class="odd">#}
+{#                        <td class="sorting_1">{{ i.1 }} - {{ i.2 }} </td>#}
+{#                        <td>{{ i.3 }}</td>#}
+{#                        <td>{{ i.4 }} {{ i.5 }}</td>#}
+{#                        <td>{{ i.6 }}</td>#}
+{#                        <td>{{ i.7 }}</td>#}
+{##}
+{##}
+{#                     <td style="height: 10%;height: 10;padding: 0;"><img class='img-responsive' style="width: 8em;height: 8em;"src="/media/{{ i.8 }}"/></td>#}
+{#                    {% if i.9 == 1 %}#}
+{#                                                    <td><a href="" disabled class="btn btn-primary">¡Ya has postulado a esta pega!</a></td>#}
+{##}
+{#                        {% else %}#}
+{#                                <td><a href="{% url 'visualizar_perfil_detalle_pega' i.0 %}" class="btn btn-primary">¡Revisar pega para postular!</a></td>#}
+{#                        {% endif %}#}
+{#                        {% for z in i %}#}
+{#                            {{ z }}#}
+{#                            {% endfor %}#}
+{#                    {% endfor %}#}
+{#                    {% for i in trabajos %}#}
+{#                        {{ i }}#}
+{#                    <tr role="row" class="odd">#}
+{#                        <td class="sorting_1">{{ i.Area.Nombre }} - {{ i.Nombre }} </td>#}
+{#                        <td>{{ i.Detalle }}</td>#}
+{#                        <td>{{ i.Fecha }} {{ i.Hora }}</td>#}
+{#                        <td>{{ i.Direccion.Comuna }}</td>#}
+{#                        <td>{{ i.Monto_pago }}</td>#}
+{##}
+{##}
+{#                     <td style="height: 10%;height: 10;padding: 0;"><img class='img-responsive' style="width: 8em;height: 8em;"src="/media/{{ i.Imagen }}"/></td>#}
+{#                        {{ i.pk }}#}
+{#                        {% for z in trabajos_postulados %}#}
+{#                            {{ z.Trabajo.pk }}#}
+{#                        {% endfor %}#}
+{#                    DEFINO UN STOP PARA BSUCAR SI ESTA YA POSTULADO EL TRABAJO#}
+{#                        {% with stop_loop="True" %}#}
+{#                            PI{{ stop_loop }}#}
+{#                        {% for z in trabajos_postulados %}#}
+{#                            SI NO SE HA USADO EL STOP, PROSIGO BUSCANDO#}
+{#                            {% if stop_loop == "True" %}#}
+{#                                {% if i.pk == z.Trabajo.pk %}#}
+{#                                 {{update_variable|stop_loop}}#}
+{#                                     {% update_variable False as stop_loop %}#}
+{#                                    {{ forloop|break }}#}
+{#                            <td><a href="" disabled class="btn btn-primary">YA POSTULASTE CARNAL</a></td>#}
+{#                                    {{ stop_loop }}#}
+{#                                {% endif %}#}
+{##}
+{#                            {% else %}#}
+{#                                SI YA POSTULO AL TRABAJO, NO ENTRARA MAS AL CICLO#}
+{#                               -ELSE:{{ i.pk }}#}
+{#                                <td><a href="{% url 'visualizar_perfil_detalle_pega' i.pk %}" class="btn btn-primary">Revisar pega para postular</a></td>#}
+{##}
+{#                            {% endif %}#}
+{##}
+{##}
+{#                        {% endfor %}{{ stop_loop }}{% endwith %}#}
+{##}
+{##}
+{#                    {% if i in trabajos_postulados.Trabajo %}#}
+{#                        YA ESTA WEY#}
+{#                    {% endif %}#}
+{#                      </tr>#}
+{#                    {% endfor %}#}
+{#                    </tbody>#}
+{#                  </table>#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    </div>#}
+
 {% endblock %}
 {% block scripts %}
 
