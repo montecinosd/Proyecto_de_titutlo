@@ -3,3 +3,11 @@ Pillow==5.1.0
 django-autofixture==0.12.1
 django-bootstrap4==0.0.6
 pytz==2018.4
+django-js-asset==1.1.0
+django-jsonfield==1.0.1
+django-jsonfield-compat==0.4.4
+watson-developer-cloud==2.10.1
+ibm-cloud-sdk-core==0.4.2
+ibm-watson==3.0.4
+
+

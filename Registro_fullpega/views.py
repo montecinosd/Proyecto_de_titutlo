@@ -5,12 +5,14 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
 from Publicar_trabajo.models import *
-
+from sensibilidad_watson.watson import *
 
 # Create your views here.
 @login_required(login_url='/auth/login')
 def index(request):
     data = {}
+    respueta_watson = getSentimentValue("Muy mal no pago a tiempo - sinverguenza - muy bien, todo correcto - muy buen empleador - felicidades al viejito - Excelente trabajo")
+    print("respuesta watson: "+str(respueta_watson))
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
     data['usuario_solicitud'] = usuario_solicitud
     # notificaciones = Notificaciones.objects.filter(usuario = usuario_solicitud)
