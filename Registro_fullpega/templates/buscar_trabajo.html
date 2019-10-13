@@ -1,6 +1,7 @@
 {% extends 'Partials/_Base.html' %}
 {% load bootstrap4 %}
 {% load static %}
+{% load poll_extras %}
 
 
 <link rel="stylesheet" type="text/css" href="{% static 'assets/' %}">
@@ -31,22 +32,73 @@
                       <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 157px;">Nombre</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 236px;">Detalle</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 83px;">Fecha</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 51px;">Comuna</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 108px;">Pago</th> <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Salary" style="width: 75px;">Imagen</th><th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Salary" style="width: 75px;">Accion</th></tr>
                     </thead>
                     <tbody>
-                    {% for i in trabajos %}
-{#                        {{ i }}#}
-                    <tr role="row" class="odd">
-                        <td class="sorting_1">{{ i.Area.Nombre }} - {{ i.Nombre }} </td>
-                        <td>{{ i.Detalle }}</td>
-                        <td>{{ i.Fecha }} {{ i.Hora }}</td>
-                        <td>{{ i.Direccion.Comuna }}</td>
-                        <td>{{ i.Monto_pago }}</td>
+                    {% for i in prueba %}
+{#            #                          0    1       2               3      4       5               6             7      8        9#}
+{#            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna,i.Monto_pago,i.Imagen,1))#}
+<tr role="row" class="odd">
+                        <td class="sorting_1">{{ i.1 }} - {{ i.2 }} </td>
+                        <td>{{ i.3 }}</td>
+                        <td>{{ i.4 }} {{ i.5 }}</td>
+                        <td>{{ i.6 }}</td>
+                        <td>{{ i.7 }}</td>
 
 
-                     <td style="height: 10%;height: 10;padding: 0;"><img class='img-responsive' style="width: 8em;height: 8em;"src="/media/{{ i.Imagen }}"/></td>
-                        {{ i.Usuario.Usuario.pk }}
-                        <td><a href="{% url 'visualizar_perfil_detalle_pega' i.pk %}" class="btn btn-primary">Revisar pega para postular</a></td>
-                      </tr>
+                     <td style="height: 10%;height: 10;padding: 0;"><img class='img-responsive' style="width: 8em;height: 8em;"src="/media/{{ i.8 }}"/></td>
+                    {% if i.9 == 1 %}
+                                                    <td><a href="" disabled class="btn btn-primary">¡Ya has postulado a esta pega!</a></td>
+
+                        {% else %}
+                                <td><a href="{% url 'visualizar_perfil_detalle_pega' i.0 %}" class="btn btn-primary">¡Revisar pega para postular!</a></td>
+                        {% endif %}
+{#                        {% for z in i %}#}
+{#                            {{ z }}#}
+{#                            {% endfor %}#}
                     {% endfor %}
-
+{#                    {% for i in trabajos %}#}
+{#                        {{ i }}#}
+{#                    <tr role="row" class="odd">#}
+{#                        <td class="sorting_1">{{ i.Area.Nombre }} - {{ i.Nombre }} </td>#}
+{#                        <td>{{ i.Detalle }}</td>#}
+{#                        <td>{{ i.Fecha }} {{ i.Hora }}</td>#}
+{#                        <td>{{ i.Direccion.Comuna }}</td>#}
+{#                        <td>{{ i.Monto_pago }}</td>#}
+{##}
+{##}
+{#                     <td style="height: 10%;height: 10;padding: 0;"><img class='img-responsive' style="width: 8em;height: 8em;"src="/media/{{ i.Imagen }}"/></td>#}
+{#                        {{ i.pk }}#}
+{#                        {% for z in trabajos_postulados %}#}
+{#                            {{ z.Trabajo.pk }}#}
+{#                        {% endfor %}#}
+{#                    DEFINO UN STOP PARA BSUCAR SI ESTA YA POSTULADO EL TRABAJO#}
+{#                        {% with stop_loop="True" %}#}
+{#                            PI{{ stop_loop }}#}
+{#                        {% for z in trabajos_postulados %}#}
+{#                            SI NO SE HA USADO EL STOP, PROSIGO BUSCANDO#}
+{#                            {% if stop_loop == "True" %}#}
+{#                                {% if i.pk == z.Trabajo.pk %}#}
+{#                                 {{update_variable|stop_loop}}#}
+{#                                     {% update_variable False as stop_loop %}#}
+{#                                    {{ forloop|break }}#}
+{#                            <td><a href="" disabled class="btn btn-primary">YA POSTULASTE CARNAL</a></td>#}
+{#                                    {{ stop_loop }}#}
+{#                                {% endif %}#}
+{##}
+{#                            {% else %}#}
+{#                                SI YA POSTULO AL TRABAJO, NO ENTRARA MAS AL CICLO#}
+{#                               -ELSE:{{ i.pk }}#}
+{#                                <td><a href="{% url 'visualizar_perfil_detalle_pega' i.pk %}" class="btn btn-primary">Revisar pega para postular</a></td>#}
+{##}
+{#                            {% endif %}#}
+{##}
+{##}
+{#                        {% endfor %}{{ stop_loop }}{% endwith %}#}
+{##}
+{##}
+{#                    {% if i in trabajos_postulados.Trabajo %}#}
+{#                        YA ESTA WEY#}
+{#                    {% endif %}#}
+{#                      </tr>#}
+{#                    {% endfor %}#}
                     </tbody>
                   </table>
                   </div>

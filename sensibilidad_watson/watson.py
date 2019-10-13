@@ -27,8 +27,8 @@ def getSentimentValue(text):
 			features=Features(sentiment=SentimentOptions(targets=word_len))).get_result()
 		print(response)
 		emotionScore = float(json.dumps(response['sentiment']['document']['score'], indent=2)) * 100
-		emotionLabel = (json.dumps(response['sentiment']['document']['label'], indent=2))
-		print(emotionLabel)
+		# emotionLabel = (json.dumps(response['sentiment']['document']['label'], indent=2))
+		# print(emotionLabel)
 		sentiment = round(emotionScore, 1)
 		if sentiment >= 90:
 			satisfaction = 'Excelente'
@@ -45,4 +45,4 @@ def getSentimentValue(text):
 	except:
 		print("No se pudo obtener la información de Watson")
 		sentiment = 5
-	return (sentiment,emotionLabel)
+	return (sentiment)

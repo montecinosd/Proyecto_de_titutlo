@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'Registro_fullpega',
     'Auth_fullpega',
     'autofixture',
-    'bootstrap4'
+    'bootstrap4',
+    'Registro_fullpega.templatetags.poll_extras'
 ]
 
 MIDDLEWARE = [

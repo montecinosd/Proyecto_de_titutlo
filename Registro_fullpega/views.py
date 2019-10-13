@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 
 from Publicar_trabajo.models import *
 from sensibilidad_watson.watson import *
+from django.db.models import CharField, Value
 
 # Create your views here.
 @login_required(login_url='/auth/login')
@@ -338,12 +339,28 @@ def buscar_trabajo(request,pk_user):
     usuario = Persona.objects.get(Usuario=pk_user)
 
     #excluir mismo usuario
-    trabajos = Trabajo.objects.filter(Activo = 1).exclude(Usuario__Usuario= usuario)
+    trabajos = Trabajo.objects.filter(Activo = 1).exclude(Usuario__Usuario= usuario_solicitud)
+
+    #COMPARAR EN TEMPLATE PARA SACAR TRABAJOS A LOS QUE YA HA POSTULADO, SACA LOS TRABAJOS NO ACTIVOS....
+    trabajos_postulados = Postulantes.objects.filter(Postulante = usuario_solicitud).exclude(Trabajo__Activo= 0)
+    data['trabajos_postulados'] = trabajos_postulados
     data['trabajos'] = trabajos
     data['usuario'] = usuario
-    print(data)
 
-    print(data)
+    trabajos_listos = []
+    for i in trabajos:
+        if (trabajos_postulados.filter(Trabajo = i.pk)):
+            #                          0    1       2               3      4       5               6             7      8        9
+            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna,i.Monto_pago,i.Imagen,1))
+        else:
+            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna,i.Monto_pago,i.Imagen,0))
+
+            # i.annotate(mycolumn=Value('xxx', output_field=CharField()))
+            # print("si ta" + str(i.pk))
+    data['prueba'] = trabajos_listos
+    print(data['trabajos'])
+    #
+    # print(data)
     return render(request, 'buscar_trabajo.html', data)
 
 @login_required(login_url='/auth/login')
