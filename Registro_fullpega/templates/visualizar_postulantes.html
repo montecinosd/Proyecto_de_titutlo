@@ -24,7 +24,7 @@
                 <div class="panel-heading">
                   <div class="panel-title hidden-xs">
 
-                    <span class="glyphicon glyphicon-tasks"></span>¡Postulantes para {{ i.Nombre }}!</div>
+                    <span class="glyphicon glyphicon-tasks"></span>¡Postulantes para {{ i.Nombre }}! Vacantes disponibles: {{ i.Vacantes }} </div>
                 </div>
                 <div class="panel-body pn">
                   <div id="datatable2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
@@ -33,7 +33,9 @@
                       <tr role="row"><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 236px;">Postulante</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 83px;">Fecha</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 51px;">Hora</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 25%;">Accion</th></tr>
                     </thead>
                     <tbody>
-
+                    {% if i.Vacantes == 0 %}
+                        YA TIENES TODOS TUS POSTULANTES CARNAL, VE TUS TRABAJOS ACTIVOS!
+                    {% else %}
                         {% for z in postulantes %}
 {#                            {{ z.Trabajo.pk }}#}
                             {% if z.Trabajo.pk == i.pk %}
@@ -45,13 +47,16 @@
 
                                 </tr>
                             {% endif %}
+
                             {% endfor %}
+                    {% endif %}
                     </tbody>
                   </table>
                   </div>
                 </div>
               </div>
             </div>
+
                         {% endfor %}
 
         </div>

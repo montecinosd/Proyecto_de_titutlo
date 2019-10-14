@@ -136,6 +136,12 @@ def postulante_acordado(request,pk_postulante):
 
 #se crea el objeto del acuerdo de trabajo, con lo cual se realizará
     postulante_acordado = Postulantes.objects.get(pk = pk_postulante)
+    aux_trabajo = Trabajo.objects.get(pk = postulante_acordado.Trabajo.pk)
+    aux_trabajo.Vacantes = aux_trabajo.Vacantes - 1
+    aux_trabajo.save()
+    # postulante_acordado.Trabajo.Vacantes = postulante_acordado.Trabajo.Vacantes - 1
+    # postulante_acordado.save()
+
     trabajo_acordado = Trabajo_acordado()
     trabajo_acordado.postulante_acordado = postulante_acordado
 
@@ -267,6 +273,7 @@ def postular_inicial(request,pk_pega):
     postulantes.Trabajo= trabajo
     postulantes.Postulante = usuario_solicitud
     postulantes.save()
+    return redirect(request, 'buscar_trabajo.html', data)
 
 @login_required(login_url='/auth/login')
 def visualizar_postulantes_a_trabajos(request, pk_user):
@@ -350,10 +357,10 @@ def buscar_trabajo(request,pk_user):
     trabajos_listos = []
     for i in trabajos:
         if (trabajos_postulados.filter(Trabajo = i.pk)):
-            #                          0    1       2               3      4       5               6             7      8        9
-            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna,i.Monto_pago,i.Imagen,1))
+            #                          0    1       2               3      4       5               6             7      8        9      10
+            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna,i.Monto_pago,i.Imagen,1,i.Vacantes))
         else:
-            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna,i.Monto_pago,i.Imagen,0))
+            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna,i.Monto_pago,i.Imagen,0,i.Vacantes))
 
             # i.annotate(mycolumn=Value('xxx', output_field=CharField()))
             # print("si ta" + str(i.pk))

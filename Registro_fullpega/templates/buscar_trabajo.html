@@ -45,14 +45,14 @@
 {#            #                          0    1       2               3      4       5               6             7      8        9#}
 {#            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna,i.Monto_pago,i.Imagen,1))#}
 <tr role="row" class="odd">
-                        <td class="sorting_1">{{ i.1 }} - {{ i.2 }} </td>
-                        <td>{{ i.3 }}</td>
-                        <td>{{ i.4 }} {{ i.5 }}</td>
+                        <td style="font-weight: bold;"class="sorting_1 text-center"><span class="text-center">Vacantes: {{ i.10 }}</span></br>{{ i.1 }} </td>
+                        <td class="text-center">-Area: {{ i.2 }}-</br> {{ i.3 }}</td>
+                        <td class="text-center">{{ i.4 }} {{ i.5 }}</td>
                         <td>{{ i.6 }}</td>
                         <td>{{ i.7 }}</td>
 
 
-                     <td style="height: 10%;height: 10;padding: 0;"><img class='img-responsive' style="width: 8em;height: 8em;"src="/media/{{ i.8 }}"/></td>
+                     <td style="height: 10%;height: 10;padding: 0;"><img class='img-responsive' style="width: 8em;height: 8em; border-radius: 10em;"src="/media/{{ i.8 }}"/></td>
                     {% if i.9 == 1 %}
                                                     <td><a href="" disabled class="btn btn-primary">¡Ya has postulado a esta pega!</a></td>
 

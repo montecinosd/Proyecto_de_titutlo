@@ -32,6 +32,8 @@ class Trabajo(models.Model):
     Area = models.ForeignKey(Areas, on_delete=models.CASCADE)
     Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE)
     Imagen = models.ImageField(upload_to="media", null=True, blank=True)
+    Personas_requeridas = models.PositiveIntegerField(default=1)
+    Vacantes = models.PositiveIntegerField(default=1)
     Activo = models.PositiveIntegerField(default=1)
 
 

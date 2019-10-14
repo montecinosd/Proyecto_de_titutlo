@@ -50,7 +50,10 @@ def guardar_trabajo(request,pk_user):
 
     if (request.method == 'GET'):
         print("get")
+
     if (request.method == 'POST'):
+        print("hola")
+
         print("Guardar trabajo")
         print(pk_user)
         print(usuario.pk)
@@ -68,7 +71,10 @@ def guardar_trabajo(request,pk_user):
         direccion = request.POST["direccion"]
         fecha = request.POST["fecha"]
         hora = request.POST["hora"]
+        personas_requeridas = request.POST['personas_requeridas']
         imagen = request.FILES["ImagenTrabajo"]
+
+
         #handle_uploaded_file(imagen)
 #
         area_object = Areas.objects.get(pk=area)
@@ -89,6 +95,8 @@ def guardar_trabajo(request,pk_user):
         trabajo.Fecha = fecha
         trabajo.Hora = hora
         trabajo.Imagen = imagen
+        trabajo.Personas_requeridas = personas_requeridas
+        trabajo.Vacantes = personas_requeridas
         trabajo.save()
         print(trabajo)
 
