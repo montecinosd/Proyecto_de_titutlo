@@ -12,7 +12,7 @@ from django.db.models import CharField, Value
 @login_required(login_url='/auth/login')
 def index(request):
     data = {}
-    respueta_watson = getSentimentValue("Muy mal no pago a tiempo - sinverguenza - muy bien, todo correcto - muy buen empleador - felicidades al viejito - Excelente trabajo")
+    respueta_watson = getSentimentValue("Muy mal no pago a tiempo  -    ")
     print("respuesta watson: "+str(respueta_watson))
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
     data['usuario_solicitud'] = usuario_solicitud

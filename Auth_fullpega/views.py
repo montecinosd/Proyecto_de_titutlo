@@ -4,7 +4,9 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 
+from django.views.decorators.csrf import csrf_protect
 
+@csrf_protect
 def auth_login(request):
     template_name = 'pages_login.html'
     # template_name = 'login.html'
@@ -41,7 +43,7 @@ def auth_login(request):
             )
     return render(request, template_name, data)
 
-
+@csrf_protect
 def auth_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))

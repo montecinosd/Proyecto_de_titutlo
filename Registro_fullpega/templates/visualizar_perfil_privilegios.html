@@ -165,11 +165,15 @@
                               </label>
                             </form>
 
-                            <script>
-                                $(':radio').change(function() {
-                              console.log('New star rating: ' + this.value);
-                            });
-                            </script>
+{#                            <script>#}
+{#                                $(':radio').change(function() {#}
+{#                              console.log('New star rating: ' + this.value);#}
+{#                            });#}
+{#                            </script>#}
+          <div class="row">
+              <button class="btn btn-primary" id="ajax_watson" name="ajax_watson">¡Realiza un analisis de sensibilidad!</button>
+
+          </div>
           </div>
 {#     pega #}
         <div class="col-md-2">
@@ -201,8 +205,8 @@
 
         <h1>¿Te gusta? ¡Postula!</h1>
 
-<h2>Modal Example</h2>
-
+{#<h2>Modal Example</h2>#}
+{##}
   <!-- Modal -->
             <a href="{% url 'postular_inicial' pega.pk %}" class="btn btn-primary" data-toggle="modal" data-target="#myModal">¡Postular a esta pega!</a>
   <div class="modal fade" id="myModal" role="dialog">
@@ -212,24 +216,90 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 class="modal-title">¡Postulación lista! :)</h4>
         </div>
         <div class="modal-body">
-          <p>Some text in the modal.</p>
+          <p>Haz postulado a la pega {{ pega.Nombre }}.<br> ¡Mantente atento a tus notificaciones!</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <a href="{% url 'buscar_trabajo' request.user.pk %}" class="btn btn-primary"> Cerrar</a>
+{#          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>#}
         </div>
       </div>
-
     </div>
   </div>
+
+{#            MODAL WATSON #}
+
+              <div class="modal fade" id="myModal_watson" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">IBM Watson analytics :)</h4>
+        </div>
+        <div class="modal-body">
+          <p>Este es el análisis de sensibilidad. Watson a partir de las calificaciones asociados al historico de pegas del usuario detecta el nivel de confianza del mismo :) <br><hr>
+            <div id="respuesta_watson"></div>
+        </div>
+
+        <div class="modal-footer" id="modal_footer_watson">
+{#            <a href="{% url 'buscar_trabajo' request.user.pk %}" class="btn btn-primary"> Cerrar</a>#}
+{#          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>#}
+        </div>
+      </div>
+    </div>
+  </div>
+            {#  <div class="modal fade" id="myModal" role="dialog">#}
+{#    <div class="modal-dialog">#}
+{##}
+{#      <!-- Modal content-->#}
+{#      <div class="modal-content">#}
+{#        <div class="modal-header">#}
+{#          <button type="button" class="close" data-dismiss="modal">&times;</button>#}
+{#          <h4 class="modal-title">Modal Header</h4>#}
+{#        </div>#}
+{#        <div class="modal-body">#}
+{#          <p>Some text in the modal.</p>#}
+{#        </div>#}
+{#        <div class="modal-footer">#}
+{#          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#    </div>#}
+{#  </div>#}
 
 
               </div>
 
     </div>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
+<script>
 
+$("#ajax_watson").click(function () {
+    {#var input = $('#user-input').val();#}
+    {#alert("hola");#}
+    $('#myModal_watson').modal('show');
+    $.ajax({
+        url: '{% url 'getSentimentValue'  %}',
+        data: {
+          'inputValue': 'hola'
+        },
+        dataType: 'json',
+        beforeSend: function() {
+              $("#respuesta_watson").html('<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span>');
+           },
+        success: function (data) {
+            console.log(data);
+          document.getElementById('respuesta_watson').innerHTML = 'Puntaje obtenido: '+ data["sentimiento"] + '</br>Satisfaccción de usuario: '+data['satisfaccion'];
+        }
+      });
+    });
+
+</script>
 {% endblock %}
 
