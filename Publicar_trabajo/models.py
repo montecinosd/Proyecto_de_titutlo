@@ -52,7 +52,6 @@ class Trabajo_acordado(models.Model):
     Hora = models.TimeField(default=datetime.now, null=True, blank=True)
 
 class Calificaciones(models.Model):
-    #aqui se tiene el trabajo que se postula, el usuario ( atraves del trabajo) y el postulante - se desvia la redundancia
     usuario = models.ForeignKey(Persona, on_delete=models.CASCADE,related_name='usuario')
     usuario_calificador = models.ForeignKey(Persona, on_delete=models.CASCADE,related_name='usuario_calificador')
     Pega_calificada = models.ForeignKey(Trabajo,on_delete=models.CASCADE)

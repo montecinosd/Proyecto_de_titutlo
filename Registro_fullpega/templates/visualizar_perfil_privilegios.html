@@ -23,6 +23,10 @@
           </div>
           <div class="col-md-4">
             <h1><span style ="font-weight: bold; "class="">{{ usuario.Nombre }}</span></h1><hr>
+          <div class="row" style="padding-left: 1em;">
+              <button class="btn btn-primary" data-target="{{ usuario.pk }}" id="ajax_watson" name="ajax_watson">¡Analisis de sensibilidad con Watson!</button>
+
+          </div>
 
             {% if usuario.Twitter %}
                 <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
@@ -170,10 +174,7 @@
 {#                              console.log('New star rating: ' + this.value);#}
 {#                            });#}
 {#                            </script>#}
-          <div class="row">
-              <button class="btn btn-primary" id="ajax_watson" name="ajax_watson">¡Realiza un analisis de sensibilidad!</button>
 
-          </div>
           </div>
 {#     pega #}
         <div class="col-md-2">
@@ -283,11 +284,14 @@
 $("#ajax_watson").click(function () {
     {#var input = $('#user-input').val();#}
     {#alert("hola");#}
+    var a = $(this).data("target");
+
     $('#myModal_watson').modal('show');
     $.ajax({
         url: '{% url 'getSentimentValue'  %}',
         data: {
-          'inputValue': 'hola'
+          'inputValue': 'hola',
+          'pk_user': a
         },
         dataType: 'json',
         beforeSend: function() {

@@ -9,8 +9,27 @@ from Publicar_trabajo.models import *
 
 
 def getSentimentValue(request):
-	usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
-	calificaciones = Calificaciones.objects.filter(usuario = usuario_solicitud)
+	print(type(str(request)))
+	str_request = str(request)
+
+	index = str_request.index('pk_user=')+8
+
+	# print("Substring 'is fun':", index)
+	print("Substring 'is fun':", str_request[index])
+
+	# for i in range(10):
+	# 	if(str_request[index+i].isdigit()):
+	# 		print("hola")
+	# 	else:
+	# 		print("no es str")
+	# 		print(str_request[index+i])
+	pk_user = str_request[index:len(str_request)-2]
+	print("PK FINALISIMO"+str(pk_user))
+
+	# print(request.pk_user)
+	# print(json.loads(request.body))
+	usuario = Persona.objects.get(Usuario=pk_user)
+	calificaciones = Calificaciones.objects.filter(usuario = usuario)
 	print(calificaciones)
 	text = ''
 	for i in calificaciones:

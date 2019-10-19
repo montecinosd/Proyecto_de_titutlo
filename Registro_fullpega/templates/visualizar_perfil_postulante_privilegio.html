@@ -23,6 +23,10 @@
           </div>
           <div class="col-md-4">
             <h1><span style ="font-weight: bold; "class="">{{ usuario.Nombre }}</span></h1><hr>
+          <div class="row" style="padding-left: 1em;">
+              <button class="btn btn-primary" id="ajax_watson" data-target="{{ usuario.pk }}" name="ajax_watson">¡Analisis de sensibilidad con Watson!</button>
+
+          </div>
 
             {% if usuario.Twitter %}
                 <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
@@ -201,7 +205,7 @@
 
         <h1>¿Te gusta? ¡Postula!</h1>
 
-<h2>Modal Example</h2>
+{#<h2>Modal Example</h2>#}
 
   <!-- Modal -->
             <a href="{% url 'postulante_acordado' postulante.pk %}" class="btn btn-primary" data-toggle="modal" data-target="#myModal">¡Aceptar postulante y contactar!</a>
@@ -227,11 +231,63 @@
     </div>
   </div>
 
+{#            WATSON#}
+                          <div class="modal fade" id="myModal_watson" data-target="#modal_watson_EvaluarPega{{ usuario.pk }}"role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">IBM Watson analytics :)</h4>
+        </div>
+        <div class="modal-body">
+          <p>Este es el análisis de sensibilidad. Watson a partir de las calificaciones asociados al historico de pegas del usuario detecta el nivel de confianza del mismo :) <br><hr>
+            <div id="respuesta_watson"></div>
+        </div>
+
+        <div class="modal-footer" id="modal_footer_watson">
+{#            <a href="{% url 'buscar_trabajo' request.user.pk %}" class="btn btn-primary"> Cerrar</a>#}
+{#          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>#}
+        </div>
+      </div>
+    </div>
+  </div>
 
               </div>
 
     </div>
 
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
+<script>
+
+$("#ajax_watson").click(function () {
+    {#var input = $('#user-input').val();#}
+    {#alert("hola");#}
+
+    {#alert($(this).data("target"));#}
+    $('#myModal_watson').modal('show');
+    var a = $(this).data("target");
+    {#alert(a);#}
+    $.ajax({
+        url: '{% url 'getSentimentValue'  %}',
+        {#method: "POST",#}
+        data: {
+          'inputValue': 'hola',
+           'pk_user': a
+        },
+        dataType: 'json',
+        beforeSend: function() {
+              $("#respuesta_watson").html('<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span>');
+           },
+        success: function (data) {
+            console.log(data);
+          document.getElementById('respuesta_watson').innerHTML = 'Puntaje obtenido: '+ data["sentimiento"] + '</br>Satisfaccción de usuario: '+data['satisfaccion'];
+        }
+      });
+    });
+
+</script>
 {% endblock %}
 
