@@ -17,27 +17,33 @@
 
     <div class="container">
     <div class="row">
-{% for i in trabajos_acordados  %}
-<div class="col-md-4 col-lg-4 admin-grid" id="grid-0">
+{#    #MOLDE CON LAS IDS DE LOS TRABAJOS#}
+    {% for i in trabajos_pks %}
+<div class="col-md-4 col-lg-4 admin-grid" >
+
               <div class="panel" id="p5">
-                  <div class="panel-heading">
-                    <span class="panel-title"> {{i.postulante_acordado.Trabajo.Nombre }} </span>
+                  <div class="panel-heading" id="TrabajoAcordado{{ i}}"> Personas acordadas: {{ i.3 }}
+{#                      <script>#}
+{#                         document.getElementById('TrabajoAcordado{{ i}}').innerHTML += '<br>Some new content!';#}
+{##}
+{#                      </script>#}
+{#                                         0                    1                                       2                                       #}
+{#                      (i.postulante_acordado.Trabajo.pk, i.postulante_acordado.Trabajo.Nombre,i.postulante_acordado.Trabajo.Imagen)#}
+                    <span class="panel-title" id="NombreTrabajo{{ i}}"> </span>
                   <span class="panel-controls"><a href="#" class="panel-control-loader"></a><a href="#" class="panel-control-remove"></a><a href="#" class="panel-control-title"></a><a href="#" class="panel-control-color"></a><a href="#" class="panel-control-collapse"></a><a href="#" class="panel-control-fullscreen"></a></span></div>
                   <div class="panel-editbox" style="display: none;"><input type="text" class="form-control" value="Column Graph"></div><div class="panel-colorbox" style="display: none;"> <span class="bg-white" data-panel-color="panel-default"></span> <span class="bg-primary" data-panel-color="panel-primary"></span> <span class="bg-info" data-panel-color="panel-info"></span> <span class="bg-success" data-panel-color="panel-success"></span> <span class="bg-warning" data-panel-color="panel-warning"></span> <span class="bg-danger" data-panel-color="panel-danger"></span> <span class="bg-alert" data-panel-color="panel-alert"></span> <span class="bg-system" data-panel-color="panel-system"></span> <span class="bg-dark" data-panel-color="panel-dark"></span> </div>
                   <div class="panel-body pn" style="display: block;">
+<h5 class="text-center">{{ i.1 }}</h5>
+                      <h6 class="text-center">Paga acordada: ${{ i.4 }}</h6>
+                      <h6 class="text-center">Fecha: {{ i.5 }}, {{ i.6 }}</h6>
+                                                <hr  style="padding: 0%;margin: 0.5em;">
 
                   <div class="row">
                     <div class="col-md-4">
-                        <img style="height: 10em;width: 10em; border-radius: 10em;" class='img-responsive' src="/media/{{ i.postulante_acordado.Trabajo.Imagen }}" />
+                        <img style="height: 10em;width: 10em; border-radius: 10em;" class='img-responsive' src="/media/{{ i.2  }}" />
 
                     </div>
-                      <div class="col-md-8">
-                          <div class="row">Acordado con: {{i.postulante_acordado.Postulante.Nombre }}</div>
-                          <div class="row">Mail: {{ i.postulante_acordado.Postulante.Correo }}</div>
-                          <div class="row">Telefono: {{ i.postulante_acordado.Postulante.Telefono_C }}</div>
-                          <hr  style="padding: 0%;margin: 0.5em;">
-                          <div class="row">Monto acordado: ${{ i.postulante_acordado.Trabajo.Monto_pago }}.-</div>
-                          <div class="row">Fecha: {{ i.postulante_acordado.Trabajo.Fecha }}, {{ i.postulante_acordado.Trabajo.Hora }}.-</div>
+                      <div class="col-md-8" id="acordados{{ i.0 }}" style="overflow:auto;width: 60%;height: 11em;">
 
 
 
@@ -55,6 +61,70 @@
                     </div>
                   </div>
                 </div>
+    {% endfor %}
+{% for i in trabajos_acordados  %}
+
+     <script>
+         document.getElementById('acordados{{ i.postulante_acordado.Trabajo.pk }}').innerHTML += '                          <div class="row">Acordado con: {{i.postulante_acordado.Postulante.Nombre }}</div>\n' +
+             '                          <div class="row">Mail: {{ i.postulante_acordado.Postulante.Correo }}</div>\n' +
+             '                          <div class="row">Telefono: {{ i.postulante_acordado.Postulante.Telefono_C }}</div>\n' +
+             '                          <hr  style="padding: 0%;margin: 0.5em;">\n' ;
+             {#'                          <div class="row">Monto acordado: ${{ i.postulante_acordado.Trabajo.Monto_pago }}.-</div>\n' +#}
+             {#'                          <div class="row">Fecha: {{ i.postulante_acordado.Trabajo.Fecha }}, {{ i.postulante_acordado.Trabajo.Hora }}.-</div>\n';#}
+
+         {#$("#NombreTrabajo{{ i.postulante_acordado.Trabajo.pk }}").html("hola");#}
+     </script>
+{##}
+{##}
+{#    <div id="prueba">#}
+{##}
+{#    </div>#}
+{#    <script>#}
+{#    alert("jiji");#}
+{#    </script>#}
+{#    id="grid-0"#}
+{#<div class="col-md-4 col-lg-4 admin-grid" >#}
+{##}
+{#              <div class="panel" id="p5">#}
+{#                  <div class="panel-heading" id="TrabajoAcordado{{ i.postulante_acordado.Trabajo.pk }}">#}
+{#                      <script>#}
+{#                         document.getElementById('TrabajoAcordado{{ i.postulante_acordado.Trabajo.pk }}').innerHTML += '<br>Some new content!';#}
+{##}
+{#                      </script>#}
+{#                    <span class="panel-title"> {{i.postulante_acordado.Trabajo.Nombre }} </span>#}
+{#                  <span class="panel-controls"><a href="#" class="panel-control-loader"></a><a href="#" class="panel-control-remove"></a><a href="#" class="panel-control-title"></a><a href="#" class="panel-control-color"></a><a href="#" class="panel-control-collapse"></a><a href="#" class="panel-control-fullscreen"></a></span></div>#}
+{#                  <div class="panel-editbox" style="display: none;"><input type="text" class="form-control" value="Column Graph"></div><div class="panel-colorbox" style="display: none;"> <span class="bg-white" data-panel-color="panel-default"></span> <span class="bg-primary" data-panel-color="panel-primary"></span> <span class="bg-info" data-panel-color="panel-info"></span> <span class="bg-success" data-panel-color="panel-success"></span> <span class="bg-warning" data-panel-color="panel-warning"></span> <span class="bg-danger" data-panel-color="panel-danger"></span> <span class="bg-alert" data-panel-color="panel-alert"></span> <span class="bg-system" data-panel-color="panel-system"></span> <span class="bg-dark" data-panel-color="panel-dark"></span> </div>#}
+{#                  <div class="panel-body pn" style="display: block;">#}
+{##}
+{#                  <div class="row">#}
+{#                    <div class="col-md-4">#}
+{#                        <img style="height: 10em;width: 10em; border-radius: 10em;" class='img-responsive' src="/media/{{ i.postulante_acordado.Trabajo.Imagen }}" />#}
+{##}
+{#                    </div>#}
+{#                      <div class="col-md-8">#}
+{#                          <div class="row">Acordado con: {{i.postulante_acordado.Postulante.Nombre }}</div>#}
+{#                          <div class="row">Mail: {{ i.postulante_acordado.Postulante.Correo }}</div>#}
+{#                          <div class="row">Telefono: {{ i.postulante_acordado.Postulante.Telefono_C }}</div>#}
+{#                          <hr  style="padding: 0%;margin: 0.5em;">#}
+{#                          <div class="row">Monto acordado: ${{ i.postulante_acordado.Trabajo.Monto_pago }}.-</div>#}
+{#                          <div class="row">Fecha: {{ i.postulante_acordado.Trabajo.Fecha }}, {{ i.postulante_acordado.Trabajo.Hora }}.-</div>#}
+{##}
+{##}
+{##}
+{#                      </div>#}
+{#                      </div>#}
+{#                      <div class="row">#}
+{##}
+{#                      <div class="col-md-12" style="padding: 0%;margin:0%;"><hr></div>#}
+{##}
+{#                        <hr style="padding: 0%;margin: 0.5em;">#}
+{#                      <div class="col-md-12 text-center"><a href="" data-toggle="modal" data-target="#myModal{{ i.pk }}" class="btn btn-primary" >Este trabajo ha concluido</a></div>#}
+{#                      <div class="col-md-12 text-center"><a href="/index/%5Evisualizar_perfil_postulante/1" class="btn btn-primary" >Este trabajo ha concluido</a></div>#}
+{#                        </div>#}
+{##}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
 
   <div class="modal fade" id="myModal{{ i.pk }}" role="dialog">
     <div class="modal-dialog">

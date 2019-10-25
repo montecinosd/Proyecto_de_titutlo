@@ -314,11 +314,21 @@ def visualizar_trabajo_activo(request, pk_user):
     # trabajos_acordados = Trabajo_acordado.objects.all().exclude(postulante_acordado__Trabajo__Usuario__Usuario = usuario_solicitud)
     print(trabajos_acordados)
     data['trabajos_acordados'] = trabajos_acordados
+
+    # RESCATO LOS TRABAJOS (PKS) PARA ARMAR EL TEMPLATE CON IDS, el aux es para sacar los trabajos y que no se repitan
+    trabajos_pks = []
+    aux_trabajos_pks = []
+    for i in trabajos_acordados:
+        if (i.postulante_acordado.Trabajo.pk not in aux_trabajos_pks):
+            aux_trabajos_pks.append(i.postulante_acordado.Trabajo.pk)
+            restantes = i.postulante_acordado.Trabajo.Personas_requeridas -i.postulante_acordado.Trabajo.Vacantes
+            trabajos_pks.append((i.postulante_acordado.Trabajo.pk, i.postulante_acordado.Trabajo.Nombre,i.postulante_acordado.Trabajo.Imagen,restantes,i.postulante_acordado.Trabajo.Monto_pago,i.postulante_acordado.Trabajo.Fecha,i.postulante_acordado.Trabajo.Hora))
+    print(trabajos_pks)
+    data['trabajos_pks'] = trabajos_pks
+
+
     # trabajos_acordados = Trabajo_acordado()
-    # trabajos_acordados.
-    print(trabajos_acordados)
-
-
+    # trabajos_acordados
     return render(request, 'visualizar_trabajo_activo.html', data)
 
 @login_required(login_url='/auth/login')
