@@ -148,11 +148,45 @@ def postulante_acordado(request,pk_postulante):
     trabajo_acordado.save()
 
 @login_required(login_url='/auth/login')
-def cerrar_trabajo_publicado(request,pk_trabajo_acordado):
+def cerrar_trabajo_publicado(request,pk_trabajo):
     data = {}
     print(request.POST)
-    print(pk_trabajo_acordado)
+    print(pk_trabajo)
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    trabajo = Trabajo.objects.get(pk = pk_trabajo)
+    trabajos_acordados = Trabajo_acordado.objects.filter(postulante_acordado__Trabajo = trabajo)
+    print(trabajo.Nombre)
+    print(trabajos_acordados)
 
+    # CERRAR TRABAJO
+    trabajo.Activo = 0
+    trabajo.save()
+
+    # HISTORICO TRABAJO REALIZADO
+    for i in trabajos_acordados:
+        # print(i.postulante_acordado.Postulante)
+        historico_realizado = Historial_trabajo()
+        historico_realizado.Trabajo = trabajo
+        historico_realizado.Persona = i.postulante_acordado.Postulante
+        historico_realizado.tipo = 2 # 2 es que lo realizo
+        historico_realizado.save()
+
+    # CALIFICACION - se deja la calificacion lista para luego solo "rellenarla" en template de puntuaciones pendientes
+    for i in trabajos_acordados:
+        calificacion = Calificaciones()
+        calificacion.Pega_calificada = trabajo
+        calificacion.usuario_calificador = usuario_solicitud
+        calificacion.usuario = i.postulante_acordado.Postulante
+        calificacion.save()
+
+    # NOTIFICACION
+    for i in trabajos_acordados:
+        notificacion = Notificaciones()
+        notificacion.Trabajo_acordado = i
+        notificacion.usuario = i.postulante_acordado.Postulante
+        notificacion.save()
+
+    '''
 
     ## INFORMACION DE LA PAGINA
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
@@ -203,7 +237,7 @@ def cerrar_trabajo_publicado(request,pk_trabajo_acordado):
     notificacion.Trabajo_acordado = trabajo_acordado
     notificacion.usuario = usuario_calificado
     notificacion.save()
-
+'''
     return render(request, 'visualizar_trabajo_activo.html', data)
 #     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
 #     data['usuario_solicitud'] = usuario_solicitud

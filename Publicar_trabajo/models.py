@@ -55,10 +55,11 @@ class Calificaciones(models.Model):
     usuario = models.ForeignKey(Persona, on_delete=models.CASCADE,related_name='usuario')
     usuario_calificador = models.ForeignKey(Persona, on_delete=models.CASCADE,related_name='usuario_calificador')
     Pega_calificada = models.ForeignKey(Trabajo,on_delete=models.CASCADE)
-    Estrellas = models.PositiveIntegerField()
-    Comentarios = models.CharField(max_length=120)
+    Estrellas = models.PositiveIntegerField(null=True, blank=True)
+    Comentarios = models.CharField(max_length=120, null=True, blank=True)
     Fecha = models.DateTimeField(default=datetime.now, null=True, blank=True)
     Hora = models.TimeField(default=datetime.now, null=True, blank=True)
+    Realizada = models.PositiveIntegerField(default=0)
 
 class Historial_trabajo(models.Model):
     Trabajo = models.ForeignKey(Trabajo,on_delete=models.CASCADE)
