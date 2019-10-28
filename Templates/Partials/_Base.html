@@ -309,6 +309,12 @@
                     <span class="sidebar-title">Trabajos acordados</span>
                 </a>
             </li>
+                <li class="active">
+                <a href="{% url 'visualizar_calificar_pegas' request.user.pk %}" >
+                    <span class="fa fa-check-square-o"></span>
+                    <span class="sidebar-title">Calificar pegas pasadas</span>
+                </a>
+            </li>
                                   <li class="sidebar-label pt20">Privilegios</li>
                         <li class="active">
                 <a href="{% url 'visualizar_privilegios' request.user.pk %}" >

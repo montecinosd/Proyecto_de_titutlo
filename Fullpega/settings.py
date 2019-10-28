@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Publicar_trabajo',
     'Registro_fullpega',
+    'Calificaciones',
     'Auth_fullpega',
     'autofixture',
     'bootstrap4',

@@ -8,7 +8,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', include('Registro_fullpega.urls'), name='Registro_fullpega'),
     path('auth/', include('Auth_fullpega.urls'), name='auth'),
-    path('publicar/', include('Publicar_trabajo.urls'), name='auth'),
+    path('publicar/', include('Publicar_trabajo.urls'), name='Publicar'),
+    path('calificar/', include('Calificaciones.urls'), name='Calificar'),
     path('', include('sensibilidad_watson.urls'),name="watson")
 
     # path("index_Fullpega/", include('Fullpega.urls'), name='Fullpega'),

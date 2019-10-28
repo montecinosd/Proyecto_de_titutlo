@@ -139,9 +139,9 @@
           <h4 class="modal-title">Finalizar trabajo</h4>
         </div>
         <div class="modal-body text-center">
-          <p>¡Listo! Trabajo realizado por {{ i.postulante_acordado.Postulante.Nombre}}. A continuación, puedes calificarlo para que los demás usuarios puedan saber como es trabajar con él. ;)</p>
-          <hr>
-            <p>Púntua la pega realizado</p>
+          <p>A continuación estás dando por finalizado el trabajo. ¡Recuerda calificar luego a las personas que hicieron la pega!</p>
+
+            <p>¿Quieres terminar el proceso? Pulsa el botón Terminar pega</p>
             <form  method="post" action="{% url 'cerrar_trabajo_publicado' i.0 %}" id="calificacion{{ i.0 }}" enctype="multipart/form-data">
                 {% csrf_token %}
 {#                <div class="rating">#}
@@ -181,16 +181,16 @@
 {#                        <textarea name="comentario" id="comentario" rows="4" cols="50"></textarea>#}
 {#                    </div>#}
                     <div class="col-md-12">
-                        <button class="btn btn-primary" id="submit">Calificar y terminar pega!</button>
+                        <button class="btn btn-primary" id="submit">¡Terminar pega!</button>
                     </div>
                     </form>
-
+    <hr>
 {#            <p>Escribe algo sobre la pega realizada</p>#}
 {#                            <textarea rows="4" cols="50">#}
 {#                            </textarea>#}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default text-center" data-dismiss="modal">Cancelar</button>
         </div>
       </div>
 
