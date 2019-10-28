@@ -47,7 +47,7 @@
                       <div style="padding:0%;margin:0%;" class="col-md-8" id="acordados{{ i.0 }}" >
 Estrellas
 
-                            <form   method="post" action="{% url 'cerrar_trabajo_publicado' 1 %}" id="calificacion{{ i.0 }}" enctype="multipart/form-data">
+                            <form   method="post" action="{% url 'terminar_calificacion' i.pk %}" id="calificacion{{ i.0 }}" enctype="multipart/form-data">
                 {% csrf_token %}
 
                 <div class="rating">
@@ -110,73 +110,73 @@ Estrellas
                 </div>
 
 {#        #MODALSSS#}
-        <div class="modal fade" id="myModal{{ i.0 }}" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Finalizar trabajo</h4>
-        </div>
-        <div class="modal-body text-center">
-          <p>A continuación estás dando por finalizado el trabajo. ¡Recuerda calificar luego a las personas que hicieron la pega!</p>
-
-            <p>¿Quieres terminar el proceso? Pulsa el botón Terminar pega</p>
-            <form  method="post" action="{% url 'cerrar_trabajo_publicado' 1 %}" id="calificacion{{ i.0 }}" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="rating">
-                              <label>
-                                <input type="radio" name="stars" value="1" >
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="2" >
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="3" >
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="4"  >
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="5" checked="">
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-</div>
-                    <div class="">
-                        <p>Escribe algo sobre la pega realizada</p>
-                        <textarea name="comentario" id="comentario"></textarea>
-                    </div>
-                    <div class="col-md-12">
-                        <button class="btn btn-primary" id="submit">¡Terminar pega!</button>
-                    </div>
-                    </form>
-    <hr>
+{#        <div class="modal fade" id="myModal{{ i.0 }}" role="dialog">#}
+{#    <div class="modal-dialog">#}
+{##}
+{#      <!-- Modal content-->#}
+{#      <div class="modal-content">#}
+{#        <div class="modal-header">#}
+{#          <button type="button" class="close" data-dismiss="modal">&times;</button>#}
+{#          <h4 class="modal-title">Finalizar trabajo</h4>#}
+{#        </div>#}
+{#        <div class="modal-body text-center">#}
+{#          <p>A continuación estás dando por finalizado el trabajo. ¡Recuerda calificar luego a las personas que hicieron la pega!</p>#}
+{##}
+{#            <p>¿Quieres terminar el proceso? Pulsa el botón Terminar pega</p>#}
+{#            <form  method="post" action="{% url 'terminar_calificacion' i.usuario.pk %}" id="calificacion{{ i.0 }}" enctype="multipart/form-data">#}
+{#                {% csrf_token %}#}
+{#                <div class="rating">#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="1" >#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="2" >#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="3" >#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="4"  >#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="5" checked="">#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#</div>#}
+{#                    <div class="">#}
+{#                        <p>Escribe algo sobre la pega realizada</p>#}
+{#                        <textarea name="comentario" id="comentario"></textarea>#}
+{#                    </div>#}
+{#                    <div class="col-md-12">#}
+{#                        <button class="btn btn-primary" id="submit">¡Terminar pega!</button>#}
+{#                    </div>#}
+{#                    </form>#}
+{#    <hr>#}
 {#            <p>Escribe algo sobre la pega realizada</p>#}
 {#                            <textarea rows="4" cols="50">#}
 {#                            </textarea>#}
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default text-center" data-dismiss="modal">Cancelar</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
+{#        </div>#}
+{#        <div class="modal-footer">#}
+{#          <button type="button" class="btn btn-default text-center" data-dismiss="modal">Cancelar</button>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#    </div>#}
+{#  </div>#}
     {% endfor %}
 
 

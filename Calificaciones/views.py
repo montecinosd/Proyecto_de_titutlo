@@ -17,3 +17,23 @@ def visualizar_calificar_pegas(request, pk_user):
 
 	return render(request, 'calificar_usuarios.html', data)
 
+@login_required(login_url='/auth/login')
+def terminar_calificacion(request, pk_calificacion):
+	print("hola")
+	data = {}
+	usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+	data['usuario_solicitud'] = usuario_solicitud
+
+	calificacion = Calificaciones.objects.get( pk = pk_calificacion)
+	print(calificacion)
+
+	estrellas = request.POST['stars']
+	comentarios = request.POST['comentario']
+
+	calificacion.Comentarios = comentarios
+	calificacion.Estrellas = estrellas
+	calificacion.Realizada = 1
+	calificacion.save()
+
+# redirijo a la funcion de arriba
+	return redirect('visualizar_calificar_pegas',request.user.pk)
