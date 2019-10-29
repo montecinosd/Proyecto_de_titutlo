@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Publicar_trabajo',
     'Registro_fullpega',
     'Calificaciones',
+    'Configuracion_perfil',
     'Auth_fullpega',
     'autofixture',
     'bootstrap4',

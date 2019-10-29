@@ -29,6 +29,13 @@ def auth_login(request):
             if user.is_active:
                 login(request, user)
                 return HttpResponseRedirect(reverse('index'))
+            # if user and user.is_staff is False:
+            #     login(request, user)
+            #     return HttpResponseRedirect(reverse('index'))
+            # elif user and user.is_staff is True:
+            #     login(request, user)
+            #     return redirect('admin')
+
             else:
                 print("Usuario o contraseña no validos")
                 messages.warning(

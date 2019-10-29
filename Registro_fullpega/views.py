@@ -134,8 +134,8 @@ def postulante_acordado(request,pk_postulante):
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
     data['usuario_solicitud'] = usuario_solicitud
 
-#se crea el objeto del acuerdo de trabajo, con lo cual se realizará
-    postulante_acordado = Postulantes.objects.get(pk = pk_postulante)
+    #se crea el objeto del acuerdo de trabajo, con lo cual se realizará
+    postulante_acordado = Postulantes.objects.get(pk = pk_postulante) # esta pk es la del postulante, por lo que está bien. no es la pk de la persona. siempre rescata la postulacion en sí.
     aux_trabajo = Trabajo.objects.get(pk = postulante_acordado.Trabajo.pk)
     aux_trabajo.Vacantes = aux_trabajo.Vacantes - 1
     aux_trabajo.save()
@@ -146,6 +146,14 @@ def postulante_acordado(request,pk_postulante):
     trabajo_acordado.postulante_acordado = postulante_acordado
 
     trabajo_acordado.save()
+    #notificacion a postulante acordado
+    notificacion = Notificaciones()
+    notificacion.usuario = postulante_acordado.Postulante
+    notificacion.Tipo = 2 # notificacion a postulante acordado
+    notificacion.Trabajo_acordado = trabajo_acordado
+    notificacion.save()
+    return redirect('visualizar_trabajo_activo', request.user.pk)
+
 
 @login_required(login_url='/auth/login')
 def cerrar_trabajo_publicado(request,pk_trabajo):
@@ -178,6 +186,13 @@ def cerrar_trabajo_publicado(request,pk_trabajo):
         calificacion.usuario_calificador = usuario_solicitud
         calificacion.usuario = i.postulante_acordado.Postulante
         calificacion.save()
+        #calificacion para el requirente
+        calificacion2 = Calificaciones()
+        calificacion2.Pega_calificada = trabajo
+        calificacion2.usuario_calificador = i.postulante_acordado.Postulante
+        calificacion2.usuario = usuario_solicitud
+        calificacion2.save()
+
 
     # NOTIFICACION
     for i in trabajos_acordados:
@@ -307,6 +322,12 @@ def postular_inicial(request,pk_pega):
     postulantes.Trabajo= trabajo
     postulantes.Postulante = usuario_solicitud
     postulantes.save()
+    #notificacion de que postulo alguien
+    notificacion = Notificaciones()
+    notificacion.usuario =trabajo.Usuario
+    notificacion.Tipo = 3
+    notificacion.Trabajo = trabajo
+    notificacion.save()
     return redirect(request, 'buscar_trabajo.html', data)
 
 @login_required(login_url='/auth/login')
@@ -596,53 +617,53 @@ def Registro_form(request):
         #         request,
         #         'La Contraseña es Similar al Nombre de Usuario'
         #     )
-
-@login_required(login_url='/auth/login')
-def config_perfil(request,pk_user):
-    data = {}
-    usuario = Persona.objects.get(Usuario=pk_user)
-    data['usuario'] = usuario
-
-
-    #
-    # if request.method == 'GET':
-    #     print("get")
-    # if request.method == 'POST':
-    #     #Obtengo los atributos
-    #     print("POSSST BEIBE")
-    #     print(request.POST)
-    #     print(request.FILES)
-    return render(request, 'config_perfil.html', data)
-
-    # return redirect('config_perfil', request.user.pk)
-
-@login_required(login_url='/auth/login')
-def guardar_config_perfil_redes(request,pk_user):
-    data = {}
-    usuario = Persona.objects.get(Usuario=pk_user)
-    print(usuario)
-
-    if request.method == 'GET':
-        print("get")
-    if request.method == 'POST':
-        #Obtengo los atributos
-        print("POSSST BEIBE")
-        print(request.POST)
-        print("request files")
-        # print(request.FILES)
-        print("request files fin ")
-
-        facebook = request.POST['facebook']
-        twitter = request.POST['twitter']
-        linkedin = request.POST['linkedin']
-        instagram = request.POST['instagram']
-
-        usuario.Facebook = facebook
-        usuario.Twitter = twitter
-        usuario.Linkedin = linkedin
-        usuario.Instagram = instagram
-
-        usuario.save()
-
-    # return render(request, 'visualizar_perfil.html', data)
-    return redirect('config_perfil', request.user.pk)
+#
+# @login_required(login_url='/auth/login')
+# def config_perfil(request,pk_user):
+#     data = {}
+#     usuario = Persona.objects.get(Usuario=pk_user)
+#     data['usuario'] = usuario
+#
+#
+#     #
+#     # if request.method == 'GET':
+#     #     print("get")
+#     # if request.method == 'POST':
+#     #     #Obtengo los atributos
+#     #     print("POSSST BEIBE")
+#     #     print(request.POST)
+#     #     print(request.FILES)
+#     return render(request, 'config_perfil.html', data)
+#
+#     # return redirect('config_perfil', request.user.pk)
+#
+# @login_required(login_url='/auth/login')
+# def guardar_config_perfil_redes(request,pk_user):
+#     data = {}
+#     usuario = Persona.objects.get(Usuario=pk_user)
+#     print(usuario)
+#
+#     if request.method == 'GET':
+#         print("get")
+#     if request.method == 'POST':
+#         #Obtengo los atributos
+#         print("POSSST BEIBE")
+#         print(request.POST)
+#         print("request files")
+#         # print(request.FILES)
+#         print("request files fin ")
+#
+#         facebook = request.POST['facebook']
+#         twitter = request.POST['twitter']
+#         linkedin = request.POST['linkedin']
+#         instagram = request.POST['instagram']
+#
+#         usuario.Facebook = facebook
+#         usuario.Twitter = twitter
+#         usuario.Linkedin = linkedin
+#         usuario.Instagram = instagram
+#
+#         usuario.save()
+#
+#     # return render(request, 'visualizar_perfil.html', data)
+#     return redirect('config_perfil', request.user.pk)

@@ -10,6 +10,7 @@ urlpatterns = [
     path('auth/', include('Auth_fullpega.urls'), name='auth'),
     path('publicar/', include('Publicar_trabajo.urls'), name='Publicar'),
     path('calificar/', include('Calificaciones.urls'), name='Calificar'),
+    path('configuracion/', include('Configuracion_perfil.urls'), name='configuracion'),
     path('', include('sensibilidad_watson.urls'),name="watson")
 
     # path("index_Fullpega/", include('Fullpega.urls'), name='Fullpega'),

@@ -76,6 +76,9 @@ class Notificaciones(models.Model):
     Activo = models.PositiveIntegerField(default=1)
 
     Trabajo_acordado = models.ForeignKey(Trabajo_acordado, on_delete=models.CASCADE,null=True, blank=True)
+    Trabajo = models.ForeignKey(Trabajo, on_delete=models.CASCADE,null=True, blank=True)
+    # 1 = calificacion, 2 = alerta de aceptar postulante, 3 = de nuevo postulante
+    Tipo = models.PositiveIntegerField(default=1)
 
 # class Valoracion_trabajo(models.Model):
 #     Trabajo = models.OneToOneField(Trabajo, on_delete=models.CASCADE)

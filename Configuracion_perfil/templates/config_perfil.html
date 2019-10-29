@@ -18,23 +18,41 @@
             <div class="section-divider mb40">
                 <div class="row">
                     <div class="col-md-6">
-                      <label for="email">Facebook:</label>
-                      <input type="" class="form-control" name="facebook" id="facebook"value = {{usuario.Facebook }}>
+                        <label for="email">Facebook:</label>
+                        {% if usuario.Facebook  %}
+                            <input type="" class="form-control" name="facebook" id="facebook" value = {{usuario.Facebook }}>
+                        {% else %}
+                            <input type="" class="form-control" name="facebook" id="facebook">
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="email">Twitter:</label>
+                        {% if usuario.Twitter  %}
+                            <input type="" class="form-control" name="twitter" id="twitter"value = {{usuario.Twitter }}>
+                        {% else %}
+                            <input type="" class="form-control" name="twitter" id="twitter">
+                        {% endif %}
                     </div>
                     <div class="col-md-6">
-                      <label for="email">Twitter:</label>
-                      <input type="" class="form-control" name="twitter" id="twitter"value = {{usuario.Twitter }}>
+                        <label for="email">Linkedin:</label>
+                        {% if usuario.Linkedin  %}
+                            <input type="" class="form-control" name="linkedin" id="linkedin"value = {{usuario.Linkedin }}>
+                        {% else %}
+                            <input type="" class="form-control" name="linkedin" id="linkedin">
+                        {% endif %}
+
                     </div>
                     <div class="col-md-6">
-                      <label for="email">Linkedin:</label>
-                      <input type="" class="form-control" name="linkedin" id="linkedin"value = {{usuario.Linkedin }}>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="email">Instagram:</label>
-                      <input type="" class="form-control" name="instagram" id="instagram"value = {{usuario.Instagram }}>
+                        <label for="email">Instagram:</label>
+                        {% if usuario.Instagram %}
+                            <input type="" class="form-control" name="instagram" id="instagram"value = {{usuario.Instagram }}>
+                        {% else %}
+                            <input type="" class="form-control" name="instagram" id="instagram">
+                        {% endif %}
                     </div>
                 </div>
-            <div class="text-center" style="margin-top:1%;">
+                <div class="text-center" style="margin-top:1%;">
                 <button class="btn btn-primary" id="submit">Actualizar redes</button>
             </div>
         </form>

@@ -12,8 +12,8 @@ urlpatterns = [
      #Config perfil
      path(r'^visualizar_perfil/<int:pk_user>', views.visualizar_perfil, name='visualizar_perfil'),
      path(r'^visualizar_perfil_detalle_pega/<int:pk_pega>', views.visualizar_perfil_detalle_pega, name='visualizar_perfil_detalle_pega'),
-     path(r'^config_perfil/<int:pk_user>', views.config_perfil, name='config_perfil'),
-     path(r'^guardar_config_perfil_redes/<int:pk_user>', views.guardar_config_perfil_redes, name='guardar_config_perfil_redes'),
+     # path(r'^config_perfil/<int:pk_user>', views.config_perfil, name='config_perfil'),
+     # path(r'^guardar_config_perfil_redes/<int:pk_user>', views.guardar_config_perfil_redes, name='guardar_config_perfil_redes'),
      #Privilegios
      path(r'^visualizar_privilegios/<int:pk_user>', views.visualizar_privilegios, name='visualizar_privilegios'),
      #historicos

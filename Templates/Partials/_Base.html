@@ -91,16 +91,42 @@
             </li>
 
           {% for i in notificaciones %}
+              {% if i.Tipo == 1 %}
+                  <li class="media">
+                      <a class="media-left" href="#"> <img src="/media/{{ i.Trabajo_acordado.postulante_acordado.Trabajo.Imagen }}" class="mw30 br64 mr15"alt="avatar"> </a>
+                      <div class="media-body">
+                        <h5 class="media-heading">Evalua tu experiencia en {{ i.Trabajo_acordado.postulante_acordado.Trabajo.Nombre }}!
+                        <br>  <small class="text-muted"> {{ i.Fecha }}</small>
 
-            <li class="media">
-              <a class="media-left" href="#"> <img src="/media/{{ i.Trabajo_acordado.postulante_acordado.Trabajo.Imagen }}" class="mw30 br64 mr15"alt="avatar"> </a>
-              <div class="media-body">
-                <h5 class="media-heading">Evaluar Empleo
-                  <small class="text-muted"> {{ i.Fecha }}</small>
-                </h5> Evalua tu experiencia en pega
-                <a class="text-system notificacion" data-toggle="modal" data-target="#modal_notificacion_EvaluarPega{{ i.pk }}"> {{ i.Trabajo_acordado.postulante_acordado.Trabajo.Nombre }}</a>
-              </div>
-            </li>
+                        </h5> <a class="text-system notificacion" href="{% url 'visualizar_calificar_pegas' request.user.pk %}" >Revisa tus calificaciones pendientes!</a>
+{#                        <a class="text-system notificacion" data-toggle="modal" data-target="#modal_notificacion_EvaluarPega{{ i.pk }}"> aquí!</a>#}
+                      </div>
+                  </li>
+              {% elif i.Tipo == 2 %}
+                  <li class="media">
+                      <a class="media-left" href="#"> <img src="/media/{{ i.Trabajo_acordado.postulante_acordado.Trabajo.Imagen }}" class="mw30 br64 mr15"alt="avatar"> </a>
+                      <div class="media-body">
+                        <h5 class="media-heading">Buena, te aceptaron en {{ i.Trabajo_acordado.postulante_acordado.Trabajo.Nombre }}!
+                          <br><small class="text-muted"> {{ i.Fecha }}</small>
+                        </h5>¡El requirente {{ i.Trabajo_acordado.postulante_acordado.Trabajo.Usuario.Nombre }} se pondrá en contacto contigo!
+{#                          <a href="{% url 'visualizar_postulantes_a_trabajos' request.user.pk %}" >revisa tus postulantes!</a>#}
+                      </div>
+                    </li>
+              {% elif i.Tipo == 3 %}
+                  <li class="media">
+                      <a class="media-left" href="#"> <img src="/media/{{ i.Trabajo.Imagen }}" class="mw30 br64 mr15"alt="avatar"> </a>
+                      <div class="media-body">
+                        <h5 class="media-heading">Nuevo Postulante a {{ i.Trabajo.Nombre }}!
+                       <br>   <small class="text-muted"> {{ i.Fecha }}</small>
+                        </h5>¡Buena,
+                          <a class="text-system notificacion" href="{% url 'visualizar_postulantes_a_trabajos' request.user.pk %}" >revisa tus postulantes!</a>
+                      </div>
+                    </li>
+              {% endif %}
+
+
+
+
             {% endfor %}
 
 
@@ -369,79 +395,79 @@
       <section id="content" class="animated fadeIn">
       <!-- Trigger the modal with a button -->
 
- {% for i in notificaciones %}
-
+{# {% for i in notificaciones %}#}
+{##}
 {#                <a class="text-system" data-toggle="modal" data-target="#modal_notificacion_EvaluarPega{{ i.pk }}"> {{ i.Trabajo_acordado.postulante_acordado.Trabajo.Nombre }}</a>#}
 {#              MODAL#}
-                <div class="modal fade" id="modal_notificacion_EvaluarPega{{ i.pk }}" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Finalizar trabajo</h4>
-        </div>
-        <div class="modal-body text-center">
-          <p>¡Listo! Trabajo realizado por {{ i.postulante_acordado.Trabajo.Usuario.Nombre}}. A continuación, puedes calificarlo para que los demás usuarios puedan saber como es trabajar con él. ;)</p>
-          <hr>
-            <p>Púntua la pega realizado</p>
-            <form  method="post" action="{% url 'calificar_oferente' i.pk %}" id="calificacion" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="rating">
-                              <label>
-                                <input type="radio" name="stars" value="1" >
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="2" >
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="3" >
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="4"  >
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="5" checked="">
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-</div>
-                    <div class="col-md-12">
-                        <p>Escribe algo sobre la pega realizada</p>
-                        <textarea name="comentario" id="comentario" rows="4" cols="50"></textarea>
-                    </div>
-                    <div class="col-md-12">
-                        <button class="btn btn-primary" id="submit">Calificar Empleador!</button>
-                    </div>
-                    </form>
-
+{#                <div class="modal fade" id="modal_notificacion_EvaluarPega{{ i.pk }}" role="dialog">#}
+{#    <div class="modal-dialog">#}
+{##}
+{#      <!-- Modal content-->#}
+{#      <div class="modal-content">#}
+{#        <div class="modal-header">#}
+{#          <button type="button" class="close" data-dismiss="modal">&times;</button>#}
+{#          <h4 class="modal-title">Finalizar trabajo</h4>#}
+{#        </div>#}
+{#        <div class="modal-body text-center">#}
+{#          <p>¡Listo! Trabajo realizado por {{ i.postulante_acordado.Trabajo.Usuario.Nombre}}. A continuación, puedes calificarlo para que los demás usuarios puedan saber como es trabajar con él. ;)</p>#}
+{#          <hr>#}
+{#            <p>Púntua la pega realizado</p>#}
+{#            <form  method="post" action="{% url 'calificar_oferente' i.pk %}" id="calificacion" enctype="multipart/form-data">#}
+{#                {% csrf_token %}#}
+{#                <div class="rating">#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="1" >#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="2" >#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="3" >#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="4"  >#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="5" checked="">#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#</div>#}
+{#                    <div class="col-md-12">#}
+{#                        <p>Escribe algo sobre la pega realizada</p>#}
+{#                        <textarea name="comentario" id="comentario" rows="4" cols="50"></textarea>#}
+{#                    </div>#}
+{#                    <div class="col-md-12">#}
+{#                        <button class="btn btn-primary" id="submit">Calificar Empleador!</button>#}
+{#                    </div>#}
+{#                    </form>#}
+{##}
 {#            <p>Escribe algo sobre la pega realizada</p>#}
 {#                            <textarea rows="4" cols="50">#}
 {#                            </textarea>#}
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
+{#        </div>#}
+{#        <div class="modal-footer">#}
+{#          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#    </div>#}
+{#  </div>#}
 {#              FIN MODAL#}
-            {% endfor %}
+{#            {% endfor %}#}
         {% block section_contenido %}
         {% endblock%}
 {#            <footer id="content-footer">#}
@@ -803,13 +829,13 @@
 
    </script>
 {##Script para mostrar el modal de la notificacion #}
-<script>
-    $('.notificacion').on("click",function(){
-        alert($(this).data("target"));
-        $($(this).data("target")).modal('show');
-         //post code
-    })
-</script>
+{#<script>#}
+{#    $('.notificacion').on("click",function(){#}
+{#        alert($(this).data("target"));#}
+{#        $($(this).data("target")).modal('show');#}
+{#         //post code#}
+{#    })#}
+{#</script>#}
 {% block scripts %}
 {% endblock%}
  <!-- END: PAGE SCRIPTS -->
