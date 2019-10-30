@@ -1,0 +1,225 @@
+{% extends 'Partials/_BaseAdmin.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'assets/' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/admin-tools/admin-forms/css/admin-forms.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/img/favicon.ico'%} ">
+  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+
+{% block section_contenido %}
+    <div class="container">
+        <div class="row img-centered">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-2">
+            <span class="footer-legal" ><img style="height: 16em;width: 16em; border-radius: 10em;" class='img-responsive' src="/media/{{ usuario.Imagen }}" /></span>
+          </div>
+
+          <div class="col-md-8">
+            <h1><span style ="font-weight: bold; "class="">{{ usuario.Nombre }}</span></h1><hr>
+            <span class="footer-lega">{{ usuario.Correo }}</span><br>
+            <span class="footer-lega">{{ usuario.Direccion.Ciudad }}, {{ usuario.Direccion.Pais }}.</span><br>
+            <span class="footer-lega">{{ usuario.Direccion.Comuna }}, {{ usuario.Direccion.Calle }} {{ usuario.Direccion.Numero_de_calle }}.</span><br>
+            <span class="footer-lega">{{ usuario.Telefono_C }}</span>
+          </div>
+        </div>
+    <hr>
+
+    <div class="row text-center">
+
+    </div>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+              <h3>Redes sociales</h3>
+
+  Estas son las redes vinculadas de {{ usuario.Nombre }}<hr>
+
+            {% if usuario.Twitter %}
+                <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
+                <div class="text-center">
+                    <a href="{{ usuario.Twitter }}" class="href" target="_blank">
+                     <img class="class='img-responsive" src="/media/twitter.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
+                    </a>
+                </div>
+                </div>
+            {% endif %}
+
+            {% if usuario.Facebook %}
+                <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
+                <div class="text-center">
+                    <a href="{{ usuario.Facebook }}" class="href" target="_blank">
+                     <img class="class='img-responsive" src="/media/facebook.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
+                    </a>
+                </div></div>
+            {% endif %}
+
+            {% if usuario.Linkedin %}
+                <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
+                <div class="text-center">
+                    <a href="{{ usuario.Linkedin }}" class="href" target="_blank">
+                     <img class="class='img-responsive" src="/media/linkedin.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
+                    </a>
+                </div></div>
+            {% endif %}
+
+
+            {% if usuario.Instagram %}
+                <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
+                <div class="text-center">
+                    <a href="{{ usuario.Instagram }}" class="href" target="_blank">
+                     <img class="class='img-responsive" src="/media/instagram.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
+                    </a>
+                </div></div>
+            {% endif %}
+
+
+
+{#            <div class="card col-md-6" style="padding:1%;width: 33%;height: 100%;"  >#}
+{#                <div class="text-center">#}
+{#                    <a href="https://www.facebook.com/holasoyeldani" class="href" target="_blank">#}
+{#                     <img class="class='img-responsive" src="/media/facebook.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">#}
+{#                    </a>#}
+{#                </div>#}
+{##}
+{##}
+{#              </div>#}
+{#              <div class="card col-md-6" style="padding:1%;width: 33%;height: 100%;"  >#}
+{#                <div class="text-center">#}
+{#                    <a href="https://twitter.com/Montecinosd97" class="href" target="_blank">#}
+{#                     <img class="class='img-responsive" src="/media/twitter.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">#}
+{#                    </a>#}
+{#                </div>#}
+{##}
+{#              </div>#}
+{#            <div class="card col-md-6" style="padding:1%;width: 33%;height: 100%;"  >#}
+{#                <div class="text-center">#}
+{#                    <a href="https://www.linkedin.com/in/daniel-ignacio-montecinos-zambra-833b35182/" class="href" target="_blank">#}
+{#                     <img class="class='img-responsive" src="/media/linkedin.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">#}
+{#                    </a>#}
+{#                </div>#}
+
+              </div>
+        <div class="col-md-6">
+            <div class="col-md-12 pr40 border-right">
+                <h3>Información de usuario</h3>
+
+  Este es el resumen de {{ usuario.Nombre }} <hr>
+                       <style>
+                                .rating {
+                              display: inline-block;
+                              position: relative;
+                              height: 50px;
+                              line-height: 50px;
+                              font-size: 50px;
+                            }
+
+                            .rating label {
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              height: 100%;
+                              cursor: pointer;
+                            }
+
+                            .rating label:last-child {
+                              position: static;
+                            }
+
+                            .rating label:nth-child(1) {
+                              z-index: 5;
+                            }
+
+                            .rating label:nth-child(2) {
+                              z-index: 4;
+                            }
+
+                            .rating label:nth-child(3) {
+                              z-index: 3;
+                            }
+
+                            .rating label:nth-child(4) {
+                              z-index: 2;
+                            }
+
+                            .rating label:nth-child(5) {
+                              z-index: 1;
+                            }
+
+                            .rating label input {
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              opacity: 0;
+                            }
+
+                            .rating label .icon {
+                              float: left;
+                              color: transparent;
+                            }
+
+                            .rating label:last-child .icon {
+                              color: #000;
+                            }
+
+                            .rating:not(:hover) label input:checked ~ .icon,
+                            .rating:hover label:hover input ~ .icon {
+                              color: #09f;
+                            }
+
+                            .rating label input:focus:not(:checked) ~ .icon:last-child {
+                              color: #000;
+                              text-shadow: 0 0 5px #09f;
+                            }
+                            </style>
+                <div class="col-md-12"><h5>Valoración: 4 Estrellas <span class="icon">★</span></h5></div>
+                            <form class="rating">
+
+                              <label>
+                                <input type="radio" name="stars" value="1"  disabled/>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="2" disabled/>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="3" disabled/>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="4" checked disabled/>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="5" disabled/>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                            </form>
+
+                            <script>
+                                $(':radio').change(function() {
+                              console.log('New star rating: ' + this.value);
+                            });
+                            </script>
+                      </div>
+
+
+    </div>
+    </div>
+
+
+{% endblock %}
+

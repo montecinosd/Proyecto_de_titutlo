@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'Registro_fullpega',
     'Calificaciones',
     'Configuracion_perfil',
+    'Administracion',
     'Auth_fullpega',
     'autofixture',
     'bootstrap4',

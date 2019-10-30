@@ -1,0 +1,274 @@
+{% extends 'Partials/_BaseAdmin.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'assets/' %}">
+
+{% block section_contenido %}
+    <div class="row text-center">
+
+  <h4>Califica las pegas pasadas!</h4>
+
+  Estas son las personas las cuales realizaron una pega y no han sido calificadas! <hr>
+    </div>
+
+
+
+    <div class="container">
+    <div class="row">
+
+{#    #MOLDE CON LAS IDS DE LOS TRABAJOS#}
+    {% for i in calificaciones_pendientes %}
+<div class="col-md-4 col-lg-4 admin-grid" >
+
+              <div class="panel" id="p5">
+                  <div class="panel-heading" id="TrabajoAcordado{{ i}}"> Pendiente de calificacion
+                      {#                      <script>#}
+{#                         document.getElementById('TrabajoAcordado{{ i}}').innerHTML += '<br>Some new content!';#}
+{##}
+{#                      </script>#}
+{#                                         0                    1                                       2                                       #}
+{#                      (i.postulante_acordado.Trabajo.pk, i.postulante_acordado.Trabajo.Nombre,i.postulante_acordado.Trabajo.Imagen)#}
+                    <span class="panel-title" id="NombreTrabajo{{ i}}"> </span>
+                  <span class="panel-controls"><a href="#" class="panel-control-loader"></a><a href="#" class="panel-control-remove"></a><a href="#" class="panel-control-title"></a><a href="#" class="panel-control-color"></a><a href="#" class="panel-control-collapse"></a><a href="#" class="panel-control-fullscreen"></a></span></div>
+                  <div class="panel-editbox" style="display: none;"><input type="text" class="form-control" value="Column Graph"></div><div class="panel-colorbox" style="display: none;"> <span class="bg-white" data-panel-color="panel-default"></span> <span class="bg-primary" data-panel-color="panel-primary"></span> <span class="bg-info" data-panel-color="panel-info"></span> <span class="bg-success" data-panel-color="panel-success"></span> <span class="bg-warning" data-panel-color="panel-warning"></span> <span class="bg-danger" data-panel-color="panel-danger"></span> <span class="bg-alert" data-panel-color="panel-alert"></span> <span class="bg-system" data-panel-color="panel-system"></span> <span class="bg-dark" data-panel-color="panel-dark"></span> </div>
+                  <div class="panel-body pn" style="display: block;">
+<h5 class="text-center"> {{ i.usuario.Nombre }} </h5>
+                      <h6 class="text-center">Realizado: {{ i.Pega_calificada.Nombre }}</h6>
+                      <h6 class="text-center">Fecha: {{ i.Pega_calificada.Fecha }}, {{ i.Pega_calificada.Hora }}</h6>
+                                                <hr  style="padding: 0%;margin: 0.5em;">
+
+                  <div class="row text-center">
+                    <div class="col-md-4">
+                        <img style="height: 10em;width: 10em; border-radius: 10em;" class='img-responsive' src="/media/{{ i.usuario.Imagen  }}" />
+
+                    </div>
+                      <div style="padding:0%;margin:0%;" class="col-md-8" id="acordados{{ i.0 }}" >
+Estrellas
+
+                            <form   method="post" action="{% url 'terminar_calificacion' i.pk %}" id="calificacion{{ i.0 }}" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="rating">
+                              <label style="height: 4px;width: 4px  ;">
+                                <input type="radio" name="stars" value="1" >
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="2" >
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="3" >
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="4"  >
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="stars" value="5" checked="">
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+</div>
+                    <div class="">
+                        <p>Comentarios</p>
+                        <textarea name="comentario" id="comentario"></textarea>
+                    </div>
+
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" id="submit">¡Calificar usuario!</button>
+                    </div>
+                    </form>
+
+
+
+                      </div>
+                      </div>
+{#                      <div class="row">#}
+{##}
+{#                      <div class="col-md-12" style="padding: 0%;margin:0%;"><hr></div>#}
+{##}
+{#                        <hr style="padding: 0%;margin: 0.5em;">#}
+{#                      <div class="col-md-12 text-center"><a href="" data-toggle="modal" data-target="#myModal{{ i.0 }}" class="btn btn-primary" >Este trabajo ha concluido</a></div>#}
+{#                      <div class="col-md-12 text-center"><a href="/index/%5Evisualizar_perfil_postulante/1" class="btn btn-primary" >Este trabajo ha concluido</a></div>#}
+{#                        </div>#}
+
+                    </div>
+                  </div>
+                </div>
+
+{#        #MODALSSS#}
+{#        <div class="modal fade" id="myModal{{ i.0 }}" role="dialog">#}
+{#    <div class="modal-dialog">#}
+{##}
+{#      <!-- Modal content-->#}
+{#      <div class="modal-content">#}
+{#        <div class="modal-header">#}
+{#          <button type="button" class="close" data-dismiss="modal">&times;</button>#}
+{#          <h4 class="modal-title">Finalizar trabajo</h4>#}
+{#        </div>#}
+{#        <div class="modal-body text-center">#}
+{#          <p>A continuación estás dando por finalizado el trabajo. ¡Recuerda calificar luego a las personas que hicieron la pega!</p>#}
+{##}
+{#            <p>¿Quieres terminar el proceso? Pulsa el botón Terminar pega</p>#}
+{#            <form  method="post" action="{% url 'terminar_calificacion' i.usuario.pk %}" id="calificacion{{ i.0 }}" enctype="multipart/form-data">#}
+{#                {% csrf_token %}#}
+{#                <div class="rating">#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="1" >#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="2" >#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="3" >#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="4"  >#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="5" checked="">#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#</div>#}
+{#                    <div class="">#}
+{#                        <p>Escribe algo sobre la pega realizada</p>#}
+{#                        <textarea name="comentario" id="comentario"></textarea>#}
+{#                    </div>#}
+{#                    <div class="col-md-12">#}
+{#                        <button class="btn btn-primary" id="submit">¡Terminar pega!</button>#}
+{#                    </div>#}
+{#                    </form>#}
+{#    <hr>#}
+{#            <p>Escribe algo sobre la pega realizada</p>#}
+{#                            <textarea rows="4" cols="50">#}
+{#                            </textarea>#}
+{#        </div>#}
+{#        <div class="modal-footer">#}
+{#          <button type="button" class="btn btn-default text-center" data-dismiss="modal">Cancelar</button>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#    </div>#}
+{#  </div>#}
+    {% endfor %}
+
+
+
+    </div>
+    </div>
+<style>
+                                .rating {
+                              display: inline-block;
+                              position: relative;
+                              height: 2em;
+                              line-height: 2em;
+                              font-size: 2em;
+                                    padding:0%;
+
+                            }
+
+                            .rating label {
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              height: 100%;
+                              cursor: pointer;
+                            }
+
+                            .rating label:last-child {
+                              position: static;
+                            }
+
+                            .rating label:nth-child(1) {
+                              z-index: 5;
+                            }
+
+                            .rating label:nth-child(2) {
+                              z-index: 4;
+                            }
+
+                            .rating label:nth-child(3) {
+                              z-index: 3;
+                            }
+
+                            .rating label:nth-child(4) {
+                              z-index: 2;
+                            }
+
+                            .rating label:nth-child(5) {
+                              z-index: 1;
+                            }
+
+                            .rating label input {
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              opacity: 0;
+                            }
+
+                            .rating label .icon {
+                              float: left;
+                              color: transparent;
+                            }
+
+                            .rating label:last-child .icon {
+                              color: #000;
+                            }
+
+                            .rating:not(:hover) label input:checked ~ .icon,
+                            .rating:hover label:hover input ~ .icon {
+                              color: #09f;
+                            }
+
+                            .rating label input:focus:not(:checked) ~ .icon:last-child {
+                              color: #000;
+                              text-shadow: 0 0 5px #09f;
+                            }
+                            </style>
+
+{% endblock %}
+{% block scripts %}
+
+{#<script src="{% static 'js/jquery-3.3.1.js' %}"></script>#}
+{#<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>#}
+
+<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'js/dataTables.bootstrap4.min.js' %}"></script>
+{#<script src="{% static 'vendor/jquery/utility.js' %}"></script>#}
+{#<script src="{% static 'vendor/jquery/jquery-1.11.1.min.js' %}"></script>#}
+{#<script src="{% static 'vendor/jquery/main.js' %}"></script>#}
+{#<script src="{% static 'vendor/jquery/jquery-ui.min.js' %}"></script>#}
+{#<script src="{% static 'vendor/jquery/demo.js' %}"></script>#}
+{#<script src="{% static 'vendor/jquery/main.js' %}"></script>#}
+{#<link href="{% static 'vendor/jquery/admin-forms.css' %}" type="text/css" rel="stylesheet">#}
+{#<link href="{% static 'vendor/jquery/theme.css' %}" type="text/css" rel="stylesheet">#}
+{#<link href="{% static 'vendor/jquery/theme.min.css' %}" type="text/css" rel="stylesheet">#}
+{#<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">#}
+{% endblock %}

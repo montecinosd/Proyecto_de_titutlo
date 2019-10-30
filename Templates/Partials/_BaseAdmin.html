@@ -1,0 +1,719 @@
+{% load static %}
+{% load poll_extras %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <title> Full Pega  </title>
+  <meta name="keywords" content="HTML5 Bootstrap 3 Admin Template UI Theme" />
+  <meta name="description" content="AdminDesigns - A Responsive HTML5 Admin UI Framework">
+  <meta name="author" content="AdminDesigns">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font CSS (Via CDN) -->
+  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600'>
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/skin/default_skin/css/theme.css' %}">
+
+  <!-- Admin Forms CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/admin-tools/admin-forms/css/admin-forms.css' %}">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{% static 'assets/img/descarga.ico' %}">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body class="dashboard-page sb-l-o sb-r-c">
+
+<!-------------------------------------------------------------+
+  <body> Helper Classes:
+---------------------------------------------------------------+
+  '.sb-l-o' - Sets Left Sidebar to "open"
+  '.sb-l-m' - Sets Left Sidebar to "minified"
+  '.sb-l-c' - Sets Left Sidebar to "closed"
+
+  '.sb-r-o' - Sets Right Sidebar to "open"
+  '.sb-r-c' - Sets Right Sidebar to "closed"
+---------------------------------------------------------------+
+ Example: <body class="example-page sb-l-o sb-r-c">
+ Results: Sidebar left Open, Sidebar right Closed
+--------------------------------------------------------------->
+
+
+
+  <!-- Start: Main -->
+  <div id="main">
+
+    <!-----------------------------------------------------------------+
+       ".navbar" Helper Classes:
+    -------------------------------------------------------------------+
+       * Positioning Classes:
+        '.navbar-static-top' - Static top positioned navbar
+        '.navbar-static-top' - Fixed top positioned navbar
+
+       * Available Skin Classes:
+         .bg-dark    .bg-primary   .bg-success
+         .bg-info    .bg-warning   .bg-danger
+         .bg-alert   .bg-system
+    -------------------------------------------------------------------+
+      Example: <header class="navbar navbar-fixed-top bg-primary">
+      Results: Fixed top navbar with blue background
+    ------------------------------------------------------------------->
+
+    <!-- Start: Header -->
+    <header class="navbar navbar-fixed-top">
+      <div class="navbar-branding">
+        <a class="navbar-brand" href="{% url 'index_admin' %}">
+          <b>Full  </b>Pega
+        </a>
+        <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
+      </div>
+
+<ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown"  href="#">
+          <span class="ad ad-radio-tower fs18"></span>  Notificaciones <span class="badge btn-primary">{{ notificaciones|length  }}</span>
+          </a>
+          <ul class="dropdown-menu media-list w350 animated animated-shorter fadeIn" role="menu">
+            <li class="dropdown-header">
+              <span class="dropdown-title"> Notificaciones</span>
+
+            </li>
+
+          {% for i in notificaciones %}
+              {% if i.Tipo == 1 %}
+                  <li class="media">
+                      <a class="media-left" href="#"> <img src="/media/{{ i.Trabajo_acordado.postulante_acordado.Trabajo.Imagen }}" class="mw30 br64 mr15"alt="avatar"> </a>
+                      <div class="media-body">
+                        <h5 class="media-heading">Evalua tu experiencia en {{ i.Trabajo_acordado.postulante_acordado.Trabajo.Nombre }}!
+                        <br>  <small class="text-muted"> {{ i.Fecha }}</small>
+
+                        </h5> <a class="text-system notificacion" href="{% url 'visualizar_calificar_pegas' request.user.pk %}" >Revisa tus calificaciones pendientes!</a>
+{#                        <a class="text-system notificacion" data-toggle="modal" data-target="#modal_notificacion_EvaluarPega{{ i.pk }}"> aquí!</a>#}
+                      </div>
+                  </li>
+              {% elif i.Tipo == 2 %}
+                  <li class="media">
+                      <a class="media-left" href="#"> <img src="/media/{{ i.Trabajo_acordado.postulante_acordado.Trabajo.Imagen }}" class="mw30 br64 mr15"alt="avatar"> </a>
+                      <div class="media-body">
+                        <h5 class="media-heading">Buena, te aceptaron en {{ i.Trabajo_acordado.postulante_acordado.Trabajo.Nombre }}!
+                          <br><small class="text-muted"> {{ i.Fecha }}</small>
+                        </h5>¡El requirente {{ i.Trabajo_acordado.postulante_acordado.Trabajo.Usuario.Nombre }} se pondrá en contacto contigo!
+{#                          <a href="{% url 'visualizar_postulantes_a_trabajos' request.user.pk %}" >revisa tus postulantes!</a>#}
+                      </div>
+                    </li>
+              {% elif i.Tipo == 3 %}
+                  <li class="media">
+                      <a class="media-left" href="#"> <img src="/media/{{ i.Trabajo.Imagen }}" class="mw30 br64 mr15"alt="avatar"> </a>
+                      <div class="media-body">
+                        <h5 class="media-heading">Nuevo Postulante a {{ i.Trabajo.Nombre }}!
+                       <br>   <small class="text-muted"> {{ i.Fecha }}</small>
+                        </h5>¡Buena,
+                          <a class="text-system notificacion" href="{% url 'visualizar_postulantes_a_trabajos' request.user.pk %}" >revisa tus postulantes!</a>
+                      </div>
+                    </li>
+              {% endif %}
+
+
+
+
+            {% endfor %}
+
+
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <span class="flag-xs flag-es"></span> Español
+          </a>
+          <ul class="dropdown-menu pv5 animated animated-short flipInX" role="menu">
+            <li>
+              <a href="javascript:void(0);">
+                <span class="flag-xs flag-in mr10"></span> Hindu </a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">
+                <span class="flag-xs flag-tr mr10"></span> Turkish </a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">
+                <span class="flag-xs flag-es mr10"></span> Spanish </a>
+            </li>
+          </ul>
+        </li>
+        <li class="menu-divider hidden-xs">
+          <i class="fa fa-circle" style="color:#4a89dc;"></i>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown"> <img src="/media/{{ usuario_solicitud.Imagen }}" alt="avatar" class="mw30 br64 mr15"> (ADMIN) {{ usuario_solicitud.Nombre }}
+            <span class="caret caret-tp hidden-xs"></span>
+          </a>
+          <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
+{#            <li class="dropdown-header clearfix">#}
+{#              <div class="pull-left ml10">#}
+{#                <select id="user-status" style="display: none;">#}
+{#                  <optgroup label="Current Status:">#}
+{#                    <option value="1-1">Away</option>#}
+{#                    <option value="1-2">Offline</option>#}
+{#                    <option value="1-3" selected="selected">Online</option>#}
+{#                  </optgroup>#}
+{#                </select><div class="btn-group" style="width: 100px;"><button type="button" class="multiselect dropdown-toggle btn btn-default btn-sm" data-toggle="dropdown" title="Online" style="width: 100px;">Online <b class="caret"></b></button><ul class="multiselect-container dropdown-menu"><li class="multiselect-item multiselect-group"><label>Current Status:</label></li><li><a href="javascript:void(0);"><label class="radio"><input type="radio" value="1-1"> Away</label></a></li><li><a href="javascript:void(0);"><label class="radio"><input type="radio" value="1-2"> Offline</label></a></li><li class="active"><a href="javascript:void(0);"><label class="radio"><input type="radio" value="1-3"> Online</label></a></li></ul></div>#}
+{#              </div>#}
+{##}
+{#              <div class="pull-right mr10">#}
+{#                <select id="user-role" style="display: none;">#}
+{#                  <optgroup label="Logged in As:">#}
+{#                    <option value="1-1">Client</option>#}
+{#                    <option value="1-2">Editor</option>#}
+{#                    <option value="1-3" selected="selected">Admin</option>#}
+{#                  </optgroup>#}
+{#                </select><div class="btn-group" style="width: 100px;"><button type="button" class="multiselect dropdown-toggle btn btn-default btn-sm" data-toggle="dropdown" title="Admin" style="width: 100px;">Admin <b class="caret"></b></button><ul class="multiselect-container dropdown-menu pull-right"><li class="multiselect-item multiselect-group"><label>Logged in As:</label></li><li><a href="javascript:void(0);"><label class="radio"><input type="radio" value="1-1"> Client</label></a></li><li><a href="javascript:void(0);"><label class="radio"><input type="radio" value="1-2"> Editor</label></a></li><li class="active"><a href="javascript:void(0);"><label class="radio"><input type="radio" value="1-3"> Admin</label></a></li></ul></div>#}
+{#              </div>#}
+{##}
+{#            </li>#}
+{#            <li class="list-group-item">#}
+{#              <a href="#" class="animated animated-short fadeInUp">#}
+{#                <span class="fa fa-envelope"></span> Messages#}
+{#                <span class="label label-warning">2</span>#}
+{#              </a>#}
+{#            </li>#}
+{#            <li class="list-group-item">#}
+{#              <a href="#" class="animated animated-short fadeInUp">#}
+{#                <span class="fa fa-user"></span> Friends#}
+{#                <span class="label label-warning">6</span>#}
+{#              </a>#}
+{#            </li>#}
+            <li class="list-group-item">
+              <a href="{% url 'config_perfil' request.user.pk %}" class="animated animated-short fadeInUp">
+                <span class="fa fa-gear"></span> Configuración de la cuenta </a>
+            </li>
+            <li class="list-group-item">
+              <a href="{% url 'auth_logout' %}" class="animated animated-short fadeInUp">
+                <span class="fa fa-power-off"></span> Desconectarse </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+    <!-- End: Header -->
+
+    <!-----------------------------------------------------------------+
+       "#sidebar_left" Helper Classes:
+    -------------------------------------------------------------------+
+       * Positioning Classes:
+        '.affix' - Sets Sidebar Left to the fixed position
+
+       * Available Skin Classes:
+         .sidebar-dark (default no class needed)
+         .sidebar-light
+         .sidebar-light.light
+    -------------------------------------------------------------------+
+       Example: <aside id="sidebar_left" class="affix sidebar-light">
+       Results: Fixed Left Sidebar with light/white background
+    ------------------------------------------------------------------->
+
+    <!-- Start: Sidebar Left -->
+    <aside id="sidebar_left" class="nano nano-primary affix">
+
+      <!-- Start: Sidebar Left Content -->
+      <div class="sidebar-left-content nano-content">
+
+        <!-- Start: Sidebar Header -->
+        <header class="sidebar-header">
+
+          <!-- Sidebar Widget - Menu (Slidedown) -->
+          <div class="sidebar-widget menu-widget">
+            <div class="row text-center mbn">
+              <div class="col-xs-4">
+                <a href="{% url 'index' %}" class="text-primary" data-toggle="tooltip" data-placement="top" title="Dashboard">
+                  <span class="glyphicon glyphicon-home"></span>
+                </a>
+              </div>
+              <div class="col-xs-4">
+                <a href="pages_messages.html" class="text-info" data-toggle="tooltip" data-placement="top" title="Messages">
+                  <span class="glyphicon glyphicon-inbox"></span>
+                </a>
+              </div>
+              <div class="col-xs-4">
+                <a href="pages_profile.html" class="text-alert" data-toggle="tooltip" data-placement="top" title="Tasks">
+                  <span class="glyphicon glyphicon-bell"></span>
+                </a>
+              </div>
+              <div class="col-xs-4">
+                <a href="pages_timeline.html" class="text-system" data-toggle="tooltip" data-placement="top" title="Activity">
+                  <span class="fa fa-desktop"></span>
+                </a>
+              </div>
+              <div class="col-xs-4">
+                <a href="pages_profile.html" class="text-danger" data-toggle="tooltip" data-placement="top" title="Settings">
+                  <span class="fa fa-gears"></span>
+                </a>
+              </div>
+              <div class="col-xs-4">
+                <a href="pages_gallery.html" class="text-warning" data-toggle="tooltip" data-placement="top" title="Cron Jobs">
+                  <span class="fa fa-flask"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Widget - Author (hidden)  -->
+          <div class="sidebar-widget author-widget hidden">
+            <div class="media">
+              <a class="media-left" href="#">
+                <img src="{% static 'assets/img/avatars/3.jpg' %}" class="img-responsive">
+              </a>
+              <div class="media-body">
+                <div class="media-links">
+                   <a href="#" class="sidebar-menu-toggle">User Menu -</a> <a href="pages_login(alt).html">Logout</a>
+                </div>
+                <div class="media-author">Michael Richards</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Widget - Search (hidden) -->
+          <div class="sidebar-widget search-widget hidden">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="fa fa-search"></i>
+              </span>
+              <input type="text" id="sidebar-search" class="form-control" placeholder="Search...">
+            </div>
+          </div>
+
+        </header>
+        <!-- End: Sidebar Header -->
+
+        <!-- Start: Sidebar Left Menu -->
+
+          <ul class="nav sidebar-menu">
+              <li class="sidebar-label pt20">Perfil</li>
+              <li class="active">
+                <a href="{% url 'visualizar_perfil' request.user.pk %}" >
+                    <span class="fa fa-user"></span>
+                    <span class="sidebar-title">Perfil</span>
+                </a>
+            </li>
+              <li class="active">
+                <a href="{% url 'adm_usuarios' %}" >
+                    <span class="fa fa-user"></span>
+                    <span class="sidebar-title">Adm. usuarios</span>
+                </a>
+            </li>
+                            <li class="active">
+                <a href="{% url 'adm_pegas' %}" >
+                    <span class="fa fa-user"></span>
+                    <span class="sidebar-title">Adm. pegas</span>
+                </a>
+            </li>
+
+        </ul>
+        <!-- End: Sidebar Menu -->
+
+	      <!-- Start: Sidebar Collapse Button -->
+	      <div class="sidebar-toggle-mini">
+	        <a href="#">
+	          <span class="fa fa-sign-out"></span>
+	        </a>
+	      </div>
+	      <!-- End: Sidebar Collapse Button -->
+
+      </div>
+      <!-- End: Sidebar Left Content -->
+
+    </aside>
+    <!-- End: Sidebar Left -->
+
+    <!-- Start: Content-Wrapper -->
+    <section id="content_wrapper">
+
+      <!-- SECCION PRINCIPAL -->
+      <section id="content" class="animated fadeIn">
+      <!-- Trigger the modal with a button -->
+
+        {% block section_contenido %}
+        {% endblock%}
+{#            <footer id="content-footer">#}
+{#        <div class="row">#}
+{#          <div class="col-md-6">#}
+{#            <span class="footer-legal">2019 Full Pega</span>#}
+{#          </div>#}
+{#        </div>#}
+{#      </footer>#}
+      </section>
+      <!-- End: Content -->
+
+      <!-- Begin: Page Footer -->
+      <!-- End: Page Footer -->
+
+    </section>
+
+
+    <!-- End: Content-Wrapper -->
+
+    <!-- Start: Right Sidebar -->
+    <aside id="sidebar_right" class="nano affix">
+
+      <!-- Start: Sidebar Right Content -->
+      <div class="sidebar-right-content nano-content">
+
+        <div class="tab-block sidebar-block br-n">
+          <ul class="nav nav-tabs tabs-border nav-justified hidden">
+            <li class="active">
+              <a href="#sidebar-right-tab1" data-toggle="tab">Tab 1</a>
+            </li>
+            <li>
+              <a href="#sidebar-right-tab2" data-toggle="tab">Tab 2</a>
+            </li>
+            <li>
+              <a href="#sidebar-right-tab3" data-toggle="tab">Tab 3</a>
+            </li>
+          </ul>
+          <div class="tab-content br-n">
+            <div id="sidebar-right-tab1" class="tab-pane active">
+
+              <h5 class="title-divider text-muted mb20"> Server Statistics
+                <span class="pull-right"> 2013
+                  <i class="fa fa-caret-down ml5"></i>
+                </span>
+              </h5>
+              <div class="progress mh5">
+                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 44%">
+                  <span class="fs11">DB Request</span>
+                </div>
+              </div>
+              <div class="progress mh5">
+                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 84%">
+                  <span class="fs11 text-left">Server Load</span>
+                </div>
+              </div>
+              <div class="progress mh5">
+                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 61%">
+                  <span class="fs11 text-left">Server Connections</span>
+                </div>
+              </div>
+
+              <h5 class="title-divider text-muted mt30 mb10">Traffic Margins</h5>
+              <div class="row">
+                <div class="col-xs-5">
+                  <h3 class="text-primary mn pl5">132</h3>
+                </div>
+                <div class="col-xs-7 text-right">
+                  <h3 class="text-success-dark mn">
+                    <i class="fa fa-caret-up"></i> 13.2% </h3>
+                </div>
+              </div>
+
+              <h5 class="title-divider text-muted mt25 mb10">Database Request</h5>
+              <div class="row">
+                <div class="col-xs-5">
+                  <h3 class="text-primary mn pl5">212</h3>
+                </div>
+                <div class="col-xs-7 text-right">
+                  <h3 class="text-success-dark mn">
+                    <i class="fa fa-caret-up"></i> 25.6% </h3>
+                </div>
+              </div>
+
+              <h5 class="title-divider text-muted mt25 mb10">Server Response</h5>
+              <div class="row">
+                <div class="col-xs-5">
+                  <h3 class="text-primary mn pl5">82.5</h3>
+                </div>
+                <div class="col-xs-7 text-right">
+                  <h3 class="text-danger mn">
+                    <i class="fa fa-caret-down"></i> 17.9% </h3>
+                </div>
+              </div>
+
+              <h5 class="title-divider text-muted mt40 mb20"> User Activity
+                <span class="pull-right text-primary fw600">1 Hour</span>
+              </h5>
+
+              <div class="media">
+                <a class="media-left" href="#">
+                  <img src="{% static 'assets/img/avatars/6.jpg' %}" class="mw40 br64" alt="holder-img">
+                </a>
+                <div class="media-body">
+                  <h5 class="media-heading">Article
+                    <small class="text-muted">- 08/16/22</small>
+                  </h5>Updated 36 days ago by
+                  <a class="text-system" href="#"> Max </a>
+                </div>
+              </div>
+              <div class="media">
+                <a class="media-left" href="#">
+                  <img src="/media/{{ usuario.Imagen }}" class="mw40 br64" alt="holder-img">
+                </a>
+                <div class="media-body">
+                  <h5 class="media-heading">Richard
+                    <small class="text-muted">@cloudesigns</small>
+                    <small class="pull-right text-muted">6h</small>
+                  </h5>Updated 36 days ago by
+                  <a class="text-system" href="#"> Max </a>
+                </div>
+              </div>
+              <div class="media">
+                <a class="media-left" href="#">
+                  <img  src="/media/{{ usuario.Imagen }}" class="mw40 br64" alt="holder-img">
+                </a>
+                <div class="media-body">
+                  <h5 class="media-heading">1,610 kcal
+                    <span class="fa fa-caret-down text-primary pl5"></span>
+                  </h5>Updated 36 days ago by
+                  <a class="text-system" href="#"> Max </a>
+                </div>
+              </div>
+              <div class="media">
+                <a class="media-left" href="#">
+                  <img  src="/media/{{ usuario.Imagen }}" class="mw40 br64" alt="holder-img">
+                </a>
+                <div class="media-body">
+                  <h5 class="media-heading">1,610 kcal
+                    <span class="label label-xs label-system ml5">Featured</span>
+                  </h5>Updated 36 days ago by
+                  <a class="text-system" href="#"> Max </a>
+                </div>
+              </div>
+              <div class="media">
+                <a class="media-left" href="#">
+                  <img  src="/media/{{ usuario.Imagen }}" class="mw40 br64" alt="holder-img">
+                </a>
+                <div class="media-body">
+                  <h5 class="media-heading">1,610 kcal</h5>
+                  Updated ago by
+                  <a class="text-system" href="#"> Max </a>
+                </div>
+                <a class="media-right pl30" href="#">
+                  <span class="fa fa-pencil text-muted mb5"></span>
+                  <br>
+                  <span class="fa fa-remove text-danger-light"></span>
+                </a>
+              </div>
+            </div>
+            <div id="sidebar-right-tab2" class="tab-pane"></div>
+            <div id="sidebar-right-tab3" class="tab-pane"></div>
+          </div>
+          <!-- end: .tab-content -->
+        </div>
+
+      </div>
+    </aside>
+    <!-- End: Right Sidebar -->
+
+  </div>
+  <!-- End: Main -->
+
+  <!-- BEGIN: PAGE SCRIPTS -->
+
+  <!-- jQuery -->
+  <script src="{% static 'vendor/jquery/jquery-1.11.1.min.js' %}"></script>
+  <script src="{% static 'vendor/jquery/jquery.steps.js' %}"></script>
+  <script src="{% static 'vendor/jquery/jquery.steps.min.js' %}"></script>
+  <script src="{% static 'vendor/jquery/jquery_ui/jquery-ui.min.js' %}"></script>
+
+  <!-- HighCharts Plugin -->
+  <script src="{% static 'vendor/plugins/highcharts/highcharts.js' %}"></script>
+
+  <!-- Sparklines Plugin -->
+  <script src="{% static 'vendor/plugins/sparkline/jquery.sparkline.min.js' %}"></script>
+
+  <!-- Simple Circles Plugin -->
+  <script src="{% static 'vendor/plugins/circles/circles.js' %}"></script>
+
+  <!-- JvectorMap Plugin + US Map (more maps in plugin/assets folder) -->
+  <script src="{% static 'vendor/plugins/jvectormap/jquery.jvectormap.min.js' %}"></script>
+  <script src="{% static 'vendor/plugins/jvectormap/assets/jquery-jvectormap-us-lcc-en.js' %}"></script>
+
+  <!-- Theme Javascript -->
+  <script src="{% static 'assets/js/utility/utility.js' %}"></script>
+  <script src="{% static 'assets/js/demo/demo.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+  <!-- Widget Javascript -->
+  <script src="{% static 'assets/js/demo/widgets.js' %}"></script>
+  <script type="text/javascript">
+ jQuery(document).ready(function() {
+
+   "use strict";
+
+   // Init Theme Core
+   Core.init();
+
+   // Init Demo JS
+   Demo.init();
+
+   // Init Widget Demo JS
+   // demoHighCharts.init();
+
+   // Because we are using Admin Panels we use the OnFinish
+   // callback to activate the demoWidgets. It's smoother if
+   // we let the panels be moved and organized before
+   // filling them with content from various plugins
+
+   // Init plugins used on this page
+   // HighCharts, JvectorMap, Admin Panels
+
+   // Init Admin Panels on widgets inside the ".admin-panels" container
+   $('.admin-panels').adminpanel({
+     grid: '.admin-grid',
+     draggable: true,
+     preserveGrid: true,
+     mobile: false,
+     onStart: function() {
+       // Do something before AdminPanels runs
+     },
+     onFinish: function() {
+       $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
+
+       // Init the rest of the plugins now that the panels
+       // have had a chance to be moved and organized.
+       // It's less taxing to organize empty panels
+       demoHighCharts.init();
+       runVectorMaps(); // function below
+     },
+     onSave: function() {
+       $(window).trigger('resize');
+     }
+   });
+
+   // Widget VectorMap
+   function runVectorMaps() {
+
+     // Jvector Map Plugin
+     var runJvectorMap = function() {
+       // Data set
+       var mapData = [900, 700, 350, 500];
+       // Init Jvector Map
+       $('#WidgetMap').vectorMap({
+         map: 'us_lcc_en',
+         //regionsSelectable: true,
+         backgroundColor: 'transparent',
+         series: {
+           markers: [{
+             attribute: 'r',
+             scale: [3, 7],
+             values: mapData
+           }]
+         },
+         regionStyle: {
+           initial: {
+             fill: '#E5E5E5'
+           },
+           hover: {
+             "fill-opacity": 0.3
+           }
+         },
+         markers: [{
+           latLng: [37.78, -122.41],
+           name: 'San Francisco,CA'
+         }, {
+           latLng: [36.73, -103.98],
+           name: 'Texas,TX'
+         }, {
+           latLng: [38.62, -90.19],
+           name: 'St. Louis,MO'
+         }, {
+           latLng: [40.67, -73.94],
+           name: 'New York City,NY'
+         }],
+         markerStyle: {
+           initial: {
+             fill: '#a288d5',
+             stroke: '#b49ae0',
+             "fill-opacity": 1,
+             "stroke-width": 10,
+             "stroke-opacity": 0.3,
+             r: 3
+           },
+           hover: {
+             stroke: 'black',
+             "stroke-width": 2
+           },
+           selected: {
+             fill: 'blue'
+           },
+           selectedHover: {}
+         },
+       });
+       // Manual code to alter the Vector map plugin to
+       // allow for individual coloring of countries
+       var states = ['US-CA', 'US-TX', 'US-MO',
+         'US-NY'
+       ];
+       var colors = [bgWarningLr, bgPrimaryLr, bgInfoLr, bgAlertLr];
+       var colors2 = [bgWarning, bgPrimary, bgInfo, bgAlert];
+       $.each(states, function(i, e) {
+         $("#WidgetMap path[data-code=" + e + "]").css({
+           fill: colors[i]
+         });
+       });
+       $('#WidgetMap').find('.jvectormap-marker')
+         .each(function(i, e) {
+           $(e).css({
+             fill: colors2[i],
+             stroke: colors2[i]
+           });
+         });
+     }
+
+     if ($('#WidgetMap').length) {
+       runJvectorMap();
+     }
+   }
+
+
+
+ });
+ </script>
+    <script>
+    function setCookie(cname,cvalue,exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires=" + d.toGMTString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+   </script>
+{##Script para mostrar el modal de la notificacion #}
+{#<script>#}
+{#    $('.notificacion').on("click",function(){#}
+{#        alert($(this).data("target"));#}
+{#        $($(this).data("target")).modal('show');#}
+{#         //post code#}
+{#    })#}
+{#</script>#}
+{% block scripts %}
+{% endblock%}
+ <!-- END: PAGE SCRIPTS -->
+
+</body>
+
+</html>

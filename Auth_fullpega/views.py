@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -26,15 +26,15 @@ def auth_login(request):
             password=password
         )
         if user is not None:
-            if user.is_active:
-                login(request, user)
-                return HttpResponseRedirect(reverse('index'))
-            # if user and user.is_staff is False:
+            # if user.is_active:
             #     login(request, user)
             #     return HttpResponseRedirect(reverse('index'))
-            # elif user and user.is_staff is True:
-            #     login(request, user)
-            #     return redirect('admin')
+            if user and user.is_staff is False:
+                login(request, user)
+                return HttpResponseRedirect(reverse('index'))
+            elif user and user.is_staff is True:
+                login(request, user)
+                return redirect('index_admin')
 
             else:
                 print("Usuario o contraseña no validos")
