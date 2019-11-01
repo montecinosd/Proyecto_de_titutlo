@@ -77,6 +77,11 @@ def getSentimentValue(request):
 	except:
 		print("No se pudo obtener la información de Watson")
 		sentiment = 5
+		data = {
+			'sentimiento': 'El usuario aún no cuenta con comentarios respecto a sus pegas',
+			'satisfaccion': 'El usuario aún no cuenta con comentarios respecto a sus pegas'
+		}
+		return JsonResponse(data)
 
 	data = {
 		'sentimiento': sentiment,

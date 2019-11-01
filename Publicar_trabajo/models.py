@@ -16,7 +16,7 @@ class Trabajo(models.Model):
     Detalle = models.CharField(max_length=120)
 
     Monto_pago = models.PositiveIntegerField()
-    Fecha = models.DateTimeField(null=True, blank=True)
+    Fecha = models.DateField(null=True, blank=True)
     Hora = models.TimeField(null=True, blank=True)
     rango_etario = models.CharField(
         max_length=20,
@@ -41,14 +41,14 @@ class Trabajo(models.Model):
 class Postulantes(models.Model):
     Trabajo = models.ForeignKey(Trabajo, on_delete=models.CASCADE)
     Postulante = models.ForeignKey(Persona,on_delete=models.CASCADE)
-    Fecha = models.DateTimeField(default=datetime.now)
+    Fecha = models.DateField(default=datetime.now)
     Hora = models.TimeField(default=datetime.now)
 
 #model de historial de traajos acordados activos o pasados, estos se realizaron y se aceptaron con distinta fecha y hora que cuando se postula
 class Trabajo_acordado(models.Model):
     #aqui se tiene el trabajo que se postula, el usuario ( atraves del trabajo) y el postulante - se desvia la redundancia
     postulante_acordado = models.ForeignKey(Postulantes, on_delete=models.CASCADE)
-    Fecha = models.DateTimeField(default=datetime.now, null=True, blank=True)
+    Fecha = models.DateField(default=datetime.now, null=True, blank=True)
     Hora = models.TimeField(default=datetime.now, null=True, blank=True)
 
 class Calificaciones(models.Model):
@@ -57,21 +57,21 @@ class Calificaciones(models.Model):
     Pega_calificada = models.ForeignKey(Trabajo,on_delete=models.CASCADE)
     Estrellas = models.PositiveIntegerField(null=True, blank=True)
     Comentarios = models.CharField(max_length=120, null=True, blank=True)
-    Fecha = models.DateTimeField(default=datetime.now, null=True, blank=True)
+    Fecha = models.DateField(default=datetime.now, null=True, blank=True)
     Hora = models.TimeField(default=datetime.now, null=True, blank=True)
     Realizada = models.PositiveIntegerField(default=0)
 
 class Historial_trabajo(models.Model):
     Trabajo = models.ForeignKey(Trabajo,on_delete=models.CASCADE)
     Persona = models.ForeignKey(Persona, on_delete=models.CASCADE)
-    Fecha = models.DateTimeField(default=datetime.now)
+    Fecha = models.DateField(default=datetime.now)
     Hora = models.TimeField(default=datetime.now)
     #1 publicar 2 realizar
     tipo = models.PositiveIntegerField(default=1)
 
 class Notificaciones(models.Model):
     usuario = models.ForeignKey(Persona, on_delete=models.CASCADE)
-    Fecha = models.DateTimeField(default=datetime.now, null=True, blank=True)
+    Fecha = models.DateField(default=datetime.now, null=True, blank=True)
     Hora = models.TimeField(default=datetime.now, null=True, blank=True)
     Activo = models.PositiveIntegerField(default=1)
 

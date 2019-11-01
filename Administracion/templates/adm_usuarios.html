@@ -29,7 +29,7 @@
                   <div id="datatable2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                       <table id="example" class="table table-striped table-hover dataTable no-footer" id="datatable2" cellspacing="0" width="100%" role="grid" aria-describedby="datatable2_info" style="width: 100%;">
                     <thead>
-                      <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 2em;">pk</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 2em;">Imagen</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 13em;">Nombre</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 5em;">Correo</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 1em;">Telefono</th><th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Salary" style="width: 1em;">Accion</th></tr>
+                      <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 2em;">pk</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 2em;">Imagen</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 13em;">Nombre</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 5em;">Correo</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 1em;">Telefono</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 1em;">Estado</th><th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Salary" style="width: 1em;">Accion</th></tr>
                     </thead>
                     <tbody>
                     {% for i in usuarios %}
@@ -39,13 +39,18 @@
                         <td>{{ i.Nombre }}</td>
                         <td>{{ i.Correo }}</td>
                         <td>{{ i.Telefono_C }}</td>
+                        {% if i.Usuario.is_active == True %}
+                             <td>Activo</td>
+                        {% else %}
+                             <td>Baneado</td>
+                        {% endif %}
                         <td><div class="btn-group">
   <div class="btn-group">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
     Acción <span class="caret"></span></button>
     <ul class="dropdown-menu" role="menu">
       <li><a href="{% url 'visualizar_perfil_adm' i.pk %}" >Visualizar perfil</a></li>
-      <li><a href="#">Deshabilitar</a></li>
+      <li><a href="{% url 'deshabilitar_user_adm' i.Usuario.pk %}">Banear/Activar usuario</a></li>
     </ul>
   </div>
 </div></td>

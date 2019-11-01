@@ -60,7 +60,11 @@
 
 <script>
     $(document).ready(function() {
-        $('#example').DataTable();
+        $('#example').dataTable({
+            /* Disable initial sort */
+           "order": []
+        });
+
     } );
 </script>
 {% endblock %}

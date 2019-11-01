@@ -9,5 +9,7 @@ urlpatterns = [
      path('adm_pegas', views.adm_pegas, name='adm_pegas'),
      path(r'^  visualizar_perfil_adm/<int:pk_user>', views.visualizar_perfil_adm, name='visualizar_perfil_adm'),
      path(r'^  visualizar_pega_adm/<int:pk_pega>', views.visualizar_pega_adm, name='visualizar_pega_adm'),
+     path(r'^  deshabilitar_pega_adm/<int:pk_pega>', views.deshabilitar_pega_adm, name='deshabilitar_pega_adm'),
+     path(r'^  deshabilitar_user_adm/<int:pk_user>', views.deshabilitar_user_adm, name='deshabilitar_user_adm'),
 
 ]

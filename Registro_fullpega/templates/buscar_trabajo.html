@@ -229,7 +229,17 @@
 
 <script>
     $(document).ready(function() {
-        $('#example').DataTable();
+        $('#example').dataTable({
+            /* Disable initial sort */
+           "order": []
+        });
+
     } );
 </script>
+{##}
+{#<script>#}
+{#    $(document).ready(function() {#}
+{#        $('#example').DataTable();#}
+{#    } );#}
+{#</script>#}
 {% endblock %}

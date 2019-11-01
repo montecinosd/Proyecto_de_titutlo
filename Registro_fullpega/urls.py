@@ -3,9 +3,9 @@ from Registro_fullpega import views
 
 
 urlpatterns = [
-     path('', views.index, name='index'),
+     path('index', views.index, name='index'),
      #pagina principal
-     path('pagina_principal', views.pagina_principal, name='pagina_principal'),
+     path('', views.pagina_principal, name='pagina_principal'),
      #registros
      path(r'^Registro_form', views.Registro_form, name='Registro_form'),
      path(r'^Guardar_Registro_form', views.Guardar_Registro_form, name='Guardar_Registro_form'),
