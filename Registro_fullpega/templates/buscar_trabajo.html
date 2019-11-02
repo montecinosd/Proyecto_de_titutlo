@@ -23,10 +23,76 @@
 
               <div class="panel heading-border panel-primary">
                 <div class="panel-body bg-light">
-                    <div class="section-divider mb40" id="spy1">
+                    <div class="section-divider mb40 " id="spy1">
                       <span>¡Busca la pega que necesitas!</span>
 
                     </div>
+                <!-- Control buttons -->
+{#<div id="myBtnContainer">#}
+{#  <button class="btn active" onclick="filterSelection('all')"> Show all</button>#}
+{#  <button class="btn" onclick="filterSelection('cars')"> Cars</button>#}
+{#  <button class="btn" onclick="filterSelection('animals')"> Animals</button>#}
+{#  <button class="btn" onclick="filterSelection('fruits')"> Fruits</button>#}
+{#  <button class="btn" onclick="filterSelection('colors')"> Colors</button>#}
+{#</div>#}
+{##}
+{#<!-- The filterable elements. Note that some have multiple class names (this can be used if they belong to multiple categories) -->#}
+{#<div class="container">#}
+{#  <div class="filterDiv cars">BMW</div>#}
+{#  <div class="filterDiv colors fruits">Orange</div>#}
+{#  <div class="filterDiv cars">Volvo</div>#}
+{#  <div class="filterDiv colors">Red</div>#}
+{#  <div class="filterDiv cars animals">Mustang</div>#}
+{#  <div class="filterDiv colors">Blue</div>#}
+{#  <div class="filterDiv animals">Cat</div>#}
+{#  <div class="filterDiv animals">Dog</div>#}
+{#  <div class="filterDiv fruits">Melon</div>#}
+{#  <div class="filterDiv fruits animals">Kiwi</div>#}
+{#  <div class="filterDiv fruits">Banana</div>#}
+{#  <div class="filterDiv fruits">Lemon</div>#}
+{#  <div class="filterDiv animals">Cow</div>#}
+{#</div>#}
+{#                <style>#}
+{#                    .container {#}
+{#  overflow: hidden;#}
+{#}#}
+{##}
+{#.filterDiv {#}
+{#  float: left;#}
+{#  background-color: #2196F3;#}
+{#  color: #ffffff;#}
+{#  width: 100px;#}
+{#  line-height: 100px;#}
+{#  text-align: center;#}
+{#  margin: 2px;#}
+{#  display: none; /* Hidden by default */#}
+{#}#}
+{##}
+{#/* The "show" class is added to the filtered elements */#}
+{#.show {#}
+{#  display: block;#}
+{#}#}
+{##}
+{#/* Style the buttons */#}
+{#.btn {#}
+{#  border: none;#}
+{#  outline: none;#}
+{#  padding: 12px 16px;#}
+{#  background-color: #f1f1f1;#}
+{#  cursor: pointer;#}
+{#}#}
+{##}
+{#/* Add a light grey background on mouse-over */#}
+{#.btn:hover {#}
+{#  background-color: #ddd;#}
+{#}#}
+{##}
+{#/* Add a dark background to the active button */#}
+{#.btn.active {#}
+{#  background-color: #666;#}
+{#  color: white;#}
+{#}#}
+{#                </style>#}
                         <div class="row">
     <div class="col-md-12">
               <div class="" id="spy2">
@@ -34,17 +100,82 @@
 {#                  <div class="panel-title hidden-xs">#}
 {#                    <span class="glyphicon glyphicon-tasks"></span>¡Busca una pega adecuada para ti!</div>#}
 {#                </div>#}
-                <div class="panel-body pn bg-light"">
+                <div class="panel-body pn bg-light">
                   <div id="datatable2_wrapper" class=" dataTables_wrapper form-inline dt-bootstrap no-footer">
+{#<table id="example" class="display table table-striped table-hover dataTable no-footer" cellspacing="0" width="100%" role="grid" aria-describedby="datatable2_info" style="width: 100%;">#}
+{#    <thead>#}
+{#        <tr>#}
+{#            <th style="width: 157px;">Name</th>#}
+{#            <th>Position</th>#}
+{#            <th>Office</th>#}
+{#            <th>Age</th>#}
+{#            <th>Start date</th>#}
+{#            <th>Salary</th>#}
+{#        </tr>#}
+{#    </thead>#}
+{##}
+{#    <tfoot>#}
+{##}
+{#        <tr>#}
+{#            <th>Name</th>#}
+{#            <th>Position</th>#}
+{#            <th>Office</th>#}
+{#            <th>Age</th>#}
+{#            <th>Start date</th>#}
+{#            <th>Salary</th>#}
+{#        </tr>#}
+{#    </tfoot>#}
+{##}
+{#    <tbody>#}
+{#    {% for i in prueba %}#}
+{#        <tr>#}
+{#                        <td style="font-weight: bold;"class="sorting_1 text-center"><span class="text-center">Vacantes: {{ i.10 }}</span></br>{{ i.1 }} </td>#}
+{#                        <td class="text-center">-Area: {{ i.2 }}-</br> {{ i.3 }}</td>#}
+{#                        <td class="text-center">-Area: {{ i.2 }}-</br> {{ i.3 }}</td>#}
+{#                        <td class="text-center">{{ i.4 }} {{ i.5 }}</td>#}
+{##}
+{#            <td>2011/04/25</td>#}
+{#            <td>$3,120</td>#}
+{#        </tr>#}
+{#    {% endfor %}#}
+{##}
+{#    </tbody>#}
+{#</table>#}
                       <table id="example" class="table table-striped table-hover dataTable no-footer" id="datatable2" cellspacing="0" width="100%" role="grid" aria-describedby="datatable2_info" style="width: 100%;">
                     <thead >
                       <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 157px;">Nombre</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 236px;">Detalle</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 83px;">Fecha</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 51px;">Comuna</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 108px;">Pago</th> <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Salary" style="width: 75px;">Imagen</th><th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Salary" style="width: 75px;">Accion</th></tr>
                     </thead>
+                          <div class="row text-center">
+                              <div class="col-md-2 text-center">
+                                 <h5>Comuna</h5>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                 <h5>Area</h5>
+                              </div>
+                          </div>
+                          <div class="row text-center">
+                                <div class="col-md-2 text-center">
+                                    <select class ="btn btn-primary mySelect" style="padding-bottom: 1em; margin-bottom: 1em;" id="mySelect">
+                                        <option value=""></option>
+                                        <option value="Macul">Macul</option>
+                                        <option value="Peñalolen">Peñalolen</option>
+                                    </select>
+                                  </div>
+                              <div class="col-md-2 text-center">
+                                    <select class ="btn btn-primary mySelect" style="padding-bottom: 1em; margin-bottom: 1em;" id="mySelect2">
+                                        <option value=""></option>
+                                        <option value="Hogar">Hogar</option>
+                                        <option value="Informatica">Informatica</option>
+                                    </select>
+                              </div>
+                          </div>
+
+                        <hr style="padding: 0%;margin: 0.5em;">
                     <tbody>
                     {% for i in prueba %}
 {#            #                          0    1       2               3      4       5               6             7      8        9#}
 {#            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna,i.Monto_pago,i.Imagen,1))#}
-<tr role="row" class="odd">
+                  <div class="filterDiv animals"><tr role="row" class="odd "><div class="filterDiv animals"></div>
                         <td style="font-weight: bold;"class="sorting_1 text-center"><span class="text-center">Vacantes: {{ i.10 }}</span></br>{{ i.1 }} </td>
                         <td class="text-center">-Area: {{ i.2 }}-</br> {{ i.3 }}</td>
                         <td class="text-center">{{ i.4 }} {{ i.5 }}</td>
@@ -52,62 +183,16 @@
                         <td>{{ i.7 }}</td>
 
 
-                     <td style="height: 10%;height: 10;padding: 0;"><img class='img-responsive' style="width: 8em;height: 8em; border-radius: 10em;"src="/media/{{ i.8 }}"/></td>
-                    {% if i.9 == 1 %}
+                        <td style="height: 10%;height: 10;padding: 0;"><img class='img-responsive' style="width: 8em;height: 8em; border-radius: 10em;"src="/media/{{ i.8 }}"/></td>
+                        {% if i.9 == 1 %}
                                                     <td><a href="" disabled class="btn btn-primary">¡Ya has postulado a esta pega!</a></td>
 
                         {% else %}
                                 <td><a href="{% url 'visualizar_perfil_detalle_pega' i.0 %}" class="btn btn-primary">¡Revisar pega para postular!</a></td>
                         {% endif %}
-{#                        {% for z in i %}#}
-{#                            {{ z }}#}
-{#                            {% endfor %}#}
+                    </tr></div>
                     {% endfor %}
-{#                    {% for i in trabajos %}#}
-{#                        {{ i }}#}
-{#                    <tr role="row" class="odd">#}
-{#                        <td class="sorting_1">{{ i.Area.Nombre }} - {{ i.Nombre }} </td>#}
-{#                        <td>{{ i.Detalle }}</td>#}
-{#                        <td>{{ i.Fecha }} {{ i.Hora }}</td>#}
-{#                        <td>{{ i.Direccion.Comuna }}</td>#}
-{#                        <td>{{ i.Monto_pago }}</td>#}
-{##}
-{##}
-{#                     <td style="height: 10%;height: 10;padding: 0;"><img class='img-responsive' style="width: 8em;height: 8em;"src="/media/{{ i.Imagen }}"/></td>#}
-{#                        {{ i.pk }}#}
-{#                        {% for z in trabajos_postulados %}#}
-{#                            {{ z.Trabajo.pk }}#}
-{#                        {% endfor %}#}
-{#                    DEFINO UN STOP PARA BSUCAR SI ESTA YA POSTULADO EL TRABAJO#}
-{#                        {% with stop_loop="True" %}#}
-{#                            PI{{ stop_loop }}#}
-{#                        {% for z in trabajos_postulados %}#}
-{#                            SI NO SE HA USADO EL STOP, PROSIGO BUSCANDO#}
-{#                            {% if stop_loop == "True" %}#}
-{#                                {% if i.pk == z.Trabajo.pk %}#}
-{#                                 {{update_variable|stop_loop}}#}
-{#                                     {% update_variable False as stop_loop %}#}
-{#                                    {{ forloop|break }}#}
-{#                            <td><a href="" disabled class="btn btn-primary">YA POSTULASTE CARNAL</a></td>#}
-{#                                    {{ stop_loop }}#}
-{#                                {% endif %}#}
-{##}
-{#                            {% else %}#}
-{#                                SI YA POSTULO AL TRABAJO, NO ENTRARA MAS AL CICLO#}
-{#                               -ELSE:{{ i.pk }}#}
-{#                                <td><a href="{% url 'visualizar_perfil_detalle_pega' i.pk %}" class="btn btn-primary">Revisar pega para postular</a></td>#}
-{##}
-{#                            {% endif %}#}
-{##}
-{##}
-{#                        {% endfor %}{{ stop_loop }}{% endwith %}#}
-{##}
-{##}
-{#                    {% if i in trabajos_postulados.Trabajo %}#}
-{#                        YA ESTA WEY#}
-{#                    {% endif %}#}
-{#                      </tr>#}
-{#                    {% endfor %}#}
+
                     </tbody>
                   </table>
                   </div>
@@ -120,105 +205,7 @@
               </div>
 {#    FIN#}
     </div>
-{#        <div class="admin-form theme-primary">#}
-{##}
-{#          <div class="panel heading-border panel-primary">#}
-{#            <div class="section-divider mb40" id="spy1">#}
-{#                      <span>¡Publica la pega que necesitas que alguien haga!</span>#}
-{#                    </div>#}
-{#          </div>#}
-{##}
-{##}
-{#    <div class="row">#}
-{#    <div class="col-md-12">#}
-{#              <div class="panel panel-visible" id="spy2">#}
-{#                <div class="panel-heading">#}
-{#                  <div class="panel-title hidden-xs">#}
-{#                    <span class="glyphicon glyphicon-tasks"></span>¡Busca una pega adecuada para ti!</div>#}
-{#                </div>#}
-{#                <div class="panel-body pn">#}
-{#                  <div id="datatable2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">#}
-{#                      <table id="example" class="table table-striped table-hover dataTable no-footer" id="datatable2" cellspacing="0" width="100%" role="grid" aria-describedby="datatable2_info" style="width: 100%;">#}
-{#                    <thead>#}
-{#                      <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 157px;">Nombre</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 236px;">Detalle</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 83px;">Fecha</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 51px;">Comuna</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 108px;">Pago</th> <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Salary" style="width: 75px;">Imagen</th><th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Salary" style="width: 75px;">Accion</th></tr>#}
-{#                    </thead>#}
-{#                    <tbody>#}
-{#                    {% for i in prueba %}#}
-{#            #                          0    1       2               3      4       5               6             7      8        9#}
-{#            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna,i.Monto_pago,i.Imagen,1))#}
-{#<tr role="row" class="odd">#}
-{#                        <td class="sorting_1">{{ i.1 }} - {{ i.2 }} </td>#}
-{#                        <td>{{ i.3 }}</td>#}
-{#                        <td>{{ i.4 }} {{ i.5 }}</td>#}
-{#                        <td>{{ i.6 }}</td>#}
-{#                        <td>{{ i.7 }}</td>#}
-{##}
-{##}
-{#                     <td style="height: 10%;height: 10;padding: 0;"><img class='img-responsive' style="width: 8em;height: 8em;"src="/media/{{ i.8 }}"/></td>#}
-{#                    {% if i.9 == 1 %}#}
-{#                                                    <td><a href="" disabled class="btn btn-primary">¡Ya has postulado a esta pega!</a></td>#}
-{##}
-{#                        {% else %}#}
-{#                                <td><a href="{% url 'visualizar_perfil_detalle_pega' i.0 %}" class="btn btn-primary">¡Revisar pega para postular!</a></td>#}
-{#                        {% endif %}#}
-{#                        {% for z in i %}#}
-{#                            {{ z }}#}
-{#                            {% endfor %}#}
-{#                    {% endfor %}#}
-{#                    {% for i in trabajos %}#}
-{#                        {{ i }}#}
-{#                    <tr role="row" class="odd">#}
-{#                        <td class="sorting_1">{{ i.Area.Nombre }} - {{ i.Nombre }} </td>#}
-{#                        <td>{{ i.Detalle }}</td>#}
-{#                        <td>{{ i.Fecha }} {{ i.Hora }}</td>#}
-{#                        <td>{{ i.Direccion.Comuna }}</td>#}
-{#                        <td>{{ i.Monto_pago }}</td>#}
-{##}
-{##}
-{#                     <td style="height: 10%;height: 10;padding: 0;"><img class='img-responsive' style="width: 8em;height: 8em;"src="/media/{{ i.Imagen }}"/></td>#}
-{#                        {{ i.pk }}#}
-{#                        {% for z in trabajos_postulados %}#}
-{#                            {{ z.Trabajo.pk }}#}
-{#                        {% endfor %}#}
-{#                    DEFINO UN STOP PARA BSUCAR SI ESTA YA POSTULADO EL TRABAJO#}
-{#                        {% with stop_loop="True" %}#}
-{#                            PI{{ stop_loop }}#}
-{#                        {% for z in trabajos_postulados %}#}
-{#                            SI NO SE HA USADO EL STOP, PROSIGO BUSCANDO#}
-{#                            {% if stop_loop == "True" %}#}
-{#                                {% if i.pk == z.Trabajo.pk %}#}
-{#                                 {{update_variable|stop_loop}}#}
-{#                                     {% update_variable False as stop_loop %}#}
-{#                                    {{ forloop|break }}#}
-{#                            <td><a href="" disabled class="btn btn-primary">YA POSTULASTE CARNAL</a></td>#}
-{#                                    {{ stop_loop }}#}
-{#                                {% endif %}#}
-{##}
-{#                            {% else %}#}
-{#                                SI YA POSTULO AL TRABAJO, NO ENTRARA MAS AL CICLO#}
-{#                               -ELSE:{{ i.pk }}#}
-{#                                <td><a href="{% url 'visualizar_perfil_detalle_pega' i.pk %}" class="btn btn-primary">Revisar pega para postular</a></td>#}
-{##}
-{#                            {% endif %}#}
-{##}
-{##}
-{#                        {% endfor %}{{ stop_loop }}{% endwith %}#}
-{##}
-{##}
-{#                    {% if i in trabajos_postulados.Trabajo %}#}
-{#                        YA ESTA WEY#}
-{#                    {% endif %}#}
-{#                      </tr>#}
-{#                    {% endfor %}#}
-{#                    </tbody>#}
-{#                  </table>#}
-{#                  </div>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#    </div>#}
+
 
 {% endblock %}
 {% block scripts %}
@@ -228,14 +215,143 @@
 <script src="{% static 'js/dataTables.bootstrap4.min.js' %}"></script>
 
 <script>
-    $(document).ready(function() {
-        $('#example').dataTable({
-            /* Disable initial sort */
-           "order": []
-        });
+$(document).ready(function() {
+    var table = $('#example').DataTable({
+        /* Disable initial sort */
+        "order": [],
+            "language": {
+        "sProcessing":    "Procesando...",
+        "sLengthMenu":    "Mostrar _MENU_ registros",
+        "sZeroRecords":   "No se encontraron resultados",
+        "sEmptyTable":    "Ningún dato disponible en esta tabla",
+        "sInfo":          "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "sInfoEmpty":     "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoFiltered":  "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix":   "",
+        "sSearch":        "Buscar:",
+        "sUrl":           "",
+        "sInfoThousands":  ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+            "sFirst":    "Primero",
+            "sLast":    "Último",
+            "sNext":    "Siguiente",
+            "sPrevious": "Anterior"
+        },
+        "oAria": {
+            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        }
+    }
 
-    } );
-</script>
+    });
+
+    $('#mySelect').on('change',function(){
+        var selectedValue = $(this).val();
+        {#table.fnFilter("^"+selectedValue+"$", 3, true); //Exact value, column, reg#}
+        var filter_value = $('.dataTables_filter input').val();
+        filter_value= filter_value.replace('Macul','');
+        filter_value= filter_value.replace('Peñalolen','');
+
+        table.search(filter_value+' '+selectedValue).draw();
+    });
+    $('#mySelect2').on('change',function(){
+        var selectedValue = $(this).val();
+        var ret = "data-123".replace('ata-','');
+
+        {#alert(ret);#}
+        var filter_value = $('.dataTables_filter input').val();
+        filter_value= filter_value.replace('Hogar','');
+        filter_value= filter_value.replace('Informatica','');
+        {#table.fnFilter("^"+selectedValue+"$", 3, true); //Exact value, column, reg#}
+        table.search(filter_value+' '+selectedValue).draw();
+    });
+    {#$("#example tbody td").each(function (i) {#}
+    {#    console.log(i);#}
+    {#    var select = $('<select><option value=""></option></select>')#}
+    {#        .appendTo($(this).empty())#}
+    {#        .on('change', function () {#}
+    {#            table.column(i)#}
+    {#                .search($(this).val())#}
+    {#                .draw();#}
+    {#        });#}
+    {#         table.column( i ).data().unique().sort().each( function ( d, j ) {#}
+    {#        select.append( '<option value="'+d+'">'+d+'</option>' )#}
+    {#    } );#}
+    {#});#}
+
+
+});
+
+
+        </script>
+
+{#$(document).ready(function() {#}
+{#    var table = $('#example').DataTable();#}
+
+{#    $("#example tfoot th").each( function ( i ) {#}
+{#        var select = $('<select><option value=""></option></select>')#}
+{#            .appendTo( $(this).empty() )#}
+{#            .on( 'change', function () {#}
+{#                table.column( i )#}
+{#                    .search( $(this).val() )#}
+{#                    .draw();#}
+{#            } );#}
+{##}
+{#        table.column( i ).data().unique().sort().each( function ( d, j ) {#}
+{#            select.append( '<option value="'+d+'">'+d+'</option>' )#}
+{#        } );#}
+{#    } );#}
+{#} );#}
+{#    <script>#}
+{#    filterSelection("all")#}
+{#function filterSelection(c) {#}
+{#  var x, i;#}
+{#  x = document.getElementsByClassName("filterDiv");#}
+{#  if (c == "all") c = "";#}
+{#  // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected#}
+{#  for (i = 0; i < x.length; i++) {#}
+{#    w3RemoveClass(x[i], "show");#}
+{#    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");#}
+{#  }#}
+{#}#}
+{##}
+{#// Show filtered elements#}
+{#function w3AddClass(element, name) {#}
+{#  var i, arr1, arr2;#}
+{#  arr1 = element.className.split(" ");#}
+{#  arr2 = name.split(" ");#}
+{#  for (i = 0; i < arr2.length; i++) {#}
+{#    if (arr1.indexOf(arr2[i]) == -1) {#}
+{#      element.className += " " + arr2[i];#}
+{#    }#}
+{#  }#}
+{#}#}
+{##}
+{#// Hide elements that are not selected#}
+{#function w3RemoveClass(element, name) {#}
+{#  var i, arr1, arr2;#}
+{#  arr1 = element.className.split(" ");#}
+{#  arr2 = name.split(" ");#}
+{#  for (i = 0; i < arr2.length; i++) {#}
+{#    while (arr1.indexOf(arr2[i]) > -1) {#}
+{#      arr1.splice(arr1.indexOf(arr2[i]), 1);#}
+{#    }#}
+{#  }#}
+{#  element.className = arr1.join(" ");#}
+{#}#}
+{##}
+{#// Add active class to the current control button (highlight it)#}
+{#var btnContainer = document.getElementById("myBtnContainer");#}
+{#var btns = btnContainer.getElementsByClassName("btn");#}
+{#for (var i = 0; i < btns.length; i++) {#}
+{#  btns[i].addEventListener("click", function() {#}
+{#    var current = document.getElementsByClassName("active");#}
+{#    current[0].className = current[0].className.replace(" active", "");#}
+{#    this.className += " active";#}
+{#  });#}
+{#}#}
+{#    </script>#}
 {##}
 {#<script>#}
 {#    $(document).ready(function() {#}
