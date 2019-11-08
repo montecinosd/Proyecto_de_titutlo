@@ -152,30 +152,47 @@
                               <div class="col-md-2 text-center">
                                  <h5>Area</h5>
                               </div>
+                              <div class="col-md-2 text-center">
+                                 <h5>Minima paga</h5>
+                              </div>
+                              <div class="col-md-2 text-center">
+                                 <h5>Maxima paga</h5>
+                              </div>
                           </div>
                           <div class="row text-center">
                                 <div class="col-md-2 text-center">
-                                    <select class ="btn btn-primary mySelect" style="padding-bottom: 1em; margin-bottom: 1em;" id="mySelect">
-                                        <option value=""></option>
+                                    <select class ="form-control mySelect"  style="" id="mySelect">
+                                        <option value="" disabled selected>Selecciona Comuna</option>
                                         <option value="Macul">Macul</option>
                                         <option value="Peñalolen">Peñalolen</option>
                                     </select>
                                   </div>
                               <div class="col-md-2 text-center">
-                                    <select class ="btn btn-primary mySelect" style="padding-bottom: 1em; margin-bottom: 1em;" id="mySelect2">
-                                        <option value=""></option>
+{#                                  adding-bottom: 1em; margin-bottom: 1em;#}
+                                    <select class ="form-control mySelect" style="" id="mySelect2">
+                                        <option value="" disabled selected>Selecciona Area</option>
                                         <option value="Hogar">Hogar</option>
                                         <option value="Informatica">Informatica</option>
                                     </select>
                               </div>
+                              <div class="col-md-2 text-center">
+                                    <input class="form-control" id="counter-low" type="text" style="width: 95%" placeholder="Minima paga" />
+
+                                  </div>
+                              <div class="col-md-2 text-center">
+                                    <input class="form-control" id="counter-high" type="text" style="width: 95%" placeholder="Maxima paga" />
+                              </div>
+
                           </div>
+
 
                         <hr style="padding: 0%;margin: 0.5em;">
                     <tbody>
+
                     {% for i in prueba %}
 {#            #                          0    1       2               3      4       5               6             7      8        9#}
 {#            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna,i.Monto_pago,i.Imagen,1))#}
-                  <div class="filterDiv animals"><tr role="row" class="odd "><div class="filterDiv animals"></div>
+                  <tr role="row" class="odd ">
                         <td style="font-weight: bold;"class="sorting_1 text-center"><span class="text-center">Vacantes: {{ i.10 }}</span></br>{{ i.1 }} </td>
                         <td class="text-center">-Area: {{ i.2 }}-</br> {{ i.3 }}</td>
                         <td class="text-center">{{ i.4 }} {{ i.5 }}</td>
@@ -185,12 +202,12 @@
 
                         <td style="height: 10%;height: 10;padding: 0;"><img class='img-responsive' style="width: 8em;height: 8em; border-radius: 10em;"src="/media/{{ i.8 }}"/></td>
                         {% if i.9 == 1 %}
-                                                    <td><a href="" disabled class="btn btn-primary">¡Ya has postulado a esta pega!</a></td>
+                                                    <td><a href="" disabled class="btn btn-rounded btn-primary">¡Ya has postulado a esta pega!</a></td>
 
                         {% else %}
-                                <td><a href="{% url 'visualizar_perfil_detalle_pega' i.0 %}" class="btn btn-primary">¡Revisar pega para postular!</a></td>
+                                <td><a href="{% url 'visualizar_perfil_detalle_pega' i.0 %}" class="btn btn-rounded btn-primary">¡Revisar pega para postular!</a></td>
                         {% endif %}
-                    </tr></div>
+                    </tr>
                     {% endfor %}
 
                     </tbody>
@@ -245,7 +262,34 @@ $(document).ready(function() {
     }
 
     });
+    $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+        return parseInt(data[4]) >= parseInt($('#counter-low').val() || data[4])
+            && parseInt(data[4]) <= parseInt($('#counter-high').val() || data[4])
+    });
+    {#$('#counter-low, #counter-high').on('keyup', table.draw);#}
+    $('#counter-low, #counter-high').keyup( function() {
+        {#alert("HOLA");#}
+        table.draw();
+    } );
 
+    {#$.fn.dataTable.ext.search.push(#}
+    {#    function( settings, data, dataIndex ) {#}
+    {#        var min = parseInt( $('#min').val(), 10 );#}
+    {#        var max = parseInt( $('#max').val(), 10 );#}
+    {#        var age = parseFloat( data[3] ) || 0; // use data for the age column#}
+    {##}
+    {#        if ( ( isNaN( min ) && isNaN( max ) ) ||#}
+    {#             ( isNaN( min ) && age <= max ) ||#}
+    {#             ( min <= age   && isNaN( max ) ) ||#}
+    {#             ( min <= age   && age <= max ) )#}
+    {#        {#}
+    {#            return true;#}
+    {#        }#}
+    {#        return false;#}
+    {#    }#}
+    {#);#}
+    {#$('#min, #max').keyup( function() {#}
+    {#    table.draw();#}
     $('#mySelect').on('change',function(){
         var selectedValue = $(this).val();
         {#table.fnFilter("^"+selectedValue+"$", 3, true); //Exact value, column, reg#}
@@ -266,6 +310,8 @@ $(document).ready(function() {
         {#table.fnFilter("^"+selectedValue+"$", 3, true); //Exact value, column, reg#}
         table.search(filter_value+' '+selectedValue).draw();
     });
+    });
+
     {#$("#example tbody td").each(function (i) {#}
     {#    console.log(i);#}
     {#    var select = $('<select><option value=""></option></select>')#}
@@ -278,10 +324,8 @@ $(document).ready(function() {
     {#         table.column( i ).data().unique().sort().each( function ( d, j ) {#}
     {#        select.append( '<option value="'+d+'">'+d+'</option>' )#}
     {#    } );#}
-    {#});#}
 
 
-});
 
 
         </script>

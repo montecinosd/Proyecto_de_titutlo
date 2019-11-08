@@ -357,6 +357,34 @@ def visualizar_postulantes_a_trabajos(request, pk_user):
     return render(request, 'visualizar_postulantes.html', data)
 
 @login_required(login_url='/auth/login')
+def visualizar_postulantes_detalle(request, pk_pega):
+    data = {}
+    print("postulando...")
+    trabajo = Trabajo.objects.get( pk = pk_pega)
+
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
+
+    # usuario = Persona.objects.get(Usuario=pk_user)
+    trabajos = Trabajo.objects.filter(Usuario = usuario_solicitud.pk).exclude(Activo=0)
+    data['trabajo'] = trabajo
+    data['trabajos'] = trabajos
+    data['postulantes'] = Postulantes.objects.filter(Trabajo = trabajo)
+    # for i in trabajos:
+    #     postulantes = Postulantes.objects.filter(Trabajo = i.pk)
+    #     for z in postulantes:
+    #         print(type(z))
+    #     data["postulantes"]=postulantes
+    print(type(data["trabajos"]))
+
+
+    print(data)
+    # data['trabajos'] = trabajos
+    print("trabajos: "+str(data['trabajos']))
+
+
+    return render(request, 'visualizar_postulantes_detalle.html', data)
+@login_required(login_url='/auth/login')
 def visualizar_trabajo_activo(request, pk_user):
     data = {}
     print("...")
@@ -378,7 +406,8 @@ def visualizar_trabajo_activo(request, pk_user):
             aux_trabajos_pks.append(i.postulante_acordado.Trabajo.pk)
             restantes = i.postulante_acordado.Trabajo.Personas_requeridas -i.postulante_acordado.Trabajo.Vacantes
             trabajos_pks.append((i.postulante_acordado.Trabajo.pk, i.postulante_acordado.Trabajo.Nombre,i.postulante_acordado.Trabajo.Imagen,restantes,i.postulante_acordado.Trabajo.Monto_pago,i.postulante_acordado.Trabajo.Fecha,i.postulante_acordado.Trabajo.Hora))
-    print(trabajos_pks)
+    print("pks pegas"+str(trabajos_pks))
+    print("hola")
     data['trabajos_pks'] = trabajos_pks
 
 

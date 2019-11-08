@@ -43,6 +43,8 @@ class Postulantes(models.Model):
     Postulante = models.ForeignKey(Persona,on_delete=models.CASCADE)
     Fecha = models.DateField(default=datetime.now)
     Hora = models.TimeField(default=datetime.now)
+    #0 no aceptado, 1 aceptado, 2 cancelado(?)
+    Estado = models.PositiveIntegerField(default=0)
 
 #model de historial de traajos acordados activos o pasados, estos se realizaron y se aceptaron con distinta fecha y hora que cuando se postula
 class Trabajo_acordado(models.Model):

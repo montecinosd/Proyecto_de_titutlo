@@ -8,9 +8,9 @@
 {% block section_contenido %}
     <div class="row text-center">
 
-  <h4>Registro histórico de tus pegas realizadas!</h4>
+  <h4>Visualiza los postulantes a las pegas que publicaste!</h4>
 
-  Este es el registro de tus trabajos realizadas! <hr>
+  Estas son las postulaciones a las pegas! <hr>
     </div>
 
 
@@ -32,17 +32,29 @@
                   <span class="panel-controls"><a href="#" class="panel-control-loader"></a><a href="#" class="panel-control-remove"></a><a href="#" class="panel-control-title"></a><a href="#" class="panel-control-color"></a><a href="#" class="panel-control-collapse"></a><a href="#" class="panel-control-fullscreen"></a></span></div>
                   <div class="panel-editbox" style="display: none;"><input type="text" class="form-control" value="Column Graph"></div><div class="panel-colorbox" style="display: none;"> <span class="bg-white" data-panel-color="panel-default"></span> <span class="bg-primary" data-panel-color="panel-primary"></span> <span class="bg-info" data-panel-color="panel-info"></span> <span class="bg-success" data-panel-color="panel-success"></span> <span class="bg-warning" data-panel-color="panel-warning"></span> <span class="bg-danger" data-panel-color="panel-danger"></span> <span class="bg-alert" data-panel-color="panel-alert"></span> <span class="bg-system" data-panel-color="panel-system"></span> <span class="bg-dark" data-panel-color="panel-dark"></span> </div>
                   <div class="panel-body pn" style="display: block;">
-<h5 class="text-center">{{ i.Nombre }}</h5>
-                      <h6 class="text-center">Paga acordada: ${{ i.Monto_pago }}</h6>
-                      <h6 class="text-center">Fecha: {{ i.Fecha }}, {{ i.Hora }}</h6>
-                                                <hr  style="padding: 0%;margin: 0.5em;">
-
                   <div class="row">
-                    <div class="col-md-4">
-                        <img style="height: 10em;width: 10em; border-radius: 10em;" class='img-responsive' src="/media/{{ i.Imagen  }}" />
+                    <div class="col-md-5">
+                        <img style="float:right;height: 8em;width: 8em; border-radius: 10em;" class='img-responsive' src="/media/{{ i.Imagen  }}" />
 
                     </div>
-                      <div class="col-md-8" id="acordados{{ i.pk }}" style="overflow:auto;width: 64%;height: 14em;">
+                    <div class="col-md-7">
+                        <h5 class="text-left">{{ i.Nombre }}</h5>
+
+                      <h6 class="text-left">Paga acordada: ${{ i.Monto_pago }}</h6>
+                      <h6 class="text-left">Fecha: {{ i.Fecha }}, {{ i.Hora }}</h6>
+                      <a href="{% url 'visualizar_postulantes_detalle' i.pk %}" class="btn btn-rounded btn-success "style="float:left;">Visualizar detalle</a>
+
+{#                                                <hr  style="padding: 0%;margin: 0.5em;">#}
+                    </div>
+                  </div>
+                                                                  <hr  style="padding: 0%;margin: 0.5em;">
+
+                  <div class="row">
+{#                    <div class="col-md-12">#}
+{#                        <img style="height: 10em;width: 10em; border-radius: 10em;" class='img-responsive' src="/media/{{ i.Imagen  }}" />#}
+{##}
+{#                    </div>#}
+                      <div class="col-md-12" id="acordados{{ i.pk }}" style="overflow:auto;width: 96%;height: 14em;">
                       {% if i.Vacantes == 0 %}
                           <div id="postulantes{{ i.pk }}"></div>
                           <h5 style="padding-top: 3em;">¡Ya tienes todos tus postulantes requeridos!</br> ¿Quieres volver a ver información de ellos? <br>¡Ve a tus <a href="{% url 'visualizar_trabajo_activo' request.user.pk %}" >Trabajos acordados</a>!</h5>
@@ -53,7 +65,11 @@
                                     {{ z.Postulante.Nombre }}<br>
                                     {{ z.Fecha }}
                                     {{ z.Hora   }}
-                                    <a href="{% url 'visualizar_perfil_postulante' z.pk %}" class="btn btn-primary">Visualizar postulante</a></td>
+                                {% if z.Estado == 0 %}
+                                    <a href="{% url 'visualizar_perfil_postulante' z.pk %}" class="btn btn-rounded btn-primary">Visualizar postulante</a></td>
+                                    {% else %}
+                                    <a href="{% url 'visualizar_perfil_postulante' z.pk %}" class="btn btn-rounded btn-success" disabled="">Postulante acordado!</a></td>
+                                {% endif %}
                                     <hr  style="padding: 0%;margin: 0.5em;">
                             {% endif %}
                           {% endfor %}
