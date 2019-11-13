@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+import operator
 
 from Publicar_trabajo.models import *
 from sensibilidad_watson.watson import *
@@ -136,6 +137,8 @@ def postulante_acordado(request,pk_postulante):
 
     #se crea el objeto del acuerdo de trabajo, con lo cual se realizará
     postulante_acordado = Postulantes.objects.get(pk = pk_postulante) # esta pk es la del postulante, por lo que está bien. no es la pk de la persona. siempre rescata la postulacion en sí.
+    postulante_acordado.Estado = 1
+    postulante_acordado.save()
     aux_trabajo = Trabajo.objects.get(pk = postulante_acordado.Trabajo.pk)
     aux_trabajo.Vacantes = aux_trabajo.Vacantes - 1
     aux_trabajo.save()
@@ -328,7 +331,8 @@ def postular_inicial(request,pk_pega):
     notificacion.Tipo = 3
     notificacion.Trabajo = trabajo
     notificacion.save()
-    return redirect(request, 'buscar_trabajo.html', data)
+
+    return redirect('buscar_trabajo', pk_pega)
 
 @login_required(login_url='/auth/login')
 def visualizar_postulantes_a_trabajos(request, pk_user):
@@ -370,11 +374,6 @@ def visualizar_postulantes_detalle(request, pk_pega):
     data['trabajo'] = trabajo
     data['trabajos'] = trabajos
     data['postulantes'] = Postulantes.objects.filter(Trabajo = trabajo)
-    # for i in trabajos:
-    #     postulantes = Postulantes.objects.filter(Trabajo = i.pk)
-    #     for z in postulantes:
-    #         print(type(z))
-    #     data["postulantes"]=postulantes
     print(type(data["trabajos"]))
 
 
@@ -384,6 +383,66 @@ def visualizar_postulantes_detalle(request, pk_pega):
 
 
     return render(request, 'visualizar_postulantes_detalle.html', data)
+@login_required(login_url='/auth/login')
+def visualizar_postulantes_detalle_watson(request, pk_pega):
+    data = {}
+    print("postulando...")
+    trabajo = Trabajo.objects.get( pk = pk_pega)
+
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
+
+    # usuario = Persona.objects.get(Usuario=pk_user)
+    trabajos = Trabajo.objects.filter(Usuario = usuario_solicitud.pk).exclude(Activo=0)
+    data['trabajo'] = trabajo
+    data['trabajos'] = trabajos
+    postulantes = Postulantes.objects.filter(Trabajo=trabajo)
+    data['postulantes'] = postulantes
+    print(type(data["trabajos"]))
+    list = [1,2,5,8,3]
+    list.sort()
+    print("HOLA"+str(list))
+
+    aux_Dic = {}
+    Dic = {}
+    for i in postulantes:
+        ponderacion = 0
+        print(i.Postulante.Direccion.Comuna)
+        print('1-',i.Postulante.Nombre,' ',ponderacion)
+        if(trabajo.Direccion.Comuna == i.Postulante.Direccion.Comuna):
+            print("es la misma direccion!!!")
+            ponderacion +=1
+        # print('1-',i.Postulante.Nombre,' ',ponderacion)
+
+        aux= 0.2*float(i.Postulante.Estrellas)
+        print('2-',i.Postulante.Nombre,' ',ponderacion)
+
+        print(aux)
+        ponderacion += aux
+        print('3-',i.Postulante.Nombre,' ',ponderacion)
+
+        ponderacion += i.Postulante.Puntaje_watson
+        print('4-',i.pk,i.Postulante.Nombre,' ',ponderacion)
+
+        Dic[i]=ponderacion
+
+        print(i.Postulante.Nombre +'tiene de ponderacion '+str(ponderacion))
+    # miDic = {"a": [2,10], "b": [3,10], "d": [1,10], "c": [1,10]}
+    # resultado = sorted(miDic.items(), key=operator.itemgetter(1))
+    #ordena de menor a mayor y luego se hace un reverse para que queden los puntajes mas altos
+    resultado2 = sorted(Dic.items(), key=operator.itemgetter(1))
+    resultado2 =resultado2[::-1]
+    # print(resultado)
+    print(resultado2)
+    for i in resultado2:
+        print(i[0].Postulante.Nombre)
+
+    # data['trabajos'] = trabajos
+    print("trabajos: "+str(data['trabajos']))
+    data['postulantes2'] = resultado2
+    data['ejemplo'] = [5,4,3,2,42]
+
+    return render(request, 'visualizar_postulantes_detalle_watson.html', data)
 @login_required(login_url='/auth/login')
 def visualizar_trabajo_activo(request, pk_user):
     data = {}
@@ -437,7 +496,7 @@ def buscar_trabajo(request,pk_user):
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
     data['usuario_solicitud'] = usuario_solicitud
 
-    usuario = Persona.objects.get(Usuario=pk_user)
+    # usuario = Persona.objects.get(Usuario=pk_user)
 
     #excluir mismo usuario
     trabajos = Trabajo.objects.filter(Activo = 1).exclude(Usuario__Usuario= usuario_solicitud)
@@ -446,7 +505,7 @@ def buscar_trabajo(request,pk_user):
     trabajos_postulados = Postulantes.objects.filter(Postulante = usuario_solicitud).order_by('-Fecha').exclude(Trabajo__Activo= 0)
     data['trabajos_postulados'] = trabajos_postulados
     data['trabajos'] = trabajos
-    data['usuario'] = usuario
+    # data['usuario'] = usuario
 
     trabajos_listos = []
     for i in trabajos:
@@ -494,7 +553,53 @@ def h_trabajos_publicados(request,pk_user):
     # print(data)
     return render(request, 'h_trabajos_publicados.html', data)
 
+@login_required(login_url='/auth/login')
+def detalle_trabajos_publicados(request,pk_historico):
+    data = {}
+    # usuario = Persona.objects.get(Usuario=pk_user)
+    # data['usuario'] = usuario
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
+    Historico = Historial_trabajo.objects.get(pk = pk_historico)
+    data['historico'] = Historico
+    # historico = Historial_trabajo.objects.filter(Persona = usuario).order_by('-Fecha').exclude( tipo = 2)
+    # data["historial_trabajos_publicados"] = historico
+    # print(usuario.pk)
+    # print(request.user.pk)
+    print("PK HISTORICO"+str(pk_historico))
+    postulantes = Postulantes.objects.filter(Trabajo = Historico.Trabajo).filter( Estado = 1 )
+    print("postulantes: " + str(postulantes))
+    for i in postulantes:
+        print(i.Estado)
 
+    data['postulantes'] = postulantes
+
+    # print(data)
+    return render(request, 'trabajos_publicados_detalle.html', data)
+
+@login_required(login_url='/auth/login')
+def detalle_trabajos_realizados(request,pk_historico):
+    data = {}
+    # usuario = Persona.objects.get(Usuario=pk_user)
+    # data['usuario'] = usuario
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
+    Historico = Historial_trabajo.objects.get(pk = pk_historico)
+    data['historico'] = Historico
+    # historico = Historial_trabajo.objects.filter(Persona = usuario).order_by('-Fecha').exclude( tipo = 2)
+    # data["historial_trabajos_publicados"] = historico
+    # print(usuario.pk)
+    # print(request.user.pk)
+    print("PK HISTORICO"+str(pk_historico))
+    postulantes = Postulantes.objects.filter(Trabajo = Historico.Trabajo).filter( Estado = 1 )
+    print("postulantes: " + str(postulantes))
+    for i in postulantes:
+        print(i.Estado)
+
+    data['postulantes'] = postulantes
+
+    # print(data)
+    return render(request, 'trabajos_realizados_detalle.html', data)
 def Guardar_Registro_form(request):
     if request.method =='GET':
         print("GET:................")

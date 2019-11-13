@@ -44,8 +44,19 @@ class Persona(models.Model):
     Twitter = models.CharField(max_length = 120,null=True,blank=True)
     Linkedin = models.CharField(max_length = 120,null=True,blank=True)
     Instagram = models.CharField(max_length = 120,null=True,blank=True)
+    Puntaje_watson = models.IntegerField(default=0)
+    Label_watson = models.CharField(max_length = 120,null=True,blank=True)
+    Estrellas = models.CharField(max_length = 120,null=True,blank=True)
     #1 sin privilegios, 2 dual, 3 publicar, 4 buscar
     privilegios = models.IntegerField(default=1)
+
+class Historico_watson(models.Model):
+    Usuario = models.ForeignKey(Persona,primary_key=True, on_delete=models.CASCADE)
+    Puntaje = models.IntegerField(default=0)
+    Label = models.CharField(max_length = 120,null=True,blank=True)
+    Fecha = models.DateField(default=datetime.now, null=True, blank=True)
+    Hora = models.TimeField(default=datetime.now, null=True, blank=True)
+
 
 
 

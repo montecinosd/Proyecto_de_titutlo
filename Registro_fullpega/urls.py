@@ -19,6 +19,9 @@ urlpatterns = [
      #historicos
      path(r'^h_trabajos_realizados/<int:pk_user>', views.h_trabajos_realizados, name='h_trabajos_realizados'),
      path(r'^h_trabajos_publicados/<int:pk_user>', views.h_trabajos_publicados, name='h_trabajos_publicados'),
+     path(r'^detalle_trabajos_publicados/<int:pk_historico>', views.detalle_trabajos_publicados, name='detalle_trabajos_publicados'),
+     path(r'^detalle_trabajos_realizados/<int:pk_historico>', views.detalle_trabajos_realizados, name='detalle_trabajos_realizados'),
+
      #buscar trabajo
      path(r'^buscar_trabajo/<int:pk_user>', views.buscar_trabajo, name='buscar_trabajo'),
      #Postular
@@ -26,6 +29,7 @@ urlpatterns = [
      #v_ postulantes
      path(r'^visualizar_postulantes_a_trabajos/<int:pk_user>', views.visualizar_postulantes_a_trabajos, name='visualizar_postulantes_a_trabajos'),
      path(r'^visualizar_postulantes_detalle/<int:pk_pega>', views.visualizar_postulantes_detalle, name='visualizar_postulantes_detalle'),
+     path(r'^visualizar_postulantes_detalle_watson/<int:pk_pega>', views.visualizar_postulantes_detalle_watson, name='visualizar_postulantes_detalle_watson'),
      path(r'^visualizar_perfil_postulante/<int:pk_postulante>', views.visualizar_perfil_postulante, name='visualizar_perfil_postulante'),
    #
      path(r'^postulante_acordado/<int:pk_postulante>', views.postulante_acordado, name='postulante_acordado'),

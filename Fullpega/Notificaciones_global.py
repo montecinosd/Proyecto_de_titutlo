@@ -12,8 +12,8 @@ def get_notificaciones(request):
 		usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
 		# data['usuario_solicitud'] = usuario_solicitud
 		notificaciones = Notificaciones.objects.filter(usuario=usuario_solicitud).exclude(Activo = 0).order_by('-Fecha')
-		for i in notificaciones:
-			print(i.Activo)
+		# for i in notificaciones:
+			# print(i.Activo)
 
 
 		return {'notificaciones':notificaciones}

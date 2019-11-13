@@ -22,7 +22,7 @@
               <div class="panel heading-border panel-primary">
                 <div class="panel-body bg-light">
                     <div class="section-divider mb40 " id="spy1">
-                      <span>¡Detalle de los postulantes!</span>
+                      <span>¡Detalle de la pega publicada!</span>
 
                     </div>
 
@@ -35,7 +35,7 @@
 
                       <table id="example" class="table table-striped table-hover dataTable no-footer" id="datatable2" cellspacing="0" width="100%" role="grid" aria-describedby="datatable2_info" style="width: 100%;">
                     <thead >
-                      <tr role="row"><th class="sorting_asc text-center" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 157px;">Imagen</th><th class="sorting text-center" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 236px;">Nombre</th><th class="sorting text-center" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 83px;">Calificaciones</th><th class="sorting text-center" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 51px;">Redes</th><th class="sorting text-center" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 108px;">Acción</th></tr>
+                      <tr role="row"><th class="sorting_asc text-center" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 157px;">Imagen</th><th class="sorting text-center" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 236px;">Nombre</th><th class="sorting text-center" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 83px;">Calificaciones</th><th class="sorting text-center" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 51px;">Redes</th></tr>
                     </thead>
 {#                          <div class="row text-center">#}
 {#                              <div class="col-md-2 text-center">#}
@@ -77,23 +77,31 @@
 {##}
 {#                          </div>#}
 
-
                     <div class="row">
-                        <div class="col-md-5">
-                            <img class='img-responsive' style="float:right; width: 8em;height: 8em; border-radius: 10em;"src="/media/{{ trabajo.Imagen }}"/>
+                        <div class="col-md-3">
                         </div>
-                        <div class="col-md-7">
-                            <h4 class="">{{ trabajo.Nombre }}<br><h5>{{ trabajo.Direccion.Comuna }}</h5></h4>
-                            <h5 class="">Paga acordada: ${{ trabajo.Monto_pago }}</h5>
-                          <h5 class="">Fecha: {{ trabajo.Fecha }}, {{ trabajo.Hora }}</h5>
-                            <a href="{% url 'visualizar_postulantes_detalle_watson' trabajo.pk %}" class="btn btn-rounded btn-success">Ordenar postulantes con Watson</a>
+                        <div class="col-md-6">
+                            <h5 class="text-center">Pega</h5>
+                            <hr style="padding: 0%;margin: 0.5em;">
+                        </div>
+                        <div class="col-md-3">
                         </div>
                     </div>
-{#                    <hr style="padding: 0%;margin: 0.5em;">#}
-{##}
-{#                          <h4 class="text-center">Postulantes!</h4>#}
-{#                    <hr style="padding: 0%;margin: 0.5em;">#}
-
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img class='img-responsive' style="float:right; width: 8em;height: 8em; border-radius: 10em;"src="/media/{{ historico.Trabajo.Imagen }}"/>
+                        </div>
+                        <div class="col-md-7">
+                            <h4 class="">{{ historico.Trabajo.Nombre }}</h4>
+                            <h5 class="">Paga acordada: ${{ historico.Trabajo.Monto_pago }}</h5>
+                          <h5 class="">Fecha: {{ historico.Trabajo.Fecha }}, {{ historico.Trabajo.Hora }}</h5>
+                              {% if historico.Trabajo.Activo == 0 %}
+                                  <button class="btn btn-success btn-rounded" disabled>Terminado</button>
+                              {% else %}
+                                  <button class="btn btn-alert btn-rounded" disabled>Pendiente</button>
+                              {% endif %}                        </div>
+                    </div>
+                    <hr style="padding: 0%;margin: 0.5em;">
                     <tbody>
 
                     {% for i in postulantes %}
@@ -102,8 +110,8 @@
                   <tr role="row" class="odd ">
                         <td style="height: 10%;height: 10;padding: 0;"><img class='img-responsive' style="width: 8em;height: 8em; border-radius: 10em;"src="/media/{{ i.Postulante.Imagen }}"/></td>
 
-                        <td style="font-weight: bold;"class="sorting_1 text-center"><span class="text-center">  {{ i.Postulante.Nombre }}<br>{{i.Postulante.Direccion.Comuna }}</span></br>{{ i.1 }} </td>
-                        <td class="text-center">Estrellas: {{ i.Postulante.Estrellas }}<br>Puntaje watson:{{ i.Postulante.Puntaje_watson }}</td>
+                        <td style="font-weight: bold;"class="sorting_1 text-center"><span class="text-center">  {{ i.Postulante.Nombre }}</span></br>{{ i.1 }} </td>
+                        <td class="text-center">Correo: {{ i.Postulante.Correo  }}<br>Telefono:{{ i.Postulante.Telefono_C  }}</td>
 
                         <td class="text-center">
                         {% if i.Postulante.Facebook or i.Postulante.Twitter or i.Postulante.Twitter or i.Postulante.Linkedin %}
@@ -149,15 +157,7 @@
                         {% endif %}
 
                         </td>
-                        <td>
-                               {% if i.Estado == 0 %}
-                                    <a href="{% url 'visualizar_perfil_postulante' i.pk %}" class="btn btn-rounded btn-primary">Visualizar postulante</a></td>
-                                    {% else %}
-                                    <a href="{% url 'visualizar_perfil_postulante' i.pk %}" class="btn btn-rounded btn-success" disabled="">Postulante acordado!</a></td>
-                                {% endif %}
 
-{#                            <a href="{% url 'visualizar_perfil_postulante' i.Postulante.pk %}" class="btn btn-primary">Visualizar postulante</a>#}
-                        </td>
 
 
                     </tr>

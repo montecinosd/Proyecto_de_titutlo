@@ -22,7 +22,7 @@
               <div class="panel heading-border panel-primary">
                 <div class="panel-body bg-light">
                     <div class="section-divider mb40 " id="spy1">
-                      <span>¡Detalle de los postulantes!</span>
+                      <span>¡Detalle de los postulantes ordenados!</span>
 
                     </div>
 
@@ -95,51 +95,51 @@
 {#                    <hr style="padding: 0%;margin: 0.5em;">#}
 
                     <tbody>
-
-                    {% for i in postulantes %}
+                    {% for i in postulantes2 %}
+{#                        {{ i.0.Postulante.Nombre }}#}
 {#            #                          0    1       2               3      4       5               6             7      8        9#}
 {#            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna,i.Monto_pago,i.Imagen,1))#}
                   <tr role="row" class="odd ">
-                        <td style="height: 10%;height: 10;padding: 0;"><img class='img-responsive' style="width: 8em;height: 8em; border-radius: 10em;"src="/media/{{ i.Postulante.Imagen }}"/></td>
+                        <td style="height: 10%;height: 10;padding: 0;"><img class='img-responsive' style="width: 8em;height: 8em; border-radius: 10em;"src="/media/{{ i.0.Postulante.Imagen }}"/></td>
 
-                        <td style="font-weight: bold;"class="sorting_1 text-center"><span class="text-center">  {{ i.Postulante.Nombre }}<br>{{i.Postulante.Direccion.Comuna }}</span></br>{{ i.1 }} </td>
-                        <td class="text-center">Estrellas: {{ i.Postulante.Estrellas }}<br>Puntaje watson:{{ i.Postulante.Puntaje_watson }}</td>
+                        <td style="font-weight: bold;"class="sorting_1 text-center"><span class="text-center">  {{ i.0.Postulante.Nombre }}<br>{{i.0.Postulante.Direccion.Comuna }}</span></br>Puntaje obtenido: {{ i.1 }} </td>
+                        <td class="text-center">Estrellas: {{ i.0.Postulante.Estrellas }}<br>Puntaje watson:{{ i.0.Postulante.Puntaje_watson }}</td>
 
                         <td class="text-center">
-                        {% if i.Postulante.Facebook or i.Postulante.Twitter or i.Postulante.Twitter or i.Postulante.Linkedin %}
-                            {% if i.Postulante.Twitter %}
+                        {% if i.0.Postulante.Facebook or i.0.Postulante.Twitter or i.0.Postulante.Twitter or i.0.Postulante.Linkedin %}
+                            {% if i.0.Postulante.Twitter %}
                                 <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
                                 <div class="text-center">
-                                    <a href="{{ usuario.Twitter }}" class="href" target="_blank">
+                                    <a href="{{ i.0.Postulante.Twitter }}" class="href" target="_blank">
                                      <img class="class='img-responsive" src="/media/twitter.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
                                     </a>
                                 </div>
                                 </div>
                             {% endif %}
 
-                            {% if i.Postulante.Facebook %}
+                            {% if i.0.Postulante.Facebook %}
                                 <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
                                 <div class="text-center">
-                                    <a href="{{ usuario.Facebook }}" class="href" target="_blank">
+                                    <a href="{{ i.0.Postulante.Facebook }}" class="href" target="_blank">
                                      <img class="class='img-responsive" src="/media/facebook.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
                                     </a>
                                 </div></div>
                             {% endif %}
 
-                            {% if i.Postulante.Linkedin %}
+                            {% if i.0.Postulante.Linkedin %}
                                 <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
                                 <div class="text-center">
-                                    <a href="{{ usuario.Linkedin }}" class="href" target="_blank">
+                                    <a href="{{ i.0.Postulante.Linkedin  }}" class="href" target="_blank">
                                      <img class="class='img-responsive" src="/media/linkedin.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
                                     </a>
                                 </div></div>
                             {% endif %}
 
 
-                            {% if i.Postulante.Instagram %}
+                            {% if i.0.Postulante.Instagram %}
                                 <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
                                 <div class="text-center">
-                                    <a href="{{ usuario.Instagram }}" class="href" target="_blank">
+                                    <a href="{{ i.0.Postulante.Instagram }}" class="href" target="_blank">
                                      <img class="class='img-responsive" src="/media/instagram.png" alt="Card image" style="margin:2px;width:80%; height: 80%;">
                                     </a>
                                 </div></div>
@@ -150,10 +150,10 @@
 
                         </td>
                         <td>
-                               {% if i.Estado == 0 %}
-                                    <a href="{% url 'visualizar_perfil_postulante' i.pk %}" class="btn btn-rounded btn-primary">Visualizar postulante</a></td>
+                               {% if i.0.Estado == 0 %}
+                                    <a href="{% url 'visualizar_perfil_postulante' i.0.pk %}" class="btn btn-rounded btn-primary">Visualizar postulante</a></td>
                                     {% else %}
-                                    <a href="{% url 'visualizar_perfil_postulante' i.pk %}" class="btn btn-rounded btn-success" disabled="">Postulante acordado!</a></td>
+                                    <a href="{% url 'visualizar_perfil_postulante' i.0.pk %}" class="btn btn-rounded btn-success" disabled="">Postulante acordado!</a></td>
                                 {% endif %}
 
 {#                            <a href="{% url 'visualizar_perfil_postulante' i.Postulante.pk %}" class="btn btn-primary">Visualizar postulante</a>#}

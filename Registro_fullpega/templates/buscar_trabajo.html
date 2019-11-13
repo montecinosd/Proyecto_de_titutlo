@@ -143,7 +143,7 @@
 {#</table>#}
                       <table id="example" class="table table-striped table-hover dataTable no-footer" id="datatable2" cellspacing="0" width="100%" role="grid" aria-describedby="datatable2_info" style="width: 100%;">
                     <thead >
-                      <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 157px;">Nombre</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 236px;">Detalle</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 83px;">Fecha</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 51px;">Comuna</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 108px;">Pago</th> <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Salary" style="width: 75px;">Imagen</th><th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Salary" style="width: 75px;">Accion</th></tr>
+                      <tr role="row"><th class="sorting_asc text-center" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 157px;">Nombre</th><th class="sorting text-center" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 236px;">Detalle</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 83px;">Fecha</th><th class="sorting text-center" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 51px;">Comuna</th><th class="sorting text-center" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 108px;">Pago</th> <th class="sorting_disabled text-center" rowspan="1" colspan="1" aria-label="Salary" style="width: 75px;">Imagen</th><th class="sorting_disabled text-center" rowspan="1" colspan="1" aria-label="Salary" style="width: 75px;">Accion</th></tr>
                     </thead>
                           <div class="row text-center">
                               <div class="col-md-2 text-center">
@@ -192,7 +192,7 @@
                     {% for i in prueba %}
 {#            #                          0    1       2               3      4       5               6             7      8        9#}
 {#            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna,i.Monto_pago,i.Imagen,1))#}
-                  <tr role="row" class="odd ">
+                  <tr role="row" class="odd text-center">
                         <td style="font-weight: bold;"class="sorting_1 text-center"><span class="text-center">Vacantes: {{ i.10 }}</span></br>{{ i.1 }} </td>
                         <td class="text-center">-Area: {{ i.2 }}-</br> {{ i.3 }}</td>
                         <td class="text-center">{{ i.4 }} {{ i.5 }}</td>

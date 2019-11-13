@@ -44,7 +44,7 @@
                               {% else %}
                                   <td><button class="btn btn-alert btn-rounded" disabled>Pendiente</button></td>
                               {% endif %}
-                            <td><a href=""class="btn btn-rounded btn-primary">Ir a detalle</a></td>
+                            <td> <a href="{% url 'detalle_trabajos_publicados' i.pk %}" class="btn btn-rounded btn-primary">Ir a detalle</a></td>
                             </tr>
                     {% endfor %}
                     </tbody>

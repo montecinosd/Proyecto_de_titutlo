@@ -61,10 +61,17 @@
                     {% else %}
                     {% for z in postulantes %}
                             {% if z.Trabajo.pk == i.pk %}
-                                <div id="postulantes{{ i.pk }}"></div>
-                                    {{ z.Postulante.Nombre }}<br>
-                                    {{ z.Fecha }}
-                                    {{ z.Hora   }}
+                                                                <div id="postulantes{{ i.pk }}"></div>
+
+                                 {% if z.Estado == 0 %}
+                                   <i style="font-size:2em;" class="fa">&#xf1ae;</i>
+                                    {% else %}
+                                   <i style="font-size:2em;" class="fa">&#xf00c;</i>
+                                {% endif %}
+{#                                   <i style="font-size:2em;" class="fa">&#xf1ae;</i>#}
+ {{ z.Postulante.Nombre }}
+                                   | {{ z.Fecha }}
+                                    {{ z.Hora   }} |
                                 {% if z.Estado == 0 %}
                                     <a href="{% url 'visualizar_perfil_postulante' z.pk %}" class="btn btn-rounded btn-primary">Visualizar postulante</a></td>
                                     {% else %}
