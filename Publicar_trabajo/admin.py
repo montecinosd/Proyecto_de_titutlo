@@ -37,6 +37,22 @@ class CalificacionesAdmin(admin.ModelAdmin):
     def thumb(self, obj):
         return mark_safe(u'<img src="%s" style="width:10px;height:10px;"/>' \
                          % (obj.picture.url))
+@admin.register(Region)
+class RegionesAdmin(admin.ModelAdmin):
+    list_display = ('pk','nombre',)
+
+
+    def thumb(self, obj):
+        return mark_safe(u'<img src="%s" style="width:10px;height:10px;"/>' \
+                         % (obj.picture.url))
+@admin.register(Comuna)
+class ComunasAdmin(admin.ModelAdmin):
+    list_display = ('pk','nombre','region')
+
+
+    def thumb(self, obj):
+        return mark_safe(u'<img src="%s" style="width:10px;height:10px;"/>' \
+                         % (obj.picture.url))
 
 @admin.register(Postulantes)
 class PostulantesAdmin(admin.ModelAdmin):

@@ -22,12 +22,19 @@ def content_file_document(instance, filename):
 class Areas(models.Model):
     Nombre = models.CharField(max_length=120)
 
-class Direccion(models.Model):
-    Comuna = models.CharField(max_length = 50, null=True,blank=True)
-    Pais = models.CharField(max_length = 50, null=True,blank=True)
-    Ciudad = models.CharField(max_length = 50,null=True,blank=True)
-    Calle = models.CharField(max_length=100,null=True,blank=True)
-    Numero_de_calle = models.CharField(max_length=100,null=True,blank=True)
+class Region(models.Model):
+    nombre = models.CharField(max_length=40, unique=True)
+    def add_commune(self, name):
+        return Comuna.objects.create(name=nombre,
+                                      region=self)
+
+
+class Comuna(models.Model):
+    region = models.ForeignKey(Region, on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=40)
+
+
+
 
 class Persona(models.Model):
     Usuario = models.ForeignKey(User,primary_key=True, on_delete=models.CASCADE)
@@ -37,7 +44,7 @@ class Persona(models.Model):
     Imagen = models.ImageField(upload_to="media",null=True,blank=True)
     Telefono_C = models.CharField(max_length = 50,null=True,blank=True)
     Correo = models.CharField(max_length = 100,null=True,blank=True)
-    Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE)
+    # Direccion = models.ForeignKey(Direccion, on_delete=models.CASCADE)
     Fecha_nacimiento = models.DateField(default=datetime.now())
     # edad = models.DateField()
     Facebook = models.CharField(max_length = 120,null=True,blank=True)
@@ -50,8 +57,21 @@ class Persona(models.Model):
     #1 sin privilegios, 2 dual, 3 publicar, 4 buscar
     privilegios = models.IntegerField(default=1)
 
+    @property
+    def Direccion(self):
+        return Direccion.objects.filter(Persona = self).get(Principal = 1)
+
+class Direccion(models.Model):
+    Comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE,null=True,blank=True)
+    # Pais = models.CharField(max_length = 50, null=True,blank=True)
+    # Ciudad = models.CharField(max_length = 50,null=True,blank=True)
+    Calle = models.CharField(max_length=100,null=True,blank=True)
+    Numero_de_calle = models.CharField(max_length=100,null=True,blank=True)
+    Persona = models.ForeignKey(Persona, on_delete=models.CASCADE)
+    Principal = models.IntegerField(default=1)
+
 class Historico_watson(models.Model):
-    Usuario = models.ForeignKey(Persona,primary_key=True, on_delete=models.CASCADE)
+    Usuario = models.ForeignKey(Persona, on_delete=models.CASCADE)
     Puntaje = models.IntegerField(default=0)
     Label = models.CharField(max_length = 120,null=True,blank=True)
     Fecha = models.DateField(default=datetime.now, null=True, blank=True)

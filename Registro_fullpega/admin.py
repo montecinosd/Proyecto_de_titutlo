@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 
 @admin.register(Persona)
 class PersonaAdmin(admin.ModelAdmin):
-    list_display = ('pk','Usuario','Nombre','Rut','Imagen','Telefono_C','Correo','Direccion','Fecha_nacimiento','Facebook','Twitter','Linkedin','Instagram','privilegios', 'Puntaje_watson','Label_watson')
+    list_display = ('pk','Usuario','Nombre','Rut','Imagen','Telefono_C','Correo','Fecha_nacimiento','Facebook','Twitter','Linkedin','Instagram','privilegios', 'Puntaje_watson','Label_watson')
 
 
     def thumb(self, obj):
@@ -14,7 +14,7 @@ class PersonaAdmin(admin.ModelAdmin):
 
 @admin.register(Direccion)
 class DireccionAdmin(admin.ModelAdmin):
-    list_display = ('Comuna','Pais','Ciudad','Calle','Numero_de_calle')
+    list_display = ('Comuna','Calle','Numero_de_calle','Persona','Principal')
 
 @admin.register(Areas)
 class AreasAdmin(admin.ModelAdmin):

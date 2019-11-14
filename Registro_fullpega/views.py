@@ -21,8 +21,6 @@ def index(request):
     # print(notificaciones)
     # data['notificaciones'] = notificaciones
 
-
-
     return render(request, 'index_super_user.html', data)
 
 # @login_required(login_url='/auth/login')
@@ -611,16 +609,16 @@ def Guardar_Registro_form(request):
         apellidos = request.POST['apellidos']
         imagen = request.FILES['imagenRegistro']
         f_nacimiento = request.POST['f_nacimiento']
-        pais= request.POST['pais']
+        # pais= request.POST['pais']
         mail = request.POST['email']
         numero_calle = request.POST['numero_calle']
         contrasena2= request.POST['confirmPassword']
         contrasena1 = request.POST['password']
         rut = request.POST['rut']
-        region = request.POST['region']
+        # region = request.POST['region']
         telefono= request.POST['telefono']
         nombres = request.POST['nombres']
-        ciudad = request.POST['ciudad']
+        # ciudad = request.POST['ciudad']
         calle = request.POST['calle']
 
         if (contrasena1 == contrasena2):
@@ -640,16 +638,18 @@ def Guardar_Registro_form(request):
                 persona.Fecha_nacimiento = f_nacimiento
 
                 #direccion
+                persona.save()
                 direccion = Direccion()
                 direccion.Calle = calle
-                direccion.Ciudad = ciudad
-                direccion.Comuna = comuna
+                # direccion.Ciudad = ciudad
+                direccion.Comuna = Comuna.objects.get(pk = comuna)
+                # direccion. = Comuna.objects.get(pk = comuna)
                 direccion.Numero_de_calle = numero_calle
-                direccion.Pais = pais
+                # direccion.Pais = pais
+                direccion.Persona = persona
                 direccion.save()
 
-                persona.Direccion = direccion
-                persona.save()
+                # persona.Direccion = direccion
 
 
 
@@ -684,6 +684,11 @@ def Registro_form(request):
         print(request.POST)
         print("hola")
 
+    regiones = Region.objects.all()
+    comunas = Comuna.objects.all()
+
+    data['regiones'] = regiones
+    data['comunas'] = comunas
         # data['form'] = UserForm(request.POST, request.FILES)
         # if (request.POST["password1"] == request.POST["password2"]):
         #     if (len(request.POST["password1"]) >= 4):

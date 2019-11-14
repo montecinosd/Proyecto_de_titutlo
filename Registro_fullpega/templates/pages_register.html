@@ -38,7 +38,6 @@
 
     <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
-
       <!-- begin canvas animation bg -->
       <div id="canvas-wrapper">
         <canvas id="demo-canvas"></canvas>
@@ -189,41 +188,8 @@
                   <span>Ingresa tu dirección</span>
                 </div>
               </div>
-
-                                  <div class="section row">
-                  <div class="col-md-6">
-                    <label for="firstname" class="field prepend-icon">
-                      <input type="text" name="pais" id="pais" class="gui-input" placeholder="Ingresa tu pais">
-                      <label for="firstname" class="field-icon">
-                        <i class="fa fa-globe"></i>
-                      </label>
-                    </label>
-                  </div>
-                  <!-- end section -->
-
-                  <div class="col-md-6">
-                    <label for="lastname" class="field prepend-icon">
-                      <input type="text" name="region" id="region" class="gui-input" placeholder="Ingresa tu región">
-                      <label for="lastname" class="field-icon">
-                        <i class="fa fa-globe"></i>
-                      </label>
-                    </label>
-                  </div>
-                  <!-- end section -->
-                </div>
-                <!-- end section -->
-                                  <div class="section row">
-                  <div class="col-md-6">
-                    <label for="firstname" class="field prepend-icon">
-                      <input type="text" name="comuna" id="comuna" class="gui-input" placeholder="Ingresa tu comuna">
-                      <label for="firstname" class="field-icon">
-                        <i class="fa fa-globe"></i>
-                      </label>
-                    </label>
-                  </div>
-                  <!-- end section -->
-
-                  <div class="col-md-6">
+                  <div class="section row">
+                      <div class="col-md-6" id="div_calle">
                     <label for="lastname" class="field prepend-icon">
                       <input type="text" name="calle" id="calle" class="gui-input" placeholder="Ingresa tu calle">
                       <label for="lastname" class="field-icon">
@@ -232,9 +198,8 @@
                     </label>
                   </div>
                   <!-- end section -->
-                </div>
-                  <div class="section row">
-                  <div class="col-md-6">
+
+                  <div class="col-md-6" id="div_num_calle">
                     <label for="firstname" class="field prepend-icon">
                       <input type="text" name="numero_calle" id="numero_calle" class="gui-input" placeholder="Ingresa tu numero de calle">
                       <label for="firstname" class="field-icon">
@@ -242,18 +207,113 @@
                       </label>
                     </label>
                   </div>
+                  </div>
+                                  <div class="section row">
+{#                  <div class="col-md-6">#}
+{#                    <label for="firstname" class="field prepend-icon">#}
+{#                      <input type="text" name="pais" id="pais" class="gui-input" placeholder="Ingresa tu pais">#}
+{#                      <label for="firstname" class="field-icon">#}
+{#                        <i class="fa fa-globe"></i>#}
+{#                      </label>#}
+{#                    </label>#}
+{#                  </div>#}
                   <!-- end section -->
 
                   <div class="col-md-6">
-                    <label for="lastname" class="field prepend-icon">
-                      <input type="text" name="ciudad" id="ciudad" class="gui-input" placeholder="Ingresa tu ciudad">
-                      <label for="lastname" class="field-icon">
-                        <i class="fa fa-globe"></i>
+
+                      <label class="field select">
+                          <i class="arrow"></i>
+                          <select class="gui-input" id="region">
+                              <option value="" >Selecciona la region</option>
+                          {% for i in regiones %}
+                             <option value="{{ i.pk  }}" name="{{ i.pk }}">{{ i.nombre }}</option>
+                          {% endfor %}
+                          </select>
                       </label>
-                    </label>
+                  </div>
+                  <div class="col-md-6" >
+                  <select class="gui-input" id="primer_comuna"disabled>
+                      <option value="">Selecciona región para seleccionar comuna</option>
+                  </select>
+                    {% for i in regiones %}
+                        <select class="gui-input" name="comuna" id="{{ i.pk }}" disabled="disabled" style="display:none">
+                        {% for z in comunas %}
+                            {% if i.pk == z.region.pk %}
+                            <option value="{{ z.pk }}">{{ z.nombre }}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    {% endfor %}
                   </div>
                   <!-- end section -->
                 </div>
+                <!-- end section -->
+{#                                  <div class="section row">#}
+{#                                     <div class="col-md-6" >#}
+{#                                            {% for i in regiones %}#}
+{#                                                <select class="gui-input"name="" id="{{ i.pk }}" style="display:none">>#}
+{#                                                {% for z in comunas %}#}
+{#                                                    {% if i.pk == z.region.pk %}#}
+{#                                                    <option value="{{ z.region.pk }}">{{ z.nombre }}</option>#}
+{#                                                    {% endif %}#}
+{#                                                {% endfor %}#}
+{#                                                </select>#}
+{#                      {% endfor %}#}
+{##}
+{#                      <select id="DD1" style="display:none">#}
+{#                          <option value="blah">Select...</option>#}
+{#                          <option value="blah">blah</option>#}
+{#                          <option value="blah">blah</option>#}
+{#                          <option value="blah">blah</option>#}
+{#                      </select>#}
+{#                      <select id="DD2" style="display:none">#}
+{#                          <option value="blah">Select...</option>#}
+{#                          <option value="blah">blah</option>#}
+{#                          <option value="blah">blah</option>#}
+{#                          <option value="blah">blah</option>#}
+{#                      </select>#}
+                      {#                    <select class="selectpicker " name="comuna" id="comuna" data-live-search="true">#}
+
+{#                      {% for i in comunas %}#}
+{#                          <option data-tokens="ketchup mustard">{{  i.nombre }}</option>#}
+{#                      {% endfor %}#}
+{#                    </select>#}
+                  <!-- Latest compiled and minified CSS -->
+{#<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">#}
+
+<!-- Latest compiled and minified JavaScript -->
+{# <script data-require="jquery@2.2.4" data-semver="2.2.4" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>#}
+{# <link data-require="bootstrap@3.3.7" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />#}
+{# <script data-require="bootstrap@3.3.7" data-semver="3.3.7" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>#}
+{# <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>#}
+{# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css" />#}
+{##}
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+{#<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>#}
+{#                    <label for="firstname" class="field prepend-icon">#}
+{#                      <input type="text" name="comuna" id="comuna" class="gui-input" placeholder="Ingresa tu comuna">#}
+{#                      <label for="firstname" class="field-icon">#}
+{#                        <i class="fa fa-globe"></i>#}
+{#                      </label>#}
+{#                    </label>#}
+{#                  </div>#}
+                  <!-- end section -->
+
+
+
+                  <!-- end section -->
+
+{#                  <div class="col-md-6">#}
+{#                      #}
+{#                    <label for="lastname" class="field prepend-icon">#}
+{#                      <input type="text" name="ciudad" id="ciudad" class="gui-input" placeholder="Ingresa tu ciudad">#}
+{#                      <label for="lastname" class="field-icon">#}
+{#                        <i class="fa fa-globe"></i>#}
+{#                      </label>#}
+{#                    </label>#}
+{#                  </div>#}
+                  <!-- end section -->
+
                 <!-- end section -->
 
 
@@ -531,6 +591,23 @@
         x: window.innerWidth / 2.1,
         y: window.innerHeight / 4.2
       },
+    });
+    $('#region').change(function (e) {
+        var selected = $(e.currentTarget).val();
+        var id = $(this).children(":selected").attr("name");
+        {#alert(id)#}
+        $("#primer_comuna").hide();
+        {% for i in regiones %}
+            $('#{{ i.pk }}').hide();
+            {#document.getElementById("{{ i.pk }}").disabled = true   ;#}
+            $('#{{ i.pk }}').attr('disabled','disabled');
+        {% endfor %}
+        {#alert(selected);#}
+        {#document.getElementById("selected").disabled = false;#}
+    $('#'+selected).removeAttr('disabled');
+
+        $('#'+selected).show();
+
     });
   });
   </script>

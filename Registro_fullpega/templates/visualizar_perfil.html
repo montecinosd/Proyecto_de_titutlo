@@ -20,8 +20,8 @@
           <div class="col-md-8">
             <h1><span style ="font-weight: bold; "class="">{{ usuario.Nombre }}</span></h1><hr>
             <span class="footer-lega">{{ usuario.Correo }}</span><br>
-            <span class="footer-lega">{{ usuario.Direccion.Ciudad }}, {{ usuario.Direccion.Pais }}.</span><br>
-            <span class="footer-lega">{{ usuario.Direccion.Comuna }}, {{ usuario.Direccion.Calle }} {{ usuario.Direccion.Numero_de_calle }}.</span><br>
+            <span class="footer-lega">{{ usuario.Direccion.Comuna.region.nombre }}, Chile</span><br>
+            <span class="footer-lega">{{ usuario.Direccion.Comuna.nombre }}, {{ usuario.Direccion.Calle }} {{ usuario.Direccion.Numero_de_calle }}.</span><br>
             <span class="footer-lega">{{ usuario.Telefono_C }}</span>
           </div>
         </div>

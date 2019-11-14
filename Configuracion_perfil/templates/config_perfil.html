@@ -84,29 +84,28 @@
 {#            <div class="section-divider mb40">#}
             <div class="row">
                     <div class="col-md-6">
-                        <label for="email">Facebook:</label>
-                        {% if usuario.Facebook  %}
-                            <input type="" class="form-control" name="facebook" id="facebook" value = {{usuario.Facebook }}>
-                        {% else %}
-                            <input type="" class="form-control" name="facebook" id="facebook">
-                        {% endif %}
+                        <label for="email">Telefono:</label>
+                            <input type="" class="form-control" name="telefono" id="telefono" value = {{usuario.Telefono_C }}>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="email">Twitter:</label>
-                        {% if usuario.Twitter  %}
-                            <input type="" class="form-control" name="twitter" id="twitter"value = {{usuario.Twitter }}>
-                        {% else %}
-                            <input type="" class="form-control" name="twitter" id="twitter">
-                        {% endif %}
+                    <div class="col-md-6">
+                        <label for="email">Correo contacto:</label>
+                            <input type="" class="form-control" name="telefono" id="telefono" value = {{usuario.Telefono_C }}>
+                    </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="email">Linkedin:</label>
-                        {% if usuario.Linkedin  %}
-                            <input type="" class="form-control" name="linkedin" id="linkedin"value = {{usuario.Linkedin }}>
-                        {% else %}
-                            <input type="" class="form-control" name="linkedin" id="linkedin">
-                        {% endif %}
+                        <label for="email">Imagen:</label>
+                         <div class="section">
+                          <label class="field prepend-icon file">
+                            <span class="button btn-primary">Elegir archivo</span>
+                            <input type="file" class="gui-file" name="imagenRegistro" id="imagenRegistro" onchange="document.getElementById('imagenRegistro2').value = this.value;">
+                            <input type="text" class="gui-input" id="imagenRegistro2" name="imagenRegistro2" placeholder="Sube una imagen tuya :)">
+                            <label class="field-icon">
+                              <i class="fa fa-upload"></i>
+                            </label>
+                          </label>
+                        </div>
 
                     </div>
                     <div class="col-md-6">
