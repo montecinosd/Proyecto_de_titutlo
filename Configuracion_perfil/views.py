@@ -10,16 +10,107 @@ from django.shortcuts import redirect
 @login_required(login_url='/auth/login')
 def config_perfil(request,pk_user):
     data = {}
-    usuario = Persona.objects.get(Usuario=pk_user)
+    usuario = Persona.objects.get(Usuario=request.user.pk)
     data['usuario'] = usuario
+    regiones = Region.objects.all()
+    comunas = Comuna.objects.all()
 
+    data['regiones'] = regiones
+    data['comunas'] = comunas
+
+    Direcciones = Direccion.objects.filter(Persona = usuario)
+    data['direcciones'] = Direcciones
+    print(Direcciones)
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
     data['usuario_solicitud'] = usuario_solicitud
 
 
     return render(request, 'config_perfil.html', data)
 
+@login_required(login_url='/auth/login')
+def config_direccion(request, pk_direccion):
+    data = {}
+    usuario = Persona.objects.get(Usuario=request.user.pk)
+
+    if(pk_direccion==0):
+        pass
+    else:
+        direccion = Direccion.objects.get(pk = pk_direccion)
+        data['direccion'] = direccion
+    data['usuario'] = usuario
+    regiones = Region.objects.all()
+    comunas = Comuna.objects.all()
+    direcciones =Direccion.objects.filter(Persona = usuario)
+    data['regiones'] = regiones
+    data['comunas'] = comunas
+
+    usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
+    data['usuario_solicitud'] = usuario_solicitud
+
+    return render(request, 'config_direccion.html', data)
     # return redirect('config_perfil', request.user.pk)
+@login_required(login_url='/auth/login')
+def config_direccion_actualizar(request, pk_direccion):
+    data = {}
+    usuario = Persona.objects.get(Usuario=request.user.pk)
+    calle = request.POST['calle']
+    n_calle = request.POST['numero_calle']
+    region = request.POST['region']
+    comuna = request.POST['comuna']
+    print(request.POST)
+    direcciones = Direccion.objects.filter(Persona = usuario)
+    print(direcciones)
+    if(pk_direccion ==0):
+        direccion = Direccion()
+        direccion.Persona = usuario
+        pass
+    else:
+        direccion = Direccion.objects.get(pk=pk_direccion)
+        print(direccion)
+
+    if( 'direccion_principal' in request.POST):
+        for i in direcciones:
+            i.apagar_principal()
+            i.save()
+        direccion.establecer_principal()
+    else:
+        direccion.apagar_principal()
+
+    direccion.Numero_de_calle = n_calle
+    direccion.Calle = calle
+    print(comuna)
+    comuna1 = Comuna.objects.get(pk = comuna)
+    direccion.Comuna = comuna1
+    region1 = Region.objects.get(pk = region)
+    direccion.Comuna.region = region1
+    direccion.save()
+
+    return redirect('config_perfil', request.user.pk)
+
+@login_required(login_url='/auth/login')
+def guardar_config_datos(request):
+    data = {}
+    usuario = Persona.objects.get(Usuario=request.user.pk)
+    print(request.POST)
+    print(request.FILES)
+    print(usuario.Imagen)
+
+    if(request.POST['imagenRegistro2'] != ''):
+        print("hay foto")
+        imagen = request.FILES['imagenRegistro']
+        usuario.Imagen = imagen
+
+        pass
+    else:
+        print("no hay foto")
+        pass
+    telefono = request.POST['telefono']
+    correo = request.POST['mail']
+    usuario.Telefono_C = telefono
+    usuario.Correo = correo
+    usuario.save()
+
+    return redirect('config_perfil', request.user.pk)
 
 @login_required(login_url='/auth/login')
 def guardar_config_perfil_redes(request,pk_user):

@@ -70,6 +70,11 @@ class Direccion(models.Model):
     Persona = models.ForeignKey(Persona, on_delete=models.CASCADE)
     Principal = models.IntegerField(default=1)
 
+    def apagar_principal(self):
+        self.Principal = 0
+    def establecer_principal(self):
+        self.Principal = 1
+
 class Historico_watson(models.Model):
     Usuario = models.ForeignKey(Persona, on_delete=models.CASCADE)
     Puntaje = models.IntegerField(default=0)

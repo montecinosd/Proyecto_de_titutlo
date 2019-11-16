@@ -1,0 +1,191 @@
+{% extends 'Partials/_Base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'assets/' %}">
+
+{% block section_contenido %}
+<div class="container">
+{#REDES SOCIALES#}
+
+{#DIRECCIONES#}
+<div class="admin-form theme-primary">
+
+              <div class="panel heading-border panel-primary">
+                <div class="panel-body bg-light">
+                    <div class="section-divider mb40" id="spy1">
+                      <span>¡Administra tus direcciones!</span>
+                    </div>
+{#    <div class="row col-md-12">#}
+{#    <div class="panel heading-border panel-primary">#}
+{#                  <div class="panel-title hidden-xs">#}
+{#                    <span class="glyphicon glyphicon-tasks"></span>¡Publica la pega que necesitas que alguien haga!</div>#}
+{#                </div>#}
+        {% if direccion %}
+             <form method="post" action="{% url 'config_direccion_actualizar' direccion.pk %}" id="formulario_trabajo" enctype="multipart/form-data">{% csrf_token %}
+
+                      <div class="text-center" style="padding-bottom: 1em;">
+                          <h5>Modificando</h5>
+                          {{ direccion.Comuna.region.nombre }}, {{ direccion.Comuna.nombre }}.</br>
+                          {{ direccion.Calle }},{{ direccion.Numero_de_calle }}.
+                      </div>
+        {% else %}
+             <form method="post" action="{% url 'config_direccion_actualizar' 0 %}" id="formulario_trabajo" enctype="multipart/form-data">{% csrf_token %}
+                      <div class="text-center" style="padding-bottom: 1em;">
+                          <h5>Añadiendo nueva dirección</h5>
+                      </div>
+        {% endif %}
+
+{#            <div class="section-divider mb40">#}
+                                  <div class="section row">
+                      <div class="col-md-6" id="div_calle">
+                                              <h5>Nombre calle</h5>
+
+                    <label for="lastname" class="field prepend-icon">
+                      <input type="text" required name="calle" id="calle" class="gui-input" placeholder="Ingresa tu calle"value="{{ direccion.Calle}}">
+                      <label for="lastname" class="field-icon">
+                        <i class="fa fa-globe"></i>
+                      </label>
+                    </label>
+                  </div>
+                  <!-- end section -->
+
+                  <div class="col-md-6" id="div_num_calle">
+                    <h5>Numero calle</h5>
+                      <label for="firstname" class="field prepend-icon">
+                         <input type="text" required name="numero_calle" id="numero_calle" class="gui-input" placeholder="Ingresa tu numero de calle" value="{{ direccion.Numero_de_calle}}">
+                      <label for="firstname" class="field-icon">
+                        <i class="fa fa-globe"></i>
+                      </label>
+                    </label>
+                  </div>
+                  </div>
+                                  <div class="section row">
+{#                  <div class="col-md-6">#}
+{#                    <label for="firstname" class="field prepend-icon">#}
+{#                      <input type="text" name="pais" id="pais" class="gui-input" placeholder="Ingresa tu pais">#}
+{#                      <label for="firstname" class="field-icon">#}
+{#                        <i class="fa fa-globe"></i>#}
+{#                      </label>#}
+{#                    </label>#}
+{#                  </div>#}
+                  <!-- end section -->
+
+                  <div class="col-md-6">
+                    <h5>Region</h5>
+
+                      <label class="field select">
+                          <i class="arrow"></i>
+                          <select class="gui-input" name="region" required id="region">
+                              <option style="color:blue;" value="{{ direccion.Comuna.region.pk }}" >{{ direccion.Comuna.region.nombre }}</option>
+                          {% for i in regiones %}
+                             <option value="{{ i.pk  }}" name="{{ i.pk }}">{{ i.nombre }}</option>
+                          {% endfor %}
+                          </select>
+                      </label>
+                  </div>
+                  <div class="col-md-6" >
+                                      <h5>Comuna</h5>
+
+                          <i class="arrow"></i>
+{#                        RELLENAR LAS COMUNAS EN UNA PRIMERA INSTANCIA CUANDO ENTRA  A LA PAGINA#}
+                        {% if direccion %}
+                            <label class="field select" id="primer_comuna">
+                              <i class="arrow"></i>
+
+                            <select class="gui-input" name="comuna" id="primer_comuna" required >
+                                <option style="color:blue;"value="{{ direccion.Comuna.pk }}">{{ direccion.Comuna.nombre }}</option>
+                                 {% for i in comunas %}
+                                    {% if direccion.Comuna.region == i.region %}
+                                        <option value="{{ i.pk }}">{{ i.nombre }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                                                    </label>
+                        {% else %}
+                            <select class="gui-input" name="comuna" id="primer_comuna" disabled required >
+                            </select>
+                        {% endif %}
+{#                        SE QUITA CUANDO CAMBIA LA OPCION#}
+                    {% for i in regiones %}
+{#                        {{ i }}#}
+
+                        <select class="gui-input" name="comuna" id="{{ i.pk }}" disabled="disabled" style="display:none">
+                        {% for z in comunas %}
+                            {% if i.pk == z.region.pk %}
+                            <option value="{{ z.pk }}">{{ z.nombre }}</option>
+                            {% endif %}
+                        {% endfor %}
+
+                        </select>
+                        </label>
+                    {% endfor %}
+                  </div>
+                  <!-- end section -->
+                </div>
+                          <hr class="short br-lighter">
+
+<div class="section row text-center">
+  <div class="form-check" style="padding-bottom: 1em;">
+    <input type="checkbox" name="direccion_principal" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label"  for="exampleCheck1">Definir como dirección principal
+</div>
+{#            #}
+{#            </div>#}
+            <div class="text-center" >
+                <button class="btn btn-rounded btn-primary" id="submit">Actualizar!</button>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>
+</div>
+
+    </div>
+
+</div>
+</div>
+
+
+
+<script src="{% static 'vendor/jquery/jquery-1.11.1.min.js' %}"></script>
+  <script src="{% static 'vendor/jquery/jquery_ui/jquery-ui.min.js' %}"></script>
+{##}
+  <!-- CanvasBG Plugin(creates mousehover effect) -->
+{#  <script src="{% static 'vendor/plugins/canvasbg/canvasbg.js' %}"></script>#}
+{##}
+{#  <!-- Theme Javascript -->#}
+{#  <script src="{% static 'assets/js/utility/utility.js' %}"></script>#}
+{#  <script src="{% static 'assets/js/demo/demo.js' %}"></script>#}
+{#  <script src="{% static 'assets/js/main.js' %}"></script>#}
+
+  <!-- Page Javascript -->
+  <script type="text/javascript">
+  jQuery(document).ready(function() {
+    "use strict";
+
+    $('#region').on("keydown change",function (e) {
+        {#alert("cambio");#}
+
+        var selected = $(e.currentTarget).val();
+        var id = $(this).children(":selected").attr("name");
+        {#alert(id)#}
+        $("#primer_comuna").hide();
+        {#ocultar cuando se cambia#}
+        {% for i in regiones %}
+            $('#{{ i.pk }}').hide();
+            {#document.getElementById("{{ i.pk }}").disabled = true   ;#}
+            $('#{{ i.pk }}').attr('disabled','disabled');
+        {% endfor %}
+        {#alert(selected);#}
+        {#document.getElementById("selected").disabled = false;#}
+        $('#'+selected).removeAttr('disabled');
+        console.log(selected);
+        $('#'+selected).show();
+
+    });
+  });
+  </script>
+{% endblock %}
+

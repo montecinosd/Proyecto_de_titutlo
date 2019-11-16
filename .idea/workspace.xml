@@ -5,21 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f21c1e25-e9fb-44f4-98ac-0254b1bc9d88" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Registro_fullpega/migrations/0060_auto_20191114_0302.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Registro_fullpega/migrations/0061_auto_20191114_1938.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Registro_fullpega/migrations/0062_auto_20191114_1941.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Registro_fullpega/migrations/0063_auto_20191114_1944.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Registro_fullpega/migrations/0064_auto_20191115_2333.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Administracion/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Administracion/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Configuracion_perfil/templates/config_perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/Configuracion_perfil/templates/config_perfil.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fullpega/Notificaciones_global.py" beforeDir="false" afterPath="$PROJECT_DIR$/Fullpega/Notificaciones_global.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Publicar_trabajo/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Publicar_trabajo/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Registro_fullpega/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Registro_fullpega/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Configuracion_perfil/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Configuracion_perfil/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Configuracion_perfil/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Configuracion_perfil/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Registro_fullpega/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Registro_fullpega/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Registro_fullpega/templates/pages_register.html" beforeDir="false" afterPath="$PROJECT_DIR$/Registro_fullpega/templates/pages_register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Registro_fullpega/templates/visualizar_perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/Registro_fullpega/templates/visualizar_perfil.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Registro_fullpega/templates/visualizar_postulantes_detalle_watson.html" beforeDir="false" afterPath="$PROJECT_DIR$/Registro_fullpega/templates/visualizar_postulantes_detalle_watson.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Registro_fullpega/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Registro_fullpega/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,8 +44,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Registro_fullpega/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="65">
-              <caret line="640" column="15" selection-start-line="640" selection-start-column="15" selection-end-line="640" selection-end-column="15" />
+            <state relative-caret-position="103">
+              <caret line="609" column="48" lean-forward="true" selection-start-line="609" selection-end-line="610" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
                 <marker date="1573771837948" expanded="true" signature="1195:1939" ph="..." />
@@ -64,31 +55,91 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Registro_fullpega/templates/visualizar_perfil.html">
+        <entry file="file://$PROJECT_DIR$/Configuracion_perfil/templates/config_direccion.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="23" column="72" selection-start-line="23" selection-start-column="72" selection-end-line="23" selection-end-column="72" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Registro_fullpega/templates/pages_register.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="606" column="18" selection-start-line="606" selection-start-column="18" selection-end-line="606" selection-end-column="18" />
+            <state relative-caret-position="1">
+              <caret line="97" column="66" selection-start-line="97" selection-start-column="66" selection-end-line="97" selection-end-column="66" />
               <folding>
-                <element signature="n#style#0;n#select#0;n#div#2;n#div#9;n#div#0;n#form#0;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#option#0;n#select#0;n#label#0;n#div#0;n#div#2;n#form#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#option#0;n#select#0;n#label#0;n#div#1;n#div#2;n#form#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#select#2;n#label#0;n#div#1;n#div#2;n#form#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Registro_fullpega/models.py">
+        <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/common.rnc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="59" column="13" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
+            <state relative-caret-position="159">
+              <caret line="127" column="18" selection-start-line="127" selection-start-column="18" selection-end-line="127" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Registro_fullpega/templates/pages_register.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="237" column="20" lean-forward="true" selection-start-line="237" selection-start-column="20" selection-end-line="245" selection-end-column="32" />
+              <folding>
+                <element signature="n#style#0;n#select#1;n#div#1;n#div#10;n#div#0;n#form#0;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Configuracion_perfil/templates/config_perfil.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="123">
+              <caret line="130" column="59" selection-start-line="130" selection-start-column="59" selection-end-line="130" selection-end-column="59" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h5#0;n#div#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#h5#0;n#div#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#a#0;n#div#1;n#div#1;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Templates/Partials/_BaseAdmin.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="14" selection-end-line="719" />
+              <folding>
+                <element signature="n#style#0;n#i#0;n#li#2;n#ul#0;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Configuracion_perfil/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="95" column="24" selection-start-line="95" selection-start-column="24" selection-end-line="95" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Configuracion_perfil/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="11" column="88" selection-start-line="11" selection-start-column="88" selection-end-line="11" selection-end-column="88" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -97,12 +148,17 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Registro_fullpega/admin.py">
+        <entry file="file://$PROJECT_DIR$/Configuracion_perfil/models.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Registro_fullpega/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="16" column="75" selection-start-line="16" selection-start-column="75" selection-end-line="16" selection-end-column="75" />
+            <state relative-caret-position="523">
+              <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
               <folding>
-                <element signature="e#0#32#0" expanded="true" />
+                <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -112,15 +168,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>bt</find>
-      <find>historico</find>
-      <find>trabajo_acordado</find>
-      <find>&lt;a</find>
-      <find>btn</find>
-      <find>historicos</find>
-      <find>pun</find>
-      <find>trabajo_activo</find>
-      <find>buscar_trabajo</find>
       <find>data</find>
       <find>visualizar_post</find>
       <find>data-toggle=&quot;modal&quot;</find>
@@ -142,6 +189,15 @@
       <find>imagen</find>
       <find>comuna</find>
       <find>AQUI</find>
+      <find>fa</find>
+      <find>hr</find>
+      <find>&lt;hr</find>
+      <find>insg</find>
+      <find>&lt;a</find>
+      <find>name=&quot;</find>
+      <find>correo</find>
+      <find>ac</find>
+      <find>placehol</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Daniel\Desktop\Django_proyects\Proyecto_de_titulo\static\assets\img</dir>
@@ -153,20 +209,16 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$APPLICATION_CONFIG_DIR$/pycharm64.exe.vmoptions" />
         <option value="$PROJECT_DIR$/Registro_fullpega/templatetags/poll_extras.py" />
         <option value="$PROJECT_DIR$/Publicar_trabajo/views.py" />
         <option value="$PROJECT_DIR$/Auth_fullpega/templates/pages_login.html" />
         <option value="$PROJECT_DIR$/sensibilidad_watson/tests.py" />
         <option value="$PROJECT_DIR$/sensibilidad_watson/urls.py" />
         <option value="$PROJECT_DIR$/Calificaciones/urls.py" />
-        <option value="$PROJECT_DIR$/Configuracion_perfil/urls.py" />
-        <option value="$PROJECT_DIR$/Configuracion_perfil/views.py" />
         <option value="$PROJECT_DIR$/Calificaciones/templates/calificar_usuarios.html" />
         <option value="$PROJECT_DIR$/Administracion/templates/index_admin.html" />
         <option value="$PROJECT_DIR$/Auth_fullpega/views.py" />
         <option value="$PROJECT_DIR$/Administracion/templates/visualizar_perfil_adm.html" />
-        <option value="$PROJECT_DIR$/Templates/Partials/_BaseAdmin.html" />
         <option value="$PROJECT_DIR$/Administracion/templates/visualizar_pega_adm.html" />
         <option value="$PROJECT_DIR$/Publicar_trabajo/urls.py" />
         <option value="$PROJECT_DIR$/Templates/Partials/_Base.html" />
@@ -195,15 +247,19 @@
         <option value="$PROJECT_DIR$/sensibilidad_watson/watson.py" />
         <option value="$PROJECT_DIR$/Registro_fullpega/templates/visualizar_postulantes_detalle.html" />
         <option value="$PROJECT_DIR$/Registro_fullpega/templates/visualizar_postulantes_detalle_watson.html" />
-        <option value="$PROJECT_DIR$/Configuracion_perfil/templates/config_perfil.html" />
         <option value="$PROJECT_DIR$/Fullpega/Notificaciones_global.py" />
         <option value="$PROJECT_DIR$/Administracion/views.py" />
         <option value="$PROJECT_DIR$/Publicar_trabajo/admin.py" />
         <option value="$PROJECT_DIR$/Registro_fullpega/admin.py" />
-        <option value="$PROJECT_DIR$/Registro_fullpega/models.py" />
-        <option value="$PROJECT_DIR$/Registro_fullpega/templates/visualizar_perfil.html" />
         <option value="$PROJECT_DIR$/Registro_fullpega/views.py" />
+        <option value="$PROJECT_DIR$/Registro_fullpega/templates/visualizar_perfil.html" />
+        <option value="$PROJECT_DIR$/Templates/Partials/_BaseAdmin.html" />
         <option value="$PROJECT_DIR$/Registro_fullpega/templates/pages_register.html" />
+        <option value="$PROJECT_DIR$/Registro_fullpega/models.py" />
+        <option value="$PROJECT_DIR$/Configuracion_perfil/templates/config_direccion.html" />
+        <option value="$PROJECT_DIR$/Configuracion_perfil/urls.py" />
+        <option value="$PROJECT_DIR$/Configuracion_perfil/views.py" />
+        <option value="$PROJECT_DIR$/Configuracion_perfil/templates/config_perfil.html" />
       </list>
     </option>
   </component>
@@ -304,6 +360,11 @@
             <path>
               <item name="Proyecto_de_titulo" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="Fullpega" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Proyecto_de_titulo" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="Publicar_trabajo" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
@@ -333,6 +394,17 @@
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="static" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
+            <path>
+              <item name="Proyecto_de_titulo" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="Templates" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Proyecto_de_titulo" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="Templates" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="Partials" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -351,11 +423,11 @@
       <recent name="C:\Users\Daniel\Desktop\Django_proyects\Proyecto_de_titulo\Publicar_trabajo\templates" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Daniel\Desktop\Django_proyects\Proyecto_de_titulo\Configuracion_perfil\templates" />
       <recent name="C:\Users\Daniel\Desktop\Django_proyects\Proyecto_de_titulo\Registro_fullpega\templates" />
       <recent name="C:\Users\Daniel\Desktop\Django_proyects\Proyecto_de_titulo\Administracion\templates" />
       <recent name="C:\Users\Daniel\Desktop\Django_proyects\Proyecto_de_titulo\Templates\Partials" />
       <recent name="C:\Users\Daniel\Desktop\Django_proyects\Proyecto_de_titulo\Administracion" />
-      <recent name="C:\Users\Daniel\Desktop\Django_proyects\Proyecto_de_titulo\Configuracion_perfil" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -502,12 +574,12 @@
       <workItem from="1573177584641" duration="20992000" />
       <workItem from="1573432698280" duration="591000" />
       <workItem from="1573435966494" duration="11124000" />
-      <workItem from="1573605314675" duration="20920000" />
+      <workItem from="1573605314675" duration="38494000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="420241000" />
+    <option name="totallyTimeSpent" value="437815000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -522,7 +594,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989775" weight="0.2557047" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989775" visible="true" weight="0.2557047" />
       <window_info id="Structure" order="1" sideWeight="0.5010225" side_tool="true" weight="0.15771812" />
       <window_info id="Favorites" order="2" sideWeight="0.5010225" side_tool="true" weight="0.15771812" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
@@ -531,10 +603,10 @@
       <window_info anchor="bottom" id="Python Console" order="3" weight="0.23087819" />
       <window_info anchor="bottom" x="23" y="303" width="1490" height="217" id="Terminal" order="4" weight="0.296034" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="manage.py@Proyecto_de_titulo" order="6" weight="0.7577904" />
+      <window_info anchor="bottom" id="manage.py@Proyecto_de_titulo" order="6" weight="0.5495751" />
       <window_info anchor="bottom" id="Message" order="7" />
       <window_info anchor="bottom" id="Find" order="8" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="9" weight="0.91501415" />
+      <window_info anchor="bottom" id="Run" order="9" visible="true" weight="0.45892352" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="12" weight="0.3286119" />
@@ -546,31 +618,6 @@
       <window_info anchor="right" id="Database" order="4" weight="0.3295302" />
       <window_info anchor="right" x="0" y="0" width="337" height="638" id="Documentation" order="5" side_tool="true" weight="0.3295302" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989775" visible="true" weight="0.2557047" />
-      <window_info id="Structure" order="1" sideWeight="0.5010225" side_tool="true" weight="0.15771812" />
-      <window_info id="Favorites" order="2" sideWeight="0.5010225" side_tool="true" weight="0.15771812" />
-      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="1" />
-      <window_info anchor="bottom" id="Version Control" order="2" weight="0.3286119" />
-      <window_info anchor="bottom" id="Python Console" order="3" weight="0.23087819" />
-      <window_info anchor="bottom" x="23" y="303" width="1490" height="217" id="Terminal" order="4" weight="0.296034" />
-      <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="manage.py@Proyecto_de_titulo" order="6" weight="0.7577904" />
-      <window_info anchor="bottom" id="Message" order="7" />
-      <window_info anchor="bottom" id="Find" order="8" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="9" visible="true" weight="0.91501415" />
-      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="12" weight="0.3286119" />
-      <window_info anchor="bottom" id="Debug" order="13" weight="0.39943343" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="Database" order="4" weight="0.3295302" />
-      <window_info anchor="right" x="0" y="0" width="337" height="638" id="Documentation" order="5" side_tool="true" weight="0.3295302" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -583,49 +630,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Administracion/templates/visualizar_pega_adm.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Administracion/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Calificaciones/models.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Publicar_trabajo/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Auth_fullpega/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fullpega/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/Partials/_Base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1378">
-          <caret line="129" column="24" lean-forward="true" selection-start-line="129" selection-start-column="24" selection-end-line="129" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Fullpega/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -671,16 +675,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="116" column="47" selection-start-line="116" selection-start-column="47" selection-end-line="116" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Publicar_trabajo/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1592">
-          <caret line="102" column="22" selection-start-line="102" selection-start-column="22" selection-end-line="102" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -735,24 +729,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Registro_fullpega/templates/visualizar_postulantes.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="637">
-          <caret line="75" column="153" selection-start-line="75" selection-start-column="35" selection-end-line="75" selection-end-column="153" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Registro_fullpega/templates/h_trabajos_publicados.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1035">
           <caret line="45" column="41" selection-start-line="45" selection-start-column="41" selection-end-line="45" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Registro_fullpega/templates/h_trabajos_realizados.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="943">
-          <caret line="41" column="30" selection-start-line="41" selection-start-column="30" selection-end-line="45" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -804,13 +784,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Registro_fullpega/templates/visualizar_postulantes_detalle.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="98" column="43" selection-start-line="98" selection-start-column="43" selection-end-line="98" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Registro_fullpega/templates/visualizar_postulantes_detalle_watson.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-920">
@@ -821,23 +794,6 @@
     <entry file="file://$PROJECT_DIR$/Administracion/templates/index_admin.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-207" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Configuracion_perfil/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Configuracion_perfil/templates/config_perfil.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="107" column="30" selection-start-line="107" selection-start-column="30" selection-end-line="107" selection-end-column="30" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sensibilidad_watson/views.py">
@@ -866,16 +822,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Fullpega/Notificaciones_global.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-          <folding>
-            <element signature="e#1#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Publicar_trabajo/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1427">
@@ -885,9 +831,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sensibilidad_watson/models.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Publicar_trabajo/admin.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -915,27 +858,134 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Registro_fullpega/models.py">
+    <entry file="file://$PROJECT_DIR$/Publicar_trabajo/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="59" column="13" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
+        <state relative-caret-position="611">
+          <caret line="102" column="22" selection-start-line="102" selection-start-column="22" selection-end-line="102" selection-end-column="22" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Registro_fullpega/templates/visualizar_perfil.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
+        <state relative-caret-position="-1579">
           <caret line="23" column="72" selection-start-line="23" selection-start-column="72" selection-end-line="23" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Templates/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Registro_fullpega/templates/h_trabajos_realizados.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="41" column="30" selection-start-line="41" selection-start-column="30" selection-end-line="45" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Registro_fullpega/templates/visualizar_postulantes.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="68" column="60" selection-start-line="68" selection-end-line="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Registro_fullpega/templates/visualizar_postulantes_detalle.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="108" column="45" selection-start-line="108" selection-start-column="43" selection-end-line="108" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sensibilidad_watson/models.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Fullpega/Notificaciones_global.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+          <folding>
+            <element signature="e#1#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Templates/Partials/_Base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="10" lean-forward="true" selection-end-line="845" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Templates/Partials/_BaseAdmin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="14" selection-end-line="719" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#li#2;n#ul#0;n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Registro_fullpega/templates/pages_register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="237" column="20" lean-forward="true" selection-start-line="237" selection-start-column="20" selection-end-line="245" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#select#1;n#div#1;n#div#10;n#div#0;n#form#0;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/common.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="127" column="18" selection-start-line="127" selection-start-column="18" selection-end-line="127" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Configuracion_perfil/models.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Registro_fullpega/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Configuracion_perfil/templates/config_direccion.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1">
+          <caret line="97" column="66" selection-start-line="97" selection-start-column="66" selection-end-line="97" selection-end-column="66" />
+          <folding>
+            <element signature="n#style#0;n#option#0;n#select#0;n#label#0;n#div#0;n#div#2;n#form#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#option#0;n#select#0;n#label#0;n#div#1;n#div#2;n#form#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#2;n#label#0;n#div#1;n#div#2;n#form#0;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Configuracion_perfil/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="88" selection-start-line="11" selection-start-column="88" selection-end-line="11" selection-end-column="88" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Registro_fullpega/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="640" column="15" selection-start-line="640" selection-start-column="15" selection-end-line="640" selection-end-column="15" />
+        <state relative-caret-position="103">
+          <caret line="609" column="48" lean-forward="true" selection-start-line="609" selection-end-line="610" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
             <marker date="1573771837948" expanded="true" signature="1195:1939" ph="..." />
@@ -943,12 +993,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Registro_fullpega/templates/pages_register.html">
+    <entry file="file://$PROJECT_DIR$/Configuracion_perfil/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="606" column="18" selection-start-line="606" selection-start-column="18" selection-end-line="606" selection-end-column="18" />
+        <state relative-caret-position="179">
+          <caret line="95" column="24" selection-start-line="95" selection-start-column="24" selection-end-line="95" selection-end-column="24" />
           <folding>
-            <element signature="n#style#0;n#select#0;n#div#2;n#div#9;n#div#0;n#form#0;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Configuracion_perfil/templates/config_perfil.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="130" column="59" selection-start-line="130" selection-start-column="59" selection-end-line="130" selection-end-column="59" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h5#0;n#div#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#h5#0;n#div#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#0;n#div#1;n#div#1;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

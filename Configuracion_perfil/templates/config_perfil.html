@@ -2,7 +2,7 @@
 {% load bootstrap4 %}
 {% load static %}
 
-
+{{ notificaciones }}
 <link rel="stylesheet" type="text/css" href="{% static 'assets/' %}">
 
 {% block section_contenido %}
@@ -80,20 +80,15 @@
 {#                    <span class="glyphicon glyphicon-tasks"></span>¡Publica la pega que necesitas que alguien haga!</div>#}
 {#                </div>#}
 
-        <form method="post" action="{% url 'guardar_trabajo' request.user.pk %}" id="formulario_trabajo" enctype="multipart/form-data">{% csrf_token %}
+        <form method="post" action="{% url 'guardar_config_datos' %}" id="formulario_trabajo" enctype="multipart/form-data">{% csrf_token %}
 {#            <div class="section-divider mb40">#}
             <div class="row">
                     <div class="col-md-6">
                         <label for="email">Telefono:</label>
-                            <input type="" class="form-control" name="telefono" id="telefono" value = {{usuario.Telefono_C }}>
+                            <input pattern="[+]{1}[5]{1}[6]{1}[2-9]{1}[0-9]{7-8}" type="tel" class="form-control" name="telefono" id="telefono" value = "{{usuario.Telefono_C }}" required placeholder="Ingresa numero Ej: +56912345678 - +5621234567">
                     </div>
 
-                    <div class="col-md-6">
-                    <div class="col-md-6">
-                        <label for="email">Correo contacto:</label>
-                            <input type="" class="form-control" name="telefono" id="telefono" value = {{usuario.Telefono_C }}>
-                    </div>
-                    </div>
+
                     <div class="col-md-6">
                         <label for="email">Imagen:</label>
                          <div class="section">
@@ -108,14 +103,11 @@
                         </div>
 
                     </div>
-                    <div class="col-md-6">
-                        <label for="email">Instagram:</label>
-                        {% if usuario.Instagram %}
-                            <input type="" class="form-control" name="instagram" id="instagram"value = {{usuario.Instagram }}>
-                        {% else %}
-                            <input type="" class="form-control" name="instagram" id="instagram">
-                        {% endif %}
+                      <div class="col-md-6">
+                        <label for="email">Correo contacto:</label>
+                            <input type="email" required class="form-control" name="mail" id="mail" value = "{{usuario.Correo }}" placeholder="Ingresa tu correo">
                     </div>
+
                 </div>
 
 {#            #}
@@ -135,263 +127,98 @@
                     <div class="section-divider mb40" id="spy1">
                       <span>¡Administra tus direcciones!</span>
                     </div>
-{#    <div class="row col-md-12">#}
-{#    <div class="panel heading-border panel-primary">#}
-{#                  <div class="panel-title hidden-xs">#}
-{#                    <span class="glyphicon glyphicon-tasks"></span>¡Publica la pega que necesitas que alguien haga!</div>#}
-{#                </div>#}
-
-        <form method="post" action="{% url 'guardar_trabajo' request.user.pk %}" id="formulario_trabajo" enctype="multipart/form-data">{% csrf_token %}
-{#            <div class="section-divider mb40">#}
-                <div class="row">
-                    <div class="col-md-4">
-                      <label for="email">Nombre:</label>
-                      <input type="" class="form-control" name="nombre" id="nombre">
+                      <div class="text-center" style="padding-bottom: 1em;">
+                         <a class="text-center btn btn-info btn-rounded" href="{% url 'config_direccion' 0 %}" >Añadir otra dirección</a>
+                      </div>
+            {% for i in direcciones %}
+            <div class="col-md-4">
+                <div class="panel">
+                    <div class="panel-heading" style="padding:0em;">
+{#                        <div class="col-md-1">#}
+{#                            <i class="fa fa-globe"></i>#}
+{#                        </div>#}
+                            <div class="col-md-12 text-center">
+                                <h5 style="color:royalblue;"><i style="font-size:2em;" class="fa fa-globe"></i> Dirección {{ forloop.counter }} </h5>
+                            </div>
+                        {#                  <span class="panel-icon">#}
+                        {#                    <i class="fa fa-globe"></i>#}
+                        {#                  </span>#}
                     </div>
-                    <div class="col-md-4">
-                      <label for="email">Detalle:</label>
-                      <input type="" class="form-control" name="detalle" id="detalle">
-                    </div>
-                    <div class="col-md-4">
-                      <label for="email">Pago:</label>
-                      <input type="number" class="form-control" step ="1" name="monto" id="monto">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <label for="Hora">Areas:</label>
+                    <div class="panel-body pb5">
+                        {% if i.Principal == 1 %}
+                         <div class="text-center" style="padding: 0em;">
+                            <a class="btn btn-rounded text-center btn-alert" disabled ><i style="font-size:2em;" class="fa">&#xf00c;</i> Dirección principal</a>
+                        </div>
+                        {% else %}
+                        <div class="text-center" style="padding: 0em;">
+                            <a class="btn btn-rounded text-center btn-default" disabled ><i style="font-size:2em;" class="fa fa-rocket"></i> Dirección secundaria</a>
+                        </div>
+                        {% endif %}
 
-                        <select name="id_Area" class="form-control" required="" id="id_Area">
-                            <option value="" selected="">Seleccione el área que corresponde</option>
+                  <h5 class="text-center">{{ i.Comuna.region.nombre }}, {{ i.Comuna.nombre }}</h5>
+                  <h5 class="text-center">{{ i.Calle}}, {{ i.Numero_de_calle}}</h5>
 
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="Hora">Rango etario:</label>
 
-                        <select name="r_etario" class="form-control" required="" id="r_etario">
-                            <option value="" selected="">Seleccione rango etario</option>
-                            <option value="Sin_rango" class="value">Sin rango etario preferencial</option>
 
-                            <option value="15-25" class="value">15-25</option>
-                            <option value="25-35" class="value">25-35</option>
-                            <option value="35-35" class="value">35-35</option>
-                            <option value="45-55" class="value">45-55</option>
-                            <option value="55-65" class="value">55-65</option>
-                        </select>
+                  <hr class="short br-lighter">
+                        <div class="text-center">
+                            <a class="btn btn-rounded text-center btn-primary" href="{% url 'config_direccion' i.pk %}"> Modificar</a>
+                            <a class="btn btn-rounded text-center btn-danger" href="{% url 'config_direccion' i.pk %}">Eliminar</a>
+                        </div>
 
-                    </div>
-                    <div class="col-md-4">
-                        <label for="Hora">Dirección:</label>
-                        <select name="direccion" class="form-control" required="" id="direccion">
-                        </select>
 
-                    </div>
 
                 </div>
-                <div class="row">
-                    <div class="col-md-4   ">
-                        <label for="Fecha">Fecha:</label>
-                        <input type="date" name="fecha"  id="fecha" class="form-control" placeholder="Ingrese la fecha del trabajo" required="">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="Hora">Hora:</label>
-
-                        <input type="time" name="hora"  id="hora" class="form-control" placeholder="Ingrese la hora del trabajo" required="">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="Hora">Imagen:</label>
-                        <input type="file" id="ImagenTrabajo" name="ImagenTrabajo">
-                    </div>
                 </div>
-
-
-                <div class="row">
-
-                    <div class="col-md-4">
-                      <label for="email">¿Cantidad de personas requeridas?:</label>
-                      <input type="number" class="form-control" value="1" step ="1" name="personas_requeridas" id="personas_requeridas">
-
-                    </div>
-                    <div class="col-md-4">
-                        a
-                    </div>
-                    <div class="col-md-4">
-                        a
-                    </div>
-                </div>
-{#            #}
-{#            </div>#}
-            <div class="text-center">
-                <button class="btn btn-roundedbtn-primary" id="submit">Publicar pega!</button>
             </div>
-        </form>
+            {% endfor %}
+
     </div>
     </div>
 </div>
-
-    <div class="row col-md-12" style="padding: 1%; ">
-    <div class="panel-heading">
-                  <div class="panel-title hidden-xs">
-                    <span class="glyphicon glyphicon-tasks"></span>¡Actualiza tus redes sociales !</div>
-                </div>
-    <div class="panel-body bg-light">
-{#FORM DE REDES SOCIALES #}
-        <form method="post" action="{% url 'guardar_config_perfil_redes' request.user.pk %}" id="formulario_trabajo">{% csrf_token %}
-            <div class="section-divider mb40">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="email">Facebook:</label>
-                        {% if usuario.Facebook  %}
-                            <input type="" class="form-control" name="facebook" id="facebook" value = {{usuario.Facebook }}>
-                        {% else %}
-                            <input type="" class="form-control" name="facebook" id="facebook">
-                        {% endif %}
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="email">Twitter:</label>
-                        {% if usuario.Twitter  %}
-                            <input type="" class="form-control" name="twitter" id="twitter"value = {{usuario.Twitter }}>
-                        {% else %}
-                            <input type="" class="form-control" name="twitter" id="twitter">
-                        {% endif %}
-                    </div>
-                    <div class="col-md-6">
-                        <label for="email">Linkedin:</label>
-                        {% if usuario.Linkedin  %}
-                            <input type="" class="form-control" name="linkedin" id="linkedin"value = {{usuario.Linkedin }}>
-                        {% else %}
-                            <input type="" class="form-control" name="linkedin" id="linkedin">
-                        {% endif %}
-
-                    </div>
-                    <div class="col-md-6">
-                        <label for="email">Instagram:</label>
-                        {% if usuario.Instagram %}
-                            <input type="" class="form-control" name="instagram" id="instagram"value = {{usuario.Instagram }}>
-                        {% else %}
-                            <input type="" class="form-control" name="instagram" id="instagram">
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="text-center" style="margin-top:1%;">
-                <button class="btn btn-rounded btn-primary" id="submit">Actualizar redes</button>
-            </div>
-            </div>
-        </form>
-    </div>
-    </div>
-
 </div>
-    <div class="row col-md-12">
-    <div class="panel-heading">
-                  <div class="panel-title hidden-xs">
-                    <span class="glyphicon glyphicon-tasks"></span>¡Actualiza tus datos!</div>
-                </div>
-    <div class="panel-body bg-light">
-{#FORM DE REDES SOCIALES #}
-        <form method="post" action="{% url 'guardar_config_perfil_redes' request.user.pk %}" id="formulario_trabajo">{% csrf_token %}
-            <div class="section-divider mb40">
-<div class="row">
-                    <div class="col-md-6">
-                        <label for="email">Correo:</label>
-                        {% if usuario.Facebook  %}
-                            <input type="" class="form-control" name="facebook" id="facebook" value = {{usuario.Facebook }}>
-                        {% else %}
-                            <input type="" class="form-control" name="facebook" id="facebook">
-                        {% endif %}
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="email">Imagen:</label>
-                        {% if usuario.Instagram %}
-                            <input type="" class="form-control" name="instagram" id="instagram"value = {{usuario.Instagram }}>
-                        {% else %}
-                            <input type="" class="form-control" name="instagram" id="instagram">
-                        {% endif %}
-                    </div>
-                </div>
-                    <div class="col-md-6">
-                        <label for="email">Telefono:</label>
-                        {% if usuario.Twitter  %}
-                            <input type="" class="form-control" name="twitter" id="twitter"value = {{usuario.Twitter }}>
-                        {% else %}
-                            <input type="" class="form-control" name="twitter" id="twitter">
-                        {% endif %}
-                    </div>
+{##}
+{#    </div>#}
+{##}
+{#</div>#}
+{#</div>#}
 
 
 
-            <div class="text-center" style="margin-top:1%;">
-                <button class="btn btn-rounded btn-primary" id="submit">Actualizar datos</button>
-            </div>
+<script src="{% static 'vendor/jquery/jquery-1.11.1.min.js' %}"></script>
+  <script src="{% static 'vendor/jquery/jquery_ui/jquery-ui.min.js' %}"></script>
+{##}
+  <!-- CanvasBG Plugin(creates mousehover effect) -->
+{#  <script src="{% static 'vendor/plugins/canvasbg/canvasbg.js' %}"></script>#}
+{##}
+{#  <!-- Theme Javascript -->#}
+{#  <script src="{% static 'assets/js/utility/utility.js' %}"></script>#}
+{#  <script src="{% static 'assets/js/demo/demo.js' %}"></script>#}
+{#  <script src="{% static 'assets/js/main.js' %}"></script>#}
 
-        </form>
-    </div>
-    </div>
-
-</div>
-
-{#    DIRECCION #}
-        <div class="row col-md-12" style="padding: 1%; ">
-    <div class="panel-heading">
-                  <div class="panel-title hidden-xs">
-                    <span class="glyphicon glyphicon-tasks"></span>¡Actualiza tus datos!</div>
-                </div>
-    <div class="panel-body bg-light">
-{#FORM DE REDES SOCIALES #}
-        <form method="post" action="{% url 'guardar_config_perfil_redes' request.user.pk %}" id="formulario_trabajo">{% csrf_token %}
-            <div class="section-divider mb40">
-<div class="row">
-                    <div class="col-md-6">
-                        <label for="email">Correo:</label>
-                        {% if usuario.Facebook  %}
-                            <input type="" class="form-control" name="facebook" id="facebook" value = {{usuario.Facebook }}>
-                        {% else %}
-                            <input type="" class="form-control" name="facebook" id="facebook">
-                        {% endif %}
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="email">Telefono:</label>
-                        {% if usuario.Twitter  %}
-                            <input type="" class="form-control" name="twitter" id="twitter"value = {{usuario.Twitter }}>
-                        {% else %}
-                            <input type="" class="form-control" name="twitter" id="twitter">
-                        {% endif %}
-                    </div>
-                    <div class="col-md-6">
-                        <label for="email">Direccion:</label>
-                        {% if usuario.Linkedin  %}
-                            <input type="" class="form-control" name="linkedin" id="linkedin"value = {{usuario.Linkedin }}>
-                        {% else %}
-                            <input type="" class="form-control" name="linkedin" id="linkedin">
-                        {% endif %}
-
-                    </div>
-                    <div class="col-md-6">
-                        <label for="email">Imagen:</label>
-                        {% if usuario.Instagram %}
-                            <input type="" class="form-control" name="instagram" id="instagram"value = {{usuario.Instagram }}>
-                        {% else %}
-                            <input type="" class="form-control" name="instagram" id="instagram">
-                        {% endif %}
-                    </div>
-                </div>
-
-            <div class="text-center" style="margin-top:1%;">
-                <button class="btn btn-primary" id="submit">Actualizar datos</button>
-            </div>
-        </form>
-    </div>
-    </div>
-
-</div>
-</div>
-
-
-
-
+  <!-- Page Javascript -->
+{#  <script type="text/javascript">#}
+{#  jQuery(document).ready(function() {#}
+{#    "use strict";#}
+{#   #}
+{#    $('#region').change(function (e) {#}
+{#        var selected = $(e.currentTarget).val();#}
+{#        var id = $(this).children(":selected").attr("name");#}
+        {#alert(id)#}
+{#        $("#primer_comuna").hide();#}
+{#        {% for i in regiones %}#}
+{#            $('#{{ i.pk }}').hide();#}
+            {#document.getElementById("{{ i.pk }}").disabled = true   ;#}
+{#            $('#{{ i.pk }}').attr('disabled','disabled');#}
+{#        {% endfor %}#}
+        {#alert(selected);#}
+        {#document.getElementById("selected").disabled = false;#}
+{#    $('#'+selected).removeAttr('disabled');#}
+{##}
+{#        $('#'+selected).show();#}
+{##}
+{#    });#}
+{#  });#}
+{#  </script>#}
 {% endblock %}
 
