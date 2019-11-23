@@ -18,7 +18,7 @@
               <div class="panel heading-border panel-primary">
                 <div class="panel-body bg-light">
                     <div class="section-divider mb40" id="spy1">
-                      <span>¡Publica la pega que necesitas que alguien haga!</span>
+                      <span>¡Rellena los campos de la pega que necesitas que alguien haga!</span>
                     </div>
 {#    <div class="row col-md-12">#}
 {#    <div class="panel heading-border panel-primary">#}
@@ -54,6 +54,12 @@
                             {% endfor %}
                         </select>
                     </div>
+                                    <div class="col-md-4">
+                      <label for="email">¿Cantidad de personas requeridas?:</label>
+                      <input type="number" class="form-control" value="1" step ="1" name="personas_requeridas" id="personas_requeridas">
+
+                    </div>
+
                     <div class="col-md-4">
                         <label for="Hora">Rango etario:</label>
 
@@ -66,15 +72,6 @@
                             <option value="35-35" class="value">35-35</option>
                             <option value="45-55" class="value">45-55</option>
                             <option value="55-65" class="value">55-65</option>
-                        </select>
-
-                    </div>
-                    <div class="col-md-4">
-                        <label for="Hora">Dirección:</label>
-                        <select name="direccion" class="form-control" required="" id="direccion">
-                            {% for i in usuario %}
-                                <option value="{{ i.Direccion.pk }}" class="value">{{ i.Direccion.Calle}}, {{ i.Direccion.Numero_de_calle }}. {{ i.Direccion.Comuna }}</option>
-                            {% endfor %}
                         </select>
 
                     </div>
@@ -96,23 +93,111 @@
                     </div>
                 </div>
 
+                                <div class="section-divider mb40" id="spy1">
+                      <span>¡Rellena la dirección de la pega!</span>
+                    </div>
 
-                <div class="row">
-
+                <div class="row text-center" >
+{#                direccion#}
                     <div class="col-md-4">
-                      <label for="email">¿Cantidad de personas requeridas?:</label>
-                      <input type="number" class="form-control" value="1" step ="1" name="personas_requeridas" id="personas_requeridas">
+{#                        <a class="btn btn-success btn-rounded" style="width: 20em;" id="boton1">Usa una direccion predeterminada</a>#}
+{#                         <span id="span-boton1" class="fa fa-gear"></span> Administrar direcciones</a>#}
+                                                <a class="btn btn-success btn-rounded animated animated-short fadeInUp" style="width: 20em;" id="boton1" >
+                            <span  id="span-boton1" class="fa fa-check"></span> Usa una direccion predeterminada</a>
+
+                        </div>
+                    <div class="col-md-4">
+{#                        <a class="btn btn-info btn-rounded animated animated-short fadeInUp" style="width: 20em;"id="boton2" >Añade una nueva dirección</a>#}
+{#                         <span id="span-boton2" class="fa fa-gear"></span> Administrar direcciones</a>#}
+                                                    <a class="btn btn-info btn-rounded animated animated-short fadeInUp" style="width: 20em;" id="boton2"  >
+                            <span id="span-boton2" class="fa fa-circle-o                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            "></span> Añade una nueva dirección</a>
 
                     </div>
                     <div class="col-md-4">
-                        a
+                            <a class="btn btn-alert btn-rounded animated animated-short fadeInUp" style="width: 20em;" id="boton3" href="{% url 'config_perfil' request.user.pk %}" >
+                            <span class="fa fa-gear"></span> Administrar direcciones</a>
                     </div>
-                    <div class="col-md-4">
-                        a
-                    </div>
+
                 </div>
-{#            #}
+        <hr>
+        <div class="row"id="row_direccion1">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                        <label for="Hora">Dirección:</label>
+                        <select name="direccion" class="form-control" required="" id="direccion">
+                            {% for i in direcciones  %}
+                                <option value="{{ i.pk }}" class="value">{{ i.Calle}}, {{ i.Numero_de_calle }}. {{ i.Comuna.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+        <div class="col-md-3"></div>
+        </div>
+            <div class="row" id="row_direccion2" hidden>
+                      <div class="col-md-6" id="div_calle">
+                          Calle:
+                    <label for="lastname" class="field prepend-icon">
+                      <input type="text" name="calle" id="calle" class="gui-input" disabled placeholder="Ingresa tu calle">
+                      <label for="lastname" class="field-icon">
+                        <i class="fa fa-globe"></i>
+                      </label>
+                    </label>
+                  </div>
+                  <!-- end section -->
+
+                  <div class="col-md-6" id="div_num_calle">
+                      Numero calle:
+                    <label for="firstname" class="field prepend-icon">
+                      <input type="text" disabled name="numero_calle" id="numero_calle" class="gui-input" placeholder="Ingresa tu numero de calle">
+                      <label for="firstname" class="field-icon">
+                        <i class="fa fa-globe"></i>
+                      </label>
+                    </label>
+                  </div>
+
+
+{#                  <div class="col-md-6">#}
+{#                    <label for="firstname" class="field prepend-icon">#}
+{#                      <input type="text" name="pais" id="pais" class="gui-input" placeholder="Ingresa tu pais">#}
+{#                      <label for="firstname" class="field-icon">#}
+{#                        <i class="fa fa-globe"></i>#}
+{#                      </label>#}
+{#                    </label>#}
+{#                  </div>#}
+                  <!-- end section -->
+
+                  <div class="col-md-6">
+                    Region:
+                      <label class="field select">
+                          <i class="arrow"></i>
+                          <select class="gui-input" id="region" disabled>
+                              <option value="" >Selecciona la region</option>
+                          {% for i in regiones %}
+                             <option value="{{ i.pk  }}" name="{{ i.pk }}">{{ i.nombre }}</option>
+                          {% endfor %}
+                          </select>
+                      </label>
+                  </div>
+                  <div class="col-md-6" >
+                  Comuna
+                  <select class="gui-input" id="primer_comuna" disabled>
+                      <option value="">Selecciona región para seleccionar comuna</option>
+                  </select>
+                    {% for i in regiones %}
+                        <select class="gui-input" name="comuna" id="{{ i.pk }}" disabled="disabled" style="display:none">
+                        {% for z in comunas %}
+                            {% if i.pk == z.region.pk %}
+                            <option value="{{ z.pk }}">{{ z.nombre }}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    {% endfor %}
+                  </div>
+                  <!-- end section -->
+                </div>
+
+            {#            #}
 {#            </div>#}
+        <hr>
             <div class="text-center">
                 <button class="btn btn-rounded btn-primary" id="submit">Publicar pega!</button>
             </div>
@@ -160,5 +245,61 @@
 {#            </div>#}
 {#</div>#}
 
+  <!-- jQuery -->
+<script src="{% static 'vendor/jquery/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'vendor/jquery/jquery_ui/jquery-ui.min.js' %}"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    "use strict";
+    $('#boton1').click(function () {
+        {#alert("hola");#}
 
+        $("#row_direccion1").show();
+        $("#row_direccion2").hide();
+        $('#direccion').removeAttr('disabled');
+
+        $('#span-boton1').attr('fa fa-gear');
+        $('#span-boton2').removeAttr('fa fa-gear');
+        {#deshabilito los input del otro boton#}
+        $('#calle').attr('disabled','disabled');
+        $('#numero_calle').attr('disabled','disabled');
+        $('#region').attr('disabled','disabled');
+        $('select[name="comuna"]').attr('disabled','disabled');
+
+    });
+    $('#boton2').click(function () {
+        {#boton de agregar direccion#}
+        $("#row_direccion1").hide();
+        $("#row_direccion2").show();
+        $('#direccion').attr('disabled','disabled'); //deshabilito input del otro boton
+        {#  saco disabled y pongo required  #}
+        $('#calle').removeAttr('disabled');
+        $('#numero_calle').removeAttr('disabled');
+        $('#region').removeAttr('disabled');
+        $('select[name="comuna"]').removeAttr('disabled');
+        $('#calle').prop('required',true);
+        $('#numero_calle').prop('required',true);
+        $('#region').prop('required',true);
+        $('select[name="comuna"]').prop('required',true);
+
+
+    });
+    $('#region').change(function (e) {
+        var selected = $(e.currentTarget).val();
+        var id = $(this).children(":selected").attr("name");
+        {#alert(id)#}
+        $("#primer_comuna").hide();
+        {% for i in regiones %}
+            $('#{{ i.pk }}').hide();
+            {#document.getElementById("{{ i.pk }}").disabled = true   ;#}
+            $('#{{ i.pk }}').attr('disabled','disabled');
+        {% endfor %}
+        {#alert(selected);#}
+        {#document.getElementById("selected").disabled = false;#}
+        $('#'+selected).removeAttr('disabled');
+        $('#'+selected).show();
+
+    });
+  });
+  </script>
 {% endblock %}

@@ -31,7 +31,7 @@ def config_perfil(request,pk_user):
 def config_direccion(request, pk_direccion):
     data = {}
     usuario = Persona.objects.get(Usuario=request.user.pk)
-
+    print(request)
     if(pk_direccion==0):
         pass
     else:
@@ -40,7 +40,7 @@ def config_direccion(request, pk_direccion):
     data['usuario'] = usuario
     regiones = Region.objects.all()
     comunas = Comuna.objects.all()
-    direcciones =Direccion.objects.filter(Persona = usuario)
+    direcciones = Direccion.objects.filter(Persona = usuario)
     data['regiones'] = regiones
     data['comunas'] = comunas
 
@@ -60,6 +60,7 @@ def config_direccion_actualizar(request, pk_direccion):
     print(request.POST)
     direcciones = Direccion.objects.filter(Persona = usuario)
     print(direcciones)
+    print(request)
     if(pk_direccion ==0):
         direccion = Direccion()
         direccion.Persona = usuario

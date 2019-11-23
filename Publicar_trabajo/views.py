@@ -33,8 +33,14 @@ def publicar_trabajo(request,pk_user):
     data['usuario'] = usuario
     data['areas'] = areas
     data['form'] = TrabajoForm()
+    direccion = Direccion.objects.filter(Persona = usuario_solicitud).order_by('-Principal')
+    data['direcciones'] = direccion
 
+    regiones = Region.objects.all()
+    comunas = Comuna.objects.all()
 
+    data['regiones'] = regiones
+    data['comunas'] = comunas
     return render(request, 'publicar_trabajo.html', data)
 
 @login_required(login_url='/auth/login')
@@ -68,7 +74,26 @@ def guardar_trabajo(request,pk_user):
         monto = request.POST["monto"]
         area = request.POST["id_Area"]
         r_etario = request.POST["r_etario"]
-        direccion = request.POST["direccion"]
+        direccion = request.POST.get('direccion', False)
+
+
+        if(direccion):
+            direccion_object = Direccion.objects.get(pk=direccion)
+            print("si aqui")
+        else:
+            print("nop, aqui")
+            comuna = request.POST["comuna"]
+            calle = request.POST["calle"]
+            num_calle = request.POST["numero_calle"]
+            direccion_object = Direccion()
+            direccion_object.Persona = usuario
+            direccion_object.Comuna = Comuna.objects.get(pk = comuna)
+            direccion_object.Numero_de_calle = num_calle
+
+            direccion_object.Calle = calle
+            direccion_object.Principal = 0
+            direccion_object.save()
+            print(direccion_object)
         fecha = request.POST["fecha"]
         hora = request.POST["hora"]
         personas_requeridas = request.POST['personas_requeridas']
@@ -78,7 +103,7 @@ def guardar_trabajo(request,pk_user):
         #handle_uploaded_file(imagen)
 #
         area_object = Areas.objects.get(pk=area)
-        direccion_object = Direccion.objects.get(pk=direccion)
+
         print("creando trabajo...")
         trabajo = Trabajo()
         print("pk usuario: "+str(usuario.pk))

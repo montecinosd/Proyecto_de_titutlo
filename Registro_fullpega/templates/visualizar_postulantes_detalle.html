@@ -83,11 +83,14 @@
                             <img class='img-responsive' style="float:right; width: 8em;height: 8em; border-radius: 10em;"src="/media/{{ trabajo.Imagen }}"/>
                         </div>
                         <div class="col-md-7">
-                            <h4 class="">{{ trabajo.Nombre }}<br><h5>{{ trabajo.Direccion.Comuna }}</h5></h4>
+                            <h4 class="">{{ trabajo.Nombre }}<br><h5>{{ trabajo.Direccion.Comuna.nombre }}</h5></h4>
                             <h5 class="">Paga acordada: ${{ trabajo.Monto_pago }}</h5>
                           <h5 class="">Fecha: {{ trabajo.Fecha }}, {{ trabajo.Hora }}</h5>
-                            <a href="{% url 'visualizar_postulantes_detalle_watson' trabajo.pk %}" class="btn btn-rounded btn-success">Ordenar postulantes con Watson</a>
-                        </div>
+                            {% if usuario_solicitud.privilegios == 2 or usuario_solicitud.privilegios == 3 %}
+                               <a href="{% url 'visualizar_postulantes_detalle_watson' trabajo.pk %}" class="btn btn-rounded btn-success">Ordenar postulantes con Watson</a>
+                            {% else %}
+                                ¡Obten los <span style ="font-weight: bold; "class=""><a href="{% url 'visualizar_privilegios' request.user.pk %}">Privilegios</a></span> para poder ordenar los postulantes con watson!                        </div>
+                            {% endif %}                        </div>
                     </div>
 {#                    <hr style="padding: 0%;margin: 0.5em;">#}
 {##}

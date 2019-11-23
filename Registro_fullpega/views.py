@@ -529,7 +529,7 @@ def h_trabajos_realizados(request,pk_user):
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
     data['usuario_solicitud'] = usuario_solicitud
 
-    historico = Historial_trabajo.objects.filter(Persona = usuario).order_by('-Fecha').exclude( tipo = 1)
+    historico = Historial_trabajo.objects.filter(Persona = usuario).order_by('-Fecha','-Hora').exclude( tipo = 1)
     data["historial_trabajos_realizados"] = historico
 
     # print(data)
@@ -543,7 +543,7 @@ def h_trabajos_publicados(request,pk_user):
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
     data['usuario_solicitud'] = usuario_solicitud
 
-    historico = Historial_trabajo.objects.filter(Persona = usuario).order_by('-Fecha').exclude( tipo = 2)
+    historico = Historial_trabajo.objects.filter(Persona = usuario).order_by('-Fecha','-Hora').exclude( tipo = 2)
     data["historial_trabajos_publicados"] = historico
     # print(usuario.pk)
     # print(request.user.pk)

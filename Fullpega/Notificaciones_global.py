@@ -19,4 +19,5 @@ def get_notificaciones(request):
 
 			return {'notificaciones':notificaciones}
 	except:
+		print("except notis")
 		return ""
