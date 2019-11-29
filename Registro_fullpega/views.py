@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 import operator
-
+from Publicar_trabajo.views import validar_trabajos
 from Publicar_trabajo.models import *
 from sensibilidad_watson.watson import *
 from django.db.models import CharField, Value
@@ -341,6 +341,7 @@ def visualizar_postulantes_a_trabajos(request, pk_user):
 
     # usuario = Persona.objects.get(Usuario=pk_user)
     trabajos = Trabajo.objects.filter(Usuario = usuario_solicitud.pk).exclude(Activo=0)
+    validar_trabajos(trabajos)
     data['trabajos'] = trabajos
     data['postulantes'] = Postulantes.objects.all()
     # for i in trabajos:
@@ -369,6 +370,7 @@ def visualizar_postulantes_detalle(request, pk_pega):
 
     # usuario = Persona.objects.get(Usuario=pk_user)
     trabajos = Trabajo.objects.filter(Usuario = usuario_solicitud.pk).exclude(Activo=0)
+    # validar_trabajos(trabajos)
     data['trabajo'] = trabajo
     data['trabajos'] = trabajos
     data['postulantes'] = Postulantes.objects.filter(Trabajo = trabajo)
@@ -498,7 +500,7 @@ def buscar_trabajo(request,pk_user):
 
     #excluir mismo usuario
     trabajos = Trabajo.objects.filter(Activo = 1).exclude(Usuario__Usuario= usuario_solicitud)
-
+    validar_trabajos(trabajos)
     #COMPARAR EN TEMPLATE PARA SACAR TRABAJOS A LOS QUE YA HA POSTULADO, SACA LOS TRABAJOS NO ACTIVOS....
     trabajos_postulados = Postulantes.objects.filter(Postulante = usuario_solicitud).order_by('-Fecha').exclude(Trabajo__Activo= 0)
     data['trabajos_postulados'] = trabajos_postulados
@@ -507,7 +509,9 @@ def buscar_trabajo(request,pk_user):
 
     trabajos_listos = []
     for i in trabajos:
+
         if (trabajos_postulados.filter(Trabajo = i.pk)):
+
             #                          0    1       2               3      4       5               6             7      8        9      10
             trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna,i.Monto_pago,i.Imagen,1,i.Vacantes))
         else:

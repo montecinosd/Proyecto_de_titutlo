@@ -41,7 +41,10 @@
                                 <td>{{ i.Trabajo.Monto_pago }}</td>
                               {% if i.Trabajo.Activo == 0 %}
                                   <td><button class="btn btn-success btn-rounded" disabled>Terminado</button></td>
+                              {% elif i.Trabajo.Activo == 2 %}
+                                  <td><button class="btn btn-warning btn-rounded" disabled>Transcrito</button></td>
                               {% else %}
+
                                   <td><button class="btn btn-alert btn-rounded" disabled>Pendiente</button></td>
                               {% endif %}
                             <td> <a href="{% url 'detalle_trabajos_publicados' i.pk %}" class="btn btn-rounded btn-primary">Ir a detalle</a></td>

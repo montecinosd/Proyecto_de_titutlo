@@ -1,8 +1,10 @@
 from datetime import *
+from datetime import timedelta
 from Registro_fullpega.models import *
+import time
+from datetime import datetime, date, time, timedelta
 
 from django.db import models
-
 def content_file_name(instance, filename):
     return '/'.join(['media/trabajo/', instance.Imagen, filename])
 def content_file_document(instance, filename):
@@ -17,7 +19,11 @@ class Trabajo(models.Model):
 
     Monto_pago = models.PositiveIntegerField()
     Fecha = models.DateField(null=True, blank=True)
+
     Hora = models.TimeField(null=True, blank=True)
+    Fecha_publicacion = models.DateField(default=datetime.now)
+    Hora_publicacion = models.TimeField(default=datetime.now)
+    Fecha_vencimiento = models.DateTimeField(null=True, blank=True)
     rango_etario = models.CharField(
         max_length=20,
         choices=(
@@ -36,7 +42,8 @@ class Trabajo(models.Model):
     Vacantes = models.PositiveIntegerField(default=1)
     Activo = models.PositiveIntegerField(default=1)
 
-
+    # def fecha_vencimiento(self):
+    #     return self.Fecha_publicacion + datetime.timedelta(days=2)
     #postulantes a una trabajo debe hacerse un filter
 class Postulantes(models.Model):
     Trabajo = models.ForeignKey(Trabajo, on_delete=models.CASCADE)

@@ -30,21 +30,21 @@
 {#            <div class="section-divider mb40">#}
                 <div class="row">
                     <div class="col-md-4">
-                      <label for="email">Nombre:</label>
-                      <input type="" class="form-control" name="nombre" id="nombre">
+                      <label for="email">Nombre de la pega:</label>
+                      <input type="" class="form-control" name="nombre" id="nombre" required>
                     </div>
                     <div class="col-md-4">
-                      <label for="email">Detalle:</label>
-                      <input type="" class="form-control" name="detalle" id="detalle">
+                      <label for="email">Detalle de la pega:</label>
+                      <input type="" class="form-control" name="detalle" id="detalle" required>
                     </div>
                     <div class="col-md-4">
-                      <label for="email">Pago:</label>
-                      <input type="number" class="form-control" step ="1" name="monto" id="monto">
+                      <label for="email">Pago de la pega:</label>
+                      <input type="number" class="form-control" step ="1" name="monto" id="monto" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <label for="Hora">Areas:</label>
+                        <label for="Hora">Areas de la pega:</label>
 
                         <select name="id_Area" class="form-control" required="" id="id_Area">
                             <option value="" selected="">Seleccione el área que corresponde</option>
@@ -55,23 +55,23 @@
                         </select>
                     </div>
                                     <div class="col-md-4">
-                      <label for="email">¿Cantidad de personas requeridas?:</label>
-                      <input type="number" class="form-control" value="1" step ="1" name="personas_requeridas" id="personas_requeridas">
+                      <label for="email">¿Cantidad de personas requeridas para la pega?:</label>
+                      <input type="number" class="form-control" value="1" step ="1" required name="personas_requeridas" id="personas_requeridas">
 
                     </div>
-
+{#*****************#}
                     <div class="col-md-4">
-                        <label for="Hora">Rango etario:</label>
+                        <label for="Hora">Tiempo estimado de la pega:</label>
 
-                        <select name="r_etario" class="form-control" required="" id="r_etario">
-                            <option value="" selected="">Seleccione rango etario</option>
-                            <option value="Sin_rango" class="value">Sin rango etario preferencial</option>
+                        <select name="tiempo_aproximado" class="form-control" required="" id="tiempo_aproximado">
+{#                            <option value="" selected="">Seleccione rango etario</option>#}
+                            <option value="Sin tiempo estimado" class="value">Sin tiempo estimado</option>
 
-                            <option value="15-25" class="value">15-25</option>
-                            <option value="25-35" class="value">25-35</option>
-                            <option value="35-35" class="value">35-35</option>
-                            <option value="45-55" class="value">45-55</option>
-                            <option value="55-65" class="value">55-65</option>
+                            <option value="Menos de 1 hora" class="value">Menos de 1 hora</option>
+                            <option value="Entre 1 a 3 horas" class="value">Entre 1 a 3 horas</option>
+                            <option value="Entre 3 a 5 horas" class="value">Entre 3 a 5 horas</option>
+                            <option value="Entre 5 a 8 horas" class="value">Entre 5 a 8 horas</option>
+                            <option value="Más de 1 día" class="value">Más de 1 día</option>
                         </select>
 
                     </div>
@@ -79,17 +79,22 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4   ">
-                        <label for="Fecha">Fecha:</label>
-                        <input type="date" name="fecha"  id="fecha" class="form-control" placeholder="Ingrese la fecha del trabajo" required="">
+                        <label for="Fecha">Fecha de realización de la pega:</label>
+                        <input type="datetime-local" name="fecha"  id="fecha" class="form-control" placeholder="Ingrese la fecha del trabajo" required="">
                     </div>
                     <div class="col-md-4">
-                        <label for="Hora">Hora:</label>
+                        <label for="Hora">Fecha de vencimineto de la pega:</label>
+                        {% if usuario_solicitud.privilegios == 3 or usuario_solicitud.privilegios == 4  %}
 
-                        <input type="time" name="hora"  id="hora" class="form-control" placeholder="Ingrese la hora del trabajo" required="">
+                             <input type="time" name="fecha_vencimiento"  id="fecha_vencimiento" class="form-control" placeholder="Ingrese la hora del trabajo" required="">
+                        {% else %}
+
+                            <br>¡Obten los <span style ="font-weight: bold; "class=""><a href="{% url 'visualizar_privilegios' request.user.pk %}">Privilegios</a></span> para modificar la fecha de caducidad de la pega!
+                        {% endif %}
                     </div>
                     <div class="col-md-4">
-                        <label for="Hora">Imagen:</label>
-                        <input type="file" id="ImagenTrabajo" name="ImagenTrabajo">
+                        <label for="Hora">Imagen referencial de la pega:</label>
+                        <input  type="file" id="ImagenTrabajo" name="ImagenTrabajo" required />
                     </div>
                 </div>
 
