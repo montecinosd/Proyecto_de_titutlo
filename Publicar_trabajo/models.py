@@ -18,10 +18,10 @@ class Trabajo(models.Model):
     Detalle = models.CharField(max_length=120)
 
     Monto_pago = models.PositiveIntegerField()
-    Fecha = models.DateField(null=True, blank=True)
+    Fecha = models.DateTimeField(null=True, blank=True)
 
     Hora = models.TimeField(null=True, blank=True)
-    Fecha_publicacion = models.DateField(default=datetime.now)
+    Fecha_publicacion = models.DateTimeField(default=datetime.now)
     Hora_publicacion = models.TimeField(default=datetime.now)
     Fecha_vencimiento = models.DateTimeField(null=True, blank=True)
     rango_etario = models.CharField(
@@ -48,7 +48,7 @@ class Trabajo(models.Model):
 class Postulantes(models.Model):
     Trabajo = models.ForeignKey(Trabajo, on_delete=models.CASCADE)
     Postulante = models.ForeignKey(Persona,on_delete=models.CASCADE)
-    Fecha = models.DateField(default=datetime.now)
+    Fecha = models.DateTimeField(default=datetime.now)
     Hora = models.TimeField(default=datetime.now)
     #0 no aceptado, 1 aceptado, 2 cancelado(?)
     Estado = models.PositiveIntegerField(default=0)

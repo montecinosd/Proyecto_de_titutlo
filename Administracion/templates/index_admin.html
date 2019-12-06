@@ -16,13 +16,13 @@
 
 
     <div class="container">
-    <div class="row">
+    <div class="row panel panel-default" style="padding-top: 1em;">
 {#        usuarios#}
     <div class="col-sm-6 col-md-3">
-            <div class="panel bg-info light of-h mb10">
+            <div class="panel bg-success light of-h mb10">
               <div class="pn pl20 p5">
                 <div class="icon-bg">
-                  <i class="fa fa-bar-chart-o"></i>
+                  <i class="fa fa-user"></i>
                 </div>
                 <h2 class="mt15 lh15">
                   <b>{{ usuarios|length }}</b>
@@ -36,7 +36,7 @@
             <div class="panel bg-alert light of-h mb10">
               <div class="pn pl20 p5">
                 <div class="icon-bg">
-                  <i class="fa fa-bar-chart-o"></i>
+                  <i class="fa fa-rocket"></i>
                 </div>
                 <h2 class="mt15 lh15">
                   <b>{{ trabajos|length }}</b>
@@ -44,10 +44,77 @@
                 <h5 class="text-muted">Trabajos activos</h5>
               </div>
             </div>
+
+          </div>
+        {#        calificaciones#}
+            <div class="col-sm-6 col-md-3">
+            <div class="panel bg-primary light of-h mb10">
+              <div class="pn pl20 p5">
+                <div class="icon-bg">
+                  <i class="fa fa-star-half-empty"></i>
+                </div>
+                <h2 class="mt15 lh15">
+                  <b>{{ calificaciones|length }}</b>
+                </h2>
+                <h5 class="text-muted">Calificaciones realizadas</h5>
+              </div>
+            </div>
+
+          </div>
+        {#        comunas#}
+            <div class="col-sm-6 col-md-3">
+            <div class="panel bg-info light of-h mb10">
+              <div class="pn pl20 p5">
+                <div class="icon-bg">
+                  <i class="fa fa-globe"></i>
+                </div>
+                <h2 class="mt15 lh15">
+                  <b>{{ comunas_pega|length }}</b>
+                </h2>
+                <h5 class="text-muted">Comunas en las que se ha publicado pega</h5>
+              </div>
+            </div>
+
+          </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="panel bg-info light of-h mb10">
+              <div class="pn pl20 p5">
+                <div class="icon-bg">
+                  <i class="fa fa-calendar-check-o "></i>
+                </div>
+                <h2 class="mt15 lh15">
+                  <b>{{ final_dif }}</b>
+                </h2>
+                <h5 class="text-muted">Tiempo promedio de postulación</h5>
+              </div>
+            </div>
+
           </div>
 {#        container row#}
     </div>
     </div>
+{#    CONTAINER NUEVO#}
+    <hr>
+<div class="container">
+                    <div class="row">
+                        <div class="panel panel-default col-md-12">
+                            <canvas id="myChart2" width="300" height="300"></canvas>
+                        </div>
+
+                        <div class="panel panel-default col-md-12">
+                            <canvas id="myChart" width="300" height="300"></canvas>
+                        </div>
+
+                        <div class="panel panel-default col-md-12">
+                            <canvas id="myChart3" width="300" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+{#<script src="{% static 'charts/Chart.bundle.js' %}"></script>#}
+{#<script src="{% static 'charts/Chart.bundle.min.js' %}"></script>#}
+{#<script src="{% static 'charts/Chart.js' %}"></script>#}
+{#<script src="{% static 'charts/Chart.min.js' %}"></script>#}
+{#    <script src="https://raw.githubusercontent.com/nnnick/Chart.js/master/Chart.min.js" ></script>#}
 
 {% endblock %}
 {% block scripts %}
@@ -57,6 +124,167 @@
 
 <script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
 <script src="{% static 'js/dataTables.bootstrap4.min.js' %}"></script>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['5 estrellas', '4 estrellas', '3 estrellas', '2 estrellas', '1 estrellas'],
+        datasets: [{
+            label: 'Calificaciones',
+            data: [{{ calificacion5|length }}, {{ calificacion4|length }}, {{ calificacion3|length }}, {{ calificacion2|length }}, {{ calificacion1|length }}],
+            {#data: [12, 19, 3, 5, 2],#}
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+                responsive: true,
+        maintainAspectRatio: false,
+
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+         title: {
+      display: true,
+      text: 'Calificaciones'
+    }
+    }
+});
+</script>
+<script>
+var ctx = document.getElementById('myChart2').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+
+        {%  if comunas_frecuentes|length == 0 %}
+            labels:
+            [],
+        {%  elif comunas_frecuentes|length == 1 %}
+            labels:
+            ['{{ comunas_frecuentes.0.Direccion__Comuna__nombre }}'],
+        {%  elif comunas_frecuentes|length == 2 %}
+            labels:
+            ['{{ comunas_frecuentes.0.Direccion__Comuna__nombre }}', '{{ comunas_frecuentes.1.Direccion__Comuna__nombre }}'],
+        {%  elif comunas_frecuentes|length == 3 %}
+            labels:
+            ['{{ comunas_frecuentes.0.Direccion__Comuna__nombre }}', '{{ comunas_frecuentes.1.Direccion__Comuna__nombre }}', '{{ comunas_frecuentes.2.Direccion__Comuna__nombre }}'],
+        {%  elif comunas_frecuentes|length == 4 %}
+            labels:
+            ['{{ comunas_frecuentes.0.Direccion__Comuna__nombre }}', '{{ comunas_frecuentes.1.Direccion__Comuna__nombre }}', '{{ comunas_frecuentes.2.Direccion__Comuna__nombre }}','{{ comunas_frecuentes.3.Direccion__Comuna__nombre }}' ],
+        {%  elif comunas_frecuentes|length >= 5 %}
+            labels:
+            ['{{ comunas_frecuentes.0.Direccion__Comuna__nombre }}', '{{ comunas_frecuentes.1.Direccion__Comuna__nombre }}', '{{ comunas_frecuentes.2.Direccion__Comuna__nombre }}','{{ comunas_frecuentes.3.Direccion__Comuna__nombre }}','{{ comunas_frecuentes.4.Direccion__Comuna__nombre }}' ],
+        {% endif %}
+        datasets: [{
+            label: 'Comunas con más demanda',
+            data:
+                [{{ comunas_frecuentes.0.count }}, {{ comunas_frecuentes.1.count }},{{ comunas_frecuentes.2.count }},{{ comunas_frecuentes.3.count }},{{ comunas_frecuentes.4.count }}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+                responsive: true,
+        maintainAspectRatio: false,
+
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+         title: {
+      display: true,
+      text: 'Comunas con más demandadas'
+    }
+    }
+});
+</script>
+<script>
+var ctx = document.getElementById('myChart3').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'doughnut',
+
+    data: {
+        labels: ['1-8', '8-12', '12-16', '16-20', '20-24'],
+        datasets: [{
+            label: 'Calificaciones',
+            data: [{{ horas_1_8|length }}, {{ horas_8_12|length }}, {{ horas_12_16|length }}, {{ horas_16_20|length }}, {{ horas_20_24|length }}],
+            {#data: [22, 19, 99, 23, 15],#}
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        title: {
+      display: true,
+      text: 'Rango horario con mas demanda'
+    }
+    }
+});
+</script>
+
 {#<script src="{% static 'vendor/jquery/utility.js' %}"></script>#}
 {#<script src="{% static 'vendor/jquery/jquery-1.11.1.min.js' %}"></script>#}
 {#<script src="{% static 'vendor/jquery/main.js' %}"></script>#}

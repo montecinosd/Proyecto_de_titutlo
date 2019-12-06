@@ -25,6 +25,7 @@
             <h1><span style ="font-weight: bold; "class="">{{ usuario.Nombre }}</span></h1><hr>
           <div class="row" style="padding-left: 1em;">
               <button class="btn btn-primary" data-target="{{ usuario.pk }}" id="ajax_watson" name="ajax_watson">¡Analisis de sensibilidad con Watson!</button>
+              <a class="btn btn-primary" href="{% url 'chartsSummaries' usuario.pk %}" >¡Gráfico de analisis de twitter!</a>
 
           </div>
 

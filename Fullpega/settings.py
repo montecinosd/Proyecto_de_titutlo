@@ -43,10 +43,15 @@ INSTALLED_APPS = [
     'Calificaciones',
     'Configuracion_perfil',
     'Administracion',
+    'sensibilidad_watson',
     'Auth_fullpega',
     'autofixture',
     'bootstrap4',
-    'Registro_fullpega.templatetags.poll_extras'
+    # 'oauth_tokens',
+    # 'm2m_history',
+    # 'taggit',
+    'twitter',
+    'Registro_fullpega.templatetags.poll_extras',
 ]
 
 MIDDLEWARE = [
@@ -118,9 +123,9 @@ LANGUAGE_CODE = 'es-CL'
 
 TIME_ZONE = 'Chile/Continental'
 
-USE_I18N = True
+USE_I18N = False
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 

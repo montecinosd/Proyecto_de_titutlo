@@ -19,19 +19,22 @@ def handle_uploaded_file(f):
         for chunk in f.chunks():
             destination.write(chunk)
 def validar_trabajos(trabajos):
-    fecha_actual = timezone.now()
-    print(fecha_actual)
-    for i in trabajos:
-        print (i.Fecha_vencimiento)
-        if( i.Fecha_vencimiento < fecha_actual):
-            print("se paso")
-            if(i.Activo ==0):
-                pass
-            i.Activo = 2
-            i.save()
-            print(i.Activo)
-        else:
-            print("esta dentro")
+    try:
+        fecha_actual = timezone.now()
+        print(fecha_actual)
+        for i in trabajos:
+            print (i.Fecha_vencimiento)
+            if( i.Fecha_vencimiento < fecha_actual):
+                print("se paso")
+                if(i.Activo ==0):
+                    pass
+                i.Activo = 2
+                i.save()
+                print(i.Activo)
+            else:
+                print("esta dentro")
+    except:
+        print("error")
 # Create your views here.
 @login_required(login_url='/auth/login')
 def publicar_trabajo(request,pk_user):

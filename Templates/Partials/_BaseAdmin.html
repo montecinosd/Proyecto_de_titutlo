@@ -18,6 +18,8 @@
 
   <!-- Theme CSS -->
   <link rel="stylesheet" type="text/css" href="{% static 'assets/skin/default_skin/css/theme.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'charts/Chart.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'charts/Chart.min.css' %}">
 
   <!-- Admin Forms CSS -->
   <link rel="stylesheet" type="text/css" href="{% static 'assets/admin-tools/admin-forms/css/admin-forms.css' %}">
@@ -543,6 +545,12 @@
 
   <!-- Widget Javascript -->
   <script src="{% static 'assets/js/demo/widgets.js' %}"></script>
+{#CHARTS#}
+  <script src="{% static 'charts/Chart.bundle.js' %}"></script>
+  <script src="{% static 'charts/Chart.bundle.min.js' %}"></script>
+  <script src="{% static 'charts/Chart.js' %}"></script>
+  <script src="{% static 'charts/Chart.min.js' %}"></script>
+
   <script type="text/javascript">
  jQuery(document).ready(function() {
 
