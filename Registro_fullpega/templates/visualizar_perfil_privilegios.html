@@ -22,12 +22,12 @@
             <span class="footer-legal" ><img style="height: 16em;width: 16em; border-radius: 10em;" class='img-responsive' src="/media/{{ usuario.Imagen }}" /></span>
           </div>
           <div class="col-md-4">
-            <h1><span style ="font-weight: bold; "class="">{{ usuario.Nombre }}</span></h1><hr>
+            <h1><span style ="font-weight: bold; "class="">{{ usuario.Nombre }}</span></h1><hr  style="padding: 0%;margin: 0.5em;">
           <div class="row" style="padding-left: 1em;">
-              <button class="btn btn-primary" data-target="{{ usuario.pk }}" id="ajax_watson" name="ajax_watson">¡Analisis de sensibilidad con Watson!</button>
-              <a class="btn btn-primary" href="{% url 'chartsSummaries' usuario.pk %}" >¡Gráfico de analisis de twitter!</a>
-
-          </div>
+          <div class="col-md-12">
+          {% if usuario.Twitter == None and usuario.Facebook == None and usuario.Linkedin == None and usuario.Instagram == None %}
+                          <h5 style="font-style:oblique;">El usuario no ha vinculado redes sociales</h5>
+          {% endif %}
 
             {% if usuario.Twitter %}
                 <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
@@ -57,7 +57,6 @@
                 </div></div>
             {% endif %}
 
-
             {% if usuario.Instagram %}
                 <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
                 <div class="text-center">
@@ -66,6 +65,32 @@
                     </a>
                 </div></div>
             {% endif %}
+                    {% if  usuario.Estrellas  %}
+          <h4>Estrellas: {{ usuario.Estrellas }}</h4>
+          {% else %}
+          <h5 style="font-style:oblique;">El usuario no cuenta con calificaciones para mostrar el promedio de estrellas</h5>
+          {% endif %}
+
+            </div>
+              <button class="btn btn-primary btn-rounded" style="margin-bottom: 0.5em;" data-target="{{ usuario.pk }}" id="ajax_watson" name="ajax_watson">¡Analisis de sensibilidad con Watson!</button>
+              {% if usuario.Twitter %}
+              <a class="btn btn-primary btn-rounded" style="margin-bottom: 0.5em;" href="{% url 'chartsSummaries_twitter' usuario.pk %}" >¡Gráfico de analisis de twitter!</a>
+             {% else %}
+              <h5 style="font-style:oblique;">El usuario no cuenta con twitter registrado para analizar con watson</h5>
+              {% endif %}
+                {% if usuario.Descripcion_propia %}
+              <a class="btn btn-primary btn-rounded" href="{% url 'chartsSummaries' usuario.pk %}" >¡Gráfico de analisis de texto del usuario!</a>
+             {% else %}
+                    <h5 style="font-style:oblique;">El usuario no ha puesto una descripción propia para analizar con watson</h5>
+              {% endif %}
+          {% if usuario.Twitter and usuario.Descripcion_propia %}
+              <a class="btn btn-primary btn-rounded" style="margin-bottom: 0.5em;" href="{% url 'chartsSummaries_texto_twitter' usuario.pk %}" >¡Análisis de twiiter y texto!</a>
+             {% else %}
+              <h5 style="font-style:oblique;">El usuario no cuenta con twitter o texto registrado para analizar con watson</h5>
+              {% endif %}
+
+          </div>
+
 
 
                        <style>
@@ -136,39 +161,39 @@
                             }
                             </style>
 {#                <h5>Valoración: 4 Estrellas <span class="icon">★</span></h5>#}
-                            <form class="rating">
-
-                              <label>
-                                <input type="radio" name="stars" value="1"  disabled/>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="2" disabled/>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="3" disabled/>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="4" checked disabled/>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="5" disabled/>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                            </form>
+{#                            <form class="rating">#}
+{##}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="1"  disabled/>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="2" disabled/>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="3" disabled/>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="4" checked disabled/>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="5" disabled/>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                            </form>#}
 
 {#                            <script>#}
 {#                                $(':radio').change(function() {#}
@@ -182,12 +207,35 @@
             <span class="footer-legal" ><img style="height: 16em;width: 16em; border-radius: 10em;" class='img-responsive' src="/media/{{ pega.Imagen }}" /></span>
           </div>
                   <div class="col-md-4">
-            <h1><span style ="font-weight: bold; "class="">{{ pega.Area.Nombre }} - {{ pega.Nombre }}</span></h1><hr>
-            <span class="footer-lega">Descripción: {{ pega.Detalle }}</span><br>
-            <span class="footer-lega">Pago: ${{ pega.Monto_pago }}</span><br>
-            <span class="footer-lega">Dirección: {{ pega.Direccion.Comuna}}, {{ pega.Direccion.Calle }} {{ pega.Direccion.Numero_de_calle }}</span><br>
-            <span class="footer-lega">Fecha: {{ pega.Fecha }} {{ pega.Hora }}</span><br>
-            <span class="footer-lega">Fecha: {{ pega.rango_etario }}</span>
+
+                      <div class="col-md-12">
+                          <h1><span style ="font-weight: bold; "class="">{{ pega.Area.Nombre }} - {{ pega.Nombre }}</span></h1><hr  style="padding: 0%;margin: 0.5em;">
+
+                      </div>
+                                            <div class="col-md-12">
+           <h5>Pago: ${{ pega.Monto_pago }}</h5>
+
+                      </div>
+                      <div class="col-md-12">
+            <h5>Dirección: {{ pega.Direccion.Comuna.nombre}}, {{ pega.Direccion.Calle }} {{ pega.Direccion.Numero_de_calle }}</h5>
+
+                      </div>
+
+                      <div class="col-md-12">
+                                 <h5>Fecha: {{ pega.Fecha }} </h5>
+
+                      </div>
+
+                      <div class="col-md-12">
+         <h5><span class="footer-lega">Duración: {{ pega.rango_etario }}</span></h5>
+
+                      </div>
+                                            <div class="col-md-12">
+           <h5> <span class="footer-lega">Descripción: {{ pega.Detalle }}</span></h5>
+
+                      </div>
+
+
           </div>
 
 
@@ -210,7 +258,7 @@
 {#<h2>Modal Example</h2>#}
 {##}
   <!-- Modal -->
-            <a href="{% url 'postular_inicial' pega.pk %}" class="btn btn-primary"  data-target="#myModal">¡Postular a esta pega!</a>
+            <a href="{% url 'postular_inicial' pega.pk %}" class="btn btn-primary btn-rounded"  data-target="#myModal">¡Postular a esta pega!</a>
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
 

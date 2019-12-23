@@ -3,14 +3,16 @@ from django.db import models
 # Create your models here.
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import *
 
 class Summary(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     description = models.TextField()
     word_count = models.PositiveIntegerField()
-    date = models.DateField()
+    date = models.DateTimeField(default=datetime.now)
     processed_language = models.CharField(max_length = 2)
-    json_response = models.TextField(default='')
+    json_response = models.TextField(default="")
+    tipo = models.PositiveIntegerField(default=1) #1 = twiiter #2 = texto
 
 class Pillar(models.Model):
     name = models.CharField(max_length = 50)

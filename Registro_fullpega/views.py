@@ -513,9 +513,9 @@ def buscar_trabajo(request,pk_user):
         if (trabajos_postulados.filter(Trabajo = i.pk)):
 
             #                          0    1       2               3      4       5               6             7      8        9      10
-            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna,i.Monto_pago,i.Imagen,1,i.Vacantes))
+            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna.nombre,i.Monto_pago,i.Imagen,1,i.Vacantes))
         else:
-            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna,i.Monto_pago,i.Imagen,0,i.Vacantes))
+            trabajos_listos.append((i.pk,i.Nombre,i.Area.Nombre,i.Detalle,i.Fecha,i.Hora,i.Direccion.Comuna.nombre,i.Monto_pago,i.Imagen,0,i.Vacantes))
 
             # i.annotate(mycolumn=Value('xxx', output_field=CharField()))
             # print("si ta" + str(i.pk))

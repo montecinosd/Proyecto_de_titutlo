@@ -54,8 +54,12 @@ class Persona(models.Model):
     Puntaje_watson = models.IntegerField(default=0)
     Label_watson = models.CharField(max_length = 120,null=True,blank=True)
     Estrellas = models.CharField(max_length = 120,null=True,blank=True)
+    Descripcion_propia = models.TextField()
     #1 sin privilegios, 2 dual, 3 publicar, 4 buscar
     privilegios = models.IntegerField(default=1)
+    Fecha_registro = models.DateTimeField(default=datetime.now)
+
+
 
     @property
     def Direccion(self):

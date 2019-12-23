@@ -17,6 +17,7 @@
 
     <div class="container">
     <div class="row">
+    {% if trabajos %}
     {% for i in trabajos %}
         <div class="col-md-6 col-lg-6 admin-grid text-center" >
 
@@ -98,7 +99,11 @@
 
                      </script>
              {% endfor %}
+    {% else %}
+        <div class="text-center"><div class=" btn btn-lg btn-rounded btn-info" style="margin-top: 0em;"> <h4>No tienes trabajos publicados aún<br> ¡Satisface ya algo que tengas que hacer en
+        <a style="color:lightskyblue" href="{% url 'publicar_trabajo' request.user.pk %}">Publicar pega</a>!</h4></div></div>
 
+    {% endif %}
         </div>
     </div>
     </div>

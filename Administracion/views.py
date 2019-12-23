@@ -29,14 +29,10 @@ def index_admin(request):
     # print("hola")
     data = {}
     # install(request)
-    c = prueba(request, usuario_solicitud.Twitter)
-    # print(c)
+    # c = prueba(request, usuario_solicitud.Twitter)
+    # b= getResultSummary(request,c)
+    # print(b)
     data['usuario_solicitud'] = Persona.objects.get(pk = request.user.pk)
-    b= getResultSummary(request,c)
-    print(b)
-    # a = get_personality("Mi principal labor es aprender constantemente para poder transmitir y generar interacciones, mi segundo desafío diario es ser un referente para mi grandioso hijo @leon y revoltosa @aliz, esperando estar a la altura de la gran labor que realiza mi estelar esposa @aly, saliendo del hogar me enfrento al oficio más bello de la tierra, facilitar el aprendizaje, compartir datos, transformarlos en información, cuestionarnos para generar conocimiento y elevarnos a la inteligencia en ocasiones. Requiero de mucha creatividad para dirigir un programa de estudios en el que debemos estar al servicio de las ciencias, procurando la integración de saberes con el el uso de la computación y tratamiento de los datos. La generación de proyectos es natural para mi vida, todo lo traspolo a un proyecto y sueño constantemente en elaborar soluciones. En mis momentos de inspiración escribo canciones motivacionales.")
-    # a = get_personality(c)
-    # print(a)
     usuarios = User.objects.filter(is_staff = False) #todos los usuarios normales'
     data['usuarios'] = usuarios
     comunas_pega = Trabajo.objects.all().values("Direccion__Comuna").distinct()
@@ -104,14 +100,6 @@ def index_admin(request):
     final_dif = convertir_segundos(prom_dif)
 
     data['final_dif'] = final_dif
-
-
-    # print(sum(diferencias_fechas)/2)
-
-    # z= Postulantes.objects.all().aggregate(average_difference=Avg(F('Fecha') - F('Trabajo__Fecha_publicacion')))
-    # print(z)
-    # avg = Avg(diferencias_fechas)
-    # print(avg.value)
 
     return render(request, 'index_admin.html', data)
 

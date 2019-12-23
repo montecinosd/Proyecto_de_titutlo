@@ -6,6 +6,8 @@ from watson_developer_cloud import NaturalLanguageUnderstandingV1
 from watson_developer_cloud.natural_language_understanding_v1 import Features, SentimentOptions
 from django.shortcuts import render, redirect
 
+
+from datetime import *
 from Registro_fullpega.models import *
 from Publicar_trabajo.models import *
 from django.db.models import Avg
@@ -15,6 +17,7 @@ from Registro_fullpega.models import Historico_watson
 from watson_developer_cloud import PersonalityInsightsV3
 from sensibilidad_watson.twitter import *
 # Watson API KEYS
+from django.utils import timezone
 
 API_URI = 'https://gateway.watsonplatform.net/personality-insights/api'
 API_KEY = 'qpPxOSBZchJRbLiEuzkUGug7rOALlB0IEs6-YLXR_YkF'
@@ -87,16 +90,20 @@ def install(request):
                         category.save()
     return JsonResponse(response)
 
-def chartsSummaries(request,pk_user):
+def chartsSummaries_twitter(request,pk_user):
     Usuario_filter = Persona.objects.get(pk = pk_user)
-    template_name = "charts.html"
-    print("en chartsSummaries")
-    print("usuario entregado: "+Usuario_filter.Nombre)
-    getResultSummary(request,prueba(request,Usuario_filter.Twitter),pk_user)
     data = {}
+    data['usuario'] = Usuario_filter
+    data['usuario_solicitud'] = Persona.objects.get(pk = request.user.pk)
+
+
+    template_name = "charts.html"
+    print("en chartsSummaries twitter")
+    print("usuario entregado: "+Usuario_filter.Nombre)
+    getResultSummary(request,prueba(request,Usuario_filter.Twitter),pk_user,1)
 
     categories = Category.objects.all()
-    summaries = Summary.objects.filter(user = Usuario_filter.Usuario)
+    summaries = Summary.objects.filter(user = Usuario_filter.Usuario).filter(tipo = 1).order_by('-date')
     # summaries = Summary.objects.all()
 
     i = 0
@@ -104,21 +111,108 @@ def chartsSummaries(request,pk_user):
     resultData = []
     for summary in summaries:
         if i == 0:
-            dataset.append({'label': str(summary.date), 'backgroundColor': 'rgba(26,179,148,0.2)', 'borderColor': 'rgba(26,179,148,1)'})
+            dataset.append({'label': str(timezone.localtime(summary.date).strftime('%Y/%m/%d %H:%M:%S')), 'backgroundColor': 'rgba(26,179,148,0.2)', 'borderColor': 'rgba(26,179,148,1)'})
         else:
-            dataset.append({'label': str(summary.date), 'backgroundColor': 'rgba(120,120,120,0.2)', 'borderColor': 'rgba(120,120,120,1)'})
+            dataset.append({'label': str(timezone.localtime(summary.date).strftime('%Y/%m/%d %H:%M:%S')), 'backgroundColor': 'rgba(120,120,120,0.2)', 'borderColor': 'rgba(120,120,120,1)'})
         for category in categories:
             for result in summary.categoryresult_set.filter(category = category):
                 resultData.append(int(float(result.percentile)*100))
         dataset[i]["data"] = resultData
         resultData = []
+        
+        if (i==6):
+            break
         i += 1
 
     data["labels"] = list(Category.objects.all().values_list("name", flat = True))
     data["dataset"] = json.dumps(dataset)
 
     return render(request, template_name, data)
-def getResultSummary(request,descripcion,pk_user):
+
+def chartsSummaries(request,pk_user):
+
+    data = {}
+
+    data['usuario_solicitud'] = Persona.objects.get(pk = request.user.pk)
+
+    Usuario_filter = Persona.objects.get(pk = pk_user)
+    data['usuario'] = Usuario_filter
+    template_name = "charts.html"
+    print("en chartsSummaries")
+    print("usuario entregado: "+Usuario_filter.Nombre)
+    getResultSummary(request,json.dumps(Usuario_filter.Descripcion_propia),pk_user,2)
+
+    categories = Category.objects.all()
+    summaries = Summary.objects.filter(user = Usuario_filter.Usuario).filter(tipo = 2).order_by('-date')
+    # summaries = Summary.objects.all()
+
+    i = 0
+    dataset = []
+    resultData = []
+    for summary in summaries:
+        if i == 0:
+            dataset.append({'label': str(timezone.localtime(summary.date).strftime('%Y/%m/%d %H:%M:%S')), 'backgroundColor': 'rgba(26,179,148,0.2)', 'borderColor': 'rgba(26,179,148,1)'})
+        else:
+            dataset.append({'label': str(timezone.localtime(summary.date).strftime('%Y/%m/%d %H:%M:%S')), 'backgroundColor': 'rgba(120,120,120,0.2)', 'borderColor': 'rgba(120,120,120,1)'})
+        for category in categories:
+            for result in summary.categoryresult_set.filter(category = category):
+                resultData.append(int(float(result.percentile)*100))
+        dataset[i]["data"] = resultData
+        resultData = []
+        if (i==6):
+            break
+        i += 1
+
+    data["labels"] = list(Category.objects.all().values_list("name", flat = True))
+    data["dataset"] = json.dumps(dataset)
+
+    return render(request, template_name, data)
+def chartsSummaries_texto_twitter(request,pk_user):
+
+    data = {}
+
+    data['usuario_solicitud'] = Persona.objects.get(pk = request.user.pk)
+
+    Usuario_filter = Persona.objects.get(pk = pk_user)
+    data['usuario'] = Usuario_filter
+    template_name = "charts.html"
+    print("en chartsSummaries twitter texto")
+    print("usuario entregado: "+Usuario_filter.Nombre)
+    #Se crean ambos registros
+    getResultSummary(request,json.dumps(Usuario_filter.Descripcion_propia),pk_user,2)
+    getResultSummary(request,prueba(request,Usuario_filter.Twitter),pk_user,1)
+    #Se obtienen ambos registros
+    categories = Category.objects.all()
+    summaries = Summary.objects.filter(user = Usuario_filter.Usuario).filter(tipo = 2).last() #texto
+    summaries2 = Summary.objects.filter(user = Usuario_filter.Usuario).filter(tipo = 1).last() #twiiter
+
+    print(summaries)
+    print(summaries2)
+    # summaries = Summary.objects.all()
+    summaries_aux = [summaries,summaries2]
+    i = 0
+    dataset = []
+    resultData = []
+    for summary in summaries_aux:
+        if i == 0:
+            dataset.append({'label': str(timezone.localtime(summary.date).strftime('Texto %Y/%m/%d %H:%M:%S')), 'backgroundColor': 'rgba(26,179,148,0.2)', 'borderColor': 'rgba(26,179,148,1)'})
+        else:
+            dataset.append({'label': str(timezone.localtime(summary.date).strftime('Twitter %Y/%m/%d %H:%M:%S')), 'backgroundColor': 'rgba(120,120,120,0.2)', 'borderColor': 'rgba(120,120,120,1)'})
+        for category in categories:
+            for result in summary.categoryresult_set.filter(category = category):
+                resultData.append(int(float(result.percentile)*100))
+        dataset[i]["data"] = resultData
+        resultData = []
+        if (i==6):
+            break
+        i += 1
+
+    data["labels"] = list(Category.objects.all().values_list("name", flat = True))
+    data["dataset"] = json.dumps(dataset)
+
+    return render(request, template_name, data)
+def getResultSummary(request,descripcion,pk_user,tipo):
+    print("descripcion =",str(descripcion))
     description = descripcion  # User text for analysis
     html = "<div>jejej una pruebilla</div>"
 
@@ -126,16 +220,26 @@ def getResultSummary(request,descripcion,pk_user):
     response = json.loads(json.dumps(profile, indent=2))
 
     userProfile = User.objects.get(pk=pk_user)
-
-    summary = Summary(
-        user=userProfile,
-        description=html,
-        word_count=response["word_count"],
-        date=datetime.now(),
-        processed_language=response["processed_language"],
-        json_response=json.dumps(response, ensure_ascii=False)
-    )
-
+    if (tipo==1):
+        summary = Summary(
+            user=userProfile,
+            description=html,
+            word_count=response["word_count"],
+            # date=datetime.now(),
+            processed_language=response["processed_language"],
+            json_response=json.dumps(response, ensure_ascii=False),
+            tipo=1
+        )
+    else:
+        summary = Summary(
+            user=userProfile,
+            description=html,
+            word_count=response["word_count"],
+            # date=datetime.now(),
+            processed_language=response["processed_language"],
+            json_response=json.dumps(response, ensure_ascii=False),
+            tipo=2
+        )
     summary.save()
 
     for key in response:
