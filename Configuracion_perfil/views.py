@@ -18,6 +18,8 @@ def config_perfil(request,pk_user):
     data['regiones'] = regiones
     data['comunas'] = comunas
 
+    data['areas'] = Areas.objects.all()
+    data['preferencias'] = Preferencias.objects.get(Usuario = usuario)
     Direcciones = Direccion.objects.filter(Persona = usuario)
     data['direcciones'] = Direcciones
     print(Direcciones)
@@ -111,6 +113,40 @@ def guardar_config_datos(request):
     usuario.Correo = correo
     usuario.save()
 
+    return redirect('config_perfil', request.user.pk)
+
+@login_required(login_url='/auth/login')
+def guardar_config_perfil_preferencias(request,pk_user):
+    data = {}
+    usuario = Persona.objects.get(Usuario=pk_user)
+    print(usuario)
+
+    if request.method == 'GET':
+        print("get")
+    if request.method == 'POST':
+        valores = {}
+        if (request.POST.get("comuna")):
+            valores['Comuna'] = Comuna.objects.get(pk = request.POST['comuna'])
+        if (request.POST.get("m_minimo")):
+            valores['M_minimo'] = request.POST['m_minimo']
+        if (request.POST.get("m_maximo")):
+            valores['M_maximo'] = request.POST['m_maximo']
+        if (request.POST.get("area")):
+            valores['Area'] = Areas.objects.get(pk = request.POST['area'])
+        #crea o actualiza la preferencia
+        preferencia, preferencia_creada = Preferencias.objects.update_or_create(Usuario = usuario, defaults = valores)
+
+        print(request.POST)
+        if (preferencia_creada):
+            print("creada")
+        else:
+            print("ya tenia")
+        print( preferencia)
+        print( preferencia_creada)
+        # m_minimo = request.POST.get("")
+        # Preferencias.objects.create(usuario=usuario, m_minimo = ,m_maximo = ,direccion = )
+        #                       region=self)
+    # return render(request, 'visualizar_perfil.html', data)
     return redirect('config_perfil', request.user.pk)
 
 @login_required(login_url='/auth/login')

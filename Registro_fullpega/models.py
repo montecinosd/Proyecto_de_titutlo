@@ -65,6 +65,8 @@ class Persona(models.Model):
     def Direccion(self):
         return Direccion.objects.filter(Persona = self).get(Principal = 1)
 
+
+
 class Direccion(models.Model):
     Comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE,null=True,blank=True)
     # Pais = models.CharField(max_length = 50, null=True,blank=True)
@@ -78,6 +80,16 @@ class Direccion(models.Model):
         self.Principal = 0
     def establecer_principal(self):
         self.Principal = 1
+
+class Preferencias(models.Model):
+    Usuario = models.ForeignKey(Persona, on_delete=models.CASCADE)
+    M_minimo = models.IntegerField(default=1)
+    M_maximo = models.IntegerField(default=1000000000)
+    Comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE, null=True, blank=True)
+    Area = models.ForeignKey(Areas,on_delete=models.CASCADE, null=True, blank=True)
+    Fecha_registro = models.DateTimeField(default=datetime.now)
+
+    # Activo = models.
 
 class Historico_watson(models.Model):
     Usuario = models.ForeignKey(Persona, on_delete=models.CASCADE)

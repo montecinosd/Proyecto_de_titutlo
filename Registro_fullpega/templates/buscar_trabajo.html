@@ -145,7 +145,16 @@
                     <thead >
                       <tr role="row text-center"><th class="sorting_asc text-center" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 157px;">Nombre</th><th class="sorting text-center" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 236px;">Detalle</th><th class="sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 83px;">Fecha</th><th class="sorting text-center" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 51px;">Comuna</th><th class="sorting text-center" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 108px;">Pago</th> <th class="sorting_disabled text-center" rowspan="1" colspan="1" aria-label="Salary" style="width: 75px;">Imagen</th><th class="sorting_disabled text-center" rowspan="1" colspan="1" aria-label="Salary" style="width: 75px;">Accion</th></tr>
                     </thead>
+                      {% if preferencias and usuario_solicitud.privilegios == 2 or usuario_solicitud.privilegios == 4 %}
+                          <h5 class="text-center">¡Se han aplicado los filtros de sus preferencias!</h5>
+                          {% else %}
+                          <h5 class="text-center">¡Ud no tiene los <a href="{% url 'visualizar_privilegios' request.user.pk %}">Privilegios</a> para aplicar los filtros automáticos!</h5>
+
+                      {% endif %}
                           <div class="row text-center">
+                              <div class="col-md-2 text-center">
+                              </div>
+
                               <div class="col-md-2 text-center">
                                  <h5>Comuna</h5>
                               </div>
@@ -160,27 +169,53 @@
                               </div>
                           </div>
                           <div class="row text-center">
+                              <div class="col-md-2 text-center">
+                              </div>
+
                                 <div class="col-md-2 text-center">
-                                    <select class ="form-control mySelect"  style="" id="mySelect">
-                                        <option value="" disabled selected>Selecciona Comuna</option>
-                                        <option value="Macul">Macul</option>
-                                        <option value="Peñalolen">Peñalolen</option>
+                                    <select class ="form-control mySelect"  style="width: 15em;" id="mySelect">
+                                        {% if preferencias.Comuna and usuario_solicitud.privilegios == 2 or usuario_solicitud.privilegios == 4 %}
+                                            <option  style="color:blue;"    value="{{ preferencias.Comuna.nombre }}">{{ preferencias.Comuna.nombre }}</option>
+                                        {% else %}
+                                            <option value="" disabled selected>Selecciona Comuna</option>
+                                        {% endif %}
+                                        {% for i in comunas %}
+                                            <option value="{{ i }}">{{ i }}</option>
+                                        {% endfor %}
                                     </select>
                                   </div>
                               <div class="col-md-2 text-center">
 {#                                  adding-bottom: 1em; margin-bottom: 1em;#}
-                                    <select class ="form-control mySelect" style="" id="mySelect2">
-                                        <option value="" disabled selected>Selecciona Area</option>
-                                        <option value="Hogar">Hogar</option>
-                                        <option value="Informatica">Informatica</option>
+                                    <select class ="form-control mySelect" style="width: 15em;" id="mySelect2">
+                                        {% if preferencias.Area and usuario_solicitud.privilegios == 2 or usuario_solicitud.privilegios == 4 %}
+                                            <option  style="color:blue;"    value="{{ preferencias.Area.Nombre }}">{{ preferencias.Area.Nombre }}</option>
+                                        {% else %}
+                                            <option value="" disabled selected>Selecciona Area</option>
+                                                                            {% endif %}
+
+                                        {% for i in areas %}
+                                            <option value="{{ i }}">{{ i }}</option>
+                                        {% endfor %}
+
                                     </select>
                               </div>
                               <div class="col-md-2 text-center">
-                                    <input class="form-control" id="counter-low" type="text" style="width: 95%" placeholder="Minima paga" />
+                                        {% if preferencias.M_minimo and usuario_solicitud.privilegios == 2 or usuario_solicitud.privilegios == 4  %}
+                                           <input class="form-control" id="counter-low" type="text" style="color:blue;width: 15em;" placeholder="{{ preferencias.M_minimo  }}" />
+
+                                        {% else %}
+                                           <input class="form-control" id="counter-low" type="text" style="width: 15em;" placeholder="Minima paga" />
+                                        {% endif %}
+
 
                                   </div>
                               <div class="col-md-2 text-center">
-                                    <input class="form-control" id="counter-high" type="text" style="width: 95%" placeholder="Maxima paga" />
+                                        {% if preferencias.M_maximo and usuario_solicitud.privilegios == 2 or usuario_solicitud.privilegios == 4 %}
+                                           <input class="form-control" id="counter-high" type="text" style="color:blue;width: 15em;" placeholder="{{ preferencias.M_maximo  }}" />
+
+                                        {% else %}
+                                           <input class="form-control" id="counter-high" type="text" style="width: 15em;" placeholder="Maxima paga" />
+                                        {% endif %}
                               </div>
 
                           </div>
@@ -195,7 +230,7 @@
                   <tr role="row" class="odd text-center">
                         <td style="font-weight: bold;"class="sorting_1 text-center"><span class="text-center">Vacantes: {{ i.10 }}</span></br>{{ i.1 }} </td>
                         <td class="text-center">-Area: {{ i.2 }}-</br> {{ i.3 }}</td>
-                        <td class="text-center">{{ i.4 }} {{ i.5 }}</td>
+                        <td class="text-center">{{ i.4 }} </td>
                         <td>{{ i.6 }}</td>
                         <td>{{ i.7 }}</td>
 
@@ -233,6 +268,11 @@
 
 <script>
 $(document).ready(function() {
+    var comuna_ini = $('#mySelect').val();
+    var area_ini = $('#mySelect2').val();
+    {#var min_ini = $('#counter-low').val().keyup();#}
+    {#var max_ini = $('#counter-high').val().keyup();#}
+
     var table = $('#example').DataTable({
         /* Disable initial sort */
         "order": [],
@@ -262,10 +302,24 @@ $(document).ready(function() {
     }
 
     });
+
     $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
         return parseInt(data[4]) >= parseInt($('#counter-low').val() || data[4])
             && parseInt(data[4]) <= parseInt($('#counter-high').val() || data[4])
     });
+    {% if usuario_solicitud.privilegios == 2 or usuario_solicitud.privilegios == 4 %}
+        {% if preferencias.Comuna and preferencias.Area %}
+            table.search(comuna_ini +' '+area_ini).draw();
+
+        {% elif preferencias.Comuna %}
+            table.search(comuna_ini).draw();
+        {% elif preferencias.Area %}
+            table.search(area_ini).draw();
+
+
+        {% endif %}
+    {% endif %}
+
     {#$('#counter-low, #counter-high').on('keyup', table.draw);#}
     $('#counter-low, #counter-high').keyup( function() {
         {#alert("HOLA");#}
@@ -294,8 +348,11 @@ $(document).ready(function() {
         var selectedValue = $(this).val();
         {#table.fnFilter("^"+selectedValue+"$", 3, true); //Exact value, column, reg#}
         var filter_value = $('.dataTables_filter input').val();
-        filter_value= filter_value.replace('Macul','');
-        filter_value= filter_value.replace('Peñalolen','');
+        filter_value= filter_value.replace('{{ preferencias.Comuna.nombre }}','');
+
+        {% for i in comunas %}
+        filter_value= filter_value.replace('{{ i }}','');
+        {% endfor %}
 
         table.search(filter_value+' '+selectedValue).draw();
     });
@@ -305,8 +362,11 @@ $(document).ready(function() {
 
         {#alert(ret);#}
         var filter_value = $('.dataTables_filter input').val();
-        filter_value= filter_value.replace('Hogar','');
-        filter_value= filter_value.replace('Informatica','');
+        filter_value= filter_value.replace('{{ preferencias.Area.Nombre }}','');
+
+        {% for i in areas %}
+        filter_value= filter_value.replace('{{ i }}','');
+        {% endfor %}
         {#table.fnFilter("^"+selectedValue+"$", 3, true); //Exact value, column, reg#}
         table.search(filter_value+' '+selectedValue).draw();
     });

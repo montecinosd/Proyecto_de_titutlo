@@ -495,6 +495,17 @@ def buscar_trabajo(request,pk_user):
     data = {}
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
     data['usuario_solicitud'] = usuario_solicitud
+    data['preferencias'] = Preferencias.objects.get(Usuario = usuario_solicitud)
+    # print([i for i in Trabajo.objects.filter(Activo= 1).values('Area__Nombre').distinct()])
+    areas = Trabajo.objects.filter(Activo= 1).values('Area__Nombre').distinct()
+    print("hoal")
+    for i in areas:
+        print(i['Area__Nombre'])
+    print(areas.values())
+    data['areas'] = [i['Area__Nombre'] for i in Trabajo.objects.filter(Activo= 1).values('Area__Nombre').distinct()]
+    data['comunas'] = [i['Direccion__Comuna__nombre'] for i in Trabajo.objects.filter(Activo=1).values('Direccion__Comuna__nombre').distinct()]
+    print(data)
+
 
     # usuario = Persona.objects.get(Usuario=pk_user)
 
@@ -520,7 +531,7 @@ def buscar_trabajo(request,pk_user):
             # i.annotate(mycolumn=Value('xxx', output_field=CharField()))
             # print("si ta" + str(i.pk))
     data['prueba'] = trabajos_listos
-    print(data['trabajos'])
+    # print(data['trabajos'])
     #
     # print(data)
     return render(request, 'buscar_trabajo.html', data)
