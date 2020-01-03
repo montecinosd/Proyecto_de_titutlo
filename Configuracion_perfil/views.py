@@ -191,3 +191,17 @@ def guardar_config_perfil_redes(request,pk_user):
 
     # return render(request, 'visualizar_perfil.html', data)
     return redirect('config_perfil', request.user.pk)
+
+@login_required(login_url='/auth/login')
+def guardar_descripcion(request,pk_user):
+    data = {}
+    usuario = Persona.objects.get(Usuario=pk_user)
+
+    if request.method == 'GET':
+        print("get")
+    if request.method == 'POST':
+        print(request.POST)
+        usuario.Descripcion_propia = request.POST['descripcion']
+        usuario.save()
+
+    return redirect('config_perfil', request.user.pk)

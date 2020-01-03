@@ -74,33 +74,12 @@
             </div>
 
             <!-- end .form-header section -->
-            <form method="POST" action="{% url 'auth_login' %}">{% csrf_token %}
+            <form method="GET" action="{% url 'auth_login' %}">{% csrf_token %}
               <div class="panel-body bg-light p30">
                 <div class="row">
                   <div class="col-sm-12 pr30">
                     <div class="section">
-                      <label for="username" class="field-label text-muted fs18 mb10">Usuario</label>
-                      <label for="username" class="field prepend-icon">
-                        <input type="text" id="username" name="username" class="form-control" placeholder="Usuario" required autofocus>
-                        <label for="username" class="field-icon">
-                          <i class="fa fa-user"></i>
-                        </label>
-                      </label>
-                    </div>
-                    <!-- end section -->
-
-                    <div class="section">
-                      <label for="username"  class="field-label text-muted fs18 mb10">Contraseña</label>
-                      <label for="password" class="field prepend-icon">
-                        <input type="password" id="password" name="password" class="gui-input" placeholder="Enter password">
-                        <label for="password" class="field-icon">
-                          <i class="fa fa-lock"></i>
-                        </label>
-
-                      </label>
-                    </div>
-                      <a href="{% url 'restablecer_contrasenha' %}">¿Olvidaste la contraseña?</a>
-                    <!-- end section -->
+                      <label class="field-label text-muted fs18 mb10">¡Se ha enviado un mail con una contraseña provisoria, luego puedes cambiarla en tus configuraciones!</label>
 
                   </div>
 
@@ -108,7 +87,7 @@
               </div>
               <!-- end .form-body section -->
               <div class="panel-footer clearfix p10 ph15 text-center">
-                <button type="submit" class="button btn-primary mr10 ">Ingresar</button>
+                <button type="submit" class="button btn-primary mr10 ">Acceder</button>
               </div>
               <!-- end .form-footer section -->
             </form>

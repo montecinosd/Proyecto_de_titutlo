@@ -6,6 +6,7 @@ from Configuracion_perfil import views
 
 urlpatterns = [
      path(r'^config_perfil/<int:pk_user>', views.config_perfil, name='config_perfil'),
+     path(r'^guardar_descripcion/<int:pk_user>', views.guardar_descripcion, name='guardar_descripcion'),
      path(r'^config_direccion/<int:pk_direccion>', views.config_direccion, name='config_direccion'),
      path(r'^config_direccion_actualizar/<int:pk_direccion>', views.config_direccion_actualizar, name='config_direccion_actualizar'),
      path(r'^guardar_config_perfil_redes/<int:pk_user>', views.guardar_config_perfil_redes, name='guardar_config_perfil_redes'),

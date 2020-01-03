@@ -21,8 +21,8 @@ def index(request):
     # notificaciones = Notificaciones.objects.filter(usuario = usuario_solicitud)
     # print(notificaciones)
     # data['notificaciones'] = notificaciones
-
-    return render(request, 'index_super_user.html', data)
+    return redirect('visualizar_perfil',request.user.pk)
+    # return render(request, 'index_super_user.html', data)
 
 # @login_required(login_url='/auth/login')
 def pagina_principal(request):

@@ -66,13 +66,42 @@
     </div>
     </div>
 </div>
-{#PREFERENCAIS EN BSUCAR PEGA#}
+{#texto#}
 <div class="admin-form theme-primary">
 
               <div class="panel heading-border panel-primary">
                 <div class="panel-body bg-light">
                     <div class="section-divider mb40" id="spy1">
-                      <span>¡Actualiza tus preferencias para buscar pega!</span>
+                      <span>¡Actualiza tu descripción!</span>
+                    </div>
+        <form method="post" action="{% url 'guardar_descripcion' request.user.pk %}" id="formulario_trabajo" enctype="multipart/form-data">{% csrf_token %}
+{#            <div class="section-divider mb40">#}
+            <div class="row">
+                {% if usuario.Descripcion_propia %}
+                    <textarea class="form-control" name="descripcion" required="" placeholder="" maxlength="1000" minlength="100">{{ usuario.Descripcion_propia }}</textarea>
+                {% else %}
+                    <textarea class="form-control" name="descripcion" required="" placeholder="" maxlength="1000" minlength="100"></textarea>
+                {% endif %}
+
+
+            </div>
+
+{#            #}
+{#            </div>#}
+            <div class="text-center">
+                <button class="btn btn-rounded btn-primary" style="margin-top:1%;" id="submit">Actualizar datos</button>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>
+{#IMAGEN TEL CORREO#}
+<div class="admin-form theme-primary">
+
+              <div class="panel heading-border panel-primary">
+                <div class="panel-body bg-light">
+                    <div class="section-divider mb40" id="spy1">
+                      <span>¡Actualiza tus datos!</span>
                     </div>
 {#    <div class="row col-md-12">#}
 {#    <div class="panel heading-border panel-primary">#}
@@ -80,101 +109,32 @@
 {#                    <span class="glyphicon glyphicon-tasks"></span>¡Publica la pega que necesitas que alguien haga!</div>#}
 {#                </div>#}
 
-        <form method="post" action="{% url 'guardar_config_perfil_preferencias' request.user.pk %}" id="formulario_trabajo" enctype="multipart/form-data">{% csrf_token %}
+        <form method="post" action="{% url 'guardar_config_datos' %}" id="formulario_trabajo" enctype="multipart/form-data">{% csrf_token %}
 {#            <div class="section-divider mb40">#}
             <div class="row">
-
-                  <div class="col-md-4">
-{#                  {% if preferencias %}#}
-{#                  {{ preferencias }}#}
-{#                  {% endif %}#}
-                    <h5>Region</h5>
-
-                      <label class="field select">
-                          <i class="arrow"></i>
-                          <select class="gui-input" name="region" required id="region">
-                              <option style="color:blue;" value="{{ direccion.Comuna.region.pk }}" >{{ preferencias.Comuna.region.nombre }}</option>
-                          {% for i in regiones %}
-                             <option value="{{ i.pk  }}" name="{{ i.pk }}">{{ i.nombre }}</option>
-                          {% endfor %}
-                          </select>
-                      </label>
-                  </div>
-                  <div class="col-md-4" >
-                                      <h5>Comuna</h5>
-
-                          <i class="arrow"></i>
-{#                        RELLENAR LAS COMUNAS EN UNA PRIMERA INSTANCIA CUANDO ENTRA  A LA PAGINA#}
-                        {% if preferencias.Comuna %}
-{#                            <label class="field select" id="primer_comuna">#}
-{#                              <i class="arrow"></i>#}
-
-                            <select class="gui-input" name="comuna" id="primer_comuna" required >
-                                <option style="color:blue;"value="{{ preferencias.Comuna.pk }}">{{ preferencias.Comuna.nombre }}</option>
-                                 {% for i in comunas %}
-                                    {% if preferencias.Comuna.region == i.region %}
-                                        <option value="{{ i.pk }}">{{ i.nombre }}</option>
-                                    {% endif %}
-                                {% endfor %}
-                            </select>
-{#                                                    </label>#}
-                        {% else %}
-                            <select class="gui-input" name="comuna" id="primer_comuna" disabled required >
-                            </select>
-                        {% endif %}
-{#                        SE QUITA CUANDO CAMBIA LA OPCION#}
-                    {% for i in regiones %}
-{#                        {{ i }}#}
-
-                        <select class="gui-input" name="comuna" id="{{ i.pk }}" disabled="disabled" style="display:none">
-                        {% for z in comunas %}
-                            {% if i.pk == z.region.pk %}
-                            <option value="{{ z.pk }}">{{ z.nombre }}</option>
-                            {% endif %}
-                        {% endfor %}
-
-                        </select>
-                        </label>
-                    {% endfor %}
-                  </div>
-                  <div class="col-md-4">
-                       <h5>Area</h5>
-
-                       <label class="field select">
-
-                          <i class="arrow"></i>
-{#                        <label for="email">Area:</label>#}
-                          <select class="gui-input" name="area" id="">
-                          {% if preferencias.Area %}
-                              <option value="{{ preferencias.Area }}">{{ preferencias.Area.Nombre }}</option>
-                          {% else %}
-                              <option value="">Selecciona area preferencia</option>
-                          {% endif %}
-
-                          {% for i in areas %}
-                              <option value="{{ i.pk }}">{{ i.Nombre }}</option>
-                          {% endfor %}
-                          </select>
-                       </label>
-                    </div>
-
-                      <div class="col-md-6">
-                        <label for="email">Monto minimo:</label>
-                          {% if preferencias.M_minimo %}
-                            <input type="number" required class="form-control"  name="m_minimo" value = "{{preferencias.M_minimo }}" placeholder="Ingresa tu minimo de ingreso">
-                          {% else %}
-                            <input type="number" required class="form-control"  name="m_minimo" value = "" placeholder="Ingresa tu minimo de ingreso">
-                          {% endif %}
-                    </div>
                     <div class="col-md-6">
+                        <label for="email">Telefono:</label>
+                            <input pattern="[+]{1}[5]{1}[6]{1}[2-9]{1}[0-9]{7-8}" type="tel" class="form-control" name="telefono" id="telefono" value = "{{usuario.Telefono_C }}" required placeholder="Ingresa numero Ej: +56912345678 - +5621234567">
+                    </div>
 
-                        <label for="email">Monto máximo:</label>
-                          {% if preferencias.M_maximo %}
-                            <input type="number" required class="form-control"  name="m_maximo" value = "{{preferencias.M_maximo}}" placeholder="Ingresa tu maximo de ingreso">
-                          {% else %}
-                            <input type="number" required class="form-control"  name="m_maximo" value = "" placeholder="Ingresa tu maximo de ingreso">
-                          {% endif %}
 
+                    <div class="col-md-6">
+                        <label for="email">Imagen:</label>
+                         <div class="section">
+                          <label class="field prepend-icon file">
+                            <span class="button btn-primary">Elegir archivo</span>
+                            <input type="file" class="gui-file" name="imagenRegistro" id="imagenRegistro" onchange="document.getElementById('imagenRegistro2').value = this.value;">
+                            <input type="text" class="gui-input" id="imagenRegistro2" name="imagenRegistro2" placeholder="Sube una imagen tuya :)">
+                            <label class="field-icon">
+                              <i class="fa fa-upload"></i>
+                            </label>
+                          </label>
+                        </div>
+
+                    </div>
+                      <div class="col-md-6">
+                        <label for="email">Correo contacto:</label>
+                            <input type="email" required class="form-control" name="mail" id="mail" value = "{{usuario.Correo }}" placeholder="Ingresa tu correo">
                     </div>
 
                 </div>
