@@ -47,12 +47,20 @@ INSTALLED_APPS = [
     'Auth_fullpega',
     'autofixture',
     'bootstrap4',
+    'Correos',
     # 'oauth_tokens',
     # 'm2m_history',
     # 'taggit',
     'twitter',
     'Registro_fullpega.templatetags.poll_extras',
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = "Fullpega.info@gmail.com"
+EMAIL_HOST_PASSWORD = 'fullpega2009'
+EMAIL_PORT = 587
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

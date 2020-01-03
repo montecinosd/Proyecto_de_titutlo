@@ -8,7 +8,8 @@ from Publicar_trabajo.views import validar_trabajos
 from Publicar_trabajo.models import *
 from sensibilidad_watson.watson import *
 from django.db.models import CharField, Value
-
+from Correos.views import *
+from Configuracion_perfil.views import *
 # Create your views here.
 @login_required(login_url='/auth/login')
 def index(request):
@@ -491,7 +492,9 @@ def visualizar_privilegios(request,pk_user):
 
 @login_required(login_url='/auth/login')
 def buscar_trabajo(request,pk_user):
-
+    prueba_mail()
+    enviar_email('mendrack1@gmail.com',"Prueba django dinamico","dinamico xde")
+    enviar_correo_inactivos()
     data = {}
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
     data['usuario_solicitud'] = usuario_solicitud

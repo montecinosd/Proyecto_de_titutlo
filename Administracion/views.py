@@ -9,8 +9,9 @@ from sensibilidad_watson.twitter import *
 from django.db.models import Count, Avg
 from django.utils import timezone
 from django.db.models import F
+import datetime
 
-
+from Correos.views import *
 def convertir_segundos(seg):
     # print(seg)
     if (seg<60):
@@ -26,7 +27,20 @@ def convertir_segundos(seg):
 def index_admin(request):
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
 
+
+    if(request.POST):
+        print(request.POST)
+        print(type(request.POST.get("fecha_inicio")[8:10]))
+        fecha_ini = request.POST.get("fecha_inicio")
+        fecha_ini = datetime.datetime(int(fecha_ini[0:4]),int(fecha_ini[5:7]),int(fecha_ini[8:10]))
+        fecha_fin = request.POST.get("fecha_fin")
+        fecha_fin = datetime.datetime(int(fecha_fin[0:4]),int(fecha_fin[5:7]),int(fecha_fin[8:10]))
+    else:
+        fecha_ini = datetime.datetime(2018,int("01"),16)
+        fecha_fin = datetime.datetime(2050,1,16)
     # print("hola")
+    print(fecha_ini)
+
     data = {}
     # install(request)
     # c = prueba(request, usuario_solicitud.Twitter)
@@ -35,11 +49,11 @@ def index_admin(request):
     data['usuario_solicitud'] = Persona.objects.get(pk = request.user.pk)
     usuarios = User.objects.filter(is_staff = False) #todos los usuarios normales'
     data['usuarios'] = usuarios
-    comunas_pega = Trabajo.objects.all().values("Direccion__Comuna").distinct()
+    comunas_pega = Trabajo.objects.filter(Fecha_publicacion__range=(fecha_ini,fecha_fin)).values("Direccion__Comuna").distinct()
     data['comunas_pega'] = comunas_pega
     trabajos = Trabajo.objects.filter(Activo = 1)
     data['trabajos'] = trabajos
-    data['calificaciones'] = Calificaciones.objects.all()
+    data['calificaciones'] = Calificaciones.objects.filter(Fecha__range=(fecha_ini,fecha_fin))
     calificacion5 = Calificaciones.objects.filter(Estrellas = 5)
     calificacion4 = Calificaciones.objects.filter(Estrellas = 4)
     calificacion3 = Calificaciones.objects.filter(Estrellas = 3)
@@ -57,11 +71,11 @@ def index_admin(request):
     data['calificacion1']=calificacion1
     # vacia = Trabajo.objects.none()
     # print(vacia)
-    comunas_frecuentes = Trabajo.objects.values("Direccion__Comuna__nombre").annotate(count=Count('Direccion__Comuna')).order_by("-count")
+    comunas_frecuentes = Trabajo.objects.filter(Fecha_publicacion__range=(fecha_ini,fecha_fin)).values("Direccion__Comuna__nombre").annotate(count=Count('Direccion__Comuna')).order_by("-count")
     data['comunas_frecuentes'] = comunas_frecuentes
     # rellena = comunas_frecuentes|vacia
     # print(rellena)
-    rango_horario = Trabajo.objects.all()
+    rango_horario = Trabajo.objects.filter(Fecha_publicacion__range=(fecha_ini,fecha_fin))
     horas_1_8 = [r for r in rango_horario if 1 <= (timezone.localtime(r.Fecha)).hour < 8] #1 a 7:59
     horas_8_12 = [r for r in rango_horario if 8 <= (timezone.localtime(r.Fecha)).hour < 12]#8 a 11:59
     horas_12_16 = [r for r in rango_horario if 12 <= (timezone.localtime(r.Fecha)).hour < 16]#12 a 15:59
@@ -214,6 +228,25 @@ def adm_pegas(request):
 
     return render(request, 'adm_pegas.html', data)
 
+@login_required(login_url='/auth/login')
+def enviar_correos(request):
+    data={}
+    if (request.POST):
+        print("Post")
+        asunto =request.POST.get("asunto")
+        mensaje=request.POST.get("mensaje")
+
+        print(asunto)
+        print(mensaje)
+        personas = Persona.objects.all()
+        correos = [i.Correo for i in personas]
+        enviar_emails(asunto,mensaje,correos)
+        print(personas)
+        # correos = [i. for i in Persona.objects.all]
+        return render(request, 'enviar_correos.html', data)
+
+    else:
+      return render(request, 'enviar_correos.html', data)
 @login_required(login_url='/auth/login')
 def visualizar_perfil_adm(request,pk_user):
     data = {}

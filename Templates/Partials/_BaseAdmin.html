@@ -300,23 +300,29 @@
         <!-- Start: Sidebar Left Menu -->
 
           <ul class="nav sidebar-menu">
-              <li class="sidebar-label pt20">Perfil</li>
+              <li class="sidebar-label pt20">Inicio</li>
               <li class="active">
                 <a href="{% url 'index_admin' %}" >
-                    <span class="fa fa-user"></span>
-                    <span class="sidebar-title">Perfil</span>
+                    <span class="fa fa-rss"></span>
+                    <span class="sidebar-title">Inicio</span>
                 </a>
             </li>
               <li class="active">
                 <a href="{% url 'adm_usuarios' %}" >
-                    <span class="fa fa-user"></span>
+                    <span class="fa fa-flag"></span>
                     <span class="sidebar-title">Adm. usuarios</span>
                 </a>
             </li>
                             <li class="active">
                 <a href="{% url 'adm_pegas' %}" >
-                    <span class="fa fa-user"></span>
+                    <span class="fa fa-flag-o"></span>
                     <span class="sidebar-title">Adm. pegas</span>
+                </a>
+            </li>
+              <li class="active">
+                <a href="{% url 'enviar_correos' %}" >
+                    <span class="fa fa-share"></span>
+                    <span class="sidebar-title">Enviar correos</span>
                 </a>
             </li>
 

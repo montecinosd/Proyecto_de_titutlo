@@ -16,9 +16,11 @@
 
 
     <div class="container">
-    <div class="row panel panel-default" style="padding-top: 1em;">
+
+    <div class="row panel heading-border panel-primary bg-light" style="padding-top: 1em;">
+
 {#        usuarios#}
-    <div class="col-sm-6 col-md-3">
+    <div class="col-sm-6 col-md-6 light">
             <div class="panel bg-success light of-h mb10">
               <div class="pn pl20 p5">
                 <div class="icon-bg">
@@ -27,12 +29,12 @@
                 <h2 class="mt15 lh15">
                   <b>{{ usuarios|length }}</b>
                 </h2>
-                <h5 class="text-muted">Usuarios</h5>
+                <h5 class="text-white ">Usuarios</h5>
               </div>
             </div>
           </div>
 {#        Trabajos#}
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-6">
             <div class="panel bg-alert light of-h mb10">
               <div class="pn pl20 p5">
                 <div class="icon-bg">
@@ -41,13 +43,13 @@
                 <h2 class="mt15 lh15">
                   <b>{{ trabajos|length }}</b>
                 </h2>
-                <h5 class="text-muted">Trabajos activos</h5>
+                <h5 class="text-white">Trabajos activos</h5>
               </div>
             </div>
 
           </div>
         {#        calificaciones#}
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4">
             <div class="panel bg-primary light of-h mb10">
               <div class="pn pl20 p5">
                 <div class="icon-bg">
@@ -56,13 +58,13 @@
                 <h2 class="mt15 lh15">
                   <b>{{ calificaciones|length }}</b>
                 </h2>
-                <h5 class="text-muted">Calificaciones realizadas</h5>
+                <h5 class="text-white">Calificaciones realizadas</h5>
               </div>
             </div>
 
           </div>
         {#        comunas#}
-            <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4">
             <div class="panel bg-info light of-h mb10">
               <div class="pn pl20 p5">
                 <div class="icon-bg">
@@ -71,12 +73,12 @@
                 <h2 class="mt15 lh15">
                   <b>{{ comunas_pega|length }}</b>
                 </h2>
-                <h5 class="text-muted">Comunas en las que se ha publicado pega</h5>
+                <h5 class="text-white">Comunas en las que se ha publicado pega</h5>
               </div>
             </div>
 
           </div>
-        <div class="col-sm-6 col-md-3">
+        <div class="col-sm-6 col-md-4">
             <div class="panel bg-info light of-h mb10">
               <div class="pn pl20 p5">
                 <div class="icon-bg">
@@ -85,7 +87,7 @@
                 <h2 class="mt15 lh15">
                   <b>{{ final_dif }}</b>
                 </h2>
-                <h5 class="text-muted">Tiempo promedio de postulación</h5>
+                <h5 class="text-white">Tiempo promedio de postulación</h5>
               </div>
             </div>
 
@@ -94,20 +96,49 @@
     </div>
     </div>
 {#    CONTAINER NUEVO#}
-    <hr>
+
+    {#   FILTRO     #}
+        <div class="panel heading-border panel-primary text-center">
+                <div class="panel-body bg-light">
+                      <h5>¡Filtra los graficos por fechas!</h5>
+        <form method="post" action="{% url 'index_admin' %}" id="formulario_trabajo" enctype="multipart/form-data">{% csrf_token %}
+            <div class="row">
+                    <div class="col-md-2">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="Fecha">Fecha de inicio:</label>
+                        <input type="date" name="fecha_inicio"  id="fecha_inicio" class="form-control" placeholder="Ingrese la fecha del trabajo" required="">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="Hora">Fecha de termino:</label>
+
+                             <input type="date" name="fecha_fin"  id="fecha_fin" class="form-control" placeholder="Ingrese la hora del trabajo" required="">
+                    </div>
+                    <div class="col-md-2">
+
+                                        <button class="btn btn-rounded btn-primary" id="submit" style="width: 7em;">Filtrar</button>
+
+                    </div>
+
+
+                </div>
+        </form>
+                </div>
+    </div>
 <div class="container">
                     <div class="row">
                         <div class="panel panel-default col-md-12">
                             <canvas id="myChart2" width="300" height="300"></canvas>
                         </div>
-
+                        <div class="panel panel-default col-md-12">
+                            <canvas id="myChart3" width="300" height="300"></canvas>
+                        </div>
                         <div class="panel panel-default col-md-12">
                             <canvas id="myChart" width="300" height="300"></canvas>
                         </div>
 
-                        <div class="panel panel-default col-md-12">
-                            <canvas id="myChart3" width="300" height="300"></canvas>
-                        </div>
+
                     </div>
                 </div>
 {#<script src="{% static 'charts/Chart.bundle.js' %}"></script>#}

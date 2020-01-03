@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
 # Create your views here.
+import datetime
 
 
 
@@ -149,6 +150,17 @@ def guardar_config_perfil_preferencias(request,pk_user):
     # return render(request, 'visualizar_perfil.html', data)
     return redirect('config_perfil', request.user.pk)
 
+def enviar_correo_inactivos():
+
+    today = datetime.date.today()
+    last_week = today - datetime.timedelta(days=7)
+    last_month = today - datetime.timedelta(days=31)
+    # start_date, end_date
+    usuarios_inactivos = Persona.objects.filter(Usuario__last_login__range=(last_month, last_week))
+
+    # for i in usuarios_inactivos:
+
+    print(usuarios_inactivos)
 @login_required(login_url='/auth/login')
 def guardar_config_perfil_redes(request,pk_user):
     data = {}

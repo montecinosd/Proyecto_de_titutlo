@@ -1,0 +1,72 @@
+{% extends 'Partials/_BaseAdmin.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'assets/' %}">
+<link type="text/css" href="{% static 'js/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+<link type="text/css" href="{% static 'js/bootstrap.css' %}" rel="stylesheet">
+
+{% block section_contenido %}
+    <div class="row text-center">
+
+  <h4>Envía correo a los usuarios de FullPega!</h4>
+
+  Envia correos a los usuarios, ingresa el asunto y el mensaje! <hr>
+    </div>
+
+
+
+     <div class="container">
+{#                         {% for i in pegas %}#}
+{#                             {{ i.Fecha }}#}
+{#{% endfor %}#}
+        <div class="row text-center">
+                <div class="panel-body bg-light">
+                <h5>¡Envia correos!</h5>
+                  <hr class="short br-lighter">
+                        <form method="post" action="{% url 'enviar_correos' %}" id="formulario_trabajo" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-3">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="Fecha">Asunto:</label>
+                            <input type="text" name="asunto" class="form-control" placeholder="Ingrese el asunto del correo" required="">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="Hora">Mensaje:</label>
+
+                            <textarea class="form-control" name="mensaje" required="" placeholder="as">
+                            </textarea>
+                        </div>
+                        <div style="margin-top:1%;" class="col-md-12">
+                        <button class="btn btn-rounded btn-primary" id="submit" style="width: 15em;">Enviar correo</button>
+                        </div>
+                    </div>
+        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+{% block scripts %}
+
+{#<script src="{% static 'js/jquery-3.3.1.js' %}"></script>#}
+<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'js/dataTables.bootstrap4.min.js' %}"></script>
+
+<script>
+    $(document).ready(function() {
+        {#$('#example').DataTable();#}
+
+    $('#example').dataTable({
+        /* Disable initial sort */
+       "order": []
+    });
+
+    } );
+</script>
+{% endblock %}

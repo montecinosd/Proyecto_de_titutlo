@@ -7,6 +7,7 @@ urlpatterns = [
      path('index_admin', views.index_admin, name='index_admin'),
      path('adm_usuarios', views.adm_usuarios, name='adm_usuarios'),
      path('adm_pegas', views.adm_pegas, name='adm_pegas'),
+     path('enviar_correos', views.enviar_correos, name='enviar_correos'),
      path(r'^  visualizar_perfil_adm/<int:pk_user>', views.visualizar_perfil_adm, name='visualizar_perfil_adm'),
      path(r'^  visualizar_pega_adm/<int:pk_pega>', views.visualizar_pega_adm, name='visualizar_pega_adm'),
      path(r'^  deshabilitar_pega_adm/<int:pk_pega>', views.deshabilitar_pega_adm, name='deshabilitar_pega_adm'),
