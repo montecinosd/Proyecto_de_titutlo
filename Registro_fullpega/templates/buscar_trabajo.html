@@ -180,7 +180,10 @@
                                             <option value="" disabled selected>Selecciona Comuna</option>
                                         {% endif %}
                                         {% for i in comunas %}
-                                            <option value="{{ i }}">{{ i }}</option>
+                                            {% if i == preferencias.Comuna.nombre %}
+                                                {% else %}
+                                                <option value="{{ i }}">{{ i }}</option>
+                                            {% endif %}
                                         {% endfor %}
                                     </select>
                                   </div>
@@ -194,10 +197,29 @@
                                                                             {% endif %}
 
                                         {% for i in areas %}
-                                            <option value="{{ i }}">{{ i }}</option>
+                                                {{ i }}{{ preferencias.Area.Nombre }}
+
+                                            {% if i == preferencias.Area.Nombre %}
+{#                                                asdasddas<option value="{{ i }}">{{ i }}</option>#}
+                                                {% else %}
+                                                aaa<option value="{{ i }}">{{ i }}</option>
+                                            {% endif %}
+
+{#                                            <option value="{{ i }}">{{ i }}</option>#}
                                         {% endfor %}
 
                                     </select>
+                              {% for i in areas %}
+                                                {{ i }}{{ preferencias.Area.Nombre }}
+
+                                            {% if i == preferencias.Area %}
+                                                asdasddas<option value="{{ i }}">{{ i }}</option>
+                                                {% else %}
+                                                aaa<option value="{{ i }}">{{ i }}</option>
+                                            {% endif %}
+
+{#                                            <option value="{{ i }}">{{ i }}</option>#}
+                                        {% endfor %}
                               </div>
                               <div class="col-md-2 text-center">
                                         {% if preferencias.M_minimo and usuario_solicitud.privilegios == 2 or usuario_solicitud.privilegios == 4  %}

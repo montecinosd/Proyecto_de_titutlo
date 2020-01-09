@@ -341,7 +341,7 @@ def visualizar_postulantes_a_trabajos(request, pk_user):
     data['usuario_solicitud'] = usuario_solicitud
 
     # usuario = Persona.objects.get(Usuario=pk_user)
-    trabajos = Trabajo.objects.filter(Usuario = usuario_solicitud.pk).exclude(Activo=0)
+    trabajos = Trabajo.objects.filter(Usuario = usuario_solicitud.pk).exclude(Activo=0).exclude(Activo=2)
     validar_trabajos(trabajos)
     data['trabajos'] = trabajos
     data['postulantes'] = Postulantes.objects.all()
@@ -498,7 +498,10 @@ def buscar_trabajo(request,pk_user):
     data = {}
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
     data['usuario_solicitud'] = usuario_solicitud
-    data['preferencias'] = Preferencias.objects.get(Usuario = usuario_solicitud)
+    if (Preferencias.objects.filter(Usuario = usuario_solicitud)):
+        data['preferencias'] = Preferencias.objects.get(Usuario = usuario_solicitud)
+    else:
+        pass
     # print([i for i in Trabajo.objects.filter(Activo= 1).values('Area__Nombre').distinct()])
     areas = Trabajo.objects.filter(Activo= 1).values('Area__Nombre').distinct()
     print("hoal")
@@ -516,7 +519,7 @@ def buscar_trabajo(request,pk_user):
     trabajos = Trabajo.objects.filter(Activo = 1).exclude(Usuario__Usuario= usuario_solicitud)
     validar_trabajos(trabajos)
     #COMPARAR EN TEMPLATE PARA SACAR TRABAJOS A LOS QUE YA HA POSTULADO, SACA LOS TRABAJOS NO ACTIVOS....
-    trabajos_postulados = Postulantes.objects.filter(Postulante = usuario_solicitud).order_by('-Fecha').exclude(Trabajo__Activo= 0)
+    trabajos_postulados = Postulantes.objects.filter(Postulante = usuario_solicitud).order_by('-Fecha').exclude(Trabajo__Activo= 0).exclude(Trabajo__Activo=2)
     data['trabajos_postulados'] = trabajos_postulados
     data['trabajos'] = trabajos
     # data['usuario'] = usuario
