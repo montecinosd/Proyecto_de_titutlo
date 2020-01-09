@@ -175,7 +175,7 @@
                                 <div class="col-md-2 text-center">
                                     <select class ="form-control mySelect"  style="width: 15em;" id="mySelect">
                                         {% if preferencias.Comuna and usuario_solicitud.privilegios == 2 or usuario_solicitud.privilegios == 4 %}
-                                            <option  style="color:blue;"    value="{{ preferencias.Comuna.nombre }}">{{ preferencias.Comuna.nombre }}</option>
+                                            <option  style="color:darkred;"    value="{{ preferencias.Comuna.nombre }}">{{ preferencias.Comuna.nombre }}</option>
                                         {% else %}
                                             <option value="" disabled selected>Selecciona Comuna</option>
                                         {% endif %}
@@ -188,7 +188,7 @@
 {#                                  adding-bottom: 1em; margin-bottom: 1em;#}
                                     <select class ="form-control mySelect" style="width: 15em;" id="mySelect2">
                                         {% if preferencias.Area and usuario_solicitud.privilegios == 2 or usuario_solicitud.privilegios == 4 %}
-                                            <option  style="color:blue;"    value="{{ preferencias.Area.Nombre }}">{{ preferencias.Area.Nombre }}</option>
+                                            <option  style="color:darkred;"    value="{{ preferencias.Area.Nombre }}">{{ preferencias.Area.Nombre }}</option>
                                         {% else %}
                                             <option value="" disabled selected>Selecciona Area</option>
                                                                             {% endif %}

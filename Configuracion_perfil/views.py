@@ -116,6 +116,38 @@ def guardar_config_datos(request):
 
     return redirect('config_perfil', request.user.pk)
 
+from django.contrib import messages
+from django.contrib.auth import authenticate
+
+@login_required(login_url='/auth/login')
+def actualizar_contrasenha(request):
+    data = {}
+    usuario = Persona.objects.get(Usuario=request.user.pk)
+    print(request.POST)
+    print(request.FILES)
+    print(usuario.Imagen)
+
+    if(request.POST):
+        user = authenticate(
+            username = usuario.Usuario.username,
+            password = request.POST['contrasenha_actual']
+        )
+        if user is not None:
+            if (request.POST['contrasenha_nueva'] == request.POST['contrasenha_nueva2']):
+                usuario.Usuario.set_password(request.POST['contrasenha_nueva'])
+                usuario.Usuario.save()
+
+                messages.success(request, 'Se ha cambiado la contraseña exitosamente')
+            else:
+                messages.warning(request, 'Las contraseñas ingresadas no coinciden')
+
+        else:
+            messages.warning(request, 'Contraseña ingresada invalida')
+
+        # if (request.POST['contrasenha_actual'] == usuario.)
+
+    return redirect('config_perfil', request.user.pk)
+
 @login_required(login_url='/auth/login')
 def guardar_config_perfil_preferencias(request,pk_user):
     data = {}

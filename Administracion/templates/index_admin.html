@@ -82,7 +82,7 @@
             <div class="panel bg-info light of-h mb10">
               <div class="pn pl20 p5">
                 <div class="icon-bg">
-                  <i class="fa fa-calendar-check-o "></i>
+                  <i class="fa fa-clock-o"></i>
                 </div>
                 <h2 class="mt15 lh15">
                   <b>{{ final_dif }}</b>
@@ -128,17 +128,19 @@
     </div>
 <div class="container">
                     <div class="row">
-                        <div class="panel panel-default col-md-12">
+                        <div class="panel panel-default col-md-6">
                             <canvas id="myChart2" width="300" height="300"></canvas>
                         </div>
-                        <div class="panel panel-default col-md-12">
+                                                <div class="panel panel-default col-md-6">
+                            <canvas id="myChart4" width="300" height="300"></canvas>
+                        </div>
+
+                        <div class="panel panel-default col-md-6">
                             <canvas id="myChart3" width="300" height="300"></canvas>
                         </div>
-                        <div class="panel panel-default col-md-12">
+                        <div class="panel panel-default col-md-6">
                             <canvas id="myChart" width="300" height="300"></canvas>
                         </div>
-
-
                     </div>
                 </div>
 {#<script src="{% static 'charts/Chart.bundle.js' %}"></script>#}
@@ -198,6 +200,72 @@ var myChart = new Chart(ctx, {
          title: {
       display: true,
       text: 'Calificaciones'
+    }
+    }
+});
+</script>
+<script>
+var ctx = document.getElementById('myChart4').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+
+        {%  if areas_frecuentes|length == 0 %}
+            labels:
+            [],
+        {%  elif areas_frecuentes|length == 1 %}
+            labels:
+            ['{{ areas_frecuentes.0.Area__Nombre}}'],
+        {%  elif areas_frecuentes|length == 2 %}
+            labels:
+            ['{{ areas_frecuentes.0.Area__Nombre }}', '{{ areas_frecuentes.1.Area__Nombre }}'],
+        {%  elif areas_frecuentes|length == 3 %}
+            labels:
+            ['{{ areas_frecuentes.0.Area__Nombre }}', '{{ areas_frecuentes.1.Area__Nombre }}', '{{ areas_frecuentes.2.Area__Nombre }}'],
+        {%  elif areas_frecuentes|length == 4 %}
+            labels:
+            ['{{ areas_frecuentes.0.Area__Nombre }}', '{{ areas_frecuentes.1.Area__Nombre }}', '{{ areas_frecuentes.2.Area__Nombre }}','{{ areas_frecuentes.3.Area__Nombre }}' ],
+        {%  elif areas_frecuentes|length >= 5 %}
+            labels:
+            ['{{ areas_frecuentes.0.Area__Nombre }}', '{{ areas_frecuentes.1.Area__Nombre }}', '{{ areas_frecuentes.2.Area__Nombre }}','{{ areas_frecuentes.3.Area__Nombre }}','{{ areas_frecuentes.4.Area__Nombre }}' ],
+        {% endif %}
+        datasets: [{
+            label: 'Areas con más demanda',
+            data:
+                [{{ areas_frecuentes.0.count }}, {{ areas_frecuentes.1.count }},{{ areas_frecuentes.2.count }},{{ areas_frecuentes.3.count }},{{ areas_frecuentes.4.count }}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+                responsive: true,
+        maintainAspectRatio: false,
+
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+         title: {
+      display: true,
+      text: 'Comunas con más demandadas'
     }
     }
 });
@@ -268,6 +336,7 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
+
 <script>
 var ctx = document.getElementById('myChart3').getContext('2d');
 var myChart = new Chart(ctx, {

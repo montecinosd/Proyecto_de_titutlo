@@ -73,6 +73,11 @@ def index_admin(request):
     # print(vacia)
     comunas_frecuentes = Trabajo.objects.filter(Fecha_publicacion__range=(fecha_ini,fecha_fin)).values("Direccion__Comuna__nombre").annotate(count=Count('Direccion__Comuna')).order_by("-count")
     data['comunas_frecuentes'] = comunas_frecuentes
+
+    areas_frecuentes = Trabajo.objects.filter(Fecha_publicacion__range=(fecha_ini,fecha_fin)).values("Area__Nombre").annotate(count=Count('Area__Nombre')).order_by("-count")
+    print(areas_frecuentes)
+    data['areas_frecuentes'] = areas_frecuentes
+
     # rellena = comunas_frecuentes|vacia
     # print(rellena)
     rango_horario = Trabajo.objects.filter(Fecha_publicacion__range=(fecha_ini,fecha_fin))

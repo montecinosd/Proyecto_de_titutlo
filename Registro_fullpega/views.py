@@ -492,9 +492,9 @@ def visualizar_privilegios(request,pk_user):
 
 @login_required(login_url='/auth/login')
 def buscar_trabajo(request,pk_user):
-    prueba_mail()
-    enviar_email('mendrack1@gmail.com',"Prueba django dinamico","dinamico xde")
-    enviar_correo_inactivos()
+    # prueba_mail()
+    # enviar_email('mendrack1@gmail.com',"Prueba django dinamico","dinamico xde")
+    # enviar_correo_inactivos()
     data = {}
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
     data['usuario_solicitud'] = usuario_solicitud

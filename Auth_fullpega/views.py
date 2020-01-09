@@ -49,16 +49,16 @@ def auth_login(request):
 
             else:
                 print("Usuario o contraseña no validos")
-                messages.warning(
-                    request,
-                    'Usuario o contraseña incorrectos'
-                )
+                # messages.warning(
+                #     request,
+                #     'Usuario o contraseña incorrectos'
+                # )
         else:
             print("Usuario incorrecto")
-            messages.error(
-                request,
-                'Usuario o contraseña incorrectos'
-            )
+            # messages.error(
+            #     request,
+            #     'Usuario o contraseña incorrectos'
+            # )
     return render(request, template_name, data)
 
 @csrf_protect
