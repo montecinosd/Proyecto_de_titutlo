@@ -26,7 +26,7 @@ SECRET_KEY = 'ykfy)l21d@coa_h+p&&fwp&!zr89h53sb=7)@swyu8@c!jh%v5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fullpega.rutax.cl', '127.0.0.1']
 
 
 # Application definition
