@@ -15,3 +15,7 @@ services:
     command: python manage.py migrate
     volumes:
       - .:/code
+networks:
+  default:
+    external:
+      name: red-uwu
