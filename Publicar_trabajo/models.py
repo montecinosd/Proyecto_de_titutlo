@@ -88,6 +88,10 @@ class Notificaciones(models.Model):
     Trabajo = models.ForeignKey(Trabajo, on_delete=models.CASCADE,null=True, blank=True)
     # 1 = calificacion, 2 = alerta de aceptar postulante, 3 = de nuevo postulante
     Tipo = models.PositiveIntegerField(default=1)
+    Contable = models.PositiveIntegerField(default=1)
+
+    def apagar_contable(self):
+        self.Contable = 0
 
 # class Valoracion_trabajo(models.Model):
 #     Trabajo = models.OneToOneField(Trabajo, on_delete=models.CASCADE)

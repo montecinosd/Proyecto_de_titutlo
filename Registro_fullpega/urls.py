@@ -1,9 +1,10 @@
 from django.urls import path
 from Registro_fullpega import views
-
+from Fullpega.Notificaciones_global import apagar_notificaciones
 
 urlpatterns = [
      path('index', views.index, name='index'),
+     path('apagar_notificacion', apagar_notificaciones, name='apagar_notificaciones'),
      #pagina principal
      path('', views.pagina_principal, name='pagina_principal'),
      #registros

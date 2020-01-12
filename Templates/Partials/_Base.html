@@ -81,8 +81,8 @@
 
 <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown"  href="#">
-          <span class="ad ad-radio-tower fs18"></span>  Notificaciones <span class="badge btn-primary">{{ notificaciones|length  }}</span>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'apagar_notificaciones' %}">
+          <span class="ad ad-radio-tower fs18"></span>  Notificaciones <span class="badge btn-primary">{{ notificaciones_contables  |length }}|{{ notificaciones|length  }}</span>
           </a>
           <ul class="dropdown-menu media-list w350 animated animated-shorter fadeIn" role="menu">
             <li class="dropdown-header">

@@ -670,6 +670,9 @@ def Guardar_Registro_form(request):
                 direccion.Persona = persona
                 direccion.save()
 
+                preferencias = Preferencias()
+                preferencias.Usuario = user
+                preferencias.save()
                 # persona.Direccion = direccion
 
 

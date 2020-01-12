@@ -86,6 +86,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'Fullpega.Notificaciones_global.get_notificaciones',
+                # 'Fullpega.Notificaciones_global.apagar_notificaciones',
             ],
         },
     },
