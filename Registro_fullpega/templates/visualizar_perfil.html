@@ -24,7 +24,11 @@
             <span class="footer-lega">{{ usuario.Direccion.Comuna.region.nombre }}, Chile</span><br>
             <span class="footer-lega">{{ usuario.Direccion.Comuna.nombre }}, {{ usuario.Direccion.Calle }} {{ usuario.Direccion.Numero_de_calle }}.</span><br>
             <span class="footer-lega">{{ usuario.Telefono_C }}</span><br>
+              {% if usuario.Estrellas == None %}
+            <span class="footer-lega">El usuario no cuenta con calificaciones <span class="fa fa-star"></span></span>
+              {% else %}
             <span class="footer-lega">Estrellas: {{ usuario.Estrellas }} de un posible de 5 <span class="fa fa-star"></span></span>
+              {% endif %}
           </div>
         </div>
     <hr>

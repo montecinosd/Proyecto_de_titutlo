@@ -165,7 +165,7 @@
 
                    <div class="section">
                   <label for="password" class="field prepend-icon">
-                    <input type="password" name="password" id="password" class="gui-input" placeholder="Ingresa tu contraseña">
+                    <input type="password" name="password" id="password" required="" class="gui-input" placeholder="Ingresa tu contraseña">
                     <label for="password" class="field-icon">
                       <i class="fa fa-unlock-alt"></i>
                     </label>
@@ -175,7 +175,7 @@
 
                 <div class="section">
                   <label for="confirmPassword" class="field prepend-icon">
-                    <input type="password" name="confirmPassword" id="confirmPassword" class="gui-input" placeholder="repite tu contraseña">
+                    <input type="password" name="confirmPassword" id="confirmPassword" required="" class="gui-input" placeholder="repite tu contraseña">
                     <label for="confirmPassword" class="field-icon">
                       <i class="fa fa-lock"></i>
                     </label>
@@ -191,7 +191,7 @@
                   <div class="section row">
                       <div class="col-md-6" id="div_calle">
                     <label for="lastname" class="field prepend-icon">
-                      <input type="text" name="calle" id="calle" class="gui-input" placeholder="Ingresa tu calle">
+                      <input type="text" name="calle" id="calle" class="gui-input" required="" placeholder="Ingresa tu calle">
                       <label for="lastname" class="field-icon">
                         <i class="fa fa-globe"></i>
                       </label>
@@ -201,7 +201,7 @@
 
                   <div class="col-md-6" id="div_num_calle">
                     <label for="firstname" class="field prepend-icon">
-                      <input type="text" name="numero_calle" id="numero_calle" class="gui-input" placeholder="Ingresa tu numero de calle">
+                      <input type="text" name="numero_calle" id="numero_calle" required=""  class="gui-input" placeholder="Ingresa tu numero de calle">
                       <label for="firstname" class="field-icon">
                         <i class="fa fa-globe"></i>
                       </label>
@@ -223,7 +223,7 @@
 
                       <label class="field select">
                           <i class="arrow"></i>
-                          <select class="gui-input" id="region">
+                          <select class="gui-input" required=""  id="region">
                               <option value="" >Selecciona la region</option>
                           {% for i in regiones %}
                              <option value="{{ i.pk  }}" name="{{ i.pk }}">{{ i.nombre }}</option>
@@ -232,7 +232,7 @@
                       </label>
                   </div>
                   <div class="col-md-6" >
-                  <select class="gui-input" id="primer_comuna"disabled>
+                  <select class="gui-input" required="" id="primer_comuna"disabled>
                       <option value="">Selecciona región para seleccionar comuna</option>
                   </select>
                     {% for i in regiones %}
