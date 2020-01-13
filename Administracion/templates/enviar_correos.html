@@ -21,10 +21,23 @@
 {#                         {% for i in pegas %}#}
 {#                             {{ i.Fecha }}#}
 {#{% endfor %}#}
+         <div class="row">
+             <div class="col-md-6 text-center">
+                 <a class="btn btn-rounded btn-alt" href="{% url 'correos_usuarios_inactivos' %}">Enviar correo a usuarios inactivos</a>
+             </div>
+             <div class="col-md-6 text-center">
+                 <a class="btn btn-rounded btn-alt" href="{% url 'correos_areas_solicitadas' %}">Enviar correo a usuarios areas solicitadas</a>
+             </div>
+         </div>
+                           <hr >
+
         <div class="row text-center">
                 <div class="panel-body bg-light">
-                <h5>¡Envia correos!</h5>
+                <h5>¡Envia correos a medida!</h5>
                   <hr class="short br-lighter">
+{#                                                <td> <a href="{% url 'detalle_trabajos_publicados' i.pk %}" class="btn btn-rounded btn-primary">Ir a detalle</a></td>#}
+
+
                         <form method="post" action="{% url 'enviar_correos' %}" id="formulario_trabajo" enctype="multipart/form-data">{% csrf_token %}
                     <div class="row">
                         <div class="col-md-3">

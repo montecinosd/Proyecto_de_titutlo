@@ -125,6 +125,44 @@ def index_admin(request):
 
     return render(request, 'index_admin.html', data)
 
+def correos_areas_solicitadas(request):
+    data = {}
+    correos = []
+    today = datetime.date.today()
+    pasado = today - datetime.timedelta(days=4)
+
+    areas_frecuentes = Trabajo.objects.filter(Fecha_publicacion__range=(pasado,today)).values("Area__Nombre").annotate(count=Count('Area__Nombre')).order_by("-count")
+    cont=0
+    aux=False
+    for i in areas_frecuentes:
+        print(i)
+        if cont == 5:
+            break
+        if (Preferencias.objects.filter(Area = Areas.objects.get(Nombre=i['Area__Nombre']))):
+            aux = True
+            personas = Preferencias.objects.filter(Area = Areas.objects.get(Nombre=i['Area__Nombre']))[5]
+            correos_aux = [i.Correo for i in personas]
+            correos = correos + correos_aux
+        cont=cont+1
+    print(correos)
+    if(aux):
+        enviar_emails("Pegas acumuladas en FP!", "Conectate y genera! FullPega te está esperando ;)", correos)
+    return render(request, 'enviar_correos.html', data)
+
+
+def correos_usuarios_inactivos(request):
+    data={}
+    start_date = datetime.date(2019, 1, 1)
+    today = datetime.date.today()
+    semana_pasada = today - datetime.timedelta(days=7)
+    # User.objects.filter(last_login__range=(start_date, end_date))
+    if (Persona.objects.filter(Usuario__last_login__range=(start_date,semana_pasada))):
+        personas = Persona.objects.filter(Usuario__last_login__range=(start_date,semana_pasada))[25]
+        correos = [i.Correo for i in personas]
+        enviar_emails("Conectate y vuelve a FullPega!", "Las mejores pegas para ti, están en fullpega, encuentra a alguien que haga una pega por ti o encuentra la pega perfecta ;), vuelve a Fullpega!", correos)
+
+    return render(request, 'enviar_correos.html', data)
+
 def instalar_regiones_comunas(request):
     uwu = [{'region': "Aisén del Gral. Carlos Ibáñez del Campo",
             'comunas': ["Aisén", "Chile Chico", "Cisnes", "Cochrane", "Coihaique", "Guaitecas", "Lago Verde",
