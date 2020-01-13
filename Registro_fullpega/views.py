@@ -332,9 +332,10 @@ def postular_inicial(request,pk_pega):
     notificacion.save()
 
     return redirect('buscar_trabajo', pk_pega)
-
+from Calificaciones.views import apagar_notificaciones
 @login_required(login_url='/auth/login')
 def visualizar_postulantes_a_trabajos(request, pk_user):
+    apagar_notificaciones(request)
     data = {}
     print("postulando...")
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
@@ -671,7 +672,7 @@ def Guardar_Registro_form(request):
                 direccion.save()
 
                 preferencias = Preferencias()
-                preferencias.Usuario = user
+                preferencias.Usuario = persona
                 preferencias.save()
                 # persona.Direccion = direccion
 

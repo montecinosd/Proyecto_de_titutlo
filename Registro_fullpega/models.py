@@ -2,17 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import *
 from django.utils import timezone
-# Create your models here.
-# class Bicicleta(models.Model):
-#     Nombre = models.CharField(max_length=120)
-#     Modelo =  models.CharField(max_length=120)
-#     Color =  models.CharField(max_length=120)
-#     Aro =  models.CharField(max_length=120)
-#     Estado =  models.CharField(max_length=120)
-#     Tipo =  models.CharField(max_length=120)
-#     Codigo =  models.CharField(max_length=120)
-#     Monto_garantia = models.PositiveIntegerField()
-#     Imagen = models.ImageField(upload_to='image')
+
 
 def content_file_name(instance, filename):
     return '/'.join(['content', instance.Usuario.username, filename])
@@ -25,7 +15,7 @@ class Areas(models.Model):
 class Region(models.Model):
     nombre = models.CharField(max_length=40, unique=True)
     def add_commune(self, name):
-        return Comuna.objects.create(name=nombre,
+        return Comuna.objects.create(nombre=name,
                                       region=self)
 
 

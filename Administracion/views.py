@@ -25,9 +25,12 @@ def convertir_segundos(seg):
 # Create your views here.
 @login_required(login_url='/auth/login')
 def index_admin(request):
+    # Ejecutar solo por primera vez para instalar regiones y comunas
+    # instalar_regiones_comunas(request)
+    # print("hola")
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
 
-
+    # instalar_regiones_comunas(request)
     if(request.POST):
         print(request.POST)
         print(type(request.POST.get("fecha_inicio")[8:10]))

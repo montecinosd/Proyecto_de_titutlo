@@ -12,7 +12,8 @@ urlpatterns = [
     path('calificar/', include('Calificaciones.urls'), name='Calificar'),
     path('configuracion/', include('Configuracion_perfil.urls'), name='configuracion'),
     path('administracion/', include('Administracion.urls'), name='administracion'),
-    path('', include('sensibilidad_watson.urls'),name="watson")
+    path('', include('sensibilidad_watson.urls'),name="watson"),
+    path('', include('Notificaciones.urls'),name="notificaciones")
 
     # path("index_Fullpega/", include('Fullpega.urls'), name='Fullpega'),
 
