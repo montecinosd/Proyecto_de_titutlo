@@ -9,12 +9,6 @@ services:
       - .:/code
     ports:
       - "8002:8002"
-
-  migrate:
-    image: fullpegaimage
-    command: python manage.py migrate
-    volumes:
-      - .:/code
 networks:
   default:
     external:
