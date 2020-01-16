@@ -10,7 +10,7 @@ def apagar_notificaciones(request):
     try:
         print("holaasdasdaa")
         if (request.user.pk == None):
-            print("ctm")
+            pass
         else:
             print("desactivando notis")
             usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
