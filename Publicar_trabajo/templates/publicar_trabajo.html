@@ -80,7 +80,7 @@
                 <div class="row">
                     <div class="col-md-4   ">
                         <label for="Fecha">Fecha de realización de la pega:</label>
-                        <input type="datetime-local" name="fecha"  id="fecha" class="form-control" placeholder="Ingrese la fecha del trabajo" required="">
+                        <input type="datetime-local" name="fecha" min="" id="fecha" class="form-control" placeholder="Ingrese la fecha del trabajo" required="">
                     </div>
                     <div class="col-md-4">
                         <label for="Hora">Fecha de vencimineto de la pega:</label>
@@ -254,7 +254,47 @@
 <script src="{% static 'vendor/jquery/jquery-1.11.1.min.js' %}"></script>
 <script src="{% static 'vendor/jquery/jquery_ui/jquery-ui.min.js' %}"></script>
 <script type="text/javascript">
+function getDateTime() {
+        var now     = new Date();
+        var year    = now.getFullYear();
+        var month   = now.getMonth()+1;
+        var day     = now.getDate();
+        var hour    = now.getHours();
+        var minute  = now.getMinutes();
+        var second  = now.getSeconds();
+        if(month.toString().length == 1) {
+             month = '0'+month;
+        }
+        if(day.toString().length == 1) {
+             day = '0'+day;
+        }
+        if(hour.toString().length == 1) {
+             hour = '0'+hour;
+        }
+        if(minute.toString().length == 1) {
+             minute = '0'+minute;
+        }
+        if(second.toString().length == 1) {
+             second = '0'+second;
+        }
+        var dateTime = year+'-'+month+'-'+day+'T'+hour+':'+minute;
+         return dateTime;
+    }
   jQuery(document).ready(function() {
+{#     var currentdate = new Date();#}
+{#var datetime = currentdate.getFullYear() + "-"#}
+{#                + (currentdate.getMonth()+1)  + "-"#}
+{#                + currentdate.getDate() + "T"#}
+{#                + currentdate.getHours() + ":"#}
+{#                + currentdate.getMinutes();#}
+{#    alert(getDateTime());#}
+
+    $("#fecha").attr({
+       "min" : getDateTime(),      // values (or variables) here
+    });
+        $("#fecha_vencimiento").attr({
+       "min" : getDateTime(),      // values (or variables) here
+    });
     "use strict";
     $('#boton1').click(function () {
         {#alert("hola");#}

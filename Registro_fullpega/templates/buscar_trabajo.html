@@ -197,29 +197,27 @@
                                                                             {% endif %}
 
                                         {% for i in areas %}
-                                                {{ i }}{{ preferencias.Area.Nombre }}
 
                                             {% if i == preferencias.Area.Nombre %}
 {#                                                asdasddas<option value="{{ i }}">{{ i }}</option>#}
                                                 {% else %}
-                                                aaa<option value="{{ i }}">{{ i }}</option>
+                                                <option value="{{ i }}">{{ i }}</option>
                                             {% endif %}
 
 {#                                            <option value="{{ i }}">{{ i }}</option>#}
                                         {% endfor %}
 
                                     </select>
-                              {% for i in areas %}
-                                                {{ i }}{{ preferencias.Area.Nombre }}
-
-                                            {% if i == preferencias.Area %}
-                                                asdasddas<option value="{{ i }}">{{ i }}</option>
-                                                {% else %}
-                                                aaa<option value="{{ i }}">{{ i }}</option>
-                                            {% endif %}
-
+{#                              {% for i in areas %}#}
+{##}
+{#                                            {% if i == preferencias.Area.Nombre %}#}
+{#                                                {{ i }}#}
+{#                                                <option value="{{ i }}">{{ i }}</option>#}
+{#                                                {% else %}#}
+{#                                            {% endif %}#}
+{##}
 {#                                            <option value="{{ i }}">{{ i }}</option>#}
-                                        {% endfor %}
+{#                                        {% endfor %}#}
                               </div>
                               <div class="col-md-2 text-center">
                                         {% if preferencias.M_minimo and usuario_solicitud.privilegios == 2 or usuario_solicitud.privilegios == 4  %}

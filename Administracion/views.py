@@ -10,7 +10,7 @@ from django.db.models import Count, Avg
 from django.utils import timezone
 from django.db.models import F
 import datetime
-
+from sensibilidad_watson import views
 from Correos.views import *
 def convertir_segundos(seg):
     # print(seg)
@@ -27,6 +27,8 @@ def convertir_segundos(seg):
 def index_admin(request):
     # Ejecutar solo por primera vez para instalar regiones y comunas
     # instalar_regiones_comunas(request)
+    get_personality("Estoy loco Yo ya no puedo entender La gente esta tan dura Que ya no se puede creer Voy buscando Algo no me importa que Que tengan algún lado Algo que al menos venga bien Cruzando la esquina Te veo y vuelvo recordar Aquella medicina Que nos gustaba saborear De hecho esta vacía Me escapo solo a caminar Soliendome la vida Te veo y vuelvo a empezar Si te estas sintiendo sola Me puedes venir a ver Hace tiempo fuiste mi amor")
+    # install(request) #instalar categiorias
     # print("hola")
     usuario_solicitud = Persona.objects.get(Usuario=request.user.pk)
 
