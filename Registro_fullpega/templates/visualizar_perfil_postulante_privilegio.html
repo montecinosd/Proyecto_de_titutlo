@@ -183,9 +183,9 @@
             <h1><span style ="font-weight: bold; "class="">{{ pega.Area.Nombre }} - {{ pega.Nombre }}</span></h1><hr>
             <span class="footer-lega">Descripción: {{ pega.Detalle }}</span><br>
             <span class="footer-lega">Pago: ${{ pega.Monto_pago }}</span><br>
-            <span class="footer-lega">Dirección: {{ pega.Direccion.Comuna}}, {{ pega.Direccion.Calle }} {{ pega.Direccion.Numero_de_calle }}</span><br>
-            <span class="footer-lega">Fecha: {{ pega.Fecha }} {{ pega.Hora }}</span><br>
-            <span class="footer-lega">Fecha: {{ pega.rango_etario }}</span>
+            <span class="footer-lega">Dirección: {{ pega.Direccion.Comuna.nombre}}, {{ pega.Direccion.Calle }} {{ pega.Direccion.Numero_de_calle }}</span><br>
+            <span class="footer-lega">Fecha: {{ pega.Fecha }} </span><br>
+            <span class="footer-lega">Rango etario: {{ pega.rango_etario }}</span>
           </div>
 
 

@@ -42,7 +42,7 @@
                         <h5 class="text-left">{{ i.Nombre }}</h5>
 
                       <h6 class="text-left">Paga acordada: ${{ i.Monto_pago }}</h6>
-                      <h6 class="text-left">Fecha: {{ i.Fecha }}, {{ i.Hora }}</h6>
+                      <h6 class="text-left">Fecha: {{ i.Fecha }}</h6>
                       <a href="{% url 'visualizar_postulantes_detalle' i.pk %}" class="btn btn-rounded btn-success "style="float:left;">Visualizar detalle</a>
 
 {#                                                <hr  style="padding: 0%;margin: 0.5em;">#}
@@ -72,7 +72,7 @@
 {#                                   <i style="font-size:2em;" class="fa">&#xf1ae;</i>#}
  {{ z.Postulante.Nombre }}
                                    | {{ z.Fecha }}
-                                    {{ z.Hora   }} |
+                                        |
                                 {% if z.Estado == 0 %}
                                     <a href="{% url 'visualizar_perfil_postulante' z.pk %}" class="btn btn-rounded btn-primary">Visualizar postulante</a></td>
                                     {% else %}
