@@ -10,6 +10,7 @@
 
 {% block section_contenido %}
     <div class="container">
+
         <div class="row img-centered">
           <div class="col-md-1">
           </div>
@@ -20,9 +21,14 @@
           <div class="col-md-8">
             <h1><span style ="font-weight: bold; "class="">{{ usuario.Nombre }}</span></h1><hr>
             <span class="footer-lega">{{ usuario.Correo }}</span><br>
-            <span class="footer-lega">{{ usuario.Direccion.Ciudad }}, {{ usuario.Direccion.Pais }}.</span><br>
-            <span class="footer-lega">{{ usuario.Direccion.Comuna }}, {{ usuario.Direccion.Calle }} {{ usuario.Direccion.Numero_de_calle }}.</span><br>
-            <span class="footer-lega">{{ usuario.Telefono_C }}</span>
+            <span class="footer-lega">{{ usuario.Direccion.Comuna.region.nombre }}, Chile</span><br>
+            <span class="footer-lega">{{ usuario.Direccion.Comuna.nombre }}, {{ usuario.Direccion.Calle }} {{ usuario.Direccion.Numero_de_calle }}.</span><br>
+            <span class="footer-lega">{{ usuario.Telefono_C }}</span><br>
+              {% if usuario.Estrellas == None %}
+            <span class="footer-lega">El usuario no cuenta con calificaciones <span class="fa fa-star"></span></span>
+              {% else %}
+            <span class="footer-lega">Estrellas: {{ usuario.Estrellas }} de un posible de 5 <span class="fa fa-star"></span></span>
+              {% endif %}
           </div>
         </div>
     <hr>
@@ -36,7 +42,9 @@
               <h3>Redes sociales</h3>
 
   Estas son las redes vinculadas de {{ usuario.Nombre }}<hr>
-
+            {% if usuario.Twitter == None and  usuario.Facebook == None and usuario.Linkedin == None and usuario.Instagram == None%}
+            <h5>¡No has registrado ninguna red social!. Vincula tus redes en <a href="{% url 'config_perfil' request.user.pk %}" class="">Configuraciones de la cuenta</a></h5>
+            {% endif %}
             {% if usuario.Twitter %}
                 <div class="card col-md-4" style="padding:1%;width: 25%;height: 100%;"  >
                 <div class="text-center">
@@ -104,9 +112,11 @@
               </div>
         <div class="col-md-6">
             <div class="col-md-12 pr40 border-right">
-                <h3>Información de usuario</h3>
+                <h3>Descripción del usuario</h3>
 
-  Este es el resumen de {{ usuario.Nombre }} <hr>
+  Esta es la descripcion propia elaborada por {{ usuario.Nombre }} <hr>
+                {% if usuario.Descripcion_propia %}
+                    <textarea class="form-control" rows="7" name="descripcion"  required="" placeholder="" maxlength="1000" minlength="100" disabled>{{ usuario.Descripcion_propia }}</textarea>
                        <style>
                                 .rating {
                               display: inline-block;
@@ -174,40 +184,44 @@
                               text-shadow: 0 0 5px #09f;
                             }
                             </style>
-                <div class="col-md-12"><h5>Valoración: 4 Estrellas <span class="icon">★</span></h5></div>
-                            <form class="rating">
+                {% else %}
+                            <h5>¡No has registrado ninguna descripción!. Registra en <a href="{% url 'config_perfil' request.user.pk %}" class="">Configuraciones de la cuenta</a></h5>
 
-                              <label>
-                                <input type="radio" name="stars" value="1"  disabled/>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="2" disabled/>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="3" disabled/>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="4" checked disabled/>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="5" disabled/>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                            </form>
+                {% endif %}
+{#                <div class="col-md-12"><h5>Valoración: 4 Estrellas <span class="icon">★</span></h5></div>#}
+{#                            <form class="rating">#}
+{##}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="1"  disabled/>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="2" disabled/>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="3" disabled/>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="4" checked disabled/>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="5" disabled/>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                            </form>#}
 
                             <script>
                                 $(':radio').change(function() {

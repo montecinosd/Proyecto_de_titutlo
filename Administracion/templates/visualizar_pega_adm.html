@@ -135,39 +135,44 @@
                             }
                             </style>
 {#                <h5>Valoración: 4 Estrellas <span class="icon">★</span></h5>#}
-                            <form class="rating">
-
-                              <label>
-                                <input type="radio" name="stars" value="1"  disabled/>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="2" disabled/>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="3" disabled/>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="4" checked disabled/>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                              <label>
-                                <input type="radio" name="stars" value="5" disabled/>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                                <span class="icon">★</span>
-                              </label>
-                            </form>
+{#                            <form class="rating">#}
+{##}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="1"  disabled/>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="2" disabled/>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="3" disabled/>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="4" checked disabled/>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                              <label>#}
+{#                                <input type="radio" name="stars" value="5" disabled/>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                                <span class="icon">★</span>#}
+{#                              </label>#}
+{#                            </form>#}
+              {% if usuario.Estrellas == None %}
+            <span class="footer-lega">El usuario no cuenta con calificaciones <span class="fa fa-star"></span></span>
+              {% else %}
+            <span class="footer-lega">Estrellas: {{ usuario.Estrellas }} de un posible de 5 <span class="fa fa-star"></span></span>
+              {% endif %}
 
 {#                            <script>#}
 {#                                $(':radio').change(function() {#}
@@ -186,7 +191,7 @@
             <span class="footer-lega">Pago: ${{ pega.Monto_pago }}</span><br>
             <span class="footer-lega">Dirección: {{ pega.Direccion.Comuna}}, {{ pega.Direccion.Calle }} {{ pega.Direccion.Numero_de_calle }}</span><br>
             <span class="footer-lega">Fecha: {{ pega.Fecha }} {{ pega.Hora }}</span><br>
-            <span class="footer-lega">Fecha: {{ pega.rango_etario }}</span>
+            <span class="footer-lega">Rango etario: {{ pega.rango_etario }}</span>
           </div>
 
 
@@ -209,7 +214,7 @@
 {#<h2>Modal Example</h2>#}
 {##}
   <!-- Modal -->
-            <a href="{% url 'postular_inicial' pega.pk %}" class="btn btn-primary" data-toggle="modal" data-target="#myModal">¡Postular a esta pega!</a>
+            <a href="{% url 'postular_inicial' pega.pk %}" disabled class="btn btn-primary" data-toggle="modal" data-target="#myModal">¡Postular a esta pega!</a>
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
 
