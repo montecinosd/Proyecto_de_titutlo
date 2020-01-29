@@ -84,7 +84,7 @@
                 <div class="section row">
                   <div class="col-md-6">
                     <label for="firstname" class="field prepend-icon">
-                      <input type="text" name="nombres" id="nombres" class="gui-input" placeholder="Ingresa tus nombres">
+                      <input type="text" name="nombres" id="nombres" required="" class="gui-input" placeholder="Ingresa tus nombres">
                       <label for="firstname" class="field-icon">
                         <i class="fa fa-user"></i>
                       </label>
@@ -94,7 +94,7 @@
 
                   <div class="col-md-6">
                     <label for="lastname" class="field prepend-icon">
-                      <input type="text" name="apellidos" id="apellidos" class="gui-input" placeholder="Ingresa tus apellidos">
+                      <input type="text" name="apellidos" id="apellidos" required="" class="gui-input" placeholder="Ingresa tus apellidos">
                       <label for="lastname" class="field-icon">
                         <i class="fa fa-user"></i>
                       </label>
@@ -153,7 +153,7 @@
                   <div class="section">
                           <label class="field prepend-icon file">
                             <span class="button btn-primary">Elegir archivo</span>
-                            <input type="file" class="gui-file" name="imagenRegistro" id="imagenRegistro" onchange="document.getElementById('imagenRegistro2').value = this.value;">
+                            <input type="file" class="gui-file" name="imagenRegistro" required="" id="imagenRegistro" onchange="document.getElementById('imagenRegistro2').value = this.value;">
                             <input type="text" class="gui-input" id="imagenRegistro2" name="imagenRegistro2" placeholder="Sube una imagen tuya :)">
                             <label class="field-icon">
                               <i class="fa fa-upload"></i>
